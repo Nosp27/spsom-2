@@ -4,42 +4,31 @@ using UnityEngine;
 
 public class ShipDetectorUI : MonoBehaviour
 {
-    [SerializeField] private float range;
-    [SerializeField] private GameObject markerPrefab;
+    [SerializeField] public float range;
     [SerializeField] private GameObject rangeCircle;
     [SerializeField] private float offset;
-    
 
-    private Ship thisShip;
-    private float markerAdditionalOffset;
-    private Dictionary<GameObject, GameObject> targetMarkers;
+
+    private RadarTarget thisShipTarget;
+    public Dictionary<RadarTarget, GameObject> targetMarkers { get; private set; }
 
     void Start()
     {
-        markerAdditionalOffset = markerPrefab.GetComponentInChildren<SpriteRenderer>().size.y + 1f;
-        thisShip = GetComponentInParent<Ship>();
-        targetMarkers = new Dictionary<GameObject, GameObject>();
+        thisShipTarget = GetComponentInParent<RadarTarget>();
+        targetMarkers = new Dictionary<RadarTarget, GameObject>();
         rangeCircle.transform.localScale = 2 * offset * Vector3.one;
-
-        if (markerPrefab == null)
-        {
-            markerPrefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            markerPrefab.GetComponent<Collider>().enabled = false;
-            markerPrefab.GetComponent<MeshRenderer>().material.color = Color.green;
-            markerPrefab.transform.position = new Vector3(100, 1000, 100);
-        }
     }
 
     void LateUpdate()
     {
         DetectTargets();
-        List<GameObject> keysToDelete = new List<GameObject>();
+        List<RadarTarget> keysToDelete = new List<RadarTarget>();
         foreach (var target in targetMarkers.Keys)
         {
             GameObject marker = targetMarkers[target];
-            if ((target.transform.position - transform.position).magnitude > range)
+            if (!target || (target.transform.position - transform.position).magnitude > range)
                 keysToDelete.Add(target);
-            else
+            else if (ShouldTrackTarget(target))
                 PlaceMarker(marker.transform, target.transform);
         }
 
@@ -55,21 +44,34 @@ public class ShipDetectorUI : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(transform.position, range);
         foreach (var col in cols)
         {
-            Ship shipComponent = col.GetComponentInParent<Ship>();
-            if (
-                shipComponent
-                && shipComponent != thisShip
-                && !targetMarkers.ContainsKey(shipComponent.gameObject)
-            )
+            RadarTarget radarTarget = col.GetComponentInParent<RadarTarget>();
+            if (ShouldDetectTarget(radarTarget))
             {
-                GameObject marker = Instantiate(markerPrefab, transform);
-                PlaceMarker(marker.transform, shipComponent.transform);
-                targetMarkers.Add(shipComponent.gameObject, marker);
+                GameObject marker = null;
+                if (ShouldTrackTarget(radarTarget))
+                {
+                    marker = Instantiate(radarTarget.RadarPrefabWorld, transform);
+                    PlaceMarker(marker.transform, radarTarget.transform);
+                }
+
+                targetMarkers.Add(radarTarget, marker);
             }
         }
     }
 
-    void RemoveTarget(GameObject marker, GameObject target)
+    bool ShouldDetectTarget(RadarTarget radarTarget)
+    {
+        return radarTarget
+               && radarTarget != thisShipTarget.GetComponent<RadarTarget>()
+               && !targetMarkers.ContainsKey(radarTarget);
+    }
+
+    bool ShouldTrackTarget(RadarTarget target)
+    {
+        return target.RadarPrefabWorld != null;
+    }
+
+    void RemoveTarget(GameObject marker, RadarTarget target)
     {
         if (!targetMarkers.ContainsKey(target))
             return;
@@ -80,7 +82,13 @@ public class ShipDetectorUI : MonoBehaviour
 
     void PlaceMarker(Transform marker, Transform target)
     {
-        marker.position = transform.position + (target.position - transform.position).normalized * (offset + markerAdditionalOffset);
+        marker.position = transform.position + (target.position - transform.position).normalized *
+            (offset + MarkerAdditionalOffset(marker));
         marker.LookAt(target);
+    }
+
+    float MarkerAdditionalOffset(Transform marker)
+    {
+        return marker.GetComponentInChildren<SpriteRenderer>().size.y + 1f;
     }
 }

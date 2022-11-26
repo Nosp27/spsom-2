@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6742035029140003279}
   - component: {fileID: 6742035029140003278}
   - component: {fileID: 3254188788229339651}
+  - component: {fileID: 6581917197475830481}
   m_Layer: 0
   m_Name: FloatingAsteroid
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c65b2c0456e549238575c65d97479f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6581917197475830481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742035029140003273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b2f168d83364cee87a6dc1aaa53097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadarPrefabWorld: {fileID: 0}
+  RadarPrefabMinimap: {fileID: 4553285495342578624, guid: 3c89fe6aa78b04ef78620efc16fcc055, type: 3}
 --- !u!1001 &6742035028366762182
 PrefabInstance:
   m_ObjectHideFlags: 0
