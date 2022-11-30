@@ -260,8 +260,6 @@ public class FighterAI : MonoBehaviour
 
     void log(String text)
     {
-        if (logged)
-            print(text);
     }
 
     void MoveAt(Vector3 point)

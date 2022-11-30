@@ -104,7 +104,6 @@ namespace GameControl.StateProcessors
             playerShip.Aim(cursor);
             if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
             {
-                print("Shoot");
                 playerShip.Shoot(cursor);
             }
 

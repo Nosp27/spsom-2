@@ -8,12 +8,9 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody))]
 public class CollisionAvoidance : MonoBehaviour
 {
-    [SerializeField] private float MaxDistance = 300;
-
     private Ship ship;
     private Bounds shipBounds;
-
-    private float EmitterOffset;
+    
     [SerializeField] private float EmitRadius;
 
     private RaycastHit[] hits;
@@ -50,8 +47,7 @@ public class CollisionAvoidance : MonoBehaviour
         }
 
         EmitRadius = shipBounds.size.x;
-        EmitterOffset = (shipBounds.extents.z + EmitRadius);
-        
+
         red = GameObject.CreatePrimitive(PrimitiveType.Cube);
         red.SetActive(false);
         red.GetComponent<MeshRenderer>().material.color = Color.red;
@@ -66,9 +62,7 @@ public class CollisionAvoidance : MonoBehaviour
         int nHits = Physics.SphereCastNonAlloc(
             emitterPosition, EmitRadius, emitterDirection, hits, distance.magnitude, mask
         );
-        Debug.DrawRay(emitterPosition, distance, Color.cyan);
-
-        print($"CA: {nHits} Hits");
+        
         if (nHits == 0)
         {
             red.SetActive(false);
@@ -94,7 +88,6 @@ public class CollisionAvoidance : MonoBehaviour
             return Vector3.zero;
         }
         
-        print(nearestHit.collider.gameObject.name);
         nearest = nearestHit.collider.gameObject;
 
         Bounds hitBounds = nearestHit.collider.bounds;
@@ -138,11 +131,5 @@ public class CollisionAvoidance : MonoBehaviour
         }
         
         return true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
