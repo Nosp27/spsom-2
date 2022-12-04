@@ -1,16 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class HealthBar: MonoBehaviour
 {
-    public TextMesh HP;
+    public Text HP;
     public float Radius;
     public Gradient colorShade;
 
@@ -19,7 +13,6 @@ public class HealthBar: MonoBehaviour
     private Vector3[] allCirclePoints;
 
     private LineRenderer lr;
-    public Vector3 camOffset;
 
     private float Width, Height;
 
@@ -57,7 +50,6 @@ public class HealthBar: MonoBehaviour
     {
         while (true)
         {
-            transform.position = Camera.main.ScreenToWorldPoint(camOffset);
             int delta = lr.positionCount - (361 * Health / MaxHealth);
             delta = (int)(Mathf.Min(Mathf.Abs(delta), 8) * Mathf.Sign(delta));
             HP.text = Health.ToString();
