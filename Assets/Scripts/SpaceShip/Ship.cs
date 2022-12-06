@@ -11,7 +11,7 @@ public class Ship : MonoBehaviour
     private EngineBalancer engineBalancer;
     private Camera currentCamera;
     public Vector3 MoveAim { get; private set; }
-    [SerializeField] private float currentThrottle;
+    public float currentThrottle { get; private set; }
     public bool Alive;
     public List<Gun> Weapons;
     private List<Turret> Turrets;
