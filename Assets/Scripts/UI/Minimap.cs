@@ -80,6 +80,6 @@ public class Minimap : MonoBehaviour
         
         Vector3 shipForwardTransformed = Vector3.ProjectOnPlane(target.transform.forward, Vector3.up);
         shipForwardTransformed = new Vector3(shipForwardTransformed.x, shipForwardTransformed.z, 0);
-        minimapItem.transform.rotation = Quaternion.LookRotation(Vector3.forward, shipForwardTransformed);
+        minimapItem.transform.localRotation = Quaternion.LookRotation(Vector3.forward, shipForwardTransformed);
     }
 }
