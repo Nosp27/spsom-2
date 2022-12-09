@@ -8,6 +8,9 @@
         },
         {
             "m_Id": "4c072a65e0f04e37a859d5e9716fc697"
+        },
+        {
+            "m_Id": "af55d38f1c444b0990893dc9b020398b"
         }
     ],
     "m_Keywords": [],
@@ -559,8 +562,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -566.5000610351563,
-            "y": -57.99999237060547,
+            "x": -538.5,
+            "y": 16.5000057220459,
             "width": 125.50000762939453,
             "height": 34.0
         }
@@ -688,6 +691,29 @@
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
     "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "af55d38f1c444b0990893dc9b020398b",
+    "m_Guid": {
+        "m_GuidSerialized": "261be13a-7d0d-4466-bb2e-075085a8e216"
+    },
+    "m_Name": "BorderShrink",
+    "m_DefaultReferenceName": "Vector1_af55d38f1c444b0990893dc9b020398b",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 1.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {

@@ -89,6 +89,17 @@ public class ShipDetectorUI : MonoBehaviour
 
     float MarkerAdditionalOffset(Transform marker)
     {
-        return marker.GetComponentInChildren<SpriteRenderer>().size.y + 1f;
+        SpriteRenderer sr = marker.GetComponentInChildren<SpriteRenderer>();
+        MeshRenderer mr = marker.GetComponentInChildren<MeshRenderer>();
+        if (sr)
+        {
+            return sr.size.y + 1f;
+        }
+
+        if (mr)
+        {
+            return mr.bounds.size.y + 1f;
+        }
+        return 0f;
     }
 }
