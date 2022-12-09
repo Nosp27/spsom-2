@@ -64,6 +64,10 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
+        Vector3 distance = target - transform.position;
+        if (distance.magnitude < 1)
+            return;
+
         if (MoveAim.magnitude > 0)
         {
             TurnTarget = Vector3.zero;
