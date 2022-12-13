@@ -3,6 +3,17 @@ using UnityEngine;
 
 public class ItemView : MonoBehaviour
 {
+    /*
+     * Controls UI slot that can have an item in it.
+     * Item can be replaced, dropped or retrieved by other script.
+     * Items must be instantiated (do not use prefabs as items)
+     *
+     * Requires ItemContainer that controls Item binding to cargo place.
+     *
+     * Class is not meant to be attached by itself. Its children must be used
+     *
+     * Attach child to UI element
+     */
     protected ItemContainer itemContainer;
     protected UIInteractionController m_UIInteractionController;
 

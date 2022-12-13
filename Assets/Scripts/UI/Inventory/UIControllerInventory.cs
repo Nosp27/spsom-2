@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class UIControllerInventory : MonoBehaviour
 {
+    /*
+     * This class can control inventory UI.
+     * It connects to `InventoryController`, does fetch items to corresponding ui places, tracks changes and
+     * updates Player inventory
+     *
+     * Meant to be attached to Inventory Canvas
+     */
     [SerializeField] private GameObject InventoryItemsPanel;
 
     void OnEnable()

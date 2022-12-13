@@ -3,6 +3,11 @@ using UnityEngine.UI;
 
 public class CanvasItemView : ItemView
 {
+    /*
+     * Item view for UI element on Canvas. For example a UI grid.
+     *
+     * Check out parent docstring
+     */
     private Image itemImageComponent;
     private Color baseColor;
 

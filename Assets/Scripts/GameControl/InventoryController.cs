@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
+    /*
+     * Game control related class. Controls Player Inventory.
+     *
+     * Now it also does control appearence of Inventory UI and pausing the game, but it has to be replaced somewhere
+     * else
+     *
+     * Attach to GameController dummy or to its child (for better structure)
+     */
     private bool IsInInventoryMode;
     
     public int maxSize = 9;

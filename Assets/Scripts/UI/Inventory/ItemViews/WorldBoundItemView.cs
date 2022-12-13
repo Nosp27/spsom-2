@@ -3,6 +3,11 @@ using UnityEngine.UI;
 
 public class WorldBoundItemView : ItemView
 {
+    /*
+     * Item view for UI element that is attached to some slot in world space (e.g Ship module)
+     *
+     * Check out parent docstring
+     */
     private GameObject referenceSlot;
     [SerializeField] private GameObject hoverMarker;
 

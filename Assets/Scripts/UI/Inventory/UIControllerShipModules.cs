@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class UIControllerShipModules : MonoBehaviour
 {
+    /*
+     * UI controller that is responsible for placing ship modules. Arranges and controls WorldBoundItemView objects.
+     */
     private Ship attachedShip;
     [SerializeField] private GameObject SlotPrefab;
     private List<ItemView> Slots;
