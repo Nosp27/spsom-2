@@ -44,19 +44,19 @@ namespace GameControl.StateProcessors
         {
             switch (state)
             {
-                case InputState.START_FACILITY:
-                    ShopUI shopUI = Instantiate(gizmoController.selectedFacility.CanvasPrefab).GetComponent<ShopUI>();
-
-                    Cursor.visible = true;
-                    shopUI.gameObject.SetActive(true);
-                    shopUI.ConfirmCallback = () =>
-                    {
-                        Destroy(shopUI.gameObject);
-                        Cursor.visible = false;
-                        currentState = InputState.LEAVE_FACILITY;
-                    };
-                    shopUI.GetComponent<Animator>().Play("MenuStart");
-                    break;
+                // case InputState.START_FACILITY:
+                //     ShopUI shopUI = Instantiate(gizmoController.selectedFacility.CanvasPrefab).GetComponent<ShopUI>();
+                //
+                //     Cursor.visible = true;
+                //     shopUI.gameObject.SetActive(true);
+                //     shopUI.ConfirmCallback = () =>
+                //     {
+                //         Destroy(shopUI.gameObject);
+                //         Cursor.visible = false;
+                //         currentState = InputState.LEAVE_FACILITY;
+                //     };
+                //     shopUI.GetComponent<Animator>().Play("MenuStart");
+                //     break;
             }
         }
     }

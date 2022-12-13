@@ -22,7 +22,9 @@ public class CameraController : MonoBehaviour
         float m = Input.GetAxisRaw("Mouse ScrollWheel");
         Zoom += m;
         Zoom = Mathf.Clamp(Zoom, 0.1f, 5);
-        transform.position = Vector3.Lerp(transform.position, PlayerShip.transform.position + CameraOffset, 2f * Time.deltaTime);
+        transform.position = Vector3.Lerp(
+            transform.position, PlayerShip.transform.position + CameraOffset, 2f * Time.unscaledDeltaTime
+        );
         transform.LookAt(PlayerShip.transform);
 
         if (PlayerShip)

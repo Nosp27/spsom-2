@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CollisionAvoidance : MonoBehaviour
@@ -116,17 +112,14 @@ public class CollisionAvoidance : MonoBehaviour
     {
         if (hit.collider == null)
         {
-            print("hit collider is null");
             return false;
         }
         if (hit.collider.isTrigger)
         {
-            print("hit is trigger");
             return false;
         }
         if (hit.collider.attachedRigidbody == rb)
         {
-            print("hit is owner");
             return false;
         }
         
