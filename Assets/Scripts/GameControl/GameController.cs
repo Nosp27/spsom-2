@@ -35,6 +35,11 @@ public class GameController : MonoBehaviour
     private AimLockTarget LockTarget;
     private InputState State;
 
+    public void SwitchCursorControl(bool enabled)
+    {
+        cursorControl.enabled = enabled;
+    }
+
     private void Start()
     {
         State = InputState.NOPE;

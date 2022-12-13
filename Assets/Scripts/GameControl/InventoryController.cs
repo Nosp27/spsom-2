@@ -39,7 +39,7 @@ public class InventoryController : MonoBehaviour
     void SwitchInventoryMode()
     {
         bool newInventoryMode = !IsInInventoryMode;
-        
+        GameController.Current.SwitchCursorControl(!newInventoryMode);
         InventoryCanvas.SetActive(newInventoryMode);
         Cursor.visible = newInventoryMode;
         Time.timeScale = newInventoryMode ? 0 : 1;
