@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using GameControl.StateProcessors;
+using GameControl.StateMachine.GameControlStates;
 using UnityEngine;
 
 public class MissleLauncher : MonoBehaviour
 {
     [SerializeField] private GameObject MissilePrefab;
-    private MovementSP msp;
+    private Movement msp;
     private AudioSource audioSource;
 
     private void Start()
@@ -19,7 +16,7 @@ public class MissleLauncher : MonoBehaviour
     {
         if (msp == null)
         {
-            msp = GameController.Current.GetComponentInChildren<MovementSP>();
+            msp = GameController.Current.GetComponentInChildren<Movement>();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -33,14 +30,14 @@ public class MissleLauncher : MonoBehaviour
         Guided g = missile.GetComponent<Guided>();
         Explosive e = missile.GetComponent<Explosive>();
 
-        Transform lockTarget = msp.LockTarget?.transform;
+        Transform lockTarget = msp.lockTarget?.transform;
         if (g && lockTarget)
             g.Target = lockTarget;
 
         if (e)
         {
             if(lockTarget)
-                e.DetonateForDistance(msp.LockTarget.transform, 2);
+                e.DetonateForDistance(msp.lockTarget.transform, 2);
             e.DetonateForTime(10);
         }
         

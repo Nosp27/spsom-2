@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class AimLockTarget : MonoBehaviour
 {
+    public Ship AttachedShip { get; private set; } 
+    
     // Start is called before the first frame update
     void Start()
     {
-        Ship ship = GetComponentInParent<Ship>();
-        MeshRenderer[] meshes = ship.GetComponentsInChildren<MeshRenderer>();
+        Ship AttachedShip = GetComponentInParent<Ship>();
+        MeshRenderer[] meshes = AttachedShip.GetComponentsInChildren<MeshRenderer>();
         Bounds bounds = new Bounds();
         bool setup = false;
         foreach (var mesh in meshes)
@@ -31,11 +33,5 @@ public class AimLockTarget : MonoBehaviour
         gameObject.transform.position = bounds.center;
         gameObject.transform.rotation = transform.rotation;
         gameObject.name = "BoundingBox";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
