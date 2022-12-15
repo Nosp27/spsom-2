@@ -129,5 +129,7 @@ namespace GameControl.StateMachine.GameControlStates
             aimLockMark.gameObject.SetActive(false);
             lockTarget = null;
         }
+        
+        public bool Done() => true;
     }
 }

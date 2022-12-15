@@ -5,5 +5,7 @@ namespace GameControl.StateMachine
         public void Tick();
         public void OnEnter();
         public void OnExit();
+
+        public bool Done();
     }
 }

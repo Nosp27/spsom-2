@@ -11,21 +11,9 @@ public class SoundControl : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        while (true)
+        while (false)
         {
-            FighterAI[] enemyShips = FindObjectsOfType<FighterAI>();
-            print($"Found {enemyShips.Length} AIs");
-
             bool danger = false;
-            
-            foreach (var ai in enemyShips)
-            {
-                if (ai.Enemy && ai.Enemy.isPlayerShip && ai.ThisShip.Alive)
-                {
-                    danger = true;
-                    break;
-                }
-            }
             if(danger)
             {
                 mixer.FindSnapshot("Danger").TransitionTo(2f);

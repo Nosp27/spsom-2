@@ -7,7 +7,7 @@ public class AimLockTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Ship AttachedShip = GetComponentInParent<Ship>();
+        AttachedShip = GetComponentInParent<Ship>();
         MeshRenderer[] meshes = AttachedShip.GetComponentsInChildren<MeshRenderer>();
         Bounds bounds = new Bounds();
         bool setup = false;

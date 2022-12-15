@@ -1,16 +1,45 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace GameControl.StateMachine
 {
+    public enum AnyStatePriority
+    {
+        ANY_STATES_FIRST,
+        ANY_STATES_LAST,
+    }
     public class StateMachine
     {
-        private IState CurrentState;
+        public string firedTransition = "";
+        public IState CurrentState { get; private set; }
         private IState InitialState;
         private Dictionary<Type, List<Transition>> TransitionsMapping = new Dictionary<Type, List<Transition>>();
         private List<Transition> CurrentStateTransitions = new List<Transition>();
         private List<Transition> TransitionsStub = new List<Transition>();
+        private AnyStatePriority anyStatePriority;
 
+        public StateMachine(AnyStatePriority anyStatePriority=AnyStatePriority.ANY_STATES_LAST)
+        {
+            this.anyStatePriority = anyStatePriority;
+            TransitionsMapping[typeof(AnyState)] = new List<Transition>();
+        }
+
+        public void AddAnyTransition(IState to, Func<bool> predicate, bool exitForSetup = true)
+        {
+            if (InitialState == null)
+                InitialState = to;
+            
+            if (exitForSetup)
+            {
+                Debug.Log(to);
+                to.OnExit();
+            }
+            
+            TransitionsMapping[typeof(AnyState)].Add(new Transition(this, null, to, predicate));
+        }
+        
         public void AddTransition(IState from, IState to, Func<bool> predicate, bool exitForSetup = true)
         {
             if (InitialState == null)
@@ -53,6 +82,19 @@ namespace GameControl.StateMachine
                 CurrentStateTransitions = TransitionsStub;
         }
 
+        private void _fireTransitionList(List<Transition> transitions)
+        {
+            foreach (Transition transition in transitions)
+            {
+                if (transition.IsFiring())
+                {
+                    firedTransition = $"{CurrentState} -> {transition.To}";
+                    SetState(transition.To);
+                    return;
+                }
+            }
+        }
+
         private void MaybeFireTransition()
         {
             if (CurrentState == null)
@@ -60,11 +102,16 @@ namespace GameControl.StateMachine
                 SetState(InitialState);
                 return;
             }
-            
-            foreach (Transition transition in CurrentStateTransitions)
+
+            if (anyStatePriority == AnyStatePriority.ANY_STATES_FIRST)
             {
-                if (transition.IsFiring())
-                    SetState(transition.To);
+                _fireTransitionList(TransitionsMapping[typeof(AnyState)]);
+                _fireTransitionList(CurrentStateTransitions);
+            }
+            else
+            {
+                _fireTransitionList(CurrentStateTransitions);
+                _fireTransitionList(TransitionsMapping[typeof(AnyState)]);
             }
         }
         
@@ -84,10 +131,18 @@ namespace GameControl.StateMachine
                 this.predicate = predicate;
             }
 
-            public bool IsFiring()
+            public bool IsFiring(bool allowSelfFire=false, bool forceTracked=false)
             {
-                return predicate() && (fsm.CurrentState != To);
+                if (From != null && !From.Done() && !forceTracked)
+                {
+                    return false;
+                }
+                return predicate() && ((fsm.CurrentState != To) || allowSelfFire) && (From == null || From == fsm.CurrentState);
             }
-        }   
+        }
+
+        private class AnyState
+        {
+        }
     }
 }

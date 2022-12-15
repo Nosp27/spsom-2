@@ -30,5 +30,7 @@ namespace GameControl.StateMachine.GameControlStates
             Cursor.visible = targetMode;
             Time.timeScale = targetMode ? 0 : 1;
         }
+
+        public bool Done() => true;
     }
 }
