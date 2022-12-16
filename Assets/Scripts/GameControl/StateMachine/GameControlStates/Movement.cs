@@ -84,7 +84,7 @@ namespace GameControl.StateMachine.GameControlStates
             playerShip.Aim(cursor);
             if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
             {
-                playerShip.Shoot(cursor);
+                playerShip.Fire(cursor);
             }
         }
 
@@ -121,6 +121,9 @@ namespace GameControl.StateMachine.GameControlStates
             aimLockMark.gameObject.SetActive(true);
             aimLockMark.Unlock();
             aimLockMark.Lock(lt);
+
+            Transform ltTransform = lt == null ? null : lt.transform;
+            m_PlayerShip.Track(ltTransform);
         }
 
         void DeactivateLockTarget()
@@ -128,6 +131,8 @@ namespace GameControl.StateMachine.GameControlStates
             aimLockMark.Unlock();
             aimLockMark.gameObject.SetActive(false);
             lockTarget = null;
+            
+            m_PlayerShip.Track(null);
         }
         
         public bool Done() => true;

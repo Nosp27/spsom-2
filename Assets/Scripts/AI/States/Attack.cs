@@ -7,11 +7,11 @@ namespace AI.States
         public override void Tick()
         {
             Ship thisShip = ShipAIControls.thisShip;
-            Vector3 aimTarget = EnemyDetector.Enemy.transform.position;
-            thisShip.Aim(aimTarget);
-            thisShip.TurnOnPlace(aimTarget);
-            if (thisShip.Aimed(aimTarget))
-                thisShip.Shoot(aimTarget);
+            Transform aimTarget = EnemyDetector.Enemy.transform;
+            thisShip.Track(aimTarget);
+            thisShip.TurnOnPlace(aimTarget.position);
+            if (thisShip.Aimed())
+                thisShip.Fire(aimTarget.position);
         }
 
         public override void OnEnter()
@@ -22,6 +22,7 @@ namespace AI.States
 
         public override void OnExit()
         {
+            ShipAIControls?.thisShip?.Track(null);
         }
     }
 }

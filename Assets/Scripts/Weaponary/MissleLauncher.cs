@@ -1,43 +1,66 @@
-using GameControl.StateMachine.GameControlStates;
 using UnityEngine;
 
-public class MissleLauncher : MonoBehaviour
+public class MissleLauncher : Weapon
 {
-    [SerializeField] private GameObject MissilePrefab;
-    private Movement msp;
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private float fireRate = 20;
+
+    private Transform m_Target;
     private AudioSource audioSource;
+    private float maxCooldown;
+    private float cooldown;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        maxCooldown = 60 / fireRate;
     }
 
     void Update()
     {
-        if (msp == null)
+        if (cooldown > 0)
         {
-            msp = GameController.Current.GetComponentInChildren<Movement>();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            LunchMissile();
+            cooldown -= Time.deltaTime;
         }
     }
 
-    void LunchMissile()
+    public override void Track(Transform t)
     {
-        GameObject missile = Instantiate(MissilePrefab, transform.position, transform.rotation);
+        m_Target = t;
+    }
+
+    public override void Aim(Vector3 target)
+    {
+        // Only can track targets
+    }
+
+    public override bool Aimed()
+    {
+        return m_Target != null;
+    }
+
+    public override void Fire()
+    {
+        if (cooldown <= 0)
+        {
+            cooldown = maxCooldown;
+            LaunchMissile(m_Target);
+        }
+    }
+
+    private void LaunchMissile(Transform target)
+    {
+        GameObject missile = Instantiate(missilePrefab, transform.position, transform.rotation);
         Guided g = missile.GetComponent<Guided>();
         Explosive e = missile.GetComponent<Explosive>();
 
-        Transform lockTarget = msp.lockTarget?.transform;
-        if (g && lockTarget)
-            g.Target = lockTarget;
+        if (g && target)
+            g.Target = target;
 
         if (e)
         {
-            if(lockTarget)
-                e.DetonateForDistance(msp.lockTarget.transform, 2);
+            if(target)
+                e.DetonateForDistance(target.transform, 2);
             e.DetonateForTime(10);
         }
         

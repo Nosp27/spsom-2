@@ -4,24 +4,18 @@ public class Turret : MonoBehaviour
 {
     public float RotationSpeed;
 
-    public Transform HorizontalDrive;
-    public Transform VerticalDrive;
+    [SerializeField] Transform HorizontalDrive;
+    [SerializeField] Transform VerticalDrive;
 
-    public float[] HorizontalLimits;
-    public float[] VerticalLimits;
-    public float VerticalSpeed;
-    public float HorizontalSpeed;
+    [SerializeField] float[] HorizontalLimits;
+    [SerializeField] float[] VerticalLimits;
+    [SerializeField] float VerticalSpeed;
+    [SerializeField] float HorizontalSpeed;
 
     public GameObject AimingRay;
 
-    public GameObject target;
-
-    private GameObject owner;
-
-    void Start()
-    {
-        owner = GetComponentInParent<Ship>().gameObject;
-    }
+    //For Debug
+    [SerializeField] GameObject target;
 
     public void Aim(Vector3 point)
     {
@@ -31,19 +25,19 @@ public class Turret : MonoBehaviour
 
         float horAngle = targetRotation.eulerAngles.y - transform.rotation.eulerAngles.y;
         float verAngle = targetRotation.eulerAngles.x - sourceTransform.rotation.eulerAngles.x;
-        
+
         horAngle = NormalizeAngle(horAngle);
         verAngle = NormalizeAngle(verAngle);
 
         horAngle = Mathf.Clamp(horAngle, HorizontalLimits[0], HorizontalLimits[1]);
-        verAngle = Mathf.Clamp(verAngle,  - VerticalLimits[0], - VerticalLimits[1]);
+        verAngle = Mathf.Clamp(verAngle, -VerticalLimits[0], -VerticalLimits[1]);
 
         Quaternion hTargetRotation = Quaternion.Euler(0, horAngle, 0);
         Quaternion vTargetRotation = Quaternion.Euler(verAngle, 0, 0);
         HorizontalDrive.localRotation = Quaternion.RotateTowards(HorizontalDrive.localRotation, hTargetRotation,
             Time.deltaTime * HorizontalSpeed);
         VerticalDrive.localRotation =
-            Quaternion.RotateTowards(VerticalDrive.localRotation, vTargetRotation, VerticalSpeed*Time.deltaTime);
+            Quaternion.RotateTowards(VerticalDrive.localRotation, vTargetRotation, VerticalSpeed * Time.deltaTime);
     }
 
     public bool Aimed(Vector3 point)
@@ -54,7 +48,7 @@ public class Turret : MonoBehaviour
 
     void Die()
     {
-        if(AimingRay != null)
+        if (AimingRay != null)
             AimingRay.SetActive(false);
     }
 

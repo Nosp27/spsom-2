@@ -13,8 +13,7 @@ public class Ship : MonoBehaviour
     public Vector3 MoveAim { get; private set; }
     public float currentThrottle { get; private set; }
     public bool Alive;
-    public List<Gun> Weapons;
-    private List<Turret> Turrets;
+    public List<Weapon> Weapons;
     private Vector3 TurnTarget;
     public bool isPlayerShip;
     [SerializeField] private float softerMultiplier = 1;
@@ -35,8 +34,7 @@ public class Ship : MonoBehaviour
 
     public void InitWeaponary()
     {
-        Weapons = new List<Gun>(GetComponentsInChildren<Gun>());
-        Turrets = new List<Turret>(GetComponentsInChildren<Turret>());
+        Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
     }
 
     void Die()
@@ -118,14 +116,14 @@ public class Ship : MonoBehaviour
         currentThrottle = 0;
     }
 
-    public void Shoot(Vector3 cursor)
+    public void Fire(Vector3 cursor)
     {
         if (!Alive)
             return;
 
         foreach (var w in Weapons)
         {
-            w.Shoot();
+            w.Fire();
         }
     }
 
@@ -134,20 +132,31 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
-        foreach (var t in Turrets)
+        foreach (var t in Weapons)
         {
             t.Aim(cursor);
         }
     }
+    
+    public void Track(Transform target)
+    {
+        if (!Alive)
+            return;
 
-    public bool Aimed(Vector3 cursor)
+        foreach (var t in Weapons)
+        {
+            t.Track(target);
+        }
+    }
+
+    public bool Aimed()
     {
         if (!Alive)
             return false;
 
-        foreach (var t in Turrets)
+        foreach (var t in Weapons)
         {
-            if (t.Aimed(cursor))
+            if (t.Aimed())
                 return true;
         }
 

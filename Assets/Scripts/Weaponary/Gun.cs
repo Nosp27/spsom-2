@@ -1,17 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    [SerializeField] GameObject bulletPrefab;
     public float BulletSpeed;
-    public Transform BulletPlace;
-    public float BulletMaxDistance;
+    [SerializeField] Transform BulletPlace;
+    [SerializeField] float BulletMaxDistance;
     [SerializeField] private float _bulletLifetime;
-    public float FireRate;
-    public float DamageBuff;
+    [SerializeField] float FireRate;
+    [SerializeField] float DamageBuff;
 
     private float maxCooldown;
     private float cooldown;
