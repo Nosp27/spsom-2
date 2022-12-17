@@ -1,3 +1,4 @@
+using System;
 using GameControl.StateMachine;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ namespace AI.StationAI
     public class Attack : BaseState
     {
         private EnemyDetector m_EnemyDetector;
-        private Weapon[] m_Weapons;
+        private Weapon[] m_Weapons = Array.Empty<Weapon>();
         private void Start()
         {
-            m_Weapons = GetComponentsInChildren<Weapon>();
+            Transform root = transform.parent.parent; // first parent is AI controller, second - the root
+            
+            m_Weapons = root.GetComponentsInChildren<Weapon>();
             m_EnemyDetector = GetComponentInParent<EnemyDetector>();
         }
 
@@ -25,6 +28,7 @@ namespace AI.StationAI
 
         public override void OnEnter()
         {
+            Debug.Log("Attack state entered");
             Transform enemy = m_EnemyDetector?.Enemy?.transform;
             if (enemy)
             {

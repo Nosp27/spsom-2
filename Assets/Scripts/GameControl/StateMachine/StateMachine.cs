@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using UnityEngine;
 
 namespace GameControl.StateMachine
 {
@@ -33,7 +31,6 @@ namespace GameControl.StateMachine
             
             if (exitForSetup)
             {
-                Debug.Log(to);
                 to.OnExit();
             }
             
