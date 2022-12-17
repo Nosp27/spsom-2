@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class CanvasItemView : ItemView
      *
      * Check out parent docstring
      */
+    private bool initDone = false;
     private Image itemImageComponent;
     private Color baseColor;
 
@@ -18,6 +20,9 @@ public class CanvasItemView : ItemView
 
     void OnEnable()
     {
+        if (initDone)
+            return;
+        initDone = true;
         itemImageComponent = transform.GetChild(0).GetComponent<Image>();
         itemImageComponent.enabled = false;
         itemContainer = GetComponent<ItemContainer>();
@@ -25,20 +30,24 @@ public class CanvasItemView : ItemView
         baseColor = GetComponent<Image>().color;
     }
 
+    private void OnDisable()
+    {
+        initDone = false;
+    }
+
     public override void Highlight()
     {
-        print("H");
         GetComponent<Image>().color = Color.green;
     }
     
     public override void UnHighlight()
     {
-        print("UH");
         GetComponent<Image>().color = baseColor;
     }
 
     public override void PlaceItem(InventoryItem item)
     {
+        OnEnable();
         Sprite itemSprite = item.GetComponent<InventoryItem>().Icon;
         itemImageComponent.sprite = itemSprite;
         itemImageComponent.enabled = true;
