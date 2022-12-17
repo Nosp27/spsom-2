@@ -73,7 +73,6 @@ namespace AI
             sm.AddTransition(randomFlightState, chaseState, EnemyInBounds);
 
             // Enter attack range - do approach for combat position. After approach is done - attack
-            sm.AddTransition(chaseState, flyAwayState, TooNear);
             sm.AddTransition(chaseState, attackState, () => EnemyInApproachRange() && !TooNear());
             sm.AddTransition(attackState, chaseState, () => !EnemyInAttackRange());
             sm.AddTransition(flyAwayState, attackState, () => EnemyInApproachRange() && !TooNear());
