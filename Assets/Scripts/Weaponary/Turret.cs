@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -13,6 +14,7 @@ public class Turret : MonoBehaviour
     [SerializeField] float HorizontalSpeed;
 
     public GameObject AimingRay;
+    [SerializeField] private float _TestLookVectorAngle;
 
     //For Debug
     [SerializeField] GameObject target;
@@ -43,6 +45,7 @@ public class Turret : MonoBehaviour
     public bool Aimed(Vector3 point)
     {
         Vector3 lookVector = point - VerticalDrive.position;
+        _TestLookVectorAngle = Vector3.Angle(VerticalDrive.transform.forward, lookVector);
         return Vector3.Angle(VerticalDrive.transform.forward, lookVector) < 5f;
     }
 

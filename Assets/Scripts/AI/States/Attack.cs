@@ -8,7 +8,6 @@ namespace AI.States
         {
             Ship thisShip = ShipAIControls.thisShip;
             Transform aimTarget = EnemyDetector.Enemy.transform;
-            thisShip.Track(aimTarget);
             thisShip.TurnOnPlace(aimTarget.position);
             if (thisShip.Aimed())
                 thisShip.Fire(aimTarget.position);
@@ -17,7 +16,10 @@ namespace AI.States
         public override void OnEnter()
         {
             base.OnEnter();
-            ShipAIControls.thisShip.CancelMovement();
+            Ship thisShip = ShipAIControls.thisShip;
+            Transform aimTarget = EnemyDetector.Enemy.transform;
+            thisShip.Track(aimTarget);
+            thisShip.CancelMovement();
         }
 
         public override void OnExit()

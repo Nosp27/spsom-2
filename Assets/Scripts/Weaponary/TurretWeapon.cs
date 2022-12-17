@@ -11,6 +11,7 @@ public class TurretWeapon : Weapon
 
     private Transform m_TrackTarget;
     private Vector3 m_AimTarget;
+    private bool m_Aimed;
 
     private void Start()
     {
@@ -21,9 +22,12 @@ public class TurretWeapon : Weapon
 
     private void LateUpdate()
     {
-        if (m_TrackTarget || m_AimTarget != Vector3.zero)
+        m_Aimed = false;
+        Vector3 aimTargetPoint = GetAimTargetPoint();
+        if (aimTargetPoint != Vector3.zero)
         {
-            m_Turret.Aim(GetAimTargetPoint());
+            m_Turret.Aim(aimTargetPoint);
+            m_Aimed = m_Turret.Aimed(aimTargetPoint);
         }
     }
 
@@ -48,11 +52,7 @@ public class TurretWeapon : Weapon
 
     public override bool Aimed()
     {
-        if (m_TrackTarget)
-            return m_Turret.Aimed(m_TrackTarget.position);
-        if (m_AimTarget != Vector3.zero)
-            return m_Turret.Aimed(m_AimTarget);
-        return false;
+        return m_Aimed;
     }
 
     public override void Fire()
