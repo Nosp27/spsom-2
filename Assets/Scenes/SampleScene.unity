@@ -32300,8 +32300,8 @@ GameObject:
   - component: {fileID: 909868784}
   - component: {fileID: 909868783}
   - component: {fileID: 909868782}
-  - component: {fileID: 909868786}
   - component: {fileID: 909868787}
+  - component: {fileID: 909868786}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
