@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Ship : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Ship : MonoBehaviour
     private Rigidbody rb;
     private float lastAngle;
 
+    public UnityEvent onWeaponMutate = new UnityEvent();
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class Ship : MonoBehaviour
     public void InitWeaponary()
     {
         Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
+        onWeaponMutate.Invoke();
     }
 
     void Die()

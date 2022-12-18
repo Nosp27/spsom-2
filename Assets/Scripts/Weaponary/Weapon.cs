@@ -2,6 +2,11 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] private Sprite weaponSpriteValue;
+    public Sprite weaponSprite => weaponSpriteValue;
+    public abstract float maxCooldown { get; protected set; }
+    public abstract float cooldown { get; protected set; } 
+    
     public abstract void Track(Transform target);
     public abstract void Aim(Vector3 target);
 

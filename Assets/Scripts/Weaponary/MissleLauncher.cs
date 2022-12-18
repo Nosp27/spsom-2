@@ -5,10 +5,11 @@ public class MissleLauncher : Weapon
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private float fireRate = 20;
 
+    public override float maxCooldown { get; protected set; }
+    public override float cooldown { get; protected set; }
+    
     private Transform m_Target;
     private AudioSource audioSource;
-    private float maxCooldown;
-    private float cooldown;
 
     private void Start()
     {

@@ -10,8 +10,8 @@ public class Gun : MonoBehaviour
     [SerializeField] float FireRate;
     [SerializeField] float DamageBuff;
 
-    private float maxCooldown;
-    private float cooldown;
+    public float maxCooldown { get; private set; }
+    public float cooldown { get; private set; }
 
     private GameObject Owner;
 

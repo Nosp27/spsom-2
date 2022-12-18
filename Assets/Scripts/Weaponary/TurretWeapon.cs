@@ -13,78 +13,91 @@ public class TurretWeapon : Weapon
     private Vector3 m_AimTarget;
     private bool m_Aimed;
 
+    public override float maxCooldown
+    {
+        get => m_Gun.maxCooldown;
+        protected set => throw new NotImplementedException();
+    }
+    
+    public override float cooldown
+    {
+        get => m_Gun.cooldown;
+        protected set => throw new NotImplementedException();
+    }
+
     private void Start()
-    {
-        rb = GetComponentInParent<Rigidbody>();
-        m_Turret = GetComponentInChildren<Turret>();
-        m_Gun = GetComponentInChildren<Gun>();
-    }
+{
+    rb = GetComponentInParent<Rigidbody>();
+    m_Turret = GetComponentInChildren<Turret>();
+    m_Gun = GetComponentInChildren<Gun>();
+}
 
-    private void LateUpdate()
+private void LateUpdate()
+{
+    m_Aimed = false;
+    Vector3 aimTargetPoint = GetAimTargetPoint();
+    if (aimTargetPoint != Vector3.zero)
     {
-        m_Aimed = false;
-        Vector3 aimTargetPoint = GetAimTargetPoint();
-        if (aimTargetPoint != Vector3.zero)
+        m_Turret.Aim(aimTargetPoint);
+        m_Aimed = m_Turret.Aimed(aimTargetPoint);
+    }
+}
+
+public override void Track(Transform target)
+{
+    m_TrackTarget = target;
+    m_AimTarget = Vector3.zero;
+
+    if (target)
+    {
+        targetRb = target.GetComponent<Rigidbody>();
+    }
+}
+
+public override void Aim(Vector3 target)
+{
+    m_AimTarget = target;
+    m_TrackTarget = null;
+    if (target != Vector3.zero)
+        m_Turret.Aim(GetAimTargetPoint());
+}
+
+public override bool Aimed()
+{
+    return m_Aimed;
+}
+
+public override void Fire()
+{
+    m_Gun.Shoot();
+}
+
+Vector3 GetAimTargetPoint()
+{
+    Vector3 targetPoint;
+    if (m_TrackTarget)
+    {
+        targetPoint = m_TrackTarget.position;
+
+        if (leadFire && rb != null && targetRb != null)
         {
-            m_Turret.Aim(aimTargetPoint);
-            m_Aimed = m_Turret.Aimed(aimTargetPoint);
+            targetPoint =
+                InterceptionCalculator.ShootingDirection(
+                    rb,
+                    targetRb,
+                    m_Gun.BulletSpeed
+                );
         }
     }
-
-    public override void Track(Transform target)
+    else if (m_AimTarget != Vector3.zero)
     {
-        m_TrackTarget = target;
-        m_AimTarget = Vector3.zero;
-
-        if (target)
-        {
-            targetRb = target.GetComponent<Rigidbody>();
-        }
+        targetPoint = m_AimTarget;
+    }
+    else
+    {
+        targetPoint = Vector3.zero;
     }
 
-    public override void Aim(Vector3 target)
-    {
-        m_AimTarget = target;
-        m_TrackTarget = null;
-        if (target != Vector3.zero)
-            m_Turret.Aim(GetAimTargetPoint());
-    }
-
-    public override bool Aimed()
-    {
-        return m_Aimed;
-    }
-
-    public override void Fire()
-    {
-        m_Gun.Shoot();
-    }
-
-    Vector3 GetAimTargetPoint()
-    {
-        Vector3 targetPoint;
-        if (m_TrackTarget)
-        {
-            targetPoint = m_TrackTarget.position;
-            
-            if (leadFire && rb != null && targetRb != null)
-            {
-                targetPoint =
-                    InterceptionCalculator.ShootingDirection(
-                        rb,
-                        targetRb,
-                        m_Gun.BulletSpeed
-                    );
-            }
-        } else if (m_AimTarget != Vector3.zero)
-        {
-            targetPoint = m_AimTarget;
-        }
-        else
-        {
-            targetPoint = Vector3.zero;
-        }
-
-        return targetPoint;
-    }
+    return targetPoint;
+}
 }
