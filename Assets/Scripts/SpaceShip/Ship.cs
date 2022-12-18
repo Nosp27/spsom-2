@@ -27,7 +27,7 @@ public class Ship : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitWeaponary();
+        ScanWeaponary();
         isPlayerShip = gameObject.CompareTag("PlayerShip");
         HasGunnery = Weapons.Count > 0;
         engineBalancer = GetComponent<EngineBalancer>();
@@ -35,7 +35,7 @@ public class Ship : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public void InitWeaponary()
+    public void ScanWeaponary()
     {
         Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
         onWeaponMutate.Invoke();

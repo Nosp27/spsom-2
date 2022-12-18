@@ -25,9 +25,7 @@ public class UIControllerInventory : MonoBehaviour
             inventoryItemViews[i].PlaceItem(items[i]);
         }
 
-        UIControllerShipModules shipModulesController =
-            GameController.Current.PlayerShip?.GetComponentInChildren<UIControllerShipModules>(true);
-
+        UIControllerShipModules shipModulesController = GetShipModulesController();
         shipModulesController.gameObject.SetActive(true);
         if (shipModulesController)
             shipModulesController.BindInteractionController(GetComponent<UIInteractionController>());
@@ -49,5 +47,12 @@ public class UIControllerInventory : MonoBehaviour
                 i.RemoveItem();
             }
         }
+        UIControllerShipModules shipModulesController = GetShipModulesController();
+        shipModulesController.gameObject.SetActive(false);
+    }
+
+    UIControllerShipModules GetShipModulesController()
+    {
+        return GameController.Current.PlayerShip?.GetComponentInChildren<UIControllerShipModules>(true);
     }
 }

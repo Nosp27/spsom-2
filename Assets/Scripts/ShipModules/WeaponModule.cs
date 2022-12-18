@@ -7,13 +7,13 @@ public class WeaponModule : ShipModule
     public override void Install()
     {
         Ship s = GetComponentInParent<Ship>();
-        s.InitWeaponary();
+        s.ScanWeaponary();
     }
 
     public override void Uninstall()
     {
         Ship s = GetComponentInParent<Ship>();
         transform.SetParent(null);
-        s.InitWeaponary();
+        s.ScanWeaponary();
     }
 }

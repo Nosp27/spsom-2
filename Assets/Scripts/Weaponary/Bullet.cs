@@ -36,8 +36,6 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
-        
-        Hit();
 
         LinUtils.PlayAudioDetached(audioSource);
 
@@ -48,7 +46,7 @@ public class Bullet : MonoBehaviour
         BulletHitDTO hit = new BulletHitDTO(Damage, collisionPoint, hitDirection);
         if (damageModel && damageModel.gameObject != Owner)
         {
-            print($"DD: {hit.Damage}");
+            Hit();
             damageModel.SendMessage("GetDamage", hit);
         }
     }

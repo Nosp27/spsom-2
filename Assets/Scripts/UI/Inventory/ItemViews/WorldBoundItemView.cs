@@ -62,6 +62,8 @@ public class WorldBoundItemView : ItemView
     public override void RemoveItem()
     {
         GameObject item = itemContainer.GetItem();
+        if (item == null)
+            return;
         itemContainer.DropItem();
         item.gameObject.transform.position = Vector3.zero;
         item.transform.SetParent(GameController.Current.Inventory.transform);

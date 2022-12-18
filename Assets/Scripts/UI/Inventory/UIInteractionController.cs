@@ -22,10 +22,21 @@ public class UIInteractionController : MonoBehaviour
         } else
         {
             InventoryItem item = viewFrom.GetItem();
-            if (item != null && viewFrom != itemView)
+            InventoryItem stashItem = itemView.GetItem();
+            if (viewFrom != itemView)
             {
+                itemView.RemoveItem();
                 viewFrom.RemoveItem();
-                itemView.PlaceItem(item);
+                
+                if (item != null)
+                {
+                    itemView.PlaceItem(item);
+                }
+
+                if (stashItem != null)
+                {
+                    viewFrom.PlaceItem(stashItem);
+                }
             }
             viewFrom.UnHighlight();
             viewFrom = null;
