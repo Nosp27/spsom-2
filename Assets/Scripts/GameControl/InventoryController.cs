@@ -12,8 +12,7 @@ public class InventoryController : MonoBehaviour
      *
      * Attach to GameController dummy or to its child (for better structure)
      */
-    private bool IsInInventoryMode;
-    
+
     public int maxSize = 9;
     public List<InventoryItem> InventoryItems;
 
@@ -31,14 +30,5 @@ public class InventoryController : MonoBehaviour
     public void RemoveItem(InventoryItem item)
     {
         InventoryItems.Remove(item);
-    }
-
-    // TODO: Remove after Debug
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            
-        }
     }
 }
