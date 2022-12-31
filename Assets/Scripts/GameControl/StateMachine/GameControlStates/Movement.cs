@@ -81,10 +81,13 @@ namespace GameControl.StateMachine.GameControlStates
 
         void ProcessAim(Ship playerShip, Vector3 cursor)
         {
-            playerShip.Aim(cursor);
-            if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                playerShip.Fire(cursor);
+                playerShip.Aim(cursor);
+                if (Input.GetMouseButton(0))
+                {
+                    playerShip.Fire(cursor);
+                }
             }
         }
 

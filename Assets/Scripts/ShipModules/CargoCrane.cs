@@ -43,7 +43,7 @@ public class CargoCrane : MonoBehaviour
                 Destroy(loot.gameObject);
             } else if (distance < fetchRadius)
             {
-                Fetch(loot.transform);
+                Pull(loot.transform);
             }
         }
     }
@@ -56,7 +56,7 @@ public class CargoCrane : MonoBehaviour
         return GameController.Current.Inventory;
     }
 
-    private void Fetch(Transform t)
+    private void Pull(Transform t)
     {
         Vector3 lookVector = (transform.position - t.position).normalized;
         t.position += lookVector * fetchSpeed * Time.deltaTime;

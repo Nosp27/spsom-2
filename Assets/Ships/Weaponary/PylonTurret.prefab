@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343beb0f90f8a44af83f0a6f1dac5253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 5
+  RotationSpeed: 50
   HorizontalDrive: {fileID: 7635675569134783422}
   VerticalDrive: {fileID: 4109014977048145993}
   HorizontalLimits:
@@ -309,8 +309,8 @@ MonoBehaviour:
   VerticalLimits:
   - 50
   - -50
-  VerticalSpeed: 2
-  HorizontalSpeed: 50
+  VerticalSpeed: 10
+  HorizontalSpeed: 500
   AimingRay: {fileID: 1174180372}
   _TestLookVectorAngle: 0
   target: {fileID: 0}
