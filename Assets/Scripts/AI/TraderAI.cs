@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using AI;
 using UnityEngine;
 
-[RequireComponent(typeof(Ship))]
+[RequireComponent(typeof(ShipAIControls))]
 public class TraderAI : MonoBehaviour
 {
-    private CollisionAvoidance CA;
-    private Vector3 AvoidPoint;
-
-    private Ship ThisShip;
+    private ShipAIControls m_AI;
+    private Ship m_ThisShip => m_AI.thisShip;
 
     [SerializeField] private List<Transform> Places;
 
@@ -19,44 +16,28 @@ public class TraderAI : MonoBehaviour
     private void Start()
     {
         CurrentPlaceIndex = 0;
-        CA = GetComponent<CollisionAvoidance>();
-        ThisShip = GetComponent<Ship>();
+        m_AI = GetComponent<ShipAIControls>();
     }
 
     private void Update()
     {
+        if (!m_ThisShip.Alive)
+        {
+            if (m_ThisShip.IsMoving())
+                m_ThisShip.CancelMovement();
+            return;
+        }
+        
         if (ShipAt(CurrentPlace))
         {
             CurrentPlaceIndex++;
         }
         
-        MoveAt(CurrentPlace.position);
+        m_AI.MoveAt(CurrentPlace.position);
     }
 
     bool ShipAt(Transform place)
     {
-        return (ThisShip.transform.position - place.transform.position).magnitude < 20 && !ThisShip.IsMoving();
-    }
-
-    void MoveAt(Vector3 point)
-    {
-        if (point != Vector3.zero)
-        {
-            AvoidPoint = CA.AvoidPoint(point);
-            Debug.DrawLine(transform.position, AvoidPoint, Color.yellow);
-        }
-        
-        if (!ThisShip.IsMoving() && AvoidPoint != Vector3.zero) {
-            AvoidPoint = Vector3.zero;
-        }
-
-        if (AvoidPoint == Vector3.zero)
-        {
-            ThisShip.Move(point);
-        }
-        else
-        {
-            ThisShip.Move(AvoidPoint);
-        }
+        return (m_ThisShip.transform.position - place.transform.position).magnitude < 20 && !m_ThisShip.IsMoving();
     }
 }

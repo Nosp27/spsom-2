@@ -42886,6 +42886,7 @@ GameObject:
   - component: {fileID: 1253514399}
   - component: {fileID: 1253514398}
   - component: {fileID: 1253514407}
+  - component: {fileID: 1253514408}
   m_Layer: 0
   m_Name: TradeShip (6)
   m_TagString: Untagged
@@ -43053,6 +43054,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RadarPrefabWorld: {fileID: 8216425332546030896, guid: d3b2f982c9d4d4ef3b3e8b018d1f58ea, type: 3}
   RadarPrefabMinimap: {fileID: 4553285495342578624, guid: 1755d6cafe3574a09ae57684a362f928, type: 3}
+--- !u!114 &1253514408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253514397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc567572ee464b2a8ef9883194eda98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1256286597
 GameObject:
   m_ObjectHideFlags: 0
