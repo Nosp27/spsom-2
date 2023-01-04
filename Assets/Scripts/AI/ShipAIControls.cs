@@ -19,7 +19,7 @@ namespace AI
         {
             if (point != Vector3.zero)
             {
-                m_AvoidPoint = m_CA.AvoidPoint(point);
+                m_AvoidPoint = m_CA.AvoidPoint(point, AvoidDirection.CW);
                 Debug.DrawLine(transform.position, m_AvoidPoint, Color.yellow);
             }
         

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Cursor
   - ModulePlaceholder
+  - Waypoint
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using AI;
 using UnityEngine;
 
@@ -12,6 +14,14 @@ public class TraderAI : MonoBehaviour
 
     private int CurrentPlaceIndex;
     private Transform CurrentPlace => Places[CurrentPlaceIndex % Places.Count];
+
+    private void Awake()
+    {
+        if (Places == null || Places.Count == 0 || Places[0] == null)
+        {
+            Places = GameObject.FindGameObjectsWithTag("Waypoint").Select(x => x.transform).ToList();
+        }
+    }
 
     private void Start()
     {
