@@ -58,13 +58,15 @@ public class CollisionAvoidance : MonoBehaviour
         red.GetComponent<Collider>().enabled = false;
     }
 
-    public Vector3 AvoidPoint(Vector3 targetPosition, AvoidDirection avoidDir)
+    public Vector3 AvoidPoint(Vector3 targetPosition, AvoidDirection avoidDir, bool extendRange = true)
     {
         Vector3 distance = targetPosition - transform.position;
         Vector3 emitterDirection = distance.normalized;
-        Vector3 emitterPosition = transform.position + emitterDirection * EmitRadius * 2;
+        Vector3 emitterPosition = transform.position;
+        float range = extendRange ? distance.magnitude * 2 : distance.magnitude;
+        Debug.DrawRay(emitterPosition, emitterDirection * range, Color.blue);
         int nHits = Physics.SphereCastNonAlloc(
-            emitterPosition, EmitRadius, emitterDirection, hits, distance.magnitude, mask
+            emitterPosition, EmitRadius, emitterDirection, hits, range, mask
         );
 
         if (nHits == 0)
@@ -73,20 +75,24 @@ public class CollisionAvoidance : MonoBehaviour
             return Vector3.zero;
         }
 
-        float minHitDistance = hits[0].distance;
+        float minHitDistance = 0;
         RaycastHit nearestHit = hits[0];
-        foreach (var hit in hits)
+        bool hitDetected = false;
+
+        for (int i = 0; i < nHits; i++)
         {
+            var hit = hits[i];
             if (!CheckHit(hit))
                 continue;
-            if (minHitDistance > hit.distance)
+            if (!hitDetected || (minHitDistance > hit.distance))
             {
+                hitDetected = true;
                 minHitDistance = hit.distance;
                 nearestHit = hit;
             }
         }
 
-        if (!CheckHit(nearestHit))
+        if (!hitDetected)
         {
             red.SetActive(false);
             return Vector3.zero;
@@ -97,35 +103,30 @@ public class CollisionAvoidance : MonoBehaviour
         Bounds hitBounds = nearestHit.collider.bounds;
         float boundingSphereRadius = (hitBounds.center - hitBounds.min).magnitude;
 
-        Vector3 avoidPoint;
-
-        if (avoidDir == AvoidDirection.CW)
-        {
-            Vector3 rightAvoidPoint =
-                transform.right * (shipBounds.extents.x + boundingSphereRadius + 5) + hitBounds.center;
-            avoidPoint = rightAvoidPoint;
-        }
-        else
-        {
-            Vector3 leftAvoidPoint =
-                -transform.right * (shipBounds.extents.x + boundingSphereRadius + 5) + hitBounds.center;
-            avoidPoint = leftAvoidPoint;
-        }
-
+        Vector3 avoidLine = Vector3.Cross(distance, Vector3.up).normalized;
+        Debug.DrawRay(hitBounds.center, avoidLine* 100, Color.green);
+        Debug.DrawRay(hitBounds.center, avoidLine* -100, Color.green);
+        float avoidDirMultiplier = avoidDir == AvoidDirection.CW ? 1 : -1;
+        Vector3 avoidPoint = avoidLine * avoidDirMultiplier * (shipBounds.extents.x + boundingSphereRadius + 5) +
+                            hitBounds.center;
         return avoidPoint;
     }
 
     private Vector3 AvoidPointChained(Vector3 point, int limit, AvoidDirection avoidDir)
     {
+        Debug.DrawLine(transform.position, point, Color.white);
         Vector3 finalAvoidPoint = Vector3.zero;
-        Vector3 avoidPoint;
-        for (int i = 0; i < limit; i++)
+        Vector3 avoidPoint = point;
+        int i = 0;
+        for (i = 0; i < limit; i++)
         {
-            avoidPoint = AvoidPoint(point, avoidDir);
+            avoidPoint = AvoidPoint(avoidPoint, avoidDir, i != 0);
             if (avoidPoint == Vector3.zero)
                 break;
             finalAvoidPoint = avoidPoint;
         }
+
+        print($"{i} iterations for {gameObject.name}");
 
         return finalAvoidPoint;
     }
@@ -133,6 +134,7 @@ public class CollisionAvoidance : MonoBehaviour
     public Vector3 AvoidPointCompound(Vector3 point, int limitOneSide = 10)
     {
         Vector3 avoidPoint = Vector3.zero;
+        Vector3 distance = point - transform.position;
 
         Vector3 AP_CW = AvoidPointChained(point, limitOneSide, AvoidDirection.CW);
         Vector3 AP_CCW = AvoidPointChained(point, limitOneSide, AvoidDirection.CCW);
@@ -143,8 +145,8 @@ public class CollisionAvoidance : MonoBehaviour
         if (AP_CCW == Vector3.zero)
             avoidPoint = AP_CW;
 
-        float angleCW = Vector3.Angle(transform.forward, AP_CW - transform.position);
-        float angleCCW = Vector3.Angle(transform.forward, AP_CCW - transform.position);
+        float angleCW = Vector3.Angle(distance, AP_CW - transform.position);
+        float angleCCW = Vector3.Angle(distance, AP_CCW - transform.position);
 
         if (AP_CW != Vector3.zero && AP_CCW != Vector3.zero)
         {
