@@ -28,7 +28,6 @@ namespace AI.StationAI
 
         public override void OnEnter()
         {
-            Debug.Log("Attack state entered");
             Transform enemy = m_EnemyDetector?.Enemy?.transform;
             if (enemy)
             {
