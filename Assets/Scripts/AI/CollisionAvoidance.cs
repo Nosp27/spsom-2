@@ -62,9 +62,8 @@ public class CollisionAvoidance : MonoBehaviour
     {
         Vector3 distance = targetPosition - transform.position;
         Vector3 emitterDirection = distance.normalized;
-        Vector3 emitterPosition = transform.position;
+        Vector3 emitterPosition = transform.position + distance.normalized * EmitRadius * 2;
         float range = extendRange ? distance.magnitude * 2 : distance.magnitude;
-        Debug.DrawRay(emitterPosition, emitterDirection * range, Color.blue);
         int nHits = Physics.SphereCastNonAlloc(
             emitterPosition, EmitRadius, emitterDirection, hits, range, mask
         );
@@ -104,8 +103,6 @@ public class CollisionAvoidance : MonoBehaviour
         float boundingSphereRadius = (hitBounds.center - hitBounds.min).magnitude;
 
         Vector3 avoidLine = Vector3.Cross(distance, Vector3.up).normalized;
-        Debug.DrawRay(hitBounds.center, avoidLine* 100, Color.green);
-        Debug.DrawRay(hitBounds.center, avoidLine* -100, Color.green);
         float avoidDirMultiplier = avoidDir == AvoidDirection.CW ? 1 : -1;
         Vector3 avoidPoint = avoidLine * avoidDirMultiplier * (shipBounds.extents.x + boundingSphereRadius + 5) +
                             hitBounds.center;

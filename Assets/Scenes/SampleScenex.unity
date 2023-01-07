@@ -2939,36 +2939,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &658788359
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 658788360}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &658788360
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658788359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 86.4, y: 1.2255824, z: 536.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663119082
 GameObject:
   m_ObjectHideFlags: 0
@@ -15374,6 +15344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1652460274}
   - component: {fileID: 1652460275}
+  - component: {fileID: 1652460276}
   m_Layer: 0
   m_Name: Garage
   m_TagString: Untagged
@@ -15388,8 +15359,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652460273}
-  m_LocalRotation: {x: -0, y: -0.8523096, z: -0, w: 0.5230377}
-  m_LocalPosition: {x: 45.9, y: 0, z: 503.7}
+  m_LocalRotation: {x: -0, y: -0.96342975, z: -0, w: 0.26796108}
+  m_LocalPosition: {x: -87, y: 0, z: 565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 239925284}
@@ -15400,7 +15371,7 @@ Transform:
   - {fileID: 1010740790}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -116.928, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -148.914, z: 0}
 --- !u!114 &1652460275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15418,6 +15389,20 @@ MonoBehaviour:
   door: {fileID: 1507102837}
   spawnPlace: {fileID: 304665661}
   dropoffPoint: {fileID: 2119833089}
+--- !u!114 &1652460276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652460273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b2f168d83364cee87a6dc1aaa53097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadarPrefabWorld: {fileID: 8216425332546030896, guid: 1e6cebde8e4be4023a7ad5ded9e2d8c8, type: 3}
+  RadarPrefabMinimap: {fileID: 4553285495342578624, guid: b4f44ad49aabf49f191985e0ece556eb, type: 3}
 --- !u!1001 &1670028759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27965,7 +27950,7 @@ PrefabInstance:
     - target: {fileID: 6682832358124674965, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
       propertyPath: Places.Array.data[0]
       value: 
-      objectReference: {fileID: 658788360}
+      objectReference: {fileID: 1631365470}
     - target: {fileID: 6682832358124674965, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
       propertyPath: Places.Array.data[1]
       value: 
