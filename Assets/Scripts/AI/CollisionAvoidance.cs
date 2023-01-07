@@ -126,8 +126,6 @@ public class CollisionAvoidance : MonoBehaviour
             finalAvoidPoint = avoidPoint;
         }
 
-        print($"{i} iterations for {gameObject.name}");
-
         return finalAvoidPoint;
     }
 

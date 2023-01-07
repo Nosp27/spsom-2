@@ -4,6 +4,8 @@ public class MissleLauncher : Weapon
 {
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private float fireRate = 20;
+    [SerializeField] private float detonationDistance = 2;
+    [SerializeField] private float detonationTimeout = 10;
 
     public override float maxCooldown { get; protected set; }
     public override float cooldown { get; protected set; }
@@ -61,8 +63,8 @@ public class MissleLauncher : Weapon
         if (e)
         {
             if(target)
-                e.DetonateForDistance(target.transform, 2);
-            e.DetonateForTime(10);
+                e.DetonateForDistance(target.transform, detonationDistance);
+            e.DetonateForTime(detonationTimeout);
         }
         
         if (audioSource != null)

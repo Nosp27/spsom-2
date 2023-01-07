@@ -6,15 +6,16 @@ using UnityEngine;
 public class GarageStation : MonoBehaviour
 {
     [SerializeField] private GameObject test_SpawnPrefab;
-    
+
     private bool spawnLock = false;
 
-    private bool doorOpened = true;
+    private bool doorOpened = false;
     private bool doorMoving = false;
 
-    [SerializeField] private Collider garageTrigger;
+    [SerializeField] private TriggerOccupancy garageTrigger;
     [SerializeField] private Transform door;
     [SerializeField] private Transform spawnPlace;
+    [SerializeField] private Transform dropoffPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -40,15 +41,15 @@ public class GarageStation : MonoBehaviour
         {
             yield break;
         }
-
+        
         spawnLock = true;
-        garageTrigger.isTrigger = true;
+        yield return new WaitUntil(() => !garageTrigger.isOccupied);
         GameObject ship = Instantiate(shipPrefab, spawnPlace.position, spawnPlace.rotation);
         ship.GetComponent<Ship>().enabled = false;
         yield return MoveDoor(true);
+        yield return TransferShipToDropoffPoint(ship.transform);
         ship.GetComponent<Ship>().enabled = true;
-        yield return EnsureGarageEmpty();
-        garageTrigger.isTrigger = false;
+        yield return new WaitUntil(() => !garageTrigger.isOccupied);
         yield return MoveDoor(false);
         spawnLock = false;
     }
@@ -57,7 +58,7 @@ public class GarageStation : MonoBehaviour
     {
         if (doorOpened == open && !doorMoving)
             yield break;
-        
+
         if (doorOpened != open && doorMoving)
             yield break;
 
@@ -78,7 +79,7 @@ public class GarageStation : MonoBehaviour
             finalAngle = 0;
             rotationCondition = d => d.localRotation.eulerAngles.x > finalAngle && d.localRotation.eulerAngles.x < 91;
         }
-        
+
         while (rotationCondition.Invoke(door))
         {
             door.localRotation *= Quaternion.Euler(rotationStep, 0, 0);
@@ -90,33 +91,16 @@ public class GarageStation : MonoBehaviour
         doorOpened = open;
     }
 
-    private IEnumerator EnsureGarageEmpty()
+    IEnumerator TransferShipToDropoffPoint(Transform ship)
     {
-        Collider[] cols = new Collider[100];
-        while (true)
+        Vector3 way;
+        Ship shipComp = ship.GetComponent<Ship>();
+        do
         {
-            int numCols = Physics.OverlapBoxNonAlloc(
-                garageTrigger.transform.position,
-                garageTrigger.bounds.extents,
-                cols,
-                garageTrigger.transform.rotation
-            );
-            
-            if (numCols == 0)  // Garage empty
-            {
-                yield break;
-            }
-            
-            for (int i = 0; i < numCols; i++)
-            {
-                Collider col = cols[i];
-                if (col != null && col.GetComponentInParent<Ship>() == null && !col.transform.IsChildOf(transform))
-                {
-                    Destroy(col.gameObject);
-                }
-            }
-
-            yield return new WaitForSeconds(1f);
-        }
+            float deliverySpeed = shipComp.LinearSpeed;
+            way = (dropoffPoint.position - ship.position);
+            ship.position += way.normalized * deliverySpeed * Time.deltaTime;
+            yield return new WaitForSeconds(0);
+        } while (way.magnitude > 1f);
     }
 }

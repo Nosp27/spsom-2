@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
         audioSource = GetComponentInChildren<AudioSource>();
         mask = LayerMask.GetMask(new[]
         {
-            "UI"
+            "Default"
         });
     }
 
@@ -32,11 +32,17 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        if ((mask & (1 << other.gameObject.layer)) != 0)
+        if ((mask & (1 << other.gameObject.layer)) == 0)
         {
             return;
         }
 
+        if (other.gameObject.transform.IsChildOf(Owner.transform))
+        {
+            return;
+        }
+
+        Hit();
         LinUtils.PlayAudioDetached(audioSource);
 
         ShipDamageModel damageModel = other.GetComponentInParent<ShipDamageModel>();
@@ -46,7 +52,6 @@ public class Bullet : MonoBehaviour
         BulletHitDTO hit = new BulletHitDTO(Damage, collisionPoint, hitDirection);
         if (damageModel && damageModel.gameObject != Owner)
         {
-            Hit();
             damageModel.SendMessage("GetDamage", hit);
         }
     }

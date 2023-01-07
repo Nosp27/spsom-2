@@ -42974,7 +42974,7 @@ GameObject:
   - component: {fileID: 6682832358124674988}
   - component: {fileID: 6682832358124674979}
   m_Layer: 0
-  m_Name: TradeShip (6)
+  m_Name: TradeShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42987,7 +42987,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6682832358124674966}
-  m_LocalRotation: {x: 0.000000014096714, y: -0.9481398, z: 0.00000005960465, w: 0.3178538}
+  m_LocalRotation: {x: 0, y: -0.94814074, z: 0, w: 0.31785083}
   m_LocalPosition: {x: -34.816334, y: 0.000020712614, z: 193.19643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -42998,7 +42998,7 @@ Transform:
   - {fileID: 6875688118984998976}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -142.934, z: 0}
 --- !u!114 &6682832358124674990
 MonoBehaviour:
   m_ObjectHideFlags: 0
