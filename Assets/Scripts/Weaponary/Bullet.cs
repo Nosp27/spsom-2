@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     private AudioSource audioSource;
 
     private bool hitDone = false;
+    [SerializeField] private bool bypassShields;
 
     private void Start()
     {
@@ -45,11 +46,18 @@ public class Bullet : MonoBehaviour
         Hit();
         LinUtils.PlayAudioDetached(audioSource);
 
-        ShipDamageModel damageModel = other.GetComponentInParent<ShipDamageModel>();
         Vector3 collisionPoint =
             transform.position + transform.forward * GetComponentInChildren<Collider>().bounds.size.z;
         Vector3 hitDirection = transform.forward;
         BulletHitDTO hit = new BulletHitDTO(Damage, collisionPoint, hitDirection);
+
+        if (other.TryGetComponent(out Shield shield) && !bypassShields)
+        {
+            shield.SendMessage("GetDamage", hit);
+            return;
+        }
+        
+        ShipDamageModel damageModel = other.GetComponentInParent<ShipDamageModel>();
         if (damageModel && damageModel.gameObject != Owner)
         {
             damageModel.SendMessage("GetDamage", hit);
