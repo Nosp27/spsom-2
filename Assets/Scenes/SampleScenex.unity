@@ -25901,6 +25901,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5440248564188505357, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 912319bc2fed54dc7b7b0725de2171be, type: 2}
     - target: {fileID: 6682832358124674965, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
       propertyPath: Places.Array.data[0]
       value: 
@@ -26563,6 +26567,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2019670299, guid: 12c0b94dd207246ac956a81253760843, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019670299, guid: 12c0b94dd207246ac956a81253760843, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023366713, guid: 12c0b94dd207246ac956a81253760843, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023366713, guid: 12c0b94dd207246ac956a81253760843, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8097578658768050928, guid: 12c0b94dd207246ac956a81253760843, type: 3}
       propertyPath: m_Camera
       value: 

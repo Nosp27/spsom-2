@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ArmorPlate
+    second: {fileID: 2100000, guid: 912319bc2fed54dc7b7b0725de2171be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Cockpit
     second: {fileID: 2100000, guid: a6f630c379d5944448e566e996afe0d3, type: 2}
   - first:
