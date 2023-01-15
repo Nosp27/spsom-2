@@ -29,6 +29,7 @@ public class ShipDamageModel : MonoBehaviour
         if (clip && referenceAudioSource)
         {
             AudioSource newAs = Instantiate(referenceAudioSource);
+            newAs.transform.position = transform.position;
             newAs.clip = clip;
             newAs.Play();
             Destroy(newAs.gameObject, newAs.clip.length);

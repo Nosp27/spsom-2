@@ -1851,7 +1851,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_RedChannel": true,
+    "m_RedChannel": false,
     "m_GreenChannel": false,
     "m_BlueChannel": false
 }

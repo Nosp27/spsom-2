@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attachedListener = GetComponentInChildren<AudioListener>().transform;
+        // attachedListener = GetComponentInChildren<AudioListener>().transform;
         BaseOffset = transform.position - PlayerShip.transform.position;
     }
 
@@ -27,9 +27,9 @@ public class CameraController : MonoBehaviour
         );
         transform.LookAt(PlayerShip.transform);
 
-        if (PlayerShip)
-        {
-            attachedListener.transform.position = PlayerShip.transform.position;
-        }
+        // if (PlayerShip)
+        // {
+        //     attachedListener.transform.position = PlayerShip.transform.position;
+        // }
     }
 }

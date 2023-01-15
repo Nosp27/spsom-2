@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Engine))]
+[RequireComponent(typeof(ParticleEngineRenderer))]
 [RequireComponent(typeof(AudioSource))]
 public class EngineSound : MonoBehaviour
 {
-    private Engine engine;
+    private ParticleEngineRenderer engine;
 
     private float lowThrottle = 0.2f;
     private float highThrottle = 0.8f;
@@ -20,7 +20,7 @@ public class EngineSound : MonoBehaviour
         source = GetComponent<AudioSource>();
         source.clip = engineLow;
 
-        engine = GetComponent<Engine>();
+        engine = GetComponent<ParticleEngineRenderer>();
     }
 
     void Die()

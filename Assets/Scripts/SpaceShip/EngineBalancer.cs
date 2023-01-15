@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class EngineBalancer : MonoBehaviour
 {
-    private Engine[] Engines;
+    private EngineRenderer[] Engines;
 
     public float[] engineRotationMultipliers;
     public float[] engineDriveMultipliers;
 
     private void Start()
     {
-        Engines = GetComponentsInChildren<Engine>();
+        Engines = GetComponentsInChildren<EngineRenderer>();
         initEngines();
     }
 
@@ -27,6 +27,8 @@ public class EngineBalancer : MonoBehaviour
 
     private void initEngines()
     {
+        if (Engines == null || Engines.Length == 0)
+            return;
         engineDriveMultipliers = new float[Engines.Length];
         engineRotationMultipliers = new float[Engines.Length];
         int i = 0;
@@ -60,11 +62,9 @@ public class EngineBalancer : MonoBehaviour
             {
                 engineDriveMultipliers[i] = 0;
             }
-
-            engine.DriveMultiplier = engineDriveMultipliers[i];
-            engine.RotationMultiplier = engineRotationMultipliers[i];
+            
             i++;
-
+            
             if (engine.debug)
             {
                 Debug.DrawRay(transform.position, distance, Color.white);
@@ -94,6 +94,8 @@ public class EngineBalancer : MonoBehaviour
 
     public void BalanceEnginePower(float currentThrottle, Vector3 point, float angle)
     {
+        if (Engines == null || Engines.Length == 0)
+            return;
         float linearPower = currentThrottle * 70f;
 
         float angularPower = 0f;

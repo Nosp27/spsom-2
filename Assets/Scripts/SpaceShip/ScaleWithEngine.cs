@@ -6,12 +6,12 @@ public class ScaleWithEngine : MonoBehaviour
 {
     [SerializeField] AnimationCurve scaleCurve = AnimationCurve.EaseInOut(0, 0.1f, 100, 3);
     private Vector3 startScale;
-    private Engine attachedEngine;
+    private ParticleEngineRenderer attachedEngine;
     
     // Start is called before the first frame update
     void Start()
     {
-        attachedEngine = GetComponentInParent<Engine>();
+        attachedEngine = GetComponentInParent<ParticleEngineRenderer>();
         startScale = transform.localScale;
     }
 
