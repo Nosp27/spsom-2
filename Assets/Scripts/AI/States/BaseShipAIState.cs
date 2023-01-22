@@ -6,7 +6,7 @@ namespace AI.States
     public abstract class BaseShipAIState : MonoBehaviour, IState
     {
         protected EnemyDetector EnemyDetector;
-        protected ShipAIControls ShipAIControls;
+        public ShipAIControls ShipAIControls { get; protected set; }
 
         public abstract void Tick();
 

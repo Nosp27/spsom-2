@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3616392250100911619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601690462874049958}
+  m_Layer: 0
+  m_Name: CruiserDebris
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1601690462874049958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616392250100911619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3967016016982652776}
+  - {fileID: 3711685061913510223}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3496787214513492099
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1601690462874049958}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7061827
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70586485
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.04189226
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.036137607
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -83.674
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -89.533
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e9a113983ff8843afbeeb204bc9fbcc7, type: 2}
+    - target: {fileID: 919132149155446097, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+      propertyPath: m_Name
+      value: Cruiser_Panel_Debris_Mesh
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+--- !u!4 &3967016016982652776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec18268b8125444d1bd9d8bedceb5a58, type: 3}
+  m_PrefabInstance: {fileID: 3496787214513492099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3749304532254320292
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1601690462874049958}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9900385
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.04817354
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.058029022
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.11889401
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.68
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -7.284
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -13.994
+      objectReference: {fileID: 0}
+    - target: {fileID: -5701475043254547003, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5fd4d586a859c4f9aabecc1f9b6934d3, type: 2}
+    - target: {fileID: -5075972596903978863, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4084984875427975547, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_Name
+      value: Cruiser_Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526524572951741749, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5fd4d586a859c4f9aabecc1f9b6934d3, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+--- !u!4 &3711685061913510223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 66d74097e2e454e3294d117f44dd963d, type: 3}
+  m_PrefabInstance: {fileID: 3749304532254320292}
+  m_PrefabAsset: {fileID: 0}

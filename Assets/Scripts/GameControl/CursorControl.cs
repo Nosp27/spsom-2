@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 
-class CursorControl : MonoBehaviour
+public class CursorControl : MonoBehaviour
 {
     private float yZero;
     private Camera currentCamera;
     private GameObject cursorHoverTarget;
     private Vector3 _cursor;
+
+    public UnityEvent<GameObject> OnCursorHoverTargetChanged;
 
     public void Setup(Ship playerShip)
     {
@@ -37,7 +40,11 @@ class CursorControl : MonoBehaviour
             }
         }
 
-        cursorHoverTarget = newCursorHoverTarget;
+        if (newCursorHoverTarget != cursorHoverTarget)
+        {
+            cursorHoverTarget = newCursorHoverTarget;
+            OnCursorHoverTargetChanged.Invoke(cursorHoverTarget);
+        }
         _cursor = point;
     }
 

@@ -189,7 +189,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: b9a8fa9c6d17e484187ee2bb756624c5, type: 2}
   - {fileID: 2100000, guid: a6f630c379d5944448e566e996afe0d3, type: 2}
-  - {fileID: 2311894899105440959, guid: 5cd96af15516f4e77ae5eaf21afb5088, type: 3}
+  - {fileID: 2100000, guid: 912319bc2fed54dc7b7b0725de2171be, type: 2}
   - {fileID: 2100000, guid: e29669dd11b8e4c58bb2be6bf28e90d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -62523,7 +62523,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6875688118984998976}
   - component: {fileID: 6875688118984998991}
-  - component: {fileID: 2042136398838237088}
   m_Layer: 5
   m_Name: BoundingBox
   m_TagString: Untagged
@@ -62557,19 +62556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d5c23133d10470380a0b174f62aa28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &2042136398838237088
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6875688118984998977}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6875688119346798274
 GameObject:
   m_ObjectHideFlags: 0

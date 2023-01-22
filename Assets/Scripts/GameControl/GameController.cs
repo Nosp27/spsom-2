@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public static GameController Current;
 
     public InventoryController Inventory => GetComponentInChildren<InventoryController>();
+    public CursorControl CurrentCursorControl => cursorControl;
     
     private bool Alive;
     public GameObject CursorVisualizerPrefab;

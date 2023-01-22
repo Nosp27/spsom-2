@@ -16,8 +16,11 @@ public class CollisionAvoidance : MonoBehaviour
     private Bounds shipBounds;
 
     [SerializeField] private float EmitRadius;
+    [SerializeField] private float parktronicRadius = 10;
+    [SerializeField] private float parktronicAvoidMagnitude = 10;
 
     private RaycastHit[] hits;
+    private Collider[] parktronicCols;
 
     private LayerMask mask;
 
@@ -36,7 +39,8 @@ public class CollisionAvoidance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hits = new RaycastHit[10];
+        hits = new RaycastHit[50];
+        parktronicCols = new Collider[50];
         ship = GetComponentInParent<Ship>();
         rb = GetComponent<Rigidbody>();
         Collider[] allColliders = ship.GetComponentsInChildren<Collider>();
@@ -105,7 +109,7 @@ public class CollisionAvoidance : MonoBehaviour
         Vector3 avoidLine = Vector3.Cross(distance, Vector3.up).normalized;
         float avoidDirMultiplier = avoidDir == AvoidDirection.CW ? 1 : -1;
         Vector3 avoidPoint = avoidLine * avoidDirMultiplier * (shipBounds.extents.x + boundingSphereRadius + 5) +
-                            hitBounds.center;
+                             hitBounds.center;
         return avoidPoint;
     }
 
@@ -128,6 +132,11 @@ public class CollisionAvoidance : MonoBehaviour
 
     public Vector3 AvoidPointCompound(Vector3 point, int limitOneSide = 10)
     {
+        Vector3 parktronicPoint = ApplyParktronic();
+        if (parktronicPoint != Vector3.zero && (parktronicPoint - transform.position).magnitude > 3f)
+        {
+            return parktronicPoint;
+        }
         Vector3 avoidPoint = Vector3.zero;
         Vector3 distance = point - transform.position;
 
@@ -156,19 +165,43 @@ public class CollisionAvoidance : MonoBehaviour
         return avoidPoint;
     }
 
+    private Vector3 ApplyParktronic()
+    {
+        if (parktronicRadius == 0)
+            return Vector3.zero;
+
+        int nHits = Physics.OverlapSphereNonAlloc(transform.position, parktronicRadius, parktronicCols, mask);
+
+        Vector3 avoidDir = Vector3.zero;
+        for (int i = 0; i < nHits; ++i)
+        {
+            if (CheckCollider(parktronicCols[i]))
+            {
+                avoidDir += transform.position - parktronicCols[i].transform.position;
+            }
+        }
+
+        return transform.position + avoidDir.normalized * parktronicAvoidMagnitude;
+    }
+
     bool CheckHit(RaycastHit hit)
     {
-        if (hit.collider == null)
+        return CheckCollider(hit.collider);
+    }
+
+    bool CheckCollider(Collider col)
+    {
+        if (col == null)
         {
             return false;
         }
 
-        if (hit.collider.isTrigger)
+        if (col.isTrigger)
         {
             return false;
         }
 
-        if (hit.collider.attachedRigidbody == rb)
+        if (col.attachedRigidbody == rb)
         {
             return false;
         }
