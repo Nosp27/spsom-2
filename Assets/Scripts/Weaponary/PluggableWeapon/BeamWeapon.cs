@@ -17,7 +17,7 @@ public class BeamWeapon : Weapon
     private float _beamDissolveAccumulator;
     private float _beamDissolveLatency = .1f;
     private Rigidbody attachedRigidbody;
-    private ShipDamageModel attackedDamageModel;
+    private DamageModel attackedDamageModel;
     private float damageCounter;
 
     void Start()
@@ -100,7 +100,7 @@ public class BeamWeapon : Weapon
         {
             Vector3 hitPoint = hit.point;
             beamRenderer.SetPosition(1, hitPoint);
-            ShipDamageModel damageModel = hit.collider.GetComponentInParent<ShipDamageModel>();
+            DamageModel damageModel = hit.collider.GetComponentInParent<DamageModel>();
             if (hit.rigidbody != attachedRigidbody)
             {
                 if (attackedDamageModel == damageModel)

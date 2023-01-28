@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 4201509893920729130}
   - component: {fileID: 7680441461068245183}
   - component: {fileID: 2392201698456014001}
+  - component: {fileID: 822860516324827354}
   m_Layer: 0
   m_Name: Stripe3
   m_TagString: Untagged
@@ -221,6 +222,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &822860516324827354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19037947689829317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &477335341143044595
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +250,7 @@ GameObject:
   - component: {fileID: 4232586259653063254}
   - component: {fileID: 29567473397350288}
   - component: {fileID: 1151195123830414646}
+  - component: {fileID: 2723361928881916983}
   m_Layer: 0
   m_Name: Cockpit
   m_TagString: Untagged
@@ -336,6 +353,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &2723361928881916983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477335341143044595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &695324070539213219
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +500,7 @@ GameObject:
   - component: {fileID: 922993852641271117}
   - component: {fileID: 1185380326308354325}
   - component: {fileID: 3238738186288175326}
+  - component: {fileID: 6254075867020446616}
   m_Layer: 0
   m_Name: LeftCannon
   m_TagString: Untagged
@@ -570,6 +603,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &6254075867020446616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566914432780801302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &1661433542373832032
 GameObject:
   m_ObjectHideFlags: 0
@@ -40111,6 +40159,7 @@ GameObject:
   - component: {fileID: 6754330793155586306}
   - component: {fileID: 3250045466947119668}
   - component: {fileID: 5035250515223736685}
+  - component: {fileID: 9213245578542297353}
   m_Layer: 0
   m_Name: Icosphere.006
   m_TagString: Untagged
@@ -40211,6 +40260,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &9213245578542297353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3863950113395228383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &3931394252590709451
 GameObject:
   m_ObjectHideFlags: 0
@@ -40349,6 +40413,7 @@ GameObject:
   - component: {fileID: 1937799427285847070}
   - component: {fileID: 4044737002311820534}
   - component: {fileID: 1289100034907445112}
+  - component: {fileID: 4879113721226219937}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -40451,6 +40516,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &4879113721226219937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165009710976951739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &4172606198957827217
 GameObject:
   m_ObjectHideFlags: 0
@@ -40707,6 +40787,7 @@ GameObject:
   - component: {fileID: 8395668169972371939}
   - component: {fileID: 4900770546821380126}
   - component: {fileID: 4588397717277262774}
+  - component: {fileID: 5627543796964194747}
   m_Layer: 0
   m_Name: Cans
   m_TagString: Untagged
@@ -40807,6 +40888,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &5627543796964194747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834721730876274556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &5047845116874428905
 GameObject:
   m_ObjectHideFlags: 0
@@ -41141,7 +41237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4431c90c01d34da7b1682152a626bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  maxHealth: 0
+  health: 0
   destruction: {fileID: 0}
   destroyOnDeath: 0
   HitParticleSystems:
@@ -41539,6 +41636,7 @@ GameObject:
   - component: {fileID: 6012571171332639272}
   - component: {fileID: 3975720205227825821}
   - component: {fileID: 746019556801001404}
+  - component: {fileID: 2649892521428697543}
   m_Layer: 0
   m_Name: RightCannon
   m_TagString: Untagged
@@ -41641,6 +41739,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &2649892521428697543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558250459048980357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &6694178972703114709
 GameObject:
   m_ObjectHideFlags: 0
@@ -41899,6 +42012,7 @@ GameObject:
   - component: {fileID: 4026071596330912035}
   - component: {fileID: 6605148179069814067}
   - component: {fileID: 4216319232783787874}
+  - component: {fileID: 2806060294313831349}
   m_Layer: 0
   m_Name: Stripe4
   m_TagString: Untagged
@@ -41999,6 +42113,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &2806060294313831349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676300869074525511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &7699828278703279039
 GameObject:
   m_ObjectHideFlags: 0
@@ -42012,6 +42141,7 @@ GameObject:
   - component: {fileID: 1164800612098406997}
   - component: {fileID: 4562661473810115305}
   - component: {fileID: 8735747286524284031}
+  - component: {fileID: 8021194488147466541}
   m_Layer: 0
   m_Name: Hull
   m_TagString: Untagged
@@ -42112,6 +42242,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &8021194488147466541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699828278703279039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &7880898340383606196
 GameObject:
   m_ObjectHideFlags: 0
@@ -42170,6 +42315,7 @@ GameObject:
   - component: {fileID: 1662544719936056341}
   - component: {fileID: 1539512576373653824}
   - component: {fileID: 1311302311791486230}
+  - component: {fileID: 5413621301973347866}
   m_Layer: 0
   m_Name: Engine
   m_TagString: Untagged
@@ -42271,6 +42417,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &5413621301973347866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027763102382606272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661b0dec585134900a1d37680204e0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  debrisGameObject: {fileID: 0}
 --- !u!1 &8836512499005194574
 GameObject:
   m_ObjectHideFlags: 0

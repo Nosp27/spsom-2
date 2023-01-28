@@ -398,13 +398,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1884522723161542216, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
+      propertyPath: aliveMesh
+      value: 
+      objectReference: {fileID: 971617277}
+    - target: {fileID: 1884522723161542216, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884522723161542216, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
+      propertyPath: debrisMesh
+      value: 
+      objectReference: {fileID: 954342858}
+    - target: {fileID: 1884522723161542216, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
+      propertyPath: destroyOnDeath
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1884522723161542221, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
       propertyPath: LinearSpeed
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3045535532336029197, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3045535532336029197, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1910,7 +1926,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1951,6 +1967,10 @@ PrefabInstance:
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270728649305886372, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
+      propertyPath: maxHealth
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886375, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: parktronicRadius
@@ -2960,7 +2980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909868781
 GameObject:
@@ -3223,6 +3243,11 @@ Transform:
   m_Father: {fileID: 759836095}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &954342858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2263291571971075143, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
+  m_PrefabInstance: {fileID: 179995328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,6 +3372,11 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &971617277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6035735512597208169, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
+  m_PrefabInstance: {fileID: 179995328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &979086643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,13 +3713,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4431c90c01d34da7b1682152a626bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 20
+  maxHealth: 0
+  health: 0
   destruction: {fileID: 898720118}
+  destroyOnDeath: 0
   HitParticleSystems: []
   ExplosionParticleSystems: []
   referenceAudioSource: {fileID: 0}
   audioTakeDamage: {fileID: 0}
   audioDie: {fileID: 0}
+  aliveMesh: {fileID: 0}
+  debrisMesh: {fileID: 0}
 --- !u!114 &1038009255 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8270728647653919143, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
@@ -19283,7 +19317,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1601690462874049958, guid: 400c2a998e5004d11b1ed723501a16d6, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1601690462874049958, guid: 400c2a998e5004d11b1ed723501a16d6, type: 3}
       propertyPath: m_LocalScale.x
@@ -19872,7 +19906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19913,6 +19947,10 @@ PrefabInstance:
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270728649305886372, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
+      propertyPath: maxHealth
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886375, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: parktronicRadius
@@ -20090,6 +20128,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.92
       objectReference: {fileID: 0}
+    - target: {fileID: 2027507065, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 179131490604280396, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
       propertyPath: m_UseWorldSpace
       value: 1
@@ -20100,7 +20142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5285612485202658234, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5285612485202658234, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32252,9 +32294,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: TradeShip
       objectReference: {fileID: 0}
+    - target: {fileID: 6682832358124674985, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
+      propertyPath: maxHealth
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 6682832358124674989, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6682832358124674989, guid: c167d2f0a83df469aae8fabe4a1c5efe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33169,7 +33215,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886368, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33214,6 +33260,10 @@ PrefabInstance:
     - target: {fileID: 8270728649305886369, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: LinearSpeed
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270728649305886372, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
+      propertyPath: maxHealth
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886375, guid: 901bed95f315d4baba5ee4eacae0f7cc, type: 3}
       propertyPath: parktronicRadius

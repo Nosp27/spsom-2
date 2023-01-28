@@ -12,7 +12,7 @@ public class Explosive : MonoBehaviour
     [SerializeField] private int MaxDamage = 10;
 
     private List<Predicate<Explosive>> detonationSensors = new List<Predicate<Explosive>>();
-    private bool Detonated = false;
+    private bool Detonated;
 
     private AudioSource audioSource;
 
@@ -32,7 +32,7 @@ public class Explosive : MonoBehaviour
 
         Collider[] hits = Physics.OverlapSphere(transform.position, Range);
 
-        Dictionary<ShipDamageModel, List<Collider>> hitMap = new Dictionary<ShipDamageModel, List<Collider>>();
+        Dictionary<DamageModel, List<Collider>> hitMap = new Dictionary<DamageModel, List<Collider>>();
         for (int i = 0; i < hits.Length; i++)
         {
             ShipDamageModel dm = hits[i].GetComponentInParent<ShipDamageModel>();
@@ -49,7 +49,7 @@ public class Explosive : MonoBehaviour
 
         foreach (var item in hitMap)
         {
-            ShipDamageModel dm = item.Key;
+            DamageModel dm = item.Key;
             float distance = (dm.transform.position - transform.position).magnitude;
             int Damage = (int) (MaxDamage - ((MaxDamage - MinDamage) * (distance / Range)));
 
@@ -61,6 +61,7 @@ public class Explosive : MonoBehaviour
             );
             dm.SendMessage("GetDamage", dto);
         }
+
         Destroy(gameObject, .1f);
     }
 

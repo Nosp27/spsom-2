@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ShipDamageModel : MonoBehaviour
+public class ShipDamageModel : DamageModel
 {
-    public int MaxHealth { get; private set; }
-    public int Health;
     public ParticleSystem destruction;
     private Ship ship;
 
@@ -25,7 +21,6 @@ public class ShipDamageModel : MonoBehaviour
 
     private void Start()
     {
-        MaxHealth = Health;
         ship = GetComponent<Ship>();
     }
 
@@ -41,16 +36,14 @@ public class ShipDamageModel : MonoBehaviour
         }
     }
 
-    public void Die()
+    public override void Die()
     {
-        print($"{name} died");
-        Health = 0;
+        health = 0;
         if (ship.isPlayerShip)
             GameController.Current.SendMessage("Die");
         if (destruction != null)
             destruction.Play(true);
 
-        print("PlayDIe");
         PlayFX(audioDie);
         PlayDebris();
 
@@ -68,15 +61,15 @@ public class ShipDamageModel : MonoBehaviour
         debrisMesh.SetActive(true);
     }
 
-    public void GetDamage(BulletHitDTO hit)
+    public override void GetDamage(BulletHitDTO hit)
     {
         if (hit.Damage < 0)
         {
-            print($"Damage <0: {hit.Damage}");
+            Debug.LogWarning($"Damage <0: {hit.Damage}");
             return;
         }
 
-        Health -= hit.Damage;
+        health -= hit.Damage;
 
         GameObject[] hitsParticles = HitParticleSystems;
         if (hit.hitType == HitType.EXPLOSION)
@@ -91,9 +84,9 @@ public class ShipDamageModel : MonoBehaviour
 
         if (ship.isPlayerShip)
             GameController.Current.SendMessage("GetDamage", hit);
-        if (Health <= 0)
+        if (health <= 0)
         {
-            Health = 0;
+            health = 0;
             if (destruction != null)
                 destruction.Play(true);
             BroadcastMessage("Die");

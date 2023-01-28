@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
             return;
         }
         
-        ShipDamageModel damageModel = other.GetComponentInParent<ShipDamageModel>();
+        DamageModel damageModel = other.GetComponentInParent<DamageModel>();
         if (damageModel && damageModel.gameObject != Owner)
         {
             damageModel.SendMessage("GetDamage", hit);
