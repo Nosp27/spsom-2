@@ -10,6 +10,8 @@ public class ShipDamageModel : MonoBehaviour
     public ParticleSystem destruction;
     private Ship ship;
 
+    [SerializeField] private bool destroyOnDeath;
+
     public GameObject[] HitParticleSystems;
 
     public GameObject[] ExplosionParticleSystems;
@@ -17,6 +19,9 @@ public class ShipDamageModel : MonoBehaviour
     [SerializeField] private AudioSource referenceAudioSource;
     [SerializeField] private AudioClip audioTakeDamage;
     [SerializeField] private AudioClip audioDie;
+
+    [Space(20f)] [SerializeField] private GameObject aliveMesh;
+    [SerializeField] private GameObject debrisMesh;
 
     private void Start()
     {
@@ -38,14 +43,29 @@ public class ShipDamageModel : MonoBehaviour
 
     public void Die()
     {
+        print($"{name} died");
         Health = 0;
         if (ship.isPlayerShip)
             GameController.Current.SendMessage("Die");
         if (destruction != null)
             destruction.Play(true);
-        
+
         print("PlayDIe");
         PlayFX(audioDie);
+        PlayDebris();
+
+        if (destroyOnDeath)
+            Destroy(gameObject, 0.5f);
+    }
+
+    void PlayDebris()
+    {
+        if (!(aliveMesh && debrisMesh))
+            return;
+
+        aliveMesh.SetActive(false);
+        debrisMesh.transform.parent = null;
+        debrisMesh.SetActive(true);
     }
 
     public void GetDamage(BulletHitDTO hit)

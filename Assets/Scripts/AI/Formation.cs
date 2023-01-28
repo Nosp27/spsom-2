@@ -42,6 +42,11 @@ public class Formation : MonoBehaviour
         if (!initDone)
             Start();
 
+        if (MemberIndex(member) != -1)
+        {
+            return;
+        }
+
         bool successful = false;
         for (int i = 0; i < m_Slots.Length; ++i)
         {
@@ -92,15 +97,21 @@ public class Formation : MonoBehaviour
 
     private void OnDestroy()
     {
-        RemoveMember(m_Leader);
-        FormationMember newLeader = SelectNewLeader();
-        if (newLeader == null)
+        try
         {
-            ClearFormation();
+            RemoveMember(m_Leader);
+            FormationMember newLeader = SelectNewLeader();
+            if (newLeader == null)
+            {
+                ClearFormation();
+            }
+            else
+            {
+                ChangeLeader(newLeader);
+            }
         }
-        else
+        catch (Exception e)
         {
-            ChangeLeader(newLeader);
         }
     }
 
@@ -121,7 +132,6 @@ public class Formation : MonoBehaviour
 
     private int MemberIndex(FormationMember member)
     {
-        int memberIndex = -1;
         for (int i = 0; i < m_Members.Length; ++i)
         {
             if (m_Members[i] == member)
@@ -130,7 +140,7 @@ public class Formation : MonoBehaviour
             }
         }
 
-        throw new Exception("Member not found");
+        return -1;
     }
 
     private FormationMember SelectNewLeader()

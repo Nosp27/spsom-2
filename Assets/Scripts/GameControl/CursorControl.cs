@@ -62,7 +62,9 @@ public class CursorControl : MonoBehaviour
     [CanBeNull]
     public FacilityGUI GetHoveredFacility()
     {
-        return cursorHoverTarget?.GetComponentInParent<FacilityGUI>();
+        if (!cursorHoverTarget)
+            return null;
+        return cursorHoverTarget.GetComponentInParent<FacilityGUI>();
     }
 }
 

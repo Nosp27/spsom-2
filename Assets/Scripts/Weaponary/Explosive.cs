@@ -20,7 +20,6 @@ public class Explosive : MonoBehaviour
 
     public void Explode()
     {
-        print("E");
         if (Detonated)
             return;
 
@@ -62,8 +61,6 @@ public class Explosive : MonoBehaviour
             );
             dm.SendMessage("GetDamage", dto);
         }
-
-        print("Destroy");
         Destroy(gameObject, .1f);
     }
 
@@ -81,7 +78,7 @@ public class Explosive : MonoBehaviour
 
     public void DetonateForDistance(Transform target, float distance)
     {
-        detonationSensors.Add(e => (target.transform.position - e.transform.position).magnitude < distance);
+        detonationSensors.Add(e => target && (target.transform.position - e.transform.position).magnitude < distance);
     }
 
     public void DetonateForTime(float timeout)
