@@ -27,7 +27,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.202, z: 3.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 14569633116959643}
+  - {fileID: 6889060396472920277}
   m_Father: {fileID: 4109014977048145993}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,13 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a44fca94f16045c2955948c912fbfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootMode: 0
   bulletPrefab: {fileID: 8697747541973261789, guid: 75ea05b28c54a47289ebd22e9d77e7ee, type: 3}
   BulletSpeed: 50
-  BulletPlace: {fileID: 358819780}
   BulletMaxDistance: 120
   _bulletLifetime: 0
   FireRate: 300
   DamageBuff: 1
+  barrels:
+  - {fileID: 14569633116959643}
+  - {fileID: 6889060396472920277}
 --- !u!1 &1174180372
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +193,66 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!1 &484772633173104361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14569633116959643}
+  m_Layer: 0
+  m_Name: Barrel1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &14569633116959643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484772633173104361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.265, y: 0.062, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 358819780}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3560471044064016955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6889060396472920277}
+  m_Layer: 0
+  m_Name: Barrel2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6889060396472920277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3560471044064016955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.283, y: 0.062, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 358819780}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3660091805043142189
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343beb0f90f8a44af83f0a6f1dac5253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 50
+  VerticalSpeed: 10
+  HorizontalSpeed: 500
   HorizontalDrive: {fileID: 7635675569134783422}
   VerticalDrive: {fileID: 4109014977048145993}
   HorizontalLimits:
@@ -309,8 +375,6 @@ MonoBehaviour:
   VerticalLimits:
   - 50
   - -50
-  VerticalSpeed: 10
-  HorizontalSpeed: 500
   AimingRay: {fileID: 1174180372}
   _TestLookVectorAngle: 0
   target: {fileID: 0}

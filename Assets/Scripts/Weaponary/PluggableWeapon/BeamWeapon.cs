@@ -56,6 +56,7 @@ public class BeamWeapon : Weapon
 
     public override void Aim(Vector3 target)
     {
+        aimTarget = target;
     }
 
     public override bool Aimed()
@@ -113,7 +114,8 @@ public class BeamWeapon : Weapon
                             new BulletHitDTO(
                                 (int)damageCounter,
                                 hitPoint,
-                                (hitPoint - transform.position).normalized
+                                (hitPoint - transform.position).normalized,
+                                HitType.LASER
                             )
                         );
                         damageCounter = 0;

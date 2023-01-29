@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public float RotationSpeed;
+    [SerializeField] float VerticalSpeed;
+    [SerializeField] float HorizontalSpeed;
 
     [SerializeField] Transform HorizontalDrive;
     [SerializeField] Transform VerticalDrive;
 
     [SerializeField] float[] HorizontalLimits;
     [SerializeField] float[] VerticalLimits;
-    [SerializeField] float VerticalSpeed;
-    [SerializeField] float HorizontalSpeed;
 
     public GameObject AimingRay;
     [SerializeField] private float _TestLookVectorAngle;

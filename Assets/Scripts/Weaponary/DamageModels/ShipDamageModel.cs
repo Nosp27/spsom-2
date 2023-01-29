@@ -93,7 +93,8 @@ public class ShipDamageModel : DamageModel
         }
         else
         {
-            PlayFX(audioTakeDamage);
+            if (hit.hitType != HitType.LASER)
+                PlayFX(audioTakeDamage);
         }
     }
 }

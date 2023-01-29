@@ -10,6 +10,7 @@ public enum HitType
 {
     KINETIC,
     EXPLOSION,
+    LASER,
 }
 
 public class BulletHitDTO
