@@ -217,7 +217,7 @@ public class Ship : MonoBehaviour
         if (angle > 30)
         {
             float rollAngle = angle > 60 ? 20 : 12;
-            float left = LinUtils.Projection(point - rb.position, transform.right) > 0 ? -1 : 1;
+            float left = Utils.Projection(point - rb.position, transform.right) > 0 ? -1 : 1;
             targetRotation = Quaternion.AngleAxis(rollAngle * left, transform.forward) * targetRotation;
         }
 

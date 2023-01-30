@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LinUtils
+public class Utils
 {
     public static float Projection(Vector3 v1, Vector3 v2)
     {

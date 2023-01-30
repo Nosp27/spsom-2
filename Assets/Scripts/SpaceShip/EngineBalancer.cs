@@ -36,11 +36,11 @@ public class EngineBalancer : MonoBehaviour
         {
             Vector3 distance = engine.transform.position - transform.position;
             Vector3 moment = distance.normalized - engine.transform.forward;
-            float directionMultiplier = LinUtils.Projection(transform.forward, engine.transform.forward);
-            // float sideMultiplier = LinUtils.Projection(transform.right, distance) *
-            //                        Mathf.Sign(LinUtils.Projection(transform.right, -engine.transform.forward));
+            float directionMultiplier = Utils.Projection(transform.forward, engine.transform.forward);
+            // float sideMultiplier = Utils.Projection(transform.right, distance) *
+            //                        Mathf.Sign(Utils.Projection(transform.right, -engine.transform.forward));
             Vector3 momentumCross = Vector3.Cross(distance, Vector3.up);
-            float sideMultiplier = LinUtils.Projection(
+            float sideMultiplier = Utils.Projection(
                 engine.transform.forward, momentumCross.normalized
             );
             moment.y = 0;
@@ -102,7 +102,7 @@ public class EngineBalancer : MonoBehaviour
 
         if (angle >= 1)
         {
-            float proj = LinUtils.Projection(point - transform.position, transform.right);
+            float proj = Utils.Projection(point - transform.position, transform.right);
             float totalEngineMultiplier = proj > 0 ? -1f : 1f;
             angularPower = totalEngineMultiplier * angle / 180f;
         }
