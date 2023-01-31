@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{260d7b41-4257-4ef1-8b93-c5679c798080}">
+		<property name="assetPath">
+			<value>SFX/77948_591653_591650_Sci_Fi_Transitions_-_Laser_Impact_normal.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.048</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

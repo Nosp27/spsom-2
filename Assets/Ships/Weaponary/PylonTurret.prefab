@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a44fca94f16045c2955948c912fbfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxEmitter: {fileID: 7605259488838497871}
   shootMode: 0
   bulletPrefab: {fileID: 8697747541973261789, guid: 75ea05b28c54a47289ebd22e9d77e7ee, type: 3}
   BulletSpeed: 50
   BulletMaxDistance: 120
-  _bulletLifetime: 0
   FireRate: 300
   DamageBuff: 1
   barrels:
@@ -350,6 +350,7 @@ Transform:
   m_Children:
   - {fileID: 746771683427000689}
   - {fileID: 7635675569134783422}
+  - {fileID: 7555890482292720329}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -403,8 +404,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12023817953664b09a1ff64cc0c58567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   weaponSpriteValue: {fileID: 21300000, guid: 612c5e166a121e3449dad067fbdc37a4, type: 3}
   leadFire: 1
+--- !u!1 &8845946381364426853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7555890482292720329}
+  - component: {fileID: 7605259488838497871}
+  m_Layer: 0
+  m_Name: SFXEventEmitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7555890482292720329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845946381364426853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4453140797019954587}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7605259488838497871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845946381364426853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -597460128
+      Data2: 1219040561
+      Data3: -1761492860
+      Data4: 468211032
+    Path: event:/Weaponary/Turret/TurretShot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 45
+  OverrideMaxDistance: 350
 --- !u!1001 &997452341915535002
 PrefabInstance:
   m_ObjectHideFlags: 0

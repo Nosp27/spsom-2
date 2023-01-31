@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{de505acb-3d72-46e2-bc94-e6028b740e94}">
+		<property name="assetPath">
+			<value>SFX/64485_516840_516839_Explosion_4_normal.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{094aa29c-dd63-4762-a2fa-02fe2c2db537}">
+		<property name="assetPath">
+			<value>SFX/22789_333288_333288_Impacts_Airy_Mistery_Burst_ambience.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.5146666666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

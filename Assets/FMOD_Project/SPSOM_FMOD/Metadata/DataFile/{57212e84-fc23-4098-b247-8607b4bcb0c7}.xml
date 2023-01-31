@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{57212e84-fc23-4098-b247-8607b4bcb0c7}">
+		<property name="assetPath">
+			<value>SFX/22800_333299_333299_Impacts_Cinematic_Atmospheric_Trailer_Signature_normal.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

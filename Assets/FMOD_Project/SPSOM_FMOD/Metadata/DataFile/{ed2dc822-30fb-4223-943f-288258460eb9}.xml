@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{ed2dc822-30fb-4223-943f-288258460eb9}">
+		<property name="assetPath">
+			<value>SFX/22806_333305_333305_Impacts_Cinematic_Breakdown_normal.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

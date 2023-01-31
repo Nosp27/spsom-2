@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{8244dadf-29c0-4922-9cfd-379abaf4c82b}">
+		<property name="assetPath">
+			<value>SFX/22789_333288_333288_Impacts_Airy_Mistery_Burst_ambience.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

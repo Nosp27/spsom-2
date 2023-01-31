@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class MissleLauncher : Weapon
@@ -11,11 +12,9 @@ public class MissleLauncher : Weapon
     public override float cooldown { get; protected set; }
     
     private Transform m_Target;
-    private AudioSource audioSource;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         maxCooldown = 60 / fireRate;
     }
 
@@ -66,8 +65,6 @@ public class MissleLauncher : Weapon
                 e.DetonateForDistance(target.transform, detonationDistance);
             e.DetonateForTime(detonationTimeout);
         }
-        
-        if (audioSource != null)
-            audioSource.Play();
+        RuntimeManager.PlayOneShotAttached(eventReference, gameObject);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using FMODUnity;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,6 +11,7 @@ public class Gun : MonoBehaviour
         RANDOM
     }
 
+    [SerializeField] private StudioEventEmitter sfxEmitter;
     [SerializeField] private ShootMode shootMode;
     [SerializeField] GameObject bulletPrefab;
     public float BulletSpeed;
@@ -64,6 +66,8 @@ public class Gun : MonoBehaviour
         b.Speed = BulletSpeed;
         Destroy(bullet.gameObject, _bulletLifetime);
         cooldown = maxCooldown;
+        if (sfxEmitter)
+            sfxEmitter.Play();
     }
 
     void InitBarrels()

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e351a213-6b3a-4ca3-8907-e0fa2b634686}">
+		<property name="assetPath">
+			<value>SFX/audioblocks-fast-swoosh-to-whistle-hit-7-film-cinematic-intro-film-cinematic-intro_rWPSG_QtDL_NWM.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.6247392290249429</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

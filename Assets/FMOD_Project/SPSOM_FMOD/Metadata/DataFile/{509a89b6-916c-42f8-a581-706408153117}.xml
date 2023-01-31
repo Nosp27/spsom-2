@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{509a89b6-916c-42f8-a581-706408153117}">
+		<property name="assetPath">
+			<value>SFX/22786_333285_333285_Impacts_Airy_Big_Mass_Deflating_normal.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

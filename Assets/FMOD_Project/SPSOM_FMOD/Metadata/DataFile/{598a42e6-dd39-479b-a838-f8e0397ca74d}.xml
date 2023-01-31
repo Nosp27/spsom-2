@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{598a42e6-dd39-479b-a838-f8e0397ca74d}">
+		<property name="assetPath">
+			<value>SFX/22847_333346_333346_Impacts_Long_Hangar_Mechanism_normal.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

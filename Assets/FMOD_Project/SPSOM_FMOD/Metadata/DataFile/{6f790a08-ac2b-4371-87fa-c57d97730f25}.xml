@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{6f790a08-ac2b-4371-87fa-c57d97730f25}">
+		<property name="assetPath">
+			<value>SFX/audioblocks-game-modern-damage-or-hit-sound-4_BY7m9-fIRD8_NWM.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

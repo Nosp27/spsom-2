@@ -1,8 +1,9 @@
-using System;
+using FMODUnity;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    [SerializeField] protected EventReference eventReference;
     [SerializeField] private Sprite weaponSpriteValue;
     public Sprite weaponSprite => weaponSpriteValue;
     public abstract float maxCooldown { get; protected set; }

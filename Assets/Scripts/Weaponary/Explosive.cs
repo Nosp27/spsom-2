@@ -28,7 +28,7 @@ public class Explosive : MonoBehaviour
 
         Detonated = true;
 
-        LinUtils.PlayAudioDetached(audioSource);
+        Utils.PlayAudioDetached(audioSource);
 
         Collider[] hits = Physics.OverlapSphere(transform.position, Range);
 

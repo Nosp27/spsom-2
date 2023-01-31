@@ -1,14 +1,15 @@
 using System;
+using FMODUnity;
 using UnityEngine;
 
 
 public class GameController : MonoBehaviour
 {
     public static GameController Current;
-
+    [SerializeField] private EventReference deathEvent;
     public InventoryController Inventory => GetComponentInChildren<InventoryController>();
     public CursorControl CurrentCursorControl => cursorControl;
-    
+
     private bool Alive;
     public GameObject CursorVisualizerPrefab;
     private GameObject CursorVisualizer;
@@ -40,7 +41,6 @@ public class GameController : MonoBehaviour
         if (Current == null)
         {
             Current = this;
-            
         }
         else
         {
@@ -50,6 +50,8 @@ public class GameController : MonoBehaviour
 
     void Die()
     {
+        if (Alive)
+            RuntimeManager.PlayOneShot(deathEvent);
         Alive = false;
         healthBar.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
     }

@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -11,7 +12,7 @@ public class Bullet : MonoBehaviour
     public GameObject Owner;
     private Rigidbody rb;
 
-    private AudioSource audioSource;
+    private StudioEventEmitter eventEmitter;
 
     private bool hitDone = false;
     [SerializeField] private bool bypassShields;
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponentInChildren<AudioSource>();
+        eventEmitter = GetComponentInChildren<StudioEventEmitter>();
         mask = LayerMask.GetMask(new[]
         {
             "Default"
@@ -44,7 +45,7 @@ public class Bullet : MonoBehaviour
         }
 
         Hit();
-        LinUtils.PlayAudioDetached(audioSource);
+        eventEmitter.Play();
 
         Vector3 collisionPoint =
             transform.position + transform.forward * GetComponentInChildren<Collider>().bounds.size.z;

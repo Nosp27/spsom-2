@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{1dc5806e-e7e1-4758-8cdb-0796b22bed09}">
+		<property name="assetPath">
+			<value>SFX/audioblocks-fast-swoosh-to-whistle-hit-7-film-cinematic-intro-film-cinematic-intro_rWPSG_QtDL_NWM.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}</destination>
+		</relationship>
+	</object>
+</objects>

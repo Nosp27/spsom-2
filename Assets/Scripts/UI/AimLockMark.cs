@@ -58,7 +58,7 @@ public class AimLockMark : MonoBehaviour
     void Update()
     {
         Vector3 camFwd = cam.transform.forward;
-        Vector3 direction = camFwd - Vector3.up * LinUtils.Projection(camFwd, Vector3.up);
+        Vector3 direction = camFwd - Vector3.up * Utils.Projection(camFwd, Vector3.up);
         transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
     }
 }
