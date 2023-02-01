@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public enum CargoCraneInventoryResolveStrategy
@@ -8,6 +9,8 @@ public enum CargoCraneInventoryResolveStrategy
 
 public class CargoCrane : MonoBehaviour
 {
+    [SerializeField] private StudioEventEmitter grabEventEmitter;
+    [SerializeField] private StudioEventEmitter pullEventEmitter;
     [SerializeField] private float fetchSpeed = 10;
     [SerializeField] private float fetchRadius;
     [SerializeField] private float grabRadius;
@@ -66,12 +69,16 @@ public class CargoCrane : MonoBehaviour
         {
             if (cranePullLineRenderer && !cranePullLineRenderer.enabled)
                 cranePullLineRenderer.enabled = true;
+            if (!pullEventEmitter.IsPlaying())
+                pullEventEmitter.Play();
             Pull(nearestLoot.transform);
         }
         else
         {
             if (cranePullLineRenderer && cranePullLineRenderer.enabled)
                 cranePullLineRenderer.enabled = false;
+            if (pullEventEmitter.IsPlaying())
+                pullEventEmitter.Stop();
         }
     }
 
@@ -94,7 +101,9 @@ public class CargoCrane : MonoBehaviour
     {
         if (!m_AttachedInventory)
             return;
-
+        
+        grabEventEmitter.Play();
+        
         GameObject inventoryItemInstance = Instantiate(prefab, m_AttachedInventory.transform);
         m_AttachedInventory.PutItem(inventoryItemInstance.GetComponent<InventoryItem>());
         inventoryItemInstance.SetActive(false);

@@ -618,13 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12023817953664b09a1ff64cc0c58567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+  shotEventEmitter: {fileID: 7682278371659489495}
   weaponSpriteValue: {fileID: 21300000, guid: b891f3b1e7e2842cc8ba75571f75f2ea, type: 3}
   leadFire: 0
 --- !u!114 &362006942177528109

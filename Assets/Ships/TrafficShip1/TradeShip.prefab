@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826625671}
-  - component: {fileID: 1826625672}
+  - component: {fileID: 6682832356878238477}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -31,102 +31,36 @@ Transform:
   m_Father: {fileID: 6682832358124674989}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1826625672
-AudioSource:
+--- !u!114 &6682832356878238477
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826625670}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6170596611479084160, guid: d2b42c598fc394158b383c2100bbe583, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.78
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 200
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.005
-      value: 1
-      inSlope: -0.6932232
-      outSlope: -0.6932232
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.211745
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.27096272
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!1 &2309584882362296834
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +172,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1894535115054761514
@@ -369,7 +303,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &2606097124432540459
@@ -498,7 +432,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &877901641742042363
@@ -628,7 +562,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &3871720464409496637
@@ -757,7 +691,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &5981772832055345816
@@ -886,7 +820,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &7450177582387588077
@@ -1015,7 +949,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &474319480396935352
@@ -1145,7 +1079,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &276032336301473638
@@ -1355,7 +1289,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &2221737668027610361
@@ -1626,7 +1560,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &12498324728289169
@@ -30353,9 +30287,6 @@ MonoBehaviour:
   - {fileID: 6522291847654784147, guid: f0a5af3a0491b40cfacbbdfa612b9a8e, type: 3}
   ExplosionParticleSystems:
   - {fileID: 7625141206984171152, guid: 3c65572e65ce74e558ee05c8acb603bc, type: 3}
-  referenceAudioSource: {fileID: 0}
-  audioTakeDamage: {fileID: 0}
-  audioDie: {fileID: 0}
   aliveMesh: {fileID: 5800453040392062168}
   debrisMesh: {fileID: 6146113123237540919}
 --- !u!114 &6682832358124674986
@@ -30370,12 +30301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a274059d428d42efb97131346d6ca44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineRotationMultipliers:
-  - 100
-  - -100
-  engineDriveMultipliers:
-  - 1
-  - 1
+  engineRotationMultipliers: []
+  engineDriveMultipliers: []
 --- !u!114 &6682832358124674987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45185,7 +45112,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &7672612334154067410
@@ -45314,7 +45241,7 @@ Rigidbody:
   m_AngularDrag: 0.2
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &607246892277389911

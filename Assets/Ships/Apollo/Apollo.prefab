@@ -95,6 +95,128 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &66137949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66137950}
+  - component: {fileID: 66137951}
+  m_Layer: 0
+  m_Name: pullAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &66137950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66137949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 318077934}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &66137951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66137949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1643141522
+      Data2: 1205370865
+      Data3: -1909911396
+      Data4: 640114507
+    Path: event:/CargoCrane/Pull
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!1 &266250511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266250512}
+  - component: {fileID: 266250513}
+  m_Layer: 0
+  m_Name: grabAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266250512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266250511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 318077934}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &266250513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266250511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1624650450
+      Data2: 1148417365
+      Data3: 1939934903
+      Data4: -1549964234
+    Path: event:/CargoCrane/Grab
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &416583077
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +374,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562834738}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2289}
+  m_LocalPosition: {x: 0, y: 0, z: -0.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7949134442072798298}
@@ -260,7 +382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0825, y: 2.73}
+  m_AnchoredPosition: {x: -0.0825, y: 6.16}
   m_SizeDelta: {x: 10.6338, y: 11.2439}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &562834743
@@ -442,6 +564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 675538938}
   - component: {fileID: 675538939}
+  - component: {fileID: 1812565391}
   m_Layer: 0
   m_Name: MissileLauncher
   m_TagString: Untagged
@@ -475,18 +598,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa86f0c36e5748368eb4763be497efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventReference:
+  shotEventEmitter: {fileID: 1812565391}
+  weaponSpriteValue: {fileID: 21300000, guid: 5774200d21aec455bb1b583294f51d73, type: 3}
+  missilePrefab: {fileID: 39167279352728550, guid: 1ba2277ebb536436db46693ca85612c1, type: 3}
+  fireRate: 20
+  detonationDistance: 2
+  detonationTimeout: 10
+--- !u!114 &1812565391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675538937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
     Guid:
       Data1: 1617216807
       Data2: 1303238688
       Data3: 629446557
       Data4: 343867676
     Path: event:/Weaponary/Missile/MissileDeploy
-  weaponSpriteValue: {fileID: 21300000, guid: 5774200d21aec455bb1b583294f51d73, type: 3}
-  missilePrefab: {fileID: 39167279352728550, guid: 1ba2277ebb536436db46693ca85612c1, type: 3}
-  fireRate: 20
-  detonationDistance: 2
-  detonationTimeout: 10
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 45
+  OverrideMaxDistance: 450
 --- !u!1 &793566493
 GameObject:
   m_ObjectHideFlags: 0
@@ -6119,15 +6266,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4431c90c01d34da7b1682152a626bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 200
   health: 0
   destruction: {fileID: 1166138231734768695}
   destroyOnDeath: 0
   HitParticleSystems: []
   ExplosionParticleSystems: []
-  referenceAudioSource: {fileID: 0}
-  audioTakeDamage: {fileID: 8300000, guid: 72d2d5473c42d41b383f863baa62d56f, type: 3}
-  audioDie: {fileID: 8300000, guid: a4231ef766704438485ab43f50763650, type: 3}
   aliveMesh: {fileID: 0}
   debrisMesh: {fileID: 0}
 --- !u!114 &2027507066
@@ -20574,6 +20718,18 @@ PrefabInstance:
       value: Crane
       objectReference: {fileID: 0}
     - target: {fileID: 2798062908559390686, guid: 1f2a2984261414a24b308b441bac79bd, type: 3}
+      propertyPath: fetchRadius
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2798062908559390686, guid: 1f2a2984261414a24b308b441bac79bd, type: 3}
+      propertyPath: grabEventEmitter
+      value: 
+      objectReference: {fileID: 266250513}
+    - target: {fileID: 2798062908559390686, guid: 1f2a2984261414a24b308b441bac79bd, type: 3}
+      propertyPath: pullEventEmitter
+      value: 
+      objectReference: {fileID: 66137951}
+    - target: {fileID: 2798062908559390686, guid: 1f2a2984261414a24b308b441bac79bd, type: 3}
       propertyPath: cranePullLineRenderer
       value: 
       objectReference: {fileID: 5896886971570910614}
@@ -20675,7 +20831,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 100}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 2.4
@@ -20742,6 +20898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Engine
       objectReference: {fileID: 0}
+    - target: {fileID: 5427568752083833130, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: thrust
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5427568752083833131, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -20788,7 +20948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5427568753754725992, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.82
+      value: -0.92
       objectReference: {fileID: 0}
     - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
       propertyPath: m_Parameters.alignment
@@ -20802,13 +20962,93 @@ PrefabInstance:
       propertyPath: m_Parameters.widthMultiplier
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 9059
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime2
+      value: 39128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427568753754725995, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_NumAlphaKeys
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+--- !u!1 &1792219702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5427568752083833128, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
+  m_PrefabInstance: {fileID: 5427568753848388382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1792219701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5427568752083833131, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
   m_PrefabInstance: {fileID: 5427568753848388382}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1812565389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792219702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13564677115484f94934d1ff14c0daa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineEvent: {fileID: 1812565390}
+--- !u!114 &1812565390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792219702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1647281517
+      Data2: 1233263458
+      Data3: -727099004
+      Data4: 1619706593
+    Path: event:/Ship/Engine
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &6617375960744513979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21072,9 +21312,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5285612485202658234}
     m_Modifications:
+    - target: {fileID: 2015858227, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
+      propertyPath: range
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015858227, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
+      propertyPath: weaponSpriteValue
+      value: 
+      objectReference: {fileID: 21300000, guid: b891f3b1e7e2842cc8ba75571f75f2ea, type: 3}
     - target: {fileID: 8961562416253695548, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
       propertyPath: m_Name
       value: Laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961562416253695548, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8961562416253695549, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
       propertyPath: m_RootOrder
@@ -21118,6 +21370,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961562416253695549, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8961562417784594455, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

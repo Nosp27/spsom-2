@@ -12,28 +12,12 @@ public class ShipDamageModel : DamageModel
 
     public GameObject[] ExplosionParticleSystems;
 
-    [SerializeField] private AudioSource referenceAudioSource;
-    [SerializeField] private AudioClip audioTakeDamage;
-    [SerializeField] private AudioClip audioDie;
-
     [Space(20f)] [SerializeField] private GameObject aliveMesh;
     [SerializeField] private GameObject debrisMesh;
 
     private void Start()
     {
         ship = GetComponent<Ship>();
-    }
-
-    void PlayFX(AudioClip clip)
-    {
-        if (clip && referenceAudioSource)
-        {
-            AudioSource newAs = Instantiate(referenceAudioSource);
-            newAs.transform.position = transform.position;
-            newAs.clip = clip;
-            newAs.Play();
-            Destroy(newAs.gameObject, newAs.clip.length);
-        }
     }
 
     public override void Die()
@@ -43,8 +27,7 @@ public class ShipDamageModel : DamageModel
             GameController.Current.SendMessage("Die");
         if (destruction != null)
             destruction.Play(true);
-
-        PlayFX(audioDie);
+        
         PlayDebris();
 
         if (destroyOnDeath)
@@ -90,11 +73,6 @@ public class ShipDamageModel : DamageModel
             if (destruction != null)
                 destruction.Play(true);
             BroadcastMessage("Die");
-        }
-        else
-        {
-            if (hit.hitType != HitType.LASER)
-                PlayFX(audioTakeDamage);
         }
     }
 }

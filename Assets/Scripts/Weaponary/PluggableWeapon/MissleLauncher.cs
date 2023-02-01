@@ -65,6 +65,6 @@ public class MissleLauncher : Weapon
                 e.DetonateForDistance(target.transform, detonationDistance);
             e.DetonateForTime(detonationTimeout);
         }
-        RuntimeManager.PlayOneShotAttached(eventReference, gameObject);
+        shotEventEmitter.Play();
     }
 }

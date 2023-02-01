@@ -2,19 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Explosive : MonoBehaviour
 {
+    [SerializeField] private StudioEventEmitter eventEmitter;
     [SerializeField] private float Range = 10;
     [SerializeField] private int MinDamage = 3;
     [SerializeField] private int MaxDamage = 10;
 
     private List<Predicate<Explosive>> detonationSensors = new List<Predicate<Explosive>>();
     private bool Detonated;
-
-    private AudioSource audioSource;
 
     [SerializeField] private ParticleSystem Explosion;
 
@@ -25,10 +25,9 @@ public class Explosive : MonoBehaviour
 
         if (Explosion)
             Explosion.Play();
+        eventEmitter.Play();
 
         Detonated = true;
-
-        Utils.PlayAudioDetached(audioSource);
 
         Collider[] hits = Physics.OverlapSphere(transform.position, Range);
 
