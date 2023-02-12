@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameControl.StateMachine.GameControlStates
@@ -5,7 +6,7 @@ namespace GameControl.StateMachine.GameControlStates
     public class Movement : MonoBehaviour, IState
     {
         public AimLockTarget lockTarget { get; private set; }
-        
+
         [SerializeField] private float aimLockDistance;
         [SerializeField] private GameObject moveAimPrefab;
         [SerializeField] private AimLockMark aimLockMark;
@@ -21,6 +22,7 @@ namespace GameControl.StateMachine.GameControlStates
             ProcessMove(m_PlayerShip, cursor);
             ProcessAim(m_PlayerShip, cursor);
             ProcessTargetLock();
+            ProcessWeaponSelection();
         }
 
         public void OnEnter()
@@ -105,7 +107,7 @@ namespace GameControl.StateMachine.GameControlStates
                     DeactivateLockTarget();
                 }
             }
-            
+
             if (!IsValidLockTarget(lockTarget))
             {
                 DeactivateLockTarget();
@@ -134,10 +136,33 @@ namespace GameControl.StateMachine.GameControlStates
             aimLockMark.Unlock();
             aimLockMark.gameObject.SetActive(false);
             lockTarget = null;
-            
+
             m_PlayerShip.Track(null);
         }
-        
+
         public bool Done() => true;
+
+        void ProcessWeaponSelection()
+        {
+            Dictionary<KeyCode, int> nums = new Dictionary<KeyCode, int>();
+            nums[KeyCode.Alpha1] = 1 - 1;
+            nums[KeyCode.Alpha2] = 2 - 1;
+            nums[KeyCode.Alpha3] = 3 - 1;
+            nums[KeyCode.Alpha4] = 4 - 1;
+            nums[KeyCode.Alpha5] = 5 - 1;
+            nums[KeyCode.Alpha6] = 6 - 1;
+            nums[KeyCode.Alpha7] = 7 - 1;
+            nums[KeyCode.Alpha8] = 8 - 1;
+            nums[KeyCode.Alpha9] = 9 - 1;
+
+            foreach (var n in nums)
+            {
+                if (Input.GetKeyDown(n.Key))
+                {
+                    m_PlayerShip.SelectWeapon(n.Value);
+                    return;
+                }
+            }
+        }
     }
 }

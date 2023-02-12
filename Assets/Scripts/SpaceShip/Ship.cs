@@ -21,7 +21,11 @@ public class Ship : MonoBehaviour
     private Rigidbody rb;
     private float lastAngle;
 
-    public UnityEvent onWeaponMutate = new UnityEvent();
+    [SerializeField] private bool useAllWeapons = true;
+    
+    public int SelectedWeaponIndex { get; private set; }
+    public UnityEvent OnWeaponSelect = new UnityEvent();
+    public UnityEvent OnWeaponMutate = new UnityEvent();
 
 
     // Start is called before the first frame update
@@ -35,10 +39,20 @@ public class Ship : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    public void SelectWeapon(int i)
+    {
+        if (i >= 0 && i < Weapons.Count)
+        {
+            SelectedWeaponIndex = i;
+            OnWeaponSelect.Invoke();
+        }
+    }
+
     public void ScanWeaponary()
     {
         Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
-        onWeaponMutate.Invoke();
+        OnWeaponMutate.Invoke();
+        SelectWeapon(SelectedWeaponIndex);
     }
 
     void Die()
@@ -125,10 +139,7 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
-        foreach (var w in Weapons)
-        {
-            w.Fire();
-        }
+        DoForUsedWeapon_s(w => w.Fire());
     }
 
     public void Aim(Vector3 cursor)
@@ -136,10 +147,7 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
-        foreach (var t in Weapons)
-        {
-            t.Aim(cursor);
-        }
+        DoForUsedWeapon_s(w => w.Aim(cursor));
     }
     
     public void Track(Transform target)
@@ -147,10 +155,7 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
-        foreach (var t in Weapons)
-        {
-            t.Track(target);
-        }
+        DoForUsedWeapon_s(w => w.Track(target));
     }
 
     public bool Aimed()
@@ -158,13 +163,7 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return false;
 
-        foreach (var t in Weapons)
-        {
-            if (t.Aimed())
-                return true;
-        }
-
-        return false;
+        return CheckAnyForUsedWeapon_s(x => x.Aimed());
     }
 
 
@@ -246,5 +245,34 @@ public class Ship : MonoBehaviour
         float smoothFuncValue =
             softerMultiplier * (-Mathf.Sin((x / (span / 2f) - 1 - from) * Mathf.PI / 2f) + 1) / 2f + 1;
         return smoothFuncValue;
+    }
+
+    private void DoForUsedWeapon_s(Action<Weapon> func)
+    {
+        if (useAllWeapons)
+        {
+            foreach (var w in Weapons)
+                func.Invoke(w);
+        }
+        else
+        {
+            func.Invoke(Weapons[SelectedWeaponIndex]);   
+        }
+    }
+    
+    private bool CheckAnyForUsedWeapon_s(Func<Weapon, bool> func)
+    {
+        if (useAllWeapons)
+        {
+            foreach (var w in Weapons)
+                if(func.Invoke(w))
+                    return true;
+        }
+        else
+        {
+            return func.Invoke(Weapons[SelectedWeaponIndex]);   
+        }
+
+        return false;
     }
 }

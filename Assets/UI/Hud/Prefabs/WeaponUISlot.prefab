@@ -276,5 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f817d2a185d6486aa33986a5e860cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  borderImage: {fileID: 7427129274750020785}
   cooldownImage: {fileID: 7427129276315157168}
   weaponImage: {fileID: 9598822433180193}

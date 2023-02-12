@@ -7,11 +7,15 @@ public class WeaponUIController : MonoBehaviour
     [SerializeField] private GameObject weaponSlotPrefab;
     private List<WeaponUISlot> weapons;
 
+    private int highlightedWeapon;
+
     private void Start()
     {
         ship = GameController.Current.PlayerShip;
+        highlightedWeapon = ship.SelectedWeaponIndex;
         SnapshotWeapons();
-        ship.onWeaponMutate.AddListener(SnapshotWeapons);
+        ship.OnWeaponSelect.AddListener(OnWeaponChanged);
+        ship.OnWeaponMutate.AddListener(SnapshotWeapons);
     }
 
     private void SnapshotWeapons()
@@ -35,5 +39,16 @@ public class WeaponUIController : MonoBehaviour
             slot.AttachWeapon(w);
             weapons.Add(slot);
         }
+    }
+
+    private void OnWeaponChanged()
+    {
+        if (weapons.Count == 0)
+            return;
+        
+        int newIndex = ship.SelectedWeaponIndex;
+        weapons[highlightedWeapon].SwitchHighlight(false);
+        highlightedWeapon = newIndex;
+        weapons[highlightedWeapon].SwitchHighlight(true);
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class WeaponUISlot : MonoBehaviour
 {
+    [SerializeField] private Image borderImage;
     [SerializeField] private Image cooldownImage;
     [SerializeField] private Image weaponImage;
 
@@ -24,6 +25,18 @@ public class WeaponUISlot : MonoBehaviour
         if (doCooldown)
         {
             cooldownImage.fillAmount = cooldownRatio;
+        }
+    }
+
+    public void SwitchHighlight(bool on)
+    {
+        if (on)
+        {
+            borderImage.color = Color.green;
+        }
+        else
+        {
+            borderImage.color = Color.white;
         }
     }
 }
