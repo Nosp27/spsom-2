@@ -1,8 +1,9 @@
+using AI.States;
 using GameControl.StateMachine;
 
 namespace AI.StationAI
 {
-    public class Noop : BaseState
+    public class Noop : BaseShipAIState
     {
         public override void Tick()
         {

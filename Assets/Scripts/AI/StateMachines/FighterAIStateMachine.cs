@@ -12,6 +12,7 @@ namespace AI
         [SerializeField] private bool TestSD;
         [SerializeField] private string TestTransitionDescription;
 
+        [SerializeField] private BaseShipAIState noopState;
         [SerializeField] private BaseShipAIState randomFlightState;
         [SerializeField] private BaseShipAIState chaseState;
         [SerializeField] private BaseShipAIState retreatState;
@@ -24,7 +25,8 @@ namespace AI
         [SerializeField] private float tooNearDistance = 24;
         [SerializeField] private float dodgeChance = 0.2f;
 
-        private StateMachine m_StateMachine;
+        private StateMachine m_MovementStateMachine;
+        private StateMachine m_AttackStateMachine;
         
         
         private ShipDamageModel m_DamageModel;
@@ -40,17 +42,19 @@ namespace AI
             m_EnemyDetector = GetComponentInParent<EnemyDetector>();
             m_DamageModel = GetComponentInParent<ShipDamageModel>();
 
-            m_StateMachine = BuildStateMachine();
+            m_MovementStateMachine = BuildMovementStateMachine();
+            m_AttackStateMachine = BuildAttackStateMachine();
             StartCoroutine(DodgeChanceCoroutine());
         }
 
         private void Update()
         {
-            TestCurrentState = (BaseShipAIState) m_StateMachine.CurrentState;
-            TestTransitionDescription = m_StateMachine.firedTransition;
+            TestCurrentState = (BaseShipAIState) m_MovementStateMachine.CurrentState;
+            TestTransitionDescription = m_MovementStateMachine.firedTransition;
 
             SetTriggers();
-            m_StateMachine.Tick();
+            m_MovementStateMachine.Tick();
+            m_AttackStateMachine.Tick();
         }
 
         void SetTriggers()
@@ -63,7 +67,7 @@ namespace AI
             }
         }
 
-        StateMachine BuildStateMachine()
+        StateMachine BuildMovementStateMachine()
         {
             StateMachine sm = new StateMachine(AnyStatePriority.ANY_STATES_FIRST);
             
@@ -75,18 +79,26 @@ namespace AI
             sm.AddTransition(randomFlightState, chaseState, EnemyInBounds);
 
             // Enter attack range - do approach for combat position. After approach is done - attack
-            sm.AddTransition(chaseState, attackState, () => EnemyInApproachRange() && !TooNear());
-            sm.AddTransition(attackState, chaseState, () => !EnemyInAttackRange());
-            sm.AddTransition(flyAwayState, attackState, () => EnemyInApproachRange() && !TooNear());
+            sm.AddTransition(chaseState, noopState, () => EnemyInApproachRange() && !TooNear());
+            sm.AddTransition(noopState, chaseState, () => !EnemyInAttackRange());
+            sm.AddTransition(flyAwayState, noopState, () => EnemyInApproachRange() && !TooNear());
 
             // Fly away if enemy is too near
-            sm.AddTransition(attackState, flyAwayState, TooNear);
+            sm.AddTransition(noopState, flyAwayState, TooNear);
             sm.AddTransition(flyAwayState, chaseState, () => !EnemyInAttackRange());
             
             // Dodge sometimes
-            sm.AddTransition(attackState, smallDodgeState, ShouldDodge);
-            sm.AddTransition(smallDodgeState, attackState, () => true);
+            sm.AddTransition(noopState, smallDodgeState, ShouldDodge);
+            sm.AddTransition(smallDodgeState, noopState, () => true);
 
+            return sm;
+        }
+
+        StateMachine BuildAttackStateMachine()
+        {
+            StateMachine sm = new StateMachine(AnyStatePriority.ANY_STATES_FIRST);
+            sm.AddTransition(noopState, attackState, () => EnemyInAttackRange());
+            sm.AddTransition(attackState, noopState, () => !EnemyInAttackRange());
             return sm;
         }
 

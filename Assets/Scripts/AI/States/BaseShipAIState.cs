@@ -3,14 +3,12 @@ using UnityEngine;
 
 namespace AI.States
 {
-    public abstract class BaseShipAIState : MonoBehaviour, IState
+    public abstract class BaseShipAIState : BaseState, IState
     {
         protected EnemyDetector EnemyDetector;
         public ShipAIControls ShipAIControls { get; protected set; }
 
-        public abstract void Tick();
-
-        public virtual void OnEnter()
+        public override void OnEnter()
         {
             if (!ShipAIControls)
                 ShipAIControls = GetComponentInParent<ShipAIControls>();
@@ -18,8 +16,7 @@ namespace AI.States
             if (!EnemyDetector)
                 EnemyDetector = GetComponentInParent<EnemyDetector>();
         }
-
-        public abstract void OnExit();
+        
         public virtual bool Done() => true;
     }
 }
