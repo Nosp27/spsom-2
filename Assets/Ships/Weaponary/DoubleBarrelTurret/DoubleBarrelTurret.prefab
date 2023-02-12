@@ -269,10 +269,10 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -597460128
-      Data2: 1219040561
-      Data3: -1761492860
-      Data4: 468211032
+      Data1: -1063230244
+      Data2: 1169443779
+      Data3: 137173159
+      Data4: -383194461
     Path: event:/Weaponary/Turret/TurretShot
   Event: 
   PlayEvent: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 0
   OverrideMinDistance: 45
-  OverrideMaxDistance: 350
+  OverrideMaxDistance: 650
 --- !u!1 &4512191495386278827
 GameObject:
   m_ObjectHideFlags: 0

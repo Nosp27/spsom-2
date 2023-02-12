@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{dc637b60-1531-48a9-84c0-01975855e81b}">
 		<property name="name">
-			<value>TurretShot</value>
+			<value>TurretHit</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -144,6 +144,7 @@
 	<object class="MixerBusEffectChain" id="{93b55fdf-422c-413e-affa-4687937c9f1a}">
 		<relationship name="effects">
 			<destination>{1b737b09-b42b-44aa-b3c4-d6b9de15ceb4}</destination>
+			<destination>{cb74fc0a-c509-4140-8be4-2d54d50f02ec}</destination>
 			<destination>{31f75c42-1aa2-4b64-a762-54cc1367a2d7}</destination>
 			<destination>{edc5a175-67b5-46e1-9b4b-effc184b65e2}</destination>
 		</relationship>
@@ -173,17 +174,22 @@
 			<value>5</value>
 		</property>
 		<property name="frequencyA">
-			<value>1369.81946</value>
+			<value>476.162323</value>
 		</property>
 		<property name="frequencyB">
-			<value>240.333511</value>
+			<value>98.6033401</value>
 		</property>
 		<property name="qualityA">
 			<value>0.775642395</value>
 		</property>
 		<property name="qualityB">
-			<value>0.676091015</value>
+			<value>0.612957776</value>
 		</property>
+	</object>
+	<object class="GainEffect" id="{cb74fc0a-c509-4140-8be4-2d54d50f02ec}">
+		<relationship name="modulators">
+			<destination>{a3563288-74b2-4516-a9b4-784b9e0c72ef}</destination>
+		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{31f75c42-1aa2-4b64-a762-54cc1367a2d7}" />
 	<object class="SpatialiserEffect" id="{edc5a175-67b5-46e1-9b4b-effc184b65e2}">
@@ -213,4 +219,12 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{83c16746-63f5-4eb3-9621-818646e6fc7f}" />
+	<object class="RandomizerModulator" id="{a3563288-74b2-4516-a9b4-784b9e0c72ef}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>gain</value>
+		</property>
+		<property name="amount">
+			<value>12.5</value>
+		</property>
+	</object>
 </objects>
