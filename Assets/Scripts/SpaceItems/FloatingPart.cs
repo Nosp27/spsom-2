@@ -30,12 +30,14 @@ public class FloatingPart : MonoBehaviour
         rb.velocity = transform.forward * Speed;
 
         float rotationMultiplier = Time.deltaTime * RotationSpeed;
-        rotationStep = Quaternion.Euler(Random.value * rotationMultiplier, Random.value * rotationMultiplier, Random.value * rotationMultiplier);
+        rotationStep = Quaternion.Euler(Random.value * rotationMultiplier, Random.value * rotationMultiplier,
+            Random.value * rotationMultiplier);
     }
 
     // Update is called once per frame
     void Update()
     {
-        mesh.rotation *= rotationStep;
+        if (Time.deltaTime > 0)
+            mesh.rotation *= rotationStep;
     }
 }
