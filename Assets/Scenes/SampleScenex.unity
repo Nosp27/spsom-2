@@ -3133,7 +3133,7 @@ MonoBehaviour:
   isGlobal: 1
   priority: 1
   blendDistance: 10
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 628351da906864843942548bb050594d, type: 2}
 --- !u!135 &1010740792
 SphereCollider:
