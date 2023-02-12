@@ -2530,7 +2530,7 @@ MonoBehaviour:
   CursorVisualizerPrefab: {fileID: 7611985865094704490, guid: 0cc19dc572a394ee48e745ba81634f8e, type: 3}
   PlayerShip: {fileID: 0}
   cursor: {x: 0, y: 0, z: 0}
-  healthBar: {fileID: 1314783550}
+  healthBarCircleLine: {fileID: 1314783550}
 --- !u!4 &890310222
 Transform:
   m_ObjectHideFlags: 0

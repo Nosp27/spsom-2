@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     private GameObject CursorVisualizer;
     public Ship PlayerShip;
     public Vector3 cursor;
-    public HealthBar healthBar;
+    public HealthBarCircleLine healthBarCircleLine;
     private CursorControl cursorControl;
 
     private AimLockTarget LockTarget;
@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
     {
         Cursor.visible = false;
         PlayerShip = GameObject.FindWithTag("PlayerShip").GetComponent<Ship>();
-        healthBar.Health = healthBar.MaxHealth = PlayerShip.GetComponent<ShipDamageModel>().Health;
+        healthBarCircleLine.Health = healthBarCircleLine.MaxHealth = PlayerShip.GetComponent<ShipDamageModel>().Health;
         if (PlayerShip == null)
             throw new Exception("Player Ship not found");
 
@@ -53,12 +53,12 @@ public class GameController : MonoBehaviour
         if (Alive)
             RuntimeManager.PlayOneShot(deathEvent);
         Alive = false;
-        healthBar.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
+        healthBarCircleLine.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
     }
 
     void GetDamage()
     {
-        healthBar.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
+        healthBarCircleLine.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
     }
 
     void LateUpdate()

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar: MonoBehaviour
+public class HealthBarCircleLine: MonoBehaviour
 {
     public Text HP;
     public float Radius;
