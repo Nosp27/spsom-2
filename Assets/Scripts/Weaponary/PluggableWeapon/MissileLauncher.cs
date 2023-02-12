@@ -1,13 +1,16 @@
 using FMODUnity;
 using UnityEngine;
 
-public class MissleLauncher : Weapon
+public class MissileLauncher : Weapon
 {
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private float fireRate = 20;
     [SerializeField] private float detonationDistance = 2;
     [SerializeField] private float detonationTimeout = 10;
 
+    [SerializeField] private float missileSpeed = 20f;
+    [SerializeField] private float missileGuidingAngle = 55f;
+    
     public override float maxCooldown { get; protected set; }
     public override float cooldown { get; protected set; }
     
@@ -55,6 +58,9 @@ public class MissleLauncher : Weapon
         GameObject missile = Instantiate(missilePrefab, transform.position, transform.rotation);
         Guided g = missile.GetComponent<Guided>();
         Explosive e = missile.GetComponent<Explosive>();
+
+        g.Speed = missileSpeed;
+        g.MaxGuidingAngle = missileGuidingAngle;
 
         if (g && target)
             g.Target = target;

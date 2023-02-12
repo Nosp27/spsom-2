@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Guided : MonoBehaviour
 {
     public Transform Target;
-    [SerializeField] private float MaxGuidingAngle;
-    [SerializeField] private float Speed;
+    [NonSerialized] public float MaxGuidingAngle;
+    [NonSerialized] public float Speed;
     private Rigidbody rb;
 
     public float PredictionMultiplier;
@@ -45,5 +43,10 @@ public class Guided : MonoBehaviour
             targetMark.transform.position = transform.position + path;
             rb.MoveRotation(targetRotation);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(targetMark, .1f);
     }
 }
