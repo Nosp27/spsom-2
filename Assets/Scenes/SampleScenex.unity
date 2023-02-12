@@ -3187,7 +3187,11 @@ MonoBehaviour:
   Weapons: []
   isPlayerShip: 0
   softerMultiplier: 1
-  onWeaponMutate:
+  useAllWeapons: 0
+  OnWeaponSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponMutate:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1030858160 stripped
@@ -14738,6 +14742,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2027507066, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
+      propertyPath: useAllWeapons
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3917093697189968063, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
       propertyPath: m_Name
       value: Apollo
