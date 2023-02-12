@@ -25,6 +25,8 @@ namespace AI
         [SerializeField] private float dodgeChance = 0.2f;
 
         private StateMachine m_StateMachine;
+        
+        
         private ShipDamageModel m_DamageModel;
         private EnemyDetector m_EnemyDetector;
         private bool allowDodgeTransition;

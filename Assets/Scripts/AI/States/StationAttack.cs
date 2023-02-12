@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AI.StationAI
 {
-    public class Attack : BaseState
+    public class StationAttack : BaseState
     {
         private EnemyDetector m_EnemyDetector;
         private Weapon[] m_Weapons = Array.Empty<Weapon>();
