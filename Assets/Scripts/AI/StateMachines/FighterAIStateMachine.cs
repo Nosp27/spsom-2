@@ -30,7 +30,7 @@ namespace AI
         
         
         private ShipDamageModel m_DamageModel;
-        private EnemyDetector m_EnemyDetector;
+        private IEnemyDetector m_EnemyDetector;
         private bool allowDodgeTransition;
 
         private Ship enemy;
@@ -39,7 +39,7 @@ namespace AI
 
         private void Start()
         {
-            m_EnemyDetector = GetComponentInParent<EnemyDetector>();
+            m_EnemyDetector = GetComponentInParent<IEnemyDetector>();
             m_DamageModel = GetComponentInParent<ShipDamageModel>();
 
             m_MovementStateMachine = BuildMovementStateMachine();

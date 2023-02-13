@@ -6,6 +6,7 @@ public class SimpleDamageModel : DamageModel
 
     public override void Die()
     {
+        base.Die();
         if (debrisGameObject)
         {
             debrisGameObject.SetActive(true);
@@ -15,6 +16,7 @@ public class SimpleDamageModel : DamageModel
 
     public override void GetDamage(BulletHitDTO hit)
     {
+        base.GetDamage(hit);
         if (hit.Damage < 0)
         {
             Debug.LogWarning($"Damage <0: {hit.Damage}");

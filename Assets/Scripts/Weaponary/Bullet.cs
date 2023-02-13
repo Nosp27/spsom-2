@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
         Vector3 collisionPoint =
             transform.position + transform.forward * GetComponentInChildren<Collider>().bounds.size.z;
         Vector3 hitDirection = transform.forward;
-        BulletHitDTO hit = new BulletHitDTO(Damage, collisionPoint, hitDirection);
+        BulletHitDTO hit = new BulletHitDTO(Damage, collisionPoint, hitDirection, HitType.KINETIC, Owner);
 
         if (other.TryGetComponent(out Shield shield) && !bypassShields)
         {

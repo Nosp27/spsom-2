@@ -11,13 +11,13 @@ namespace AI.StationAI
         [SerializeField] private BaseState scanState;
         
         private StateMachine sm;
-        private EnemyDetector m_EnemyDetector;
+        private IEnemyDetector m_EnemyDetector;
     
     
 
         private void Start()
         {
-            m_EnemyDetector = GetComponentInParent<EnemyDetector>();
+            m_EnemyDetector = GetComponentInParent<IEnemyDetector>();
             sm = new StateMachine();
             sm.AddAnyTransition(attackState, () => m_EnemyDetector.Enemy != null);
             sm.AddAnyTransition(scanState, () => m_EnemyDetector.Enemy == null);

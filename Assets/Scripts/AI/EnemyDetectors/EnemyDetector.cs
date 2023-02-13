@@ -11,7 +11,7 @@ namespace AI
         NOBODY,
     }
 
-    public class EnemyDetector : MonoBehaviour
+    public class EnemyDetector : MonoBehaviour, IEnemyDetector
     {
         [SerializeField] private DetectionMethod detectionMethod;
         [SerializeField] private float discoveryRange = 300;

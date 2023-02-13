@@ -61,6 +61,7 @@ public class MissileLauncher : Weapon
 
         g.Speed = missileSpeed;
         g.MaxGuidingAngle = missileGuidingAngle;
+        e.Owner = gameObject;
 
         if (g && target)
             g.Target = target;

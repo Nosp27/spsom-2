@@ -19814,11 +19814,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7706987672937756169, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
   m_PrefabInstance: {fileID: 1929167179}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1956844520 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3045535532336029197, guid: c797e8408f6ff4838b69e7a206f17d11, type: 3}
-  m_PrefabInstance: {fileID: 179995328}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1968325318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19921,88 +19916,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7706987672937756169, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
   m_PrefabInstance: {fileID: 1968325318}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2035665658
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2035665659}
-  - component: {fileID: 2035665661}
-  - component: {fileID: 2035665660}
-  m_Layer: 0
-  m_Name: MissileLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2035665659
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035665658}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.52, z: 2.53}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1956844520}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2035665660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035665658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1617216807
-      Data2: 1303238688
-      Data3: 629446557
-      Data4: 343867676
-    Path: event:/Weaponary/Missile/MissileDeploy
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 45
-  OverrideMaxDistance: 450
---- !u!114 &2035665661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035665658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa86f0c36e5748368eb4763be497efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotEventEmitter: {fileID: 2035665660}
-  weaponSpriteValue: {fileID: 21300000, guid: 5774200d21aec455bb1b583294f51d73, type: 3}
-  missilePrefab: {fileID: 39167279352728550, guid: 1ba2277ebb536436db46693ca85612c1, type: 3}
-  fireRate: 100
-  detonationDistance: 2
-  detonationTimeout: 3
-  missileSpeed: 40
-  missileGuidingAngle: 55
 --- !u!1001 &2043212845
 PrefabInstance:
   m_ObjectHideFlags: 0

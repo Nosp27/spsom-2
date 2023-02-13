@@ -13,18 +13,21 @@ public enum HitType
     LASER,
 }
 
+[Serializable]
 public class BulletHitDTO
 {
     public int Damage;
     public HitType hitType;
     public Nullable<Vector3> HitDirection;
     public Nullable<Vector3> HitPoint;
+    public GameObject hitInitiator;
 
-    public BulletHitDTO(int damage, Vector3 hitPoint, Vector3 hitDirection, HitType ht = HitType.KINETIC)
+    public BulletHitDTO(int damage, Vector3 hitPoint, Vector3 hitDirection, HitType ht = HitType.KINETIC, GameObject hitInitiator = null)
     {
         this.Damage = damage;
         this.HitDirection = hitDirection;
         this.HitPoint = hitPoint;
         this.hitType = ht;
+        this.hitInitiator = hitInitiator;
     }
 }

@@ -13,6 +13,8 @@ public class Explosive : MonoBehaviour
     private List<Predicate<Explosive>> detonationSensors = new List<Predicate<Explosive>>();
     private bool Detonated;
 
+    public GameObject Owner;
+
     [SerializeField] private ParticleSystem Explosion;
 
     public void Explode()
@@ -53,7 +55,8 @@ public class Explosive : MonoBehaviour
                 Damage,
                 dm.transform.position,
                 Vector3.down,
-                HitType.EXPLOSION
+                HitType.EXPLOSION,
+                 Owner
             );
             dm.SendMessage("GetDamage", dto);
         }

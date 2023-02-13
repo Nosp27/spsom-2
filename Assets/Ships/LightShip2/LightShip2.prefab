@@ -338,6 +338,88 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.0000038146973, z: 0}
+--- !u!1 &2035665658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035665659}
+  - component: {fileID: 2035665661}
+  - component: {fileID: 2035665660}
+  m_Layer: 0
+  m_Name: MissileLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2035665659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035665658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.52, z: 2.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3045535532336029197}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035665661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035665658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa86f0c36e5748368eb4763be497efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotEventEmitter: {fileID: 2035665660}
+  weaponSpriteValue: {fileID: 21300000, guid: 5774200d21aec455bb1b583294f51d73, type: 3}
+  missilePrefab: {fileID: 39167279352728550, guid: 1ba2277ebb536436db46693ca85612c1, type: 3}
+  fireRate: 100
+  detonationDistance: 2
+  detonationTimeout: 3
+  missileSpeed: 40
+  missileGuidingAngle: 55
+--- !u!114 &2035665660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035665658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1617216807
+      Data2: 1303238688
+      Data3: 629446557
+      Data4: 343867676
+    Path: event:/Weaponary/Missile/MissileDeploy
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 45
+  OverrideMaxDistance: 450
 --- !u!1 &19037947689829317
 GameObject:
   m_ObjectHideFlags: 0
@@ -41339,8 +41421,8 @@ GameObject:
   - component: {fileID: 1884522723161542218}
   - component: {fileID: 1884522723161542219}
   - component: {fileID: 1884522723161542212}
-  - component: {fileID: 1884522723161542213}
   - component: {fileID: 1884522723161542214}
+  - component: {fileID: 55598343}
   m_Layer: 0
   m_Name: LightShip2
   m_TagString: Untagged
@@ -41368,6 +41450,7 @@ Transform:
   - {fileID: 3675409004692197033}
   - {fileID: 2258815561598553184}
   - {fileID: 8664477143786896682}
+  - {fileID: 2035665659}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -41504,21 +41587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RadarPrefabWorld: {fileID: 8216425332546030896, guid: d3b2f982c9d4d4ef3b3e8b018d1f58ea, type: 3}
   RadarPrefabMinimap: {fileID: 4553285495342578624, guid: 1755d6cafe3574a09ae57684a362f928, type: 3}
---- !u!114 &1884522723161542213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6090184446327762807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31be434c087b24ef9920b9ab8e50a419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionMethod: 0
-  discoveryRange: 300
-  loseRange: 500
 --- !u!114 &1884522723161542214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41531,6 +41599,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc567572ee464b2a8ef9883194eda98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &55598343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090184446327762807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c382a4dc98d0f49e8a31b83b4f51c2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memory: 3
 --- !u!1 &6117939134540318342
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class ShipDamageModel : DamageModel
 
     public override void Die()
     {
+        base.Die();
         health = 0;
         if (ship.isPlayerShip)
             GameController.Current.SendMessage("Die");
@@ -46,6 +47,7 @@ public class ShipDamageModel : DamageModel
 
     public override void GetDamage(BulletHitDTO hit)
     {
+        base.GetDamage(hit);
         if (hit.Damage < 0)
         {
             Debug.LogWarning($"Damage <0: {hit.Damage}");
