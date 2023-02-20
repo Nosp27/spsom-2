@@ -34398,7 +34398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HasGunnery: 0
-  LinearSpeed: 9
+  LinearSpeed: 19
   RotationSpeed: 1
   Power: 5000
   Alive: 0

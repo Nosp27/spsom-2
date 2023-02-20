@@ -16,7 +16,7 @@ public class AggresionEnemyDetector : MonoBehaviour, IEnemyDetector
 
     void OnDamage(BulletHitDTO hit)
     {
-        Enemy = hit.hitInitiator.GetComponentInParent<Ship>();
+        Enemy = hit.hitInitiator?.GetComponentInParent<Ship>();
         if (!Enemy)
             return;
         
