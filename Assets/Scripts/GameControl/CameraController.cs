@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     private Vector3 CameraOffset => BaseOffset * Zoom;
     private Transform attachedListener;
 
+    [SerializeField] private bool followRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,8 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(
             transform.position, PlayerShip.transform.position + CameraOffset, 2f * Time.unscaledDeltaTime
         );
-        transform.LookAt(PlayerShip.transform);
+        if (followRotation)
+            transform.LookAt(PlayerShip.transform);
 
         // if (PlayerShip)
         // {
