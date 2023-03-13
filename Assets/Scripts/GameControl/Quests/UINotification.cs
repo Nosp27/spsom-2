@@ -16,21 +16,13 @@ public class UINotification : MonoBehaviour
     private bool m_TweenLock;
     private Queue<Func<Tween>> tweenQueue = new Queue<Func<Tween>>();
 
+    private void Start()
+    {
+        m_ContentContainer.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Init("Some quest data");
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            MarkDone(false);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            MarkDone(true);
-        }
-
         if (!m_TweenLock && tweenQueue.Count > 0)
         {
             m_TweenLock = true;
@@ -52,6 +44,7 @@ public class UINotification : MonoBehaviour
         }
 
         m_ContentContainer.localPosition = from;
+        m_ContentContainer.gameObject.SetActive(true);
         return m_ContentContainer.DOLocalMove(to, 0.6f);
     }
 
