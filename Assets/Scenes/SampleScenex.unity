@@ -1039,6 +1039,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationPrefab: {fileID: 1083898527937129008, guid: f994f87aa54dc4da0ad58e315b54e22d, type: 3}
+  successEvent:
+    Guid:
+      Data1: 877709895
+      Data2: 1139856265
+      Data3: -1545843820
+      Data4: 420027404
+    Path: event:/Game/QuestStepComplete
 --- !u!1001 &314221283
 PrefabInstance:
   m_ObjectHideFlags: 0

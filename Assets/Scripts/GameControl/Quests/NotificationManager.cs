@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class NotificationManager : MonoBehaviour
 {
     [SerializeField] private GameObject notificationPrefab;
+    [SerializeField] private EventReference successEvent;
 
     private Dictionary<int, UINotification> notificationRefs = new Dictionary<int, UINotification>();
     private int counter;
@@ -26,5 +28,7 @@ public class NotificationManager : MonoBehaviour
         notificationRefs.Remove(index);
         notification.MarkDone(success);
         Destroy(notification.gameObject, 1f);
+        if (success)
+            RuntimeManager.PlayOneShot(successEvent);
     }
 }
