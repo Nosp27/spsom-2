@@ -136,7 +136,7 @@ public class Ship : MonoBehaviour
 
     public void Fire(Vector3 cursor)
     {
-        if (!Alive)
+        if (!Alive || Weapons.Count == 0)
             return;
 
         DoForUsedWeapon_s(w => w.Fire());
@@ -144,7 +144,7 @@ public class Ship : MonoBehaviour
 
     public void Aim(Vector3 cursor)
     {
-        if (!Alive)
+        if (!Alive || Weapons.Count == 0)
             return;
 
         DoForUsedWeapon_s(w => w.Aim(cursor));
@@ -152,7 +152,7 @@ public class Ship : MonoBehaviour
     
     public void Track(Transform target)
     {
-        if (!Alive)
+        if (!Alive || Weapons.Count == 0)
             return;
 
         DoForUsedWeapon_s(w => w.Track(target));
@@ -160,7 +160,7 @@ public class Ship : MonoBehaviour
 
     public bool Aimed()
     {
-        if (!Alive)
+        if (!Alive || Weapons.Count == 0)
             return false;
 
         return CheckAnyForUsedWeapon_s(x => x.Aimed());

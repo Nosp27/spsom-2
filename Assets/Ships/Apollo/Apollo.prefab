@@ -249,7 +249,7 @@ Transform:
   - {fileID: 1982463717}
   - {fileID: 2042099920}
   m_Father: {fileID: 5285612485202658234}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481700991
 GameObject:
@@ -554,86 +554,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &675538937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 675538938}
-  - component: {fileID: 675538939}
-  - component: {fileID: 1812565391}
-  m_Layer: 0
-  m_Name: MissileLauncher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &675538938
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675538937}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5285612485202658234}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &675538939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675538937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa86f0c36e5748368eb4763be497efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotEventEmitter: {fileID: 1812565391}
-  weaponSpriteValue: {fileID: 21300000, guid: 5774200d21aec455bb1b583294f51d73, type: 3}
-  missilePrefab: {fileID: 39167279352728550, guid: 1ba2277ebb536436db46693ca85612c1, type: 3}
-  fireRate: 20
-  detonationDistance: 2
-  detonationTimeout: 10
---- !u!114 &1812565391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675538937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1617216807
-      Data2: 1303238688
-      Data3: 629446557
-      Data4: 343867676
-    Path: event:/Weaponary/Missile/MissileDeploy
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 45
-  OverrideMaxDistance: 450
 --- !u!1 &793566493
 GameObject:
   m_ObjectHideFlags: 0
@@ -6230,7 +6150,6 @@ Transform:
   - {fileID: 9105767916047364771}
   - {fileID: 8848003684739370984}
   - {fileID: 179131490113535078}
-  - {fileID: 675538938}
   - {fileID: 416583078}
   - {fileID: 7949134442072798298}
   - {fileID: 318077934}
@@ -6294,7 +6213,11 @@ MonoBehaviour:
   Weapons: []
   isPlayerShip: 0
   softerMultiplier: 0
-  onWeaponMutate:
+  useAllWeapons: 1
+  OnWeaponSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponMutate:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2027507067
@@ -20735,7 +20658,7 @@ PrefabInstance:
       objectReference: {fileID: 5896886971570910614}
     - target: {fileID: 2798062908559390687, guid: 1f2a2984261414a24b308b441bac79bd, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2798062908559390687, guid: 1f2a2984261414a24b308b441bac79bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20904,7 +20827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5427568752083833131, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5427568752083833131, guid: 90dcaaccd8d8d47fcb07cabd47f56f44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21078,7 +21001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3856589573130855905, guid: 27c3bebee2c5b4a8a98f5e42444d7bb0, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3856589573130855905, guid: 27c3bebee2c5b4a8a98f5e42444d7bb0, type: 3}
       propertyPath: m_LocalPosition.x

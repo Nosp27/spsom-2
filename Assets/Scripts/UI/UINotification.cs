@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,14 @@ public class UINotification : MonoBehaviour
             m_TweenLock = true;
             tweenQueue.Dequeue().Invoke().onComplete += ReleaseTweenLock;
         }
+    }
+
+    public static UINotification Add(NotificationManager manager, string text, Sprite icon = null)
+    {
+        UINotification notification = Instantiate(manager.notificationPrefab).GetComponent<UINotification>();
+        notification.Init(text, icon);
+        notification.m_ContentContainer.gameObject.SetActive(false);
+        return notification;
     }
 
     Tween Slide(bool slideIn)
@@ -65,7 +74,11 @@ public class UINotification : MonoBehaviour
         {
             // m_Icon.enabled = false;
         }
+    }
 
+    public void Bind()
+    {
+        print("Bind called");
         tweenQueue.Enqueue(() => Slide(true));
     }
 

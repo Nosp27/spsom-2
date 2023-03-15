@@ -1,5 +1,7 @@
+using System;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum CargoCraneInventoryResolveStrategy
 {
@@ -21,6 +23,13 @@ public class CargoCrane : MonoBehaviour
     private Collider[] m_Colliders = new Collider[50];
 
     [SerializeField] private LineRenderer cranePullLineRenderer;
+
+    public UnityEvent<GameObject> onGrab { get; private set; }
+
+    private void Awake()
+    {
+        onGrab = new UnityEvent<GameObject>();
+    }
 
     private void Start()
     {
@@ -56,6 +65,7 @@ public class CargoCrane : MonoBehaviour
             if (distance < grabRadius)
             {
                 Grab(loot.GetLootPrefab());
+                onGrab.Invoke(loot.gameObject);
                 Destroy(loot.gameObject);
             }
             else if (distance < fetchRadius && distance < nearestLootDistance)
