@@ -21,8 +21,8 @@ public class UIControllerShipModules : MonoBehaviour
         attachedShip = GetComponentInParent<Ship>();
         foreach (ModulePylon pylon in attachedShip.GetComponentsInChildren<ModulePylon>())
         {
-            GameObject uiSlotPrefab = Instantiate(SlotPrefab, transform);
-            WorldBoundItemView itemView = uiSlotPrefab.GetComponent<WorldBoundItemView>();
+            GameObject worldUiSlotPrefab = Instantiate(SlotPrefab, transform);
+            WorldBoundItemView itemView = worldUiSlotPrefab.GetComponent<WorldBoundItemView>();
             itemView.BindReference(pylon.gameObject);
             Slots.Add(itemView);
         }

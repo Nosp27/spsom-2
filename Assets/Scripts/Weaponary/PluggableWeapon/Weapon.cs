@@ -1,3 +1,4 @@
+using System;
 using FMODUnity;
 using UnityEngine;
 
@@ -9,9 +10,17 @@ public abstract class Weapon : MonoBehaviour
     public abstract float maxCooldown { get; protected set; }
     public abstract float cooldown { get; protected set; }
 
+    private Ship rootShip;
+    
     protected void OnEnable()
     {
-        Ship rootShip = GetComponentInParent<Ship>();
+        rootShip = GetComponentInParent<Ship>();
+        if (rootShip)
+            rootShip.ScanWeaponary();
+    }
+
+    private void OnTransformParentChanged()
+    {
         if (rootShip)
             rootShip.ScanWeaponary();
     }
