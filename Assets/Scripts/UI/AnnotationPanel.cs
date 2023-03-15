@@ -13,7 +13,7 @@ namespace UI
         {
             panelObject.SetActive(false);
             panelEnabled = false;
-            GameController.Current.CurrentCursorControl.OnCursorHoverTargetChanged.AddListener(HoverTargetChangedHandler);
+            GameController.Current.CurrentCursorControl.onCursorHoverTargetChanged.AddListener(HoverTargetChangedHandler);
         }
 
         void HoverTargetChangedHandler(GameObject newHoverTarget)

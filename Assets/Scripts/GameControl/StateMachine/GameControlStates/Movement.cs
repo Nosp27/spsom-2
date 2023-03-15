@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace GameControl.StateMachine.GameControlStates
 {
     public class Movement : MonoBehaviour, IState
     {
-        public AimLockTarget lockTarget { get; private set; }
+        public AimLockTarget activeLockTarget { get; private set; }
 
         [SerializeField] private float aimLockDistance;
         [SerializeField] private GameObject moveAimPrefab;
@@ -21,7 +22,6 @@ namespace GameControl.StateMachine.GameControlStates
             Vector3 cursor = m_CursorControl.Cursor();
             ProcessMove(m_PlayerShip, cursor);
             ProcessAim(m_PlayerShip, cursor);
-            ProcessTargetLock();
             ProcessWeaponSelection();
         }
 
@@ -31,7 +31,10 @@ namespace GameControl.StateMachine.GameControlStates
                 m_GameController = GameController.Current;
 
             if (!m_CursorControl)
+            {
                 m_CursorControl = GameController.Current.GetComponentInChildren<CursorControl>();
+                m_CursorControl.onCursorHoverTargetChanged.AddListener(ProcessTargetLock);
+            }
 
             if (!m_PlayerShip)
                 m_PlayerShip = m_GameController.PlayerShip;
@@ -93,22 +96,19 @@ namespace GameControl.StateMachine.GameControlStates
             }
         }
 
-        void ProcessTargetLock()
+        void ProcessTargetLock(GameObject newLockTarget)
         {
-            if (Input.GetMouseButtonDown(1))
+            AimLockTarget lt = newLockTarget ? newLockTarget.GetComponent<AimLockTarget>() : null;
+            if (IsValidLockTarget(lt))
             {
-                AimLockTarget lt = m_CursorControl.GetLockTarget();
-                if (IsValidLockTarget(lt))
-                {
-                    ActivateLockTarget(lt);
-                }
-                else
-                {
-                    DeactivateLockTarget();
-                }
+                ActivateLockTarget(lt);
+            }
+            else
+            {
+                DeactivateLockTarget();
             }
 
-            if (!IsValidLockTarget(lockTarget))
+            if (!IsValidLockTarget(activeLockTarget))
             {
                 DeactivateLockTarget();
             }
@@ -122,7 +122,7 @@ namespace GameControl.StateMachine.GameControlStates
 
         void ActivateLockTarget(AimLockTarget lt)
         {
-            lockTarget = lt;
+            activeLockTarget = lt;
             aimLockMark.gameObject.SetActive(true);
             aimLockMark.Unlock();
             aimLockMark.Lock(lt);
@@ -135,7 +135,7 @@ namespace GameControl.StateMachine.GameControlStates
         {
             aimLockMark.Unlock();
             aimLockMark.gameObject.SetActive(false);
-            lockTarget = null;
+            activeLockTarget = null;
 
             m_PlayerShip.Track(null);
         }

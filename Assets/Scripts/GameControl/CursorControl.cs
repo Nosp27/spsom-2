@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,13 +6,14 @@ public class CursorControl : MonoBehaviour
 {
     private float yZero;
     private Camera currentCamera;
-    private GameObject cursorHoverTarget;
+    public GameObject cursorHoverTarget { get; private set; }
     private Vector3 _cursor;
 
-    public UnityEvent<GameObject> OnCursorHoverTargetChanged;
+    public UnityEvent<GameObject> onCursorHoverTargetChanged { get; private set; }
 
     public void Setup(Ship playerShip)
     {
+        onCursorHoverTargetChanged = new UnityEvent<GameObject>();
         currentCamera = Camera.main;
         yZero = playerShip.transform.position.y;
     }
@@ -43,7 +41,7 @@ public class CursorControl : MonoBehaviour
         if (newCursorHoverTarget != cursorHoverTarget)
         {
             cursorHoverTarget = newCursorHoverTarget;
-            OnCursorHoverTargetChanged.Invoke(cursorHoverTarget);
+            onCursorHoverTargetChanged.Invoke(cursorHoverTarget);
         }
         _cursor = point;
     }
@@ -53,12 +51,6 @@ public class CursorControl : MonoBehaviour
         return _cursor;
     }
 
-    [CanBeNull]
-    public AimLockTarget GetLockTarget()
-    {
-        return cursorHoverTarget?.GetComponent<AimLockTarget>();
-    }
-    
     [CanBeNull]
     public FacilityGUI GetHoveredFacility()
     {
