@@ -73,4 +73,12 @@ public abstract class BaseQuest : MonoBehaviour
         questMarker.GetComponent<PositionTracker>().target = target;
         questMarker.SetActive(target != null);
     }
+
+    protected Transform QuestItemTransform(string item_id)
+    {
+        GameObject item = questItems[item_id];
+        if (item == null)
+            return null;
+        return item.transform;
+    }
 }

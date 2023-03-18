@@ -23,6 +23,7 @@ namespace GameControl.StateMachine.GameControlStates
             ProcessMove(m_PlayerShip, cursor);
             ProcessAim(m_PlayerShip, cursor);
             ProcessWeaponSelection();
+            ValidateTargetLock();
         }
 
         public void OnEnter()
@@ -108,6 +109,14 @@ namespace GameControl.StateMachine.GameControlStates
                 DeactivateLockTarget();
             }
 
+            if (!IsValidLockTarget(activeLockTarget))
+            {
+                DeactivateLockTarget();
+            }
+        }
+
+        void ValidateTargetLock()
+        {
             if (!IsValidLockTarget(activeLockTarget))
             {
                 DeactivateLockTarget();

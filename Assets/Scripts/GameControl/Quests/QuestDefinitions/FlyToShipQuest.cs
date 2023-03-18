@@ -20,12 +20,12 @@ public class FlyToShipQuest : BaseQuest
         IState grabItemState = new LambdaState(
             () => notificationManager.RemoveNotification(flyToShipNotification, true),
             () => notificationManager.RegisterNotification(grabItemNotification),
-                () => SetMarker(questItems["LOOT"].transform)
+                () => SetMarker(QuestItemTransform("LOOT"))
         );
         IState shootShipState = new LambdaState(
             () => notificationManager.RemoveNotification(grabItemNotification, true),
             () => notificationManager.RegisterNotification(shootShipNotification),
-            () => SetMarker(questItems["ENEMY_SHIP"].transform)
+            () => SetMarker(QuestItemTransform("ENEMY_SHIP"))
         );
         IState questComplete = new LambdaState(
             () => notificationManager.RemoveNotification(shootShipNotification, true),
@@ -42,7 +42,7 @@ public class FlyToShipQuest : BaseQuest
         sm.AddTransition(
             grabItemState,
             shootShipState,
-            Predicates.LootPickup(playerShip, questItems["LOOT"]),
+            () => questItems["LOOT"] == null || Predicates.LootPickup(playerShip, questItems["LOOT"]).Invoke(),
             false
         );
         sm.AddTransition(

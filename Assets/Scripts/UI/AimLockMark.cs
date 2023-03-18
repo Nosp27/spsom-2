@@ -9,6 +9,7 @@ public class AimLockMark : MonoBehaviour
     [SerializeField] private Material LockMat;
 
     private Dictionary<MeshRenderer, Material[]> lockTargetMatMap;
+    private PositionTracker m_PositionTracker => GetComponent<PositionTracker>();
     void Start()
     {
         cam = Camera.main;
@@ -35,7 +36,7 @@ public class AimLockMark : MonoBehaviour
             lock_target_mr.materials = materials;
         }
         
-        transform.SetParent(target.transform);
+        m_PositionTracker.target = target == null ? null : target.transform;
     }
 
     public void Unlock()
@@ -51,7 +52,7 @@ public class AimLockMark : MonoBehaviour
         }
         
         lockedTarget = null;
-        transform.SetParent(null);
+        m_PositionTracker.target = null;
     }
     
     // Update is called once per frame
