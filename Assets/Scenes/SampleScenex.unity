@@ -3575,6 +3575,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3582,6 +3583,42 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &963194226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85752594a9eb4b2c83b1be732ec4c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 30
+      value: 1
+      inSlope: 0
+      outSlope: 0.010810811
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 400
+      value: 5
+      inSlope: 0.010810811
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -3654,6 +3691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce65fc2a0267c42af86eb1bc70ca2da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Zoom: 1
   followRotation: 0
 --- !u!114 &963194230
 MonoBehaviour:

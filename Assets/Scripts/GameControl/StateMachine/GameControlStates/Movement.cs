@@ -84,16 +84,30 @@ namespace GameControl.StateMachine.GameControlStates
                 playerShip.Move(direction);
             }
         }
+        
+        void ProcessMoveWASD(Ship playerShip, Vector3 cursor)
+        {
+            Vector3 direction =
+                playerShip.transform.position
+                + playerShip.transform.forward * Mathf.Clamp01(Input.GetAxis("Vertical")) * 100
+                + playerShip.transform.right * Input.GetAxis("Horizontal") * 100;
+
+            if (direction == Vector3.zero)
+            {
+                playerShip.CancelMovement();
+            }
+            else
+            {
+                playerShip.Move(direction);
+            }
+        }
 
         void ProcessAim(Ship playerShip, Vector3 cursor)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            playerShip.Aim(cursor);
+            if (Input.GetKey(KeyCode.Space))
             {
-                playerShip.Aim(cursor);
-                if (Input.GetMouseButton(0))
-                {
-                    playerShip.Fire(cursor);
-                }
+                playerShip.Fire(cursor);
             }
         }
 

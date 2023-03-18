@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace AI
         [SerializeField] private float discoveryRange = 300;
         [SerializeField] private float loseRange = 500;
 
+        [SerializeField] private bool seekNearest = true;
+
         public Ship Enemy { get; private set; }
         private Ship ThisShip;
 
@@ -34,25 +37,31 @@ namespace AI
                 yield return new WaitForSeconds(.2f);
                 if (Enemy && (Enemy.transform.position - transform.position).magnitude > loseRange)
                     Enemy = null;
-                
+
                 if (Enemy && Enemy.Alive)
                     continue;
 
                 Collider[] colliders = Physics.OverlapSphere(transform.position, discoveryRange);
                 Ship nearestShip = null;
-                float nearestShipDistance = discoveryRange;
+                float nearestShipDistance = seekNearest ? discoveryRange : 0;
+                float comparisonMultiplier = seekNearest ? 1 : -1;
+
                 foreach (var col in colliders)
                 {
                     Ship ship = col.GetComponentInParent<Ship>();
                     if (IsEnemy(ship))
                     {
                         float distance = (ship.transform.position - transform.position).magnitude;
-                        if (nearestShip == null || distance < nearestShipDistance)
+                        if (
+                            nearestShip == null
+                            || (comparisonMultiplier * distance < comparisonMultiplier * nearestShipDistance)
+                        )
                         {
                             nearestShip = ship;
                             nearestShipDistance = distance;
                         }
                     }
+
                     Enemy = nearestShip;
                 }
             }
@@ -60,6 +69,9 @@ namespace AI
 
         public bool IsEnemy(Ship ship)
         {
+            if (ship == ThisShip)
+                return false;
+
             if (detectionMethod == DetectionMethod.NOBODY)
                 return false;
 
