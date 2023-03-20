@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7043317003986192564}
   - component: {fileID: 3170021687373910812}
+  - component: {fileID: 6782694776055793252}
   m_Layer: 0
   m_Name: Quest3DMarker
   m_TagString: Untagged
@@ -128,6 +129,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+--- !u!114 &6782694776055793252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043317003986192567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b2f168d83364cee87a6dc1aaa53097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadarPrefabWorld: {fileID: 8216425332546030896, guid: 186ff1208b2714ca4831ad1e4443b9dc, type: 3}
+  RadarPrefabMinimap: {fileID: 4553285495342578624, guid: 6e90b76d405bb43f889a1e7839bff4b7, type: 3}
 --- !u!1 &7043317003992557963
 GameObject:
   m_ObjectHideFlags: 0

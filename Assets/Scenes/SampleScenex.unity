@@ -800,6 +800,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280452051}
   m_CullTransparentMesh: 1
+--- !u!1 &281503626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3917093697189968063, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
+  m_PrefabInstance: {fileID: 1812565387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &281503627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281503626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31be434c087b24ef9920b9ab8e50a419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionMethod: 2
+  discoveryRange: 140
+  loseRange: 140
+  seekNearest: 0
 --- !u!1 &289110046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,13 +1254,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321568165}
-  m_LocalRotation: {x: -0.000000013038517, y: -0.000000014901163, z: -0.15744105, w: 0.9875284}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.18025263, y: -0.97829187, z: -0.09790165, w: 0.02948288}
+  m_LocalPosition: {x: 8.202455, y: 20.957342, z: 4.140081}
+  m_LocalScale: {x: 0.52783805, y: 0.072009005, z: 0.67486984}
   m_Children: []
   m_Father: {fileID: 1110437180}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18.117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &321568167
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3397,6 +3418,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 804457907}
     m_Modifications:
+    - target: {fileID: 7043317002396078979, guid: 942f305ba14ea4492a1ecf1a407022c3, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7043317003986192564, guid: 942f305ba14ea4492a1ecf1a407022c3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3446,8 +3471,12 @@ PrefabInstance:
       value: Quest3DMarker
       objectReference: {fileID: 0}
     - target: {fileID: 7043317003986192567, guid: 942f305ba14ea4492a1ecf1a407022c3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043317003992557963, guid: 942f305ba14ea4492a1ecf1a407022c3, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 942f305ba14ea4492a1ecf1a407022c3, type: 3}
@@ -3461,6 +3490,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7043317003986192564, guid: 942f305ba14ea4492a1ecf1a407022c3, type: 3}
   m_PrefabInstance: {fileID: 939472607}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &939472612
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939472608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &941933405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3619,6 +3661,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  autoZoomFreezeTimeout: 3
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -28438,7 +28481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1813063004, guid: 12c0b94dd207246ac956a81253760843, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -115.43386
+      value: -115.43396
       objectReference: {fileID: 0}
     - target: {fileID: 1813063007, guid: 12c0b94dd207246ac956a81253760843, type: 3}
       propertyPath: m_Type
