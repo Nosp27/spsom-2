@@ -1,64 +1,65 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasItemView : ItemView
+namespace UI.Inventory.ItemViews
 {
-    /*
-     * Item view for UI element on Canvas. For example a UI grid.
-     *
-     * Check out parent docstring
-     */
-    private bool initDone = false;
-    private Image itemImageComponent;
-    private Color baseColor;
+    public class CanvasItemView : ItemView
+    {
+        /*
+         * Item view for UI element on Canvas. For example a UI grid.
+         *
+         * Check out parent docstring
+         */
+        private bool initDone = false;
+        private Image itemImageComponent;
+        private Color baseColor;
 
-    private void Awake()
-    {
-        GetComponent<Button>().onClick.AddListener(OnClick);
-    }
+        private void Awake()
+        {
+            GetComponent<Button>().onClick.AddListener(OnClick);
+        }
 
-    void OnEnable()
-    {
-        if (initDone)
-            return;
-        initDone = true;
-        itemImageComponent = transform.GetChild(0).GetComponent<Image>();
-        itemImageComponent.enabled = false;
-        itemContainer = GetComponent<ItemContainer>();
-        m_UIInteractionController = GetComponentInParent<UIInteractionController>();
-        baseColor = GetComponent<Image>().color;
-    }
+        void OnEnable()
+        {
+            if (initDone)
+                return;
+            initDone = true;
+            itemImageComponent = transform.GetChild(0).GetComponent<Image>();
+            itemImageComponent.enabled = false;
+            itemContainer = GetComponent<ItemContainer>();
+            baseColor = GetComponent<Image>().color;
+        }
 
-    private void OnDisable()
-    {
-        initDone = false;
-    }
+        private void OnDisable()
+        {
+            initDone = false;
+        }
 
-    public override void Highlight()
-    {
-        GetComponent<Image>().color = Color.green;
-    }
-    
-    public override void UnHighlight()
-    {
-        GetComponent<Image>().color = baseColor;
-    }
+        public override void Highlight()
+        {
+            GetComponent<Image>().color = Color.green;
+        }
 
-    public override void PlaceItem(InventoryItem item)
-    {
-        OnEnable();
-        Sprite itemSprite = item.GetComponent<InventoryItem>().Icon;
-        itemImageComponent.sprite = itemSprite;
-        itemImageComponent.enabled = true;
-        itemContainer.DropItem();
-        itemContainer.ChangeItem(item.gameObject);
-    }
-    
-    public override void RemoveItem()
-    {
-        itemImageComponent.sprite = null;
-        itemImageComponent.enabled = false;
-        itemContainer.DropItem();
+        public override void UnHighlight()
+        {
+            GetComponent<Image>().color = baseColor;
+        }
+
+        public override void PlaceItem(InventoryItem item)
+        {
+            OnEnable();
+            Sprite itemSprite = item.Icon;
+            itemImageComponent.sprite = itemSprite;
+            itemImageComponent.enabled = true;
+            itemContainer.DropItem();
+            itemContainer.ChangeItem(item.gameObject);
+        }
+
+        public override void RemoveItem()
+        {
+            itemImageComponent.sprite = null;
+            itemImageComponent.enabled = false;
+            itemContainer.DropItem();
+        }
     }
 }

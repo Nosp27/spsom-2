@@ -1,5 +1,6 @@
 using System;
 using FMODUnity;
+using UI.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
 

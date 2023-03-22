@@ -1,3 +1,4 @@
+using UI.Inventory;
 using UnityEngine;
 
 public class ShipModule : InventoryItem

@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class InventoryItem : MonoBehaviour
+namespace UI.Inventory
 {
-    public Sprite Icon;
+    public class InventoryItem : MonoBehaviour
+    {
+        public Sprite Icon;
+    }
 }

@@ -1,15 +1,27 @@
+using UI.Inventory;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GameControl.StateMachine.GameControlStates
 {
     public class Inventory : MonoBehaviour, IState
     {
-        [SerializeField] private GameObject inventoryCanvas;
-        [SerializeField] private GameObject playerHudCanvas;
+        [SerializeField] private SlotGuiMediator inventoryGuiMediator;
+        [SerializeField] private GameObject hudCanvas;
         private CameraController camC;
 
         public void Tick()
         {
+            if (Gamepad.current != null)
+            {
+                int delta = 0;
+                if (Gamepad.current.rightShoulder.isPressed)
+                    delta = 1;
+                if (Gamepad.current.leftShoulder.isPressed)
+                    delta = -1;
+                if (delta != 0)
+                    inventoryGuiMediator.SwitchTab(delta);
+            }
         }
 
         public void OnEnter()
@@ -24,16 +36,26 @@ namespace GameControl.StateMachine.GameControlStates
 
         void SwitchInventoryMode(bool targetMode)
         {
+            hudCanvas.SetActive(!targetMode);
             camC = FindObjectOfType<CameraController>();
             var zoomController = camC.GetComponent<CameraZoomControl>();
             if (zoomController)
                 zoomController.enabled = !targetMode;
             if (targetMode)
-                camC.Zoom = 0.4f;
+            {
+                camC.Zoom = 0.45f;
+                inventoryGuiMediator.Run();
+                if (Gamepad.current == null)
+                    inventoryGuiMediator.UnfreezeAllTabs();
+                else
+                    inventoryGuiMediator.SwitchTab(0);
+            }
+            else
+            {
+                inventoryGuiMediator.Stop();
+            }
 
             GameController.Current.SwitchCursorControl(!targetMode);
-            inventoryCanvas.SetActive(targetMode);
-            playerHudCanvas.SetActive(!targetMode);
             Cursor.visible = targetMode;
             Time.timeScale = targetMode ? 0 : 1;
         }

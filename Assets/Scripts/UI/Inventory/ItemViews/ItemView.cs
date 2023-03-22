@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ItemView : MonoBehaviour
+namespace UI.Inventory.ItemViews
 {
-    /*
+    public class ItemView : MonoBehaviour
+    {
+        /*
      * Controls UI slot that can have an item in it.
      * Item can be replaced, dropped or retrieved by other script.
      * Items must be instantiated (do not use prefabs as items)
@@ -14,46 +17,53 @@ public class ItemView : MonoBehaviour
      *
      * Attach child to UI element
      */
-    protected ItemContainer itemContainer;
-    protected UIInteractionController m_UIInteractionController;
+        protected ItemContainer itemContainer;
+        public UnityEvent<ItemView> onClick;
 
-    protected virtual void Start()
-    {
-        itemContainer = GetComponent<ItemContainer>();
-    }
-    
-    public virtual void Highlight()
-    {
-        throw new NotImplementedException();
-    }
-    
-    public virtual void UnHighlight()
-    {
-        throw new NotImplementedException();
-    }
-    
-    protected void OnClick()
-    {
-        if (m_UIInteractionController)
-            m_UIInteractionController.ItemViewClicked(this);
-        else
+        bool _lazyInitDone;
+
+        private void Awake()
         {
-            Debug.LogError("No Interaction Controller attached");
+            onClick = new UnityEvent<ItemView>();
         }
-    }
 
-    public InventoryItem GetItem()
-    {
-        return itemContainer.GetItem()?.GetComponent<InventoryItem>();
-    }
+        protected void LazyInit()
+        {
+            if (_lazyInitDone)
+                return;
+            _lazyInitDone = true;
+            itemContainer = GetComponent<ItemContainer>();
+        }
 
-    public virtual void PlaceItem(InventoryItem item)
-    {
-        throw new NotImplementedException();
-    }
+        public virtual void Highlight()
+        {
+            throw new NotImplementedException();
+        }
+    
+        public virtual void UnHighlight()
+        {
+            throw new NotImplementedException();
+        }
 
-    public virtual void RemoveItem()
-    {
-        throw new NotImplementedException();
+        protected void OnClick()
+        {
+            onClick.Invoke(this);
+        }
+
+        public InventoryItem GetItem()
+        {
+            LazyInit();
+            return itemContainer.GetItem()?.GetComponent<InventoryItem>();
+        }
+
+        public virtual void PlaceItem(InventoryItem item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void RemoveItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
