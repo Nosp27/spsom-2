@@ -31,20 +31,6 @@ public class GunShoot : MonoBehaviour {
 
 	void Update () 
 	{
-		if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !gunAim.GetIsOutOfBounds()) 
-		{
-			nextFire = Time.time + fireRate;
-			muzzleFlash.Play();
-			cartridgeEjection.Play();
-			anim.SetTrigger ("Fire");
-
-			Vector3 rayOrigin = gunEnd.position;
-			RaycastHit hit;
-			if (Physics.Raycast(rayOrigin, gunEnd.forward, out hit, weaponRange))
-			{
-				HandleHit(hit);
-			}
-		}
 	}
 
 	void HandleHit(RaycastHit hit)

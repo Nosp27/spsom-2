@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BeamWeapon : Weapon
 {
@@ -28,7 +29,7 @@ public class BeamWeapon : Weapon
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Keyboard.current.digit2Key.isPressed)
         {
             Fire();
         }

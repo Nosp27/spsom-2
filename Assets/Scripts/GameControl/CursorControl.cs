@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class CursorControl : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class CursorControl : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = currentCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = currentCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         LayerMask mask = LayerMask.GetMask("UI");
         RaycastHit[] hits = Physics.RaycastAll(ray, 2000f, mask);
         Vector3 point = Vector3.zero;

@@ -11,11 +11,13 @@ public class WorldBoundItemView : ItemView
     private GameObject referenceSlot;
     [SerializeField] private GameObject hoverMarker;
 
+    public Button button { get; private set; }
+
 
     void Awake()
     {
-        Button btn = GetComponent<Button>();
-        btn.onClick.AddListener(OnClick);
+        button = GetComponent<Button>();
+        button.onClick.AddListener(OnClick);
     }
 
     public void Hover(bool activate)

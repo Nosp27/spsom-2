@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using AI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CameraController))]
 public class CameraZoomControl : MonoBehaviour
@@ -33,7 +34,7 @@ public class CameraZoomControl : MonoBehaviour
 
     void ProcessManualZoom()
     {
-        float m = Input.GetAxisRaw("Mouse ScrollWheel");
+        float m = Mouse.current.scroll.ReadValue().y;
         if (m == 0)
             return;
         float zoom = cam.Zoom; 

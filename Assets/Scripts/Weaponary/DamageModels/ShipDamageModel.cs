@@ -1,4 +1,7 @@
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class ShipDamageModel : DamageModel
@@ -28,7 +31,7 @@ public class ShipDamageModel : DamageModel
             GameController.Current.SendMessage("Die");
         if (destruction != null)
             destruction.Play(true);
-        
+
         PlayDebris();
 
         if (destroyOnDeath)
@@ -45,9 +48,18 @@ public class ShipDamageModel : DamageModel
         debrisMesh.SetActive(true);
     }
 
+    IEnumerator Vibrate(float l, float r, float duration)
+    {
+        Gamepad.current.SetMotorSpeeds(l, r);
+        yield return new WaitForSeconds(duration);
+        Gamepad.current.SetMotorSpeeds(0, 0);
+    }
+
     public override void GetDamage(BulletHitDTO hit)
     {
         base.GetDamage(hit);
+        StartCoroutine(Vibrate(0.1f, 0.1f, 0.3f));
+
         if (hit.Damage < 0)
         {
             Debug.LogWarning($"Damage <0: {hit.Damage}");

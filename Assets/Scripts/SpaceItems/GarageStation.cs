@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GarageStation : MonoBehaviour
 {
@@ -25,13 +26,13 @@ public class GarageStation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Keyboard.current.cKey.isPressed)
             StartCoroutine(MoveDoor(false));
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Keyboard.current.vKey.isPressed)
             StartCoroutine(MoveDoor(true));
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Keyboard.current.lKey.isPressed)
             StartCoroutine(SpawnShip(test_SpawnPrefab));
     }
 

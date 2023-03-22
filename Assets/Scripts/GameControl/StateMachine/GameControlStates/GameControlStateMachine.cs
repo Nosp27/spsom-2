@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GameControl.StateMachine.GameControlStates
 {
@@ -24,7 +25,8 @@ namespace GameControl.StateMachine.GameControlStates
         {
             sm = new StateMachine();
 
-            Func<bool> InventoryTransitionPredicate = () => Input.GetKeyDown(KeyCode.E);
+            Func<bool> InventoryTransitionPredicate = () =>
+                Keyboard.current.eKey.wasPressedThisFrame || (Gamepad.current != null && Gamepad.current.triangleButton.wasPressedThisFrame);
 
             sm.AddTransition(movementState, inventoryState, InventoryTransitionPredicate);
             sm.AddTransition(inventoryState, movementState, InventoryTransitionPredicate);
