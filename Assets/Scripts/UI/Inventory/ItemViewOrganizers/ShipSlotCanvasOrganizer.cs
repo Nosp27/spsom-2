@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using UI.Inventory.GUIMediators;
 using UI.Inventory.ItemViews;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Inventory.ItemViewOrganizers
@@ -20,7 +22,7 @@ namespace UI.Inventory.ItemViewOrganizers
             gameObject.SetActive(false);
         }
 
-        public override void Arrange(SlotGuiMediator mediator)
+        public override void Arrange()
         {
             if (Slots.Count > 0)
                 return;
@@ -32,7 +34,6 @@ namespace UI.Inventory.ItemViewOrganizers
                 WorldBoundItemView itemView = worldUiSlotPrefab.GetComponent<WorldBoundItemView>();
                 itemView.BindReference(pylon.gameObject);
                 Slots.Add(itemView);
-                itemView.onClick.AddListener(mediator.ItemViewClicked);
             }
 
             Slots.Sort((x, y) => x.transform.localPosition.x.CompareTo(y.transform.localPosition.x));

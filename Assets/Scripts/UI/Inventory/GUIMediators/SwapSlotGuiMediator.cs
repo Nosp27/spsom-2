@@ -1,14 +1,15 @@
+using System.Collections.Generic;
 using UI.Inventory.ItemViewOrganizers;
 using UI.Inventory.ItemViews;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UI.Inventory
+namespace UI.Inventory.GUIMediators
 {
-    public class SlotGuiMediator : MonoBehaviour
+    public class SwapSlotGuiMediator : MonoBehaviour
     {
         [SerializeField] private AbstractSlotCanvasOrganizer[] organizers;
-        [SerializeField] private InventorySyncListener listener;
+        [SerializeField] private Transform itemContainersRoot;
 
         [SerializeField] private bool allowSelectEmpty;
 
@@ -26,17 +27,18 @@ namespace UI.Inventory
 
         public void Run()
         {
-            listener.Run();
             foreach (AbstractSlotCanvasOrganizer organizer in organizers)
             {
                 organizer.gameObject.SetActive(true);
-                organizer.Arrange(this);
+                organizer.Arrange();
+                organizer.SetClickListener(ItemViewClicked);
             }
+            DumpToUI();
         }
 
         public void Stop()
         {
-            listener.End();
+            DumpToInventory();
             foreach (AbstractSlotCanvasOrganizer organizer in organizers)
                 organizer.gameObject.SetActive(false);
         }
@@ -65,7 +67,7 @@ namespace UI.Inventory
             }
         }
 
-        public void ItemViewClicked(ItemView itemView)
+        void ItemViewClicked(ItemView itemView)
         {
             if (viewFrom == null)
             {
@@ -97,6 +99,37 @@ namespace UI.Inventory
 
                 viewFrom.UnHighlight();
                 viewFrom = null;
+            }
+        }
+        
+        void DumpToUI()
+        {
+            List<InventoryItem> items = GameController.Current.Inventory.InventoryItems;
+        
+            ItemView[] inventoryItemViews = itemContainersRoot.GetComponentsInChildren<ItemView>();
+        
+            int size = Mathf.Min(inventoryItemViews.Length, items.Count);
+        
+            for(int i = 0; i < size; i++)
+                inventoryItemViews[i].PlaceItem(items[i]);
+        }
+
+        void DumpToInventory()
+        {
+            List<InventoryItem> items = GameController.Current.Inventory.InventoryItems;
+        
+            ItemView[] inventoryItemViews = itemContainersRoot.GetComponentsInChildren<ItemView>();
+
+            int size = inventoryItemViews.Length;
+            items.Clear();
+        
+            for (int i = 0; i < size; i++)
+            {
+                InventoryItem itemToAdd = inventoryItemViews[i].GetItem();
+                if (itemToAdd == null)
+                    continue;
+                items.Add(itemToAdd);
+                inventoryItemViews[i].RemoveItem();
             }
         }
     }

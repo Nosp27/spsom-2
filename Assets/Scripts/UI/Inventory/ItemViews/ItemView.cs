@@ -50,7 +50,7 @@ namespace UI.Inventory.ItemViews
             onClick.Invoke(this);
         }
 
-        public InventoryItem GetItem()
+        public virtual InventoryItem GetItem()
         {
             LazyInit();
             return itemContainer.GetItem()?.GetComponent<InventoryItem>();

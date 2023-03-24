@@ -1,4 +1,4 @@
-using UI.Inventory;
+using UI.Inventory.GUIMediators;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,22 +6,12 @@ namespace GameControl.StateMachine.GameControlStates
 {
     public class Inventory : MonoBehaviour, IState
     {
-        [SerializeField] private SlotGuiMediator inventoryGuiMediator;
+        [SerializeField] private MultiSelectGUIMediator inventoryGuiMediator;
         [SerializeField] private GameObject hudCanvas;
         private CameraController camC;
 
         public void Tick()
         {
-            if (Gamepad.current != null)
-            {
-                int delta = 0;
-                if (Gamepad.current.rightShoulder.isPressed)
-                    delta = 1;
-                if (Gamepad.current.leftShoulder.isPressed)
-                    delta = -1;
-                if (delta != 0)
-                    inventoryGuiMediator.SwitchTab(delta);
-            }
         }
 
         public void OnEnter()
@@ -43,12 +33,7 @@ namespace GameControl.StateMachine.GameControlStates
                 zoomController.enabled = !targetMode;
             if (targetMode)
             {
-                camC.Zoom = 0.45f;
                 inventoryGuiMediator.Run();
-                if (Gamepad.current == null)
-                    inventoryGuiMediator.UnfreezeAllTabs();
-                else
-                    inventoryGuiMediator.SwitchTab(0);
             }
             else
             {
