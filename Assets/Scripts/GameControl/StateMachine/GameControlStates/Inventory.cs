@@ -1,12 +1,12 @@
-using UI.Inventory.GUIMediators;
+using System;
+using UI.Inventory;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace GameControl.StateMachine.GameControlStates
 {
     public class Inventory : MonoBehaviour, IState
     {
-        [SerializeField] private MultiSelectGUIMediator inventoryGuiMediator;
+        [SerializeField] private InventoryGui gui;
         [SerializeField] private GameObject hudCanvas;
         private CameraController camC;
 
@@ -27,17 +27,18 @@ namespace GameControl.StateMachine.GameControlStates
         void SwitchInventoryMode(bool targetMode)
         {
             hudCanvas.SetActive(!targetMode);
+
             camC = FindObjectOfType<CameraController>();
             var zoomController = camC.GetComponent<CameraZoomControl>();
             if (zoomController)
                 zoomController.enabled = !targetMode;
             if (targetMode)
             {
-                inventoryGuiMediator.Run();
+                gui.Run();
             }
             else
             {
-                inventoryGuiMediator.Stop();
+                gui.Stop();
             }
 
             GameController.Current.SwitchCursorControl(!targetMode);

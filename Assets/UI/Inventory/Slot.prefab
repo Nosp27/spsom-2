@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 7706987672937756172}
   - component: {fileID: 7706987672937756175}
   - component: {fileID: 7706987672937756174}
-  - component: {fileID: 8010859426653820671}
-  - component: {fileID: 7376998933196709053}
+  - component: {fileID: 2493774043821153108}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8010859426653820671
+--- !u!114 &2493774043821153108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,25 +131,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7706987672937756168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b8b8b6dd50245db8934e66c33fd32c, type: 3}
+  m_Script: {fileID: 11500000, guid: 81850aab92d046fdb699007b9dc4a4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
-  inverseOccupied: 1
---- !u!114 &7376998933196709053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706987672937756168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46050cf606caf4f1db4921cc972f2fb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  itemImage: {fileID: 5253679476450666106}
+  isHighlighted: 0
 --- !u!1 &7739884061772828892
 GameObject:
   m_ObjectHideFlags: 0

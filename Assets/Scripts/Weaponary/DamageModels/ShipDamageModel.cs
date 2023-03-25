@@ -48,17 +48,9 @@ public class ShipDamageModel : DamageModel
         debrisMesh.SetActive(true);
     }
 
-    IEnumerator Vibrate(float l, float r, float duration)
-    {
-        Gamepad.current.SetMotorSpeeds(l, r);
-        yield return new WaitForSeconds(duration);
-        Gamepad.current.SetMotorSpeeds(0, 0);
-    }
-
     public override void GetDamage(BulletHitDTO hit)
     {
         base.GetDamage(hit);
-        StartCoroutine(Vibrate(0.1f, 0.1f, 0.3f));
 
         if (hit.Damage < 0)
         {
