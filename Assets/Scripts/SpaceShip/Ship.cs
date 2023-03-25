@@ -27,6 +27,8 @@ public class Ship : MonoBehaviour
     public UnityEvent OnWeaponSelect = new UnityEvent();
     public UnityEvent OnWeaponMutate = new UnityEvent();
 
+    private float throttleCutoff = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -94,11 +96,12 @@ public class Ship : MonoBehaviour
         TurnAt();
     }
 
-    public void Move(Vector3 target)
+    public void Move(Vector3 target, float throttleCutoff=1)
     {
         if (!Alive)
             return;
 
+        this.throttleCutoff = throttleCutoff;
         MoveAim = new Vector3(target.x, transform.position.y, target.z);
     }
 
@@ -193,7 +196,8 @@ public class Ship : MonoBehaviour
         currentThrottle =
             1f / (1f + Mathf.Tan(Mathf.Deg2Rad * Vector3.Angle(transform.forward, point - transform.position)));
 
-        currentThrottle = Mathf.Clamp01(currentThrottle);
+        currentThrottle = Mathf.Clamp(currentThrottle, 0, throttleCutoff);
+        
         TurnAt(false);
         Vector3 moveVector = transform.forward;
         moveVector.y = transform.position.y;

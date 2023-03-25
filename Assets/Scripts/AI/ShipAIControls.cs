@@ -15,7 +15,7 @@ namespace AI
             m_CA = GetComponent<CollisionAvoidance>();
         }
 
-        public void MoveAt(Vector3 point)
+        public void MoveAt(Vector3 point, float throttleCutoff=1)
         {
             if (point != Vector3.zero)
             {
@@ -29,11 +29,11 @@ namespace AI
 
             if (m_AvoidPoint == Vector3.zero)
             {
-                thisShip.Move(point);
+                thisShip.Move(point, throttleCutoff);
             }
             else
             {
-                thisShip.Move(m_AvoidPoint);
+                thisShip.Move(m_AvoidPoint, throttleCutoff);
             }
         }
 

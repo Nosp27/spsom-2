@@ -7,7 +7,8 @@ namespace AI.States
         [SerializeField] private float minMoveRange;
         [SerializeField] private float maxMoveRange;
         [SerializeField] private float angleDeviation;
-    
+        [SerializeField] private float throttleCutoff = 1;
+
         private Ship m_ThisShip;
         private Vector3 m_AnywhereMovePoint;
 
@@ -15,12 +16,13 @@ namespace AI.States
         {
             if (!m_ThisShip.IsMoving())
                 m_AnywhereMovePoint = Vector3.zero;
-        
+
             if (m_AnywhereMovePoint == Vector3.zero)
             {
                 m_AnywhereMovePoint = CreateMoveTarget();
             }
-            ShipAIControls.MoveAt(m_AnywhereMovePoint);
+
+            ShipAIControls.MoveAt(m_AnywhereMovePoint, throttleCutoff);
         }
 
         public override void OnEnter()
@@ -32,7 +34,6 @@ namespace AI.States
 
         public override void OnExit()
         {
-        
         }
 
         private Vector3 CreateMoveTarget()
