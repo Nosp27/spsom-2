@@ -48,7 +48,7 @@ MonoBehaviour:
   sfxEmitter: {fileID: 7605259488838497871}
   shootMode: 0
   bulletPrefab: {fileID: 8697747541973261789, guid: 75ea05b28c54a47289ebd22e9d77e7ee, type: 3}
-  BulletSpeed: 50
+  BulletSpeed: 350
   BulletMaxDistance: 120
   FireRate: 300
   DamageBuff: 1
