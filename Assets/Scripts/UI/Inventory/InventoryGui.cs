@@ -18,6 +18,8 @@ namespace UI.Inventory
 
         private Dictionary<ItemView, ModulePylon> itemModuleMapping;
 
+        private bool isRunning;
+
         private void Awake()
         {
             itemModuleMapping = new Dictionary<ItemView, ModulePylon>();
@@ -40,6 +42,7 @@ namespace UI.Inventory
 
         public void Run()
         {
+            isRunning = true;
             cg.alpha = 1;
             cg.interactable = true;
             cg.blocksRaycasts = true;
@@ -47,6 +50,7 @@ namespace UI.Inventory
 
         public void Stop()
         {
+            isRunning = false;
             Submit();
             cg.alpha = 0;
             cg.interactable = false;
@@ -102,6 +106,8 @@ namespace UI.Inventory
 
         private void Click(ItemView itemView)
         {
+            if (!isRunning)
+                return;
             if (itemView.content == null)
                 return;
             

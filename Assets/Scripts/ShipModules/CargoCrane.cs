@@ -110,6 +110,7 @@ public class CargoCrane : MonoBehaviour
 
     private void Grab(GameObject prefab)
     {
+        print("Grab");
         if (!m_AttachedInventory)
             return;
         

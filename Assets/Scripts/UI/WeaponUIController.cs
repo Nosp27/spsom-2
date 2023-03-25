@@ -30,7 +30,7 @@ public class WeaponUIController : MonoBehaviour
         }
         else
         {
-            weapons = new List<WeaponUISlot>();     
+            weapons = new List<WeaponUISlot>();
         }
         
         foreach (Weapon w in ship.Weapons)

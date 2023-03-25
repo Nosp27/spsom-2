@@ -9229,6 +9229,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1196475529}
     m_Modifications:
+    - target: {fileID: 2493774043821153108, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
+      propertyPath: colorTransitionTime
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493774043821153108, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
+      propertyPath: hoveredHighlightedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493774043821153108, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
+      propertyPath: hoveredHighlightedColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493774043821153108, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
+      propertyPath: hoveredHighlightedColor.r
+      value: 0.39133477
+      objectReference: {fileID: 0}
     - target: {fileID: 7706987672937756168, guid: 0dd24ca619e8d4ac8b98e46d9d80a3a6, type: 3}
       propertyPath: m_Name
       value: 1

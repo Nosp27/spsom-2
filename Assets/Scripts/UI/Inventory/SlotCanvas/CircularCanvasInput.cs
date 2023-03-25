@@ -11,7 +11,7 @@ namespace UI.Inventory.SlotCanvas
         public ItemView[] itemViews { get; private set; }
         private Vector2[] buttonDirections;
         private int currentHighlighted;
-        
+
         // Only for visuals - not to select same button every frame
         private ItemView lastHover;
 
@@ -36,9 +36,13 @@ namespace UI.Inventory.SlotCanvas
         {
             ItemView newHover = ResolveGamepadHover();
 
-            if (newHover != null && lastHover != newHover)
+            if (lastHover != newHover)
             {
+                if (lastHover != null)
+                    lastHover.UnHover();
                 lastHover = newHover;
+                if (lastHover != null)
+                    lastHover.Hover();
             }
 
             if (Gamepad.current != null && Gamepad.current.aButton.wasPressedThisFrame && lastHover != null)
@@ -50,7 +54,6 @@ namespace UI.Inventory.SlotCanvas
 
         ItemView ResolveGamepadHover()
         {
-            Vector2 offset = (Vector2) transform.position + new Vector2(30, 20);
             if (Gamepad.current == null)
                 return null;
 
@@ -62,12 +65,9 @@ namespace UI.Inventory.SlotCanvas
             if (inputVector == Vector2.zero)
                 return null;
 
-            Debug.DrawRay(offset, inputVector * 100, Color.blue);
-
             for (int i = 0; i < buttonDirections.Length; i++)
             {
                 float projection = Utils.Projection(inputVector, buttonDirections[i]);
-                Debug.DrawRay(offset, buttonDirections[i] * 100, Color.yellow);
                 if (projection > maxProjection)
                 {
                     maxProjection = projection;
@@ -77,9 +77,6 @@ namespace UI.Inventory.SlotCanvas
 
             if (maxProjectionIdx == -1)
                 throw new Exception("Projection not found");
-
-            if (lastHover == itemViews[maxProjectionIdx])
-                return null;
 
             return itemViews[maxProjectionIdx];
         }
