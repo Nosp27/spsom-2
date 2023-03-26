@@ -15,6 +15,7 @@ namespace ShipModules
             content = module;
             content.transform.SetParent(transform);
             content.transform.localPosition = Vector3.zero;
+            content.transform.localRotation = Quaternion.identity;
             content.SetActive(true);
         }
     

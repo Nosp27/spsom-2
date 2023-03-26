@@ -50,16 +50,12 @@ namespace UI.Inventory
 
         public void Stop()
         {
+            if (cg == null)
+                cg = GetComponent<CanvasGroup>();
             isRunning = false;
-            Submit();
             cg.alpha = 0;
             cg.interactable = false;
             cg.blocksRaycasts = false;
-        }
-
-        private void Submit()
-        {
-            
         }
 
         private void AddItem(InventoryItem item)

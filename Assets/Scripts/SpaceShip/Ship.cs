@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,14 +32,15 @@ public class Ship : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        ScanWeaponary();
         isPlayerShip = gameObject.CompareTag("PlayerShip");
-        HasGunnery = Weapons.Count > 0;
         engineBalancer = GetComponent<EngineBalancer>();
         Alive = true;
         rb = GetComponent<Rigidbody>();
+        yield return new WaitForEndOfFrame();
+        ScanWeaponary();
+        HasGunnery = Weapons.Count > 0;
     }
 
     public void SelectWeapon(int i)

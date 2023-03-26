@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -12,39 +13,45 @@ public class Turret : MonoBehaviour
     [SerializeField] float[] HorizontalLimits;
     [SerializeField] float[] VerticalLimits;
 
+    [SerializeField] private Transform aimingPivot; 
+
     public GameObject AimingRay;
-    [SerializeField] private float _TestLookVectorAngle;
 
     //For Debug
     [SerializeField] GameObject target;
 
     public void Aim(Vector3 point)
     {
-        Transform sourceTransform = VerticalDrive;
-        Vector3 lookVector = point - sourceTransform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(lookVector);
+        Vector3 lookVectorHorizontal = aimingPivot.InverseTransformPoint(point);
+        lookVectorHorizontal.y = 0;
+        
+        Vector3 lookVectorVertical = aimingPivot.InverseTransformPoint(point);
+        lookVectorVertical.x = 0;
 
-        float horAngle = targetRotation.eulerAngles.y - transform.rotation.eulerAngles.y;
-        float verAngle = targetRotation.eulerAngles.x - sourceTransform.rotation.eulerAngles.x;
+        Quaternion targetRotationHorizontal = Quaternion.LookRotation(lookVectorHorizontal);
+        Quaternion targetRotationVertical = Quaternion.LookRotation(lookVectorVertical);
 
-        horAngle = NormalizeAngle(horAngle);
-        verAngle = NormalizeAngle(verAngle);
-
-        horAngle = Mathf.Clamp(horAngle, HorizontalLimits[0], HorizontalLimits[1]);
-        verAngle = Mathf.Clamp(verAngle, -VerticalLimits[0], -VerticalLimits[1]);
-
-        Quaternion hTargetRotation = Quaternion.Euler(0, horAngle, 0);
-        Quaternion vTargetRotation = Quaternion.Euler(verAngle, 0, 0);
-        HorizontalDrive.localRotation = Quaternion.RotateTowards(HorizontalDrive.localRotation, hTargetRotation,
+        Quaternion rotationStepHorizontal = Quaternion.RotateTowards(HorizontalDrive.localRotation, targetRotationHorizontal,
             Time.deltaTime * HorizontalSpeed);
-        VerticalDrive.localRotation =
-            Quaternion.RotateTowards(VerticalDrive.localRotation, vTargetRotation, VerticalSpeed * Time.deltaTime);
+
+        Quaternion rotationStepVertical = Quaternion.RotateTowards(VerticalDrive.localRotation, targetRotationVertical,
+            Time.deltaTime * VerticalSpeed);
+        rotationStepVertical = Quaternion.Euler(rotationStepVertical.eulerAngles.x, 0, 0);
+
+        Quaternion staticPartRotation = aimingPivot.localRotation;
+        float finalHorizontalDeviation = Quaternion.Angle(staticPartRotation, rotationStepHorizontal);
+        float finalVerticalDeviation = Quaternion.Angle(staticPartRotation, rotationStepVertical);
+
+        if (finalHorizontalDeviation > HorizontalLimits[0] && finalHorizontalDeviation < HorizontalLimits[1])
+            HorizontalDrive.localRotation = rotationStepHorizontal;
+        
+        if (finalVerticalDeviation > -VerticalLimits[0] && finalVerticalDeviation < -VerticalLimits[1])
+            VerticalDrive.localRotation = rotationStepVertical;
     }
 
     public bool Aimed(Vector3 point)
     {
         Vector3 lookVector = point - VerticalDrive.position;
-        _TestLookVectorAngle = Vector3.Angle(VerticalDrive.transform.forward, lookVector);
         return Vector3.Angle(VerticalDrive.transform.forward, lookVector) < 5f;
     }
 
@@ -52,11 +59,5 @@ public class Turret : MonoBehaviour
     {
         if (AimingRay != null)
             AimingRay.SetActive(false);
-    }
-
-    float NormalizeAngle(float angle)
-    {
-        angle -= Mathf.Floor(angle / 360f) * 360;
-        return angle > 180 ? angle - 360 : angle;
     }
 }

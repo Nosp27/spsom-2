@@ -283,7 +283,7 @@ Transform:
   - {fileID: 1667061772855758793}
   - {fileID: 4109014977048145993}
   m_Father: {fileID: 4453140797019954587}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4103266637396754111
 GameObject:
@@ -318,6 +318,36 @@ Transform:
   m_Father: {fileID: 7635675569134783422}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6209981239235115628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5805954351777945892}
+  m_Layer: 0
+  m_Name: AimingPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5805954351777945892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6209981239235115628}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.17, z: -0.014}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4453140797019954587}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6915561165781242127
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +378,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5805954351777945892}
   - {fileID: 746771683427000689}
   - {fileID: 7635675569134783422}
   - {fileID: 7555890482292720329}
@@ -376,8 +407,8 @@ MonoBehaviour:
   VerticalLimits:
   - 50
   - -50
+  aimingPivot: {fileID: 5805954351777945892}
   AimingRay: {fileID: 1174180372}
-  _TestLookVectorAngle: 0
   target: {fileID: 0}
 --- !u!114 &1591706674
 MonoBehaviour:
@@ -436,7 +467,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4453140797019954587}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7605259488838497871
 MonoBehaviour:
@@ -477,7 +508,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b1edc9bb9bb3c40f5ad68cacaf07b31d, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1edc9bb9bb3c40f5ad68cacaf07b31d, type: 3}
       propertyPath: m_LocalPosition.x
