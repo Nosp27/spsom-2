@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using AI;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,13 +35,13 @@ public class CameraZoomControl : MonoBehaviour
         float m = Mouse.current.scroll.ReadValue().y;
         if (m == 0)
             return;
-        float zoom = cam.Zoom; 
+        float zoom = cam.Zoom;
         zoom += m;
         zoom = Mathf.Clamp(zoom, 0.1f, 5);
         cam.Zoom = zoom;
         autoZoomFreeze = autoZoomFreezeTimeout;
     }
-    
+
     void ProcessAutoZoom()
     {
         if (autoZoomFreeze > 0)
@@ -51,7 +49,7 @@ public class CameraZoomControl : MonoBehaviour
             autoZoomFreeze -= Time.deltaTime;
             return;
         }
-        
+
         float newZoom = Mathf.Max(AutoZoomForMovementDistance(), AutoZoomForEnemies());
         if (newZoom > 0.05)
             cam.Zoom = newZoom;
@@ -63,11 +61,12 @@ public class CameraZoomControl : MonoBehaviour
             return zoomCurve.Evaluate((m_PlayerShip.MoveAim - m_PlayerShip.transform.position).magnitude);
         return 0;
     }
-    
+
     float AutoZoomForEnemies()
     {
         if (PlayerEnemyDetector.Enemy != null)
-            return zoomCurve.Evaluate((PlayerEnemyDetector.Enemy.transform.position - m_PlayerShip.transform.position).magnitude);
+            return zoomCurve.Evaluate((PlayerEnemyDetector.Enemy.transform.position - m_PlayerShip.transform.position)
+                .magnitude);
         return 0;
     }
 }

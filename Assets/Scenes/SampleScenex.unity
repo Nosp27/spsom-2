@@ -2348,7 +2348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886369, guid: da2c6f4da03014687a89bfeeb3ffbdd1, type: 3}
       propertyPath: Power
-      value: 6000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886369, guid: da2c6f4da03014687a89bfeeb3ffbdd1, type: 3}
       propertyPath: LinearSpeed
@@ -2356,7 +2356,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886369, guid: da2c6f4da03014687a89bfeeb3ffbdd1, type: 3}
       propertyPath: RotationSpeed
-      value: 3
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270728649305886369, guid: da2c6f4da03014687a89bfeeb3ffbdd1, type: 3}
+      propertyPath: softerMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8270728649305886370, guid: da2c6f4da03014687a89bfeeb3ffbdd1, type: 3}
       propertyPath: m_Drag
@@ -3174,7 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Zoom: 1
-  followRotation: 0
+  followRotation: 1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ namespace GameControl.StateMachine.GameControlStates
             hudCanvas.SetActive(!targetMode);
 
             camC = FindObjectOfType<CameraController>();
+            camC.HoldTopView(targetMode);
             var zoomController = camC.GetComponent<CameraZoomControl>();
             if (zoomController)
                 zoomController.enabled = !targetMode;
