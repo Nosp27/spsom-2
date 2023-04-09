@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.blendernodesgraph.core": {
+      "version": "https://github.com/Warwlock/blender-nodes-subgraph.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "5d61d3facb08e2f7230a166d90fee260dfaf1ca3"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -46,6 +53,15 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.5.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {

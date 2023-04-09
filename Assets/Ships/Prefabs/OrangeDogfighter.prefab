@@ -727,8 +727,8 @@ MonoBehaviour:
   VerticalLimits:
   - 50
   - -50
+  aimingPivot: {fileID: 5695712212534701092}
   AimingRay: {fileID: 8270728648813454251}
-  _TestLookVectorAngle: 0
   target: {fileID: 0}
 --- !u!114 &8270728648928998797
 MonoBehaviour:
@@ -1376,6 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62e924629895419a8b050aa90807e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throttleCutoff: 1
 --- !u!1 &8270728648017024636
 GameObject:
   m_ObjectHideFlags: 0
@@ -25699,6 +25700,7 @@ MonoBehaviour:
   detectionMethod: 0
   discoveryRange: 300
   loseRange: 500
+  seekNearest: 1
 --- !u!114 &8270728649305886378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59484,6 +59486,7 @@ MonoBehaviour:
   minMoveRange: 40
   maxMoveRange: 100
   angleDeviation: 30
+  throttleCutoff: 1
 --- !u!1 &8343364110343014981
 GameObject:
   m_ObjectHideFlags: 0
