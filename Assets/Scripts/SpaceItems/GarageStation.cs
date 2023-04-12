@@ -95,10 +95,9 @@ public class GarageStation : MonoBehaviour
     IEnumerator TransferShipToDropoffPoint(Transform ship)
     {
         Vector3 way;
-        Ship shipComp = ship.GetComponent<Ship>();
         do
         {
-            float deliverySpeed = shipComp.LinearSpeed;
+            float deliverySpeed = 3f;
             way = (dropoffPoint.position - ship.position);
             ship.position += way.normalized * deliverySpeed * Time.deltaTime;
             yield return new WaitForSeconds(0);

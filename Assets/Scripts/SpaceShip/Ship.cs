@@ -1,26 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SpaceShip.ShipServices;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Ship : MonoBehaviour
 {
+    [SerializeField] private MovementConfig movementConfig;
+    public float LinearSpeed => movementConfig.LinearSpeed;
+    
+    [Header("Weapons")]
     public bool HasGunnery;
-    public float LinearSpeed = 3f;
-    public float RotationSpeed = 3f;
-    public float Power = 30f;
-    private EngineBalancer engineBalancer;
-    private Camera currentCamera;
-    public Vector3 MoveAim { get; private set; }
-    public float currentThrottle { get; private set; }
-    public bool Alive;
     public List<Weapon> Weapons;
-    private Vector3 TurnTarget;
     public bool isPlayerShip;
-    [SerializeField] private float softerMultiplier = 1;
-    private Rigidbody rb;
-    private float lastAngle;
+
+    public Vector3 MoveAim => m_MovementService.MoveAim;
+    public float currentThrottle => m_MovementService.CurrentThrottle;
+    public bool Alive { get; private set; }
+
+    private Camera currentCamera;
 
     [SerializeField] private bool useAllWeapons = true;
 
@@ -28,16 +27,17 @@ public class Ship : MonoBehaviour
     public UnityEvent OnWeaponSelect = new UnityEvent();
     public UnityEvent OnWeaponMutate = new UnityEvent();
 
-    private float throttleCutoff = 1;
+    private MovementService m_MovementService;
 
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
         isPlayerShip = gameObject.CompareTag("PlayerShip");
-        engineBalancer = GetComponent<EngineBalancer>();
         Alive = true;
-        rb = GetComponent<Rigidbody>();
+        
+        m_MovementService = new MovementService(transform, movementConfig);
+        
         yield return new WaitForEndOfFrame();
         ScanWeaponary();
         HasGunnery = Weapons.Count > 0;
@@ -52,50 +52,11 @@ public class Ship : MonoBehaviour
         }
     }
 
-    public void ScanWeaponary()
-    {
-        Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
-        OnWeaponMutate.Invoke();
-        SelectWeapon(SelectedWeaponIndex);
-    }
-
-    void Die()
-    {
-        Alive = false;
-    }
-
-    private void FixedUpdate()
-    {
-        if (Alive)
-        {
-            if (MoveAim != Vector3.zero)
-            {
-                MoveStep();
-            }
-            else if (TurnTarget != Vector3.zero)
-            {
-                TurnAt();
-            }
-        }
-    }
-
     public void TurnOnPlace(Vector3 target)
     {
         if (!Alive)
             return;
-
-        Vector3 distance = target - transform.position;
-        if (distance.magnitude < 1)
-            return;
-
-        if (MoveAim.magnitude > 0)
-        {
-            TurnTarget = Vector3.zero;
-            return;
-        }
-
-        TurnTarget = target;
-        TurnAt();
+        m_MovementService.TurnOnPlace(target);
     }
 
     public void Move(Vector3 target, float throttleCutoff = 1)
@@ -103,40 +64,20 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
-        this.throttleCutoff = throttleCutoff;
-        MoveAim = new Vector3(target.x, transform.position.y, target.z);
+        m_MovementService.Move(target, throttleCutoff);
     }
 
     public bool IsMoving()
     {
-        return MoveAim != Vector3.zero;
-    }
-
-    public bool IsDifferentMovePoint(Vector3 otherMovePoint)
-    {
-        // If cancelling movement, do not consider it as different move point
-        if (otherMovePoint == Vector3.zero)
+        if (!Alive)
             return false;
 
-        // If current move point is zero, any other is different
-        if (MoveAim == Vector3.zero)
-        {
-            return true;
-        }
-
-        // If points are near, say they are not different
-        if ((MoveAim - otherMovePoint).magnitude < 1f)
-        {
-            return false;
-        }
-
-        return true;
+        return m_MovementService.IsMoving();
     }
 
     public void CancelMovement()
     {
-        MoveAim = Vector3.zero;
-        currentThrottle = 0;
+        m_MovementService.CancelMovement();
     }
 
     public void Fire(Vector3 cursor)
@@ -171,65 +112,24 @@ public class Ship : MonoBehaviour
         return CheckAnyForUsedWeapon_s(x => x.Aimed());
     }
 
-
-    void MoveStep()
+    public void ScanWeaponary()
     {
-        Vector3 point = MoveAim;
-        if (point.magnitude == 0)
-        {
-            currentThrottle = 0;
-            return;
-        }
-
-
-        if ((point - transform.position).magnitude < 9f)
-        {
-            MoveAim = Vector3.zero;
-            currentThrottle = 0;
-            TurnTarget = transform.position + transform.forward * 10;
-            TurnTarget.y = transform.position.y;
-            return;
-        }
-
-        // With angle correction throttle adds up
-        // currentThrottle =
-        //     Mathf.Pow(Mathf.Cos(Mathf.Deg2Rad * Vector3.Angle(transform.forward, point - transform.position)), 2);
-
-        currentThrottle =
-            1f / (1f + Mathf.Tan(Mathf.Deg2Rad * Vector3.Angle(transform.forward, point - transform.position)));
-
-        currentThrottle = Mathf.Clamp(currentThrottle, 0, throttleCutoff);
-
-        TurnAt(false);
-        Vector3 moveVector = transform.forward;
-        moveVector.y = transform.position.y;
-        // transform.position += moveVector * Time.deltaTime * LinearSpeed * currentThrottle;
-        if (rb.velocity.magnitude < LinearSpeed)
-            rb.AddForce(moveVector * Time.deltaTime * Power * currentThrottle *
-                        Mathf.Clamp01((point - transform.position).magnitude / 80f));
+        Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
+        OnWeaponMutate.Invoke();
+        SelectWeapon(SelectedWeaponIndex);
     }
 
-    public void TurnAt(bool lerp = true)
+    void Die()
     {
-        Vector3 point = MoveAim == Vector3.zero ? TurnTarget : MoveAim;
-        Quaternion currentRotation = rb.rotation;
-        Quaternion targetRotation = Quaternion.LookRotation(point - rb.position, Vector3.up);
-        float angle = Quaternion.Angle(currentRotation, targetRotation);
+        Alive = false;
+    }
 
-        if (engineBalancer != null)
-            engineBalancer.BalanceEnginePower(currentThrottle, point, angle);
-
-        if (angle > 30)
+    private void FixedUpdate()
+    {
+        if (Alive)
         {
-            float rollAngle = angle > 60 ? 20 : 12;
-            float left = Utils.Projection(point - rb.position, transform.right) > 0 ? -1 : 1;
-            targetRotation = Quaternion.AngleAxis(rollAngle * left, transform.forward) * targetRotation;
+            m_MovementService.Tick();
         }
-
-        Quaternion rotStep =
-            Quaternion.SlerpUnclamped(currentRotation, targetRotation, Time.deltaTime * RotationSpeed);
-        lastAngle = Quaternion.Angle(currentRotation, rotStep);
-        rb.rotation = rotStep;
     }
 
     private void DoForUsedWeapon_s(Action<Weapon> func)
