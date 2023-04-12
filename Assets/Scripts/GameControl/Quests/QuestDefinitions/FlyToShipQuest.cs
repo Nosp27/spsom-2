@@ -13,21 +13,21 @@ public class FlyToShipQuest : BaseQuest
             UINotification.Add(notificationManager, "Set up turret and destroy an enemy ship");
 
 
-        IState flyToShipState = new LambdaState(
+        IState flyToShipState = LambdaState.create.WithEnterActions(
             () => notificationManager.RegisterNotification(flyToShipNotification),
             () => SetMarker(locationManager.QuestLocations["SHIP"].transform)
         );
-        IState grabItemState = new LambdaState(
+        IState grabItemState = LambdaState.create.WithEnterActions(
             () => notificationManager.RemoveNotification(flyToShipNotification, true),
             () => notificationManager.RegisterNotification(grabItemNotification),
                 () => SetMarker(QuestItemTransform("LOOT"))
         );
-        IState shootShipState = new LambdaState(
+        IState shootShipState = LambdaState.create.WithEnterActions(
             () => notificationManager.RemoveNotification(grabItemNotification, true),
             () => notificationManager.RegisterNotification(shootShipNotification),
             () => SetMarker(QuestItemTransform("ENEMY_SHIP"))
         );
-        IState questComplete = new LambdaState(
+        IState questComplete = LambdaState.create.WithEnterActions(
             () => notificationManager.RemoveNotification(shootShipNotification, true),
             Complete,
             () => SetMarker(null)
