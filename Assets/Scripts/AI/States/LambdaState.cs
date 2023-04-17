@@ -6,14 +6,16 @@ using UnityEngine;
 
 class LambdaState : IState
 {
+    public readonly string name;
     private Action[] m_EnterActions;
     private Action[] m_TickActions;
     private Action[] m_ExitActions;
 
-    public static LambdaState create => new LambdaState();
+    public static LambdaState New(string name="Sample State") => new LambdaState(name);
 
-    private LambdaState()
+    private LambdaState(string name)
     {
+        this.name = name;
     }
 
     public LambdaState WithEnterActions(params Action[] actions)

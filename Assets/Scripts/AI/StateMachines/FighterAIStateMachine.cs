@@ -8,10 +8,6 @@ namespace AI
 {
     public class FighterAIStateMachine : MonoBehaviour
     {
-        [SerializeField] private BaseShipAIState TestCurrentState;
-        [SerializeField] private bool TestSD;
-        [SerializeField] private string TestTransitionDescription;
-
         [SerializeField] private BaseShipAIState noopState;
         [SerializeField] private BaseShipAIState randomFlightState;
         [SerializeField] private BaseShipAIState chaseState;
@@ -49,9 +45,6 @@ namespace AI
 
         private void Update()
         {
-            TestCurrentState = (BaseShipAIState) m_MovementStateMachine.CurrentState;
-            TestTransitionDescription = m_MovementStateMachine.firedTransition;
-
             SetTriggers();
             m_MovementStateMachine.Tick();
             m_AttackStateMachine.Tick();

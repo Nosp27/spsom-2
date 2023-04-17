@@ -10,7 +10,6 @@ namespace GameControl.StateMachine
     }
     public class StateMachine
     {
-        public string firedTransition = "";
         public IState CurrentState { get; private set; }
         private IState InitialState;
         private Dictionary<Type, List<Transition>> TransitionsMapping = new Dictionary<Type, List<Transition>>();
@@ -22,6 +21,21 @@ namespace GameControl.StateMachine
         {
             this.anyStatePriority = anyStatePriority;
             TransitionsMapping[typeof(AnyState)] = new List<Transition>();
+        }
+
+        public HashSet<IState> GetAllStates()
+        {
+            HashSet<IState> states = new HashSet<IState>();
+            foreach (var transitions in TransitionsMapping.Values)
+            {
+                foreach (var transition in transitions)
+                {
+                    states.Add(transition.From);
+                    states.Add(transition.To);
+                }
+            }
+
+            return states;
         }
 
         public void AddAnyTransition(IState to, Func<bool> predicate, bool exitForSetup = true)
@@ -85,7 +99,6 @@ namespace GameControl.StateMachine
             {
                 if (transition.IsFiring())
                 {
-                    firedTransition = $"{CurrentState} -> {transition.To}";
                     SetState(transition.To);
                     return;
                 }
