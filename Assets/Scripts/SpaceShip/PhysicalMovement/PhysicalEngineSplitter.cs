@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AI.NeuralNetwork;
+using SpaceShip.ShipServices;
 using UnityEngine;
 using DataRow = AI.NeuralNetwork.DataRow;
 using Random = UnityEngine.Random;
@@ -11,6 +12,9 @@ namespace SpaceShip.PhysicalMovement
 {
     public class PhysicalEngineSplitter : MonoBehaviour
     {
+        // Sentinel for not using
+        private new int transform;
+        
         [SerializeField] private float angularVelocityLimit = 2;
         [SerializeField] private float force = 50;
         [SerializeField] private float maxTorque = 300;
@@ -19,25 +23,22 @@ namespace SpaceShip.PhysicalMovement
         private PhysicalEngine[] m_Engines;
         private NeuralNet m_NN;
 
-        [SerializeField] private Transform checker;
+        private Transform movedTransform;
 
-        private void Start()
+        public void Init(Transform t, MovementConfig config)
         {
-            m_Rigidbody = GetComponent<Rigidbody>();
+            movedTransform = t;
+            m_Rigidbody = movedTransform.GetComponent<Rigidbody>();
             m_Rigidbody.maxAngularVelocity = angularVelocityLimit;
-            m_Engines = GetComponentsInChildren<PhysicalEngine>();
+            m_Engines = movedTransform.GetComponentsInChildren<PhysicalEngine>();
+            // force = config.Power;
+            // angularVelocityLimit = config.RotationSpeed;
             m_NN = FitNN(36_000);
         }
-
-        private void Update()
+        
+        public void Tick()
         {
-            Vector3 d = checker.position - transform.position;
-            d = transform.InverseTransformDirection(d).normalized;
-            double[] answer = m_NN.Compute(d.x, d.y, d.z, 0);
-            Vector3 result = CalculateForce(answer);
-            float useless = (float) (1 - result.magnitude / answer.Sum());
-            Debug.DrawRay(transform.position, result * 10, Color.blue);
-            Debug.DrawRay(transform.position + Vector3.forward * 0.1f, result.normalized * 10 * useless, Color.red);
+            
         }
 
         private NeuralNet FitNN(int maxSamplesGenerated)
@@ -83,10 +84,10 @@ namespace SpaceShip.PhysicalMovement
 
         public void ApplyDeltaV(Vector3 v)
         {
-            v = transform.InverseTransformDirection(v).normalized;
+            v = movedTransform.InverseTransformDirection(v).normalized;
             double[] throttles = m_NN.Compute(v.x, v.y, v.z, 0);
 
-            Debug.DrawRay(transform.position, CalculateForce(throttles), Color.blue);
+            Debug.DrawRay(movedTransform.position, CalculateForce(throttles), Color.blue);
 
             for (int i = 0; i < throttles.Length; i++)
             {
@@ -101,21 +102,21 @@ namespace SpaceShip.PhysicalMovement
 
         public Vector3 CalculateForce(Vector3 v, bool dry = true)
         {
-            v = transform.InverseTransformDirection(v).normalized;
+            v = movedTransform.InverseTransformDirection(v).normalized;
             Vector3 f = CalculateForce(m_NN.Compute(v.x, v.y, v.z, 0));
             if (!dry)
             {
                 f *= force;
             }
 
-            Debug.DrawRay(transform.position, f, Color.green);
+            Debug.DrawRay(movedTransform.position, f, Color.green);
             return f;
         }
 
         public void ApplyRotationTorque(Vector3 _v)
         {
-            Debug.DrawRay(transform.position, _v * 10);
-            Vector3 v = transform.InverseTransformDirection(_v).normalized;
+            Debug.DrawRay(movedTransform.position, _v * 10);
+            Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
             float angle = Vector3.SignedAngle(Vector3.forward, v, Vector3.up);
 
             if (Mathf.Abs(angle) < 0.01f)
@@ -146,8 +147,9 @@ namespace SpaceShip.PhysicalMovement
             }
         }
 
-        public Vector3 PredictFinalPointNoDrag(Vector3 f)
+        public Vector3 PredictFinalPointNoDrag()
         {
+            Vector3 f = CalculateForce(-m_Rigidbody.velocity, false);
             float v = m_Rigidbody.velocity.magnitude;
 
             if (v <= 0.1f)
@@ -156,7 +158,7 @@ namespace SpaceShip.PhysicalMovement
             float dt = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
             float dv = f.magnitude / m_Rigidbody.mass * dt;
             float sumn = v * v / (2f * dv);
-            return transform.position + m_Rigidbody.velocity.normalized * sumn * dt;
+            return movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
         }
 
         public float PredictDegreesForStop(float brakingTorque)

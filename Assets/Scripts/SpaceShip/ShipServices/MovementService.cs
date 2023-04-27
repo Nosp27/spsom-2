@@ -1,10 +1,11 @@
+using System;
 using SpaceShip.ShipServices;
 using UnityEngine;
 
-public class MovementService
+public class MovementService : ShipMovementService
 {
-    public Vector3 MoveAim { get; private set; }
-    public float CurrentThrottle { get; private set; }
+    public override Vector3 MoveAim { get; protected set; }
+    public override float CurrentThrottle { get; protected set; }
 
     private MovementConfig m_Config;
 
@@ -15,7 +16,7 @@ public class MovementService
 
     private Rigidbody rb;
 
-    public MovementService(Transform t, MovementConfig config)
+    public override void Init(Transform t, MovementConfig config)
     {
         m_Config = config;
 
@@ -24,7 +25,7 @@ public class MovementService
         m_MovedTransform = t;
     }
 
-    public void Move(Vector3 target, float throttleCutoff)
+    public override void Move(Vector3 target, float throttleCutoff)
     {
         m_ThrottleCutoff = throttleCutoff;
         MoveAim = new Vector3(target.x, m_MovedTransform.position.y, target.z);
@@ -52,7 +53,7 @@ public class MovementService
         rb.rotation = rotStep;
     }
 
-    public void TurnOnPlace(Vector3 target)
+    public override void TurnOnPlace(Vector3 target)
     {
         Vector3 distance = target - m_MovedTransform.position;
         if (distance.magnitude < 1)
@@ -68,7 +69,7 @@ public class MovementService
         TurnAt();
     }
 
-    public void CancelMovement()
+    public override void CancelMovement()
     {
         MoveAim = Vector3.zero;
         CurrentThrottle = 0;
@@ -114,7 +115,7 @@ public class MovementService
                         Mathf.Clamp01((point - position).magnitude / 80f));
     }
 
-    public void Tick()
+    public override void Tick()
     {
         if (MoveAim != Vector3.zero)
         {
@@ -126,7 +127,7 @@ public class MovementService
         }
     }
 
-    public bool IsMoving()
+    public override bool IsMoving()
     {
         return MoveAim != Vector3.zero;
     }

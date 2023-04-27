@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class Ship : MonoBehaviour
 {
     [SerializeField] private MovementConfig movementConfig;
+    [SerializeField] private ShipMovementService movementService;
     public float LinearSpeed => movementConfig.LinearSpeed;
     
     [Header("Weapons")]
@@ -15,8 +16,8 @@ public class Ship : MonoBehaviour
     public List<Weapon> Weapons;
     public bool isPlayerShip;
 
-    public Vector3 MoveAim => m_MovementService.MoveAim;
-    public float currentThrottle => m_MovementService.CurrentThrottle;
+    public Vector3 MoveAim => movementService.MoveAim;
+    public float currentThrottle => movementService.CurrentThrottle;
     public bool Alive { get; private set; }
 
     private Camera currentCamera;
@@ -27,8 +28,6 @@ public class Ship : MonoBehaviour
     public UnityEvent OnWeaponSelect = new UnityEvent();
     public UnityEvent OnWeaponMutate = new UnityEvent();
 
-    private MovementService m_MovementService;
-
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -36,7 +35,7 @@ public class Ship : MonoBehaviour
         isPlayerShip = gameObject.CompareTag("PlayerShip");
         Alive = true;
         
-        m_MovementService = new MovementService(transform, movementConfig);
+        movementService.Init(transform, movementConfig);
         
         yield return new WaitForEndOfFrame();
         ScanWeaponary();
@@ -56,7 +55,7 @@ public class Ship : MonoBehaviour
     {
         if (!Alive)
             return;
-        m_MovementService.TurnOnPlace(target);
+        movementService.TurnOnPlace(target);
     }
 
     public void Move(Vector3 target, float throttleCutoff = 1)
@@ -64,7 +63,7 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return;
 
-        m_MovementService.Move(target, throttleCutoff);
+        movementService.Move(target, throttleCutoff);
     }
 
     public bool IsMoving()
@@ -72,12 +71,12 @@ public class Ship : MonoBehaviour
         if (!Alive)
             return false;
 
-        return m_MovementService.IsMoving();
+        return movementService.IsMoving();
     }
 
     public void CancelMovement()
     {
-        m_MovementService.CancelMovement();
+        movementService.CancelMovement();
     }
 
     public void Fire(Vector3 cursor)
@@ -128,7 +127,7 @@ public class Ship : MonoBehaviour
     {
         if (Alive)
         {
-            m_MovementService.Tick();
+            movementService.Tick();
         }
     }
 
