@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace SpaceShip.PhysicalMovement
 {
-    public class PhysicalEngineSplitter : MonoBehaviour
+    public class PhysicalEngineSplitter : BaseEngineSplitter
     {
         // Sentinel for not using
         private new int transform;
@@ -25,7 +25,7 @@ namespace SpaceShip.PhysicalMovement
 
         private Transform movedTransform;
 
-        public void Init(Transform t, MovementConfig config)
+        public override void Init(Transform t, MovementConfig config)
         {
             movedTransform = t;
             m_Rigidbody = movedTransform.GetComponent<Rigidbody>();
@@ -36,7 +36,7 @@ namespace SpaceShip.PhysicalMovement
             m_NN = FitNN(36_000);
         }
         
-        public void Tick()
+        public override void Tick()
         {
             
         }
@@ -82,7 +82,7 @@ namespace SpaceShip.PhysicalMovement
             return result;
         }
 
-        public void ApplyDeltaV(Vector3 v)
+        public override void ApplyDeltaV(Vector3 v, float throttleCutoff=1f)
         {
             v = movedTransform.InverseTransformDirection(v).normalized;
             double[] throttles = m_NN.Compute(v.x, v.y, v.z, 0);
@@ -113,7 +113,7 @@ namespace SpaceShip.PhysicalMovement
             return f;
         }
 
-        public void ApplyRotationTorque(Vector3 _v)
+        public override void ApplyRotationTorque(Vector3 _v)
         {
             Debug.DrawRay(movedTransform.position, _v * 10);
             Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
@@ -136,7 +136,7 @@ namespace SpaceShip.PhysicalMovement
             }
         }
 
-        public void AngularBrake(float maxTorqueMultiplier = 1f)
+        public override void AngularBrake(float maxTorqueMultiplier = 1f)
         {
             Vector3 angularVelocity = m_Rigidbody.angularVelocity;
             if (angularVelocity.magnitude > 0.01f)
@@ -147,7 +147,7 @@ namespace SpaceShip.PhysicalMovement
             }
         }
 
-        public Vector3 PredictFinalPointNoDrag()
+        public override Vector3 PredictFinalPointNoDrag()
         {
             Vector3 f = CalculateForce(-m_Rigidbody.velocity, false);
             float v = m_Rigidbody.velocity.magnitude;
@@ -161,7 +161,7 @@ namespace SpaceShip.PhysicalMovement
             return movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
         }
 
-        public float PredictDegreesForStop(float brakingTorque)
+        public override float PredictDegreesForStop(float brakingTorque)
         {
             float av = m_Rigidbody.angularVelocity.magnitude;
             if (av < 0.01f)

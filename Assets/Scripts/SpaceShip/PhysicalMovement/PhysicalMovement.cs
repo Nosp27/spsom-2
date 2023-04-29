@@ -10,7 +10,7 @@ public class PhysicalMovement : ShipMovementService
     public override Vector3 MoveAim { get; protected set; }
     public override float CurrentThrottle { get; protected set; }
 
-    [SerializeField] private Physical4EngineSplitter engineSplitter;
+    [SerializeField] private BaseEngineSplitter engineSplitter;
 
     private Rigidbody m_Rigidbody;
 

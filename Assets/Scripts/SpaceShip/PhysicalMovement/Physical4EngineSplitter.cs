@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SpaceShip.PhysicalMovement
 {
-    public class Physical4EngineSplitter : MonoBehaviour
+    public class Physical4EngineSplitter : BaseEngineSplitter
     {
         // Sentinel for not using
         private new int transform;
@@ -28,7 +28,7 @@ namespace SpaceShip.PhysicalMovement
         private Vector3 tickDv;
         private float tickMomentum;
 
-        public void Init(Transform t, MovementConfig config)
+        public override void Init(Transform t, MovementConfig config)
         {
             movedTransform = t;
             m_Rigidbody = movedTransform.GetComponent<Rigidbody>();
@@ -316,12 +316,12 @@ namespace SpaceShip.PhysicalMovement
             return f;
         }
 
-        public void ApplyDeltaV(Vector3 dv)
+        public override void ApplyDeltaV(Vector3 dv, float throttleCuttoff=1f)
         {
             tickDv = dv;
         }
 
-        public void ApplyRotationTorque(Vector3 _v)
+        public override void ApplyRotationTorque(Vector3 _v)
         {
             Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
             float angle = Vector3.SignedAngle(Vector3.forward, v, Vector3.up);
@@ -358,7 +358,7 @@ namespace SpaceShip.PhysicalMovement
             }
         }
 
-        public void AngularBrake(float limit)
+        public override void AngularBrake(float limit)
         {
             tickMomentum = AngularBrakeTorque(limit);
         }
@@ -374,7 +374,7 @@ namespace SpaceShip.PhysicalMovement
             return 0;
         }
 
-        public Vector3 PredictFinalPointNoDrag()
+        public override Vector3 PredictFinalPointNoDrag()
         {
             Vector3 f = CalculateForce(-m_Rigidbody.velocity, 0);
             float v = m_Rigidbody.velocity.magnitude;
@@ -388,7 +388,7 @@ namespace SpaceShip.PhysicalMovement
             return movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
         }
 
-        public float PredictDegreesForStop(float brakingTorque)
+        public override float PredictDegreesForStop(float brakingTorque)
         {
             float av = m_Rigidbody.angularVelocity.magnitude;
             if (av < 0.01f)
@@ -398,7 +398,7 @@ namespace SpaceShip.PhysicalMovement
             return Mathf.Rad2Deg * av * av / (2f * dav);
         }
 
-        public void Tick()
+        public override void Tick()
         {
             ApplyImpact(tickDv, tickMomentum);
             tickDv = Vector3.zero;
