@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SpaceShip.ShipServices;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace SpaceShip.PhysicalMovement
 {
@@ -14,6 +15,11 @@ namespace SpaceShip.PhysicalMovement
         [SerializeField] private float angularVelocityLimit = 2;
         [SerializeField] private float force = 50;
         [SerializeField] private float maxTorque = 10f;
+        [SerializeField] private float pidA = 1;
+        [SerializeField] private float pidD = 1;
+        [SerializeField] private float pidDD = 0;
+        
+        [SerializeField] private Transform debugStopTarget;
 
         private Rigidbody m_Rigidbody;
         private PhysicalEngine[] m_Engines;
@@ -163,7 +169,8 @@ namespace SpaceShip.PhysicalMovement
                         $"\n{string.Join("\n", m_Engines.Select(x => x.name).Zip(result, (x, y) => (x, y)).ToArray())}");
                 }
 
-                NormalizeThrottles(result);
+                float sum = result.Sum();
+                result = result.Select(x => x / sum).ToArray();
                 return result;
             }
 
@@ -209,11 +216,11 @@ namespace SpaceShip.PhysicalMovement
 
                     if (EngineProjection(m_Engines[i]) != -totalForce)
                     {
-                        Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red);
                         continue;
                     }
 
-                    Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.green);
+                    Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red);
+                    // Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.green);
 
                     if (adjustIdx == -1 || momentum > maxAdjustMomentum)
                     {
@@ -277,7 +284,8 @@ namespace SpaceShip.PhysicalMovement
                 {
                     totalThrottles[i] = sideThrottles[i] * sideProjectionAbs + headThrottles[i] * headProjectionAbs;
                 }
-                NormalizeThrottles(totalThrottles, maxDvThrottle);
+
+                NormalizeThrottles(totalThrottles, Mathf.Min(dv.magnitude, maxDvThrottle * force));
             }
 
             if (momentum != 0)
@@ -291,8 +299,9 @@ namespace SpaceShip.PhysicalMovement
                 {
                     deltas[i] = momentumImpact[i] * Mathf.Min(Mathf.Abs(momentum), maxTorque);
                 }
-                NormalizeThrottles(deltas, maxTorqueThrottle);
-                
+
+                NormalizeThrottles(deltas, Mathf.Min(Mathf.Abs(momentum), maxTorqueThrottle * force));
+
                 for (int i = 0; i < m_Engines.Length; i++)
                 {
                     totalThrottles[i] += deltas[i];
@@ -309,53 +318,21 @@ namespace SpaceShip.PhysicalMovement
             int i = 0;
             foreach (PhysicalEngine engine in m_Engines)
             {
-                f += throttles[i] * engine.transform.forward * force;
+                f += throttles[i] * engine.transform.forward;
                 i++;
             }
 
             return f;
         }
 
-        public override void ApplyDeltaV(Vector3 dv, float throttleCuttoff=1f)
+        public override void ApplyDeltaV(Vector3 dv, float throttleCutoff = 1f)
         {
-            tickDv = dv;
+            tickDv = dv * Mathf.Clamp01(throttleCutoff);
         }
 
-        public override void ApplyRotationTorque(Vector3 _v)
+        public override void Brake(float throttleCutoff = 1f)
         {
-            Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
-            float angle = Vector3.SignedAngle(Vector3.forward, v, Vector3.up);
-
-            if (Mathf.Abs(angle) < 0.01f)
-            {
-                return;
-            }
-
-            float torque = angle * maxTorque / 180f;
-            float degreesForStop = PredictDegreesForStop(maxTorque);
-            if (Mathf.Abs(angle) <= degreesForStop)
-            {
-                tickMomentum = AngularBrakeTorque();
-            }
-            else
-            {
-                tickMomentum = torque;
-            }
-        }
-
-        public void ApplyImpact(Vector3 dv, float momentum = 0)
-        {
-            float[] throttles = CalculateThrottles(dv, momentum);
-            int i = 0;
-            foreach (PhysicalEngine engine in m_Engines)
-            {
-                m_Rigidbody.AddForceAtPosition(
-                    throttles[i] * engine.transform.forward * force, engine.transform.position
-                );
-                engine.renderer.Perform((int) (throttles[i] * 100));
-                Debug.DrawRay(engine.transform.position, -engine.transform.forward * throttles[i] * force, Color.red);
-                i++;
-            }
+            tickDv = -m_Rigidbody.velocity.normalized * force * Mathf.Clamp01(throttleCutoff);
         }
 
         public override void AngularBrake(float limit)
@@ -366,17 +343,42 @@ namespace SpaceShip.PhysicalMovement
         private float AngularBrakeTorque(float limit = 1)
         {
             Vector3 angularVelocity = m_Rigidbody.angularVelocity;
-            if (angularVelocity.magnitude > 0.01f)
+            if (angularVelocity.magnitude > 0.1f)
             {
-                return -Mathf.Sign(angularVelocity.y) * maxTorque * Mathf.Min(1, limit);
+                return -Mathf.Sign(angularVelocity.y) * 1 * Mathf.Clamp01(limit);
             }
 
             return 0;
         }
 
+        public override void ApplyRotationTorque(Vector3 _v)
+        {
+            Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
+            float angle = Vector3.SignedAngle(Vector3.forward, v, Vector3.up);
+            float angularVelocity = m_Rigidbody.angularVelocity.y;
+            
+            float torque = (angle * pidA / 180f - angularVelocity * pidD / angularVelocityLimit) * maxTorque;
+            tickMomentum = torque;
+        }
+
+        public void ApplyImpact(Vector3 dv, float momentum = 0)
+        {
+            float[] throttles = CalculateThrottles(dv, momentum);
+            int i = 0;
+            foreach (PhysicalEngine engine in m_Engines)
+            {
+                m_Rigidbody.AddForceAtPosition(
+                    throttles[i] * engine.transform.forward, engine.transform.position
+                );
+                engine.renderer.Perform((int) throttles[i]);
+                Debug.DrawRay(engine.transform.position, -engine.transform.forward * throttles[i], Color.red);
+                i++;
+            }
+        }
+
         public override Vector3 PredictFinalPointNoDrag()
         {
-            Vector3 f = CalculateForce(-m_Rigidbody.velocity, 0);
+            Vector3 f = CalculateForce(-m_Rigidbody.velocity.normalized * force, 0);
             float v = m_Rigidbody.velocity.magnitude;
 
             if (v <= 0.1f)
@@ -385,7 +387,10 @@ namespace SpaceShip.PhysicalMovement
             float dt = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
             float dv = f.magnitude / m_Rigidbody.mass * dt;
             float sumn = v * v / (2f * dv);
-            return movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
+            Vector3 result =  movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
+            if (debugStopTarget)
+                debugStopTarget.position = result;
+            return result;
         }
 
         public override float PredictDegreesForStop(float brakingTorque)
@@ -395,11 +400,18 @@ namespace SpaceShip.PhysicalMovement
                 return 0;
             float dt = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
             float dav = brakingTorque / m_Rigidbody.mass * dt;
-            return Mathf.Rad2Deg * av * av / (2f * dav);
+            var degrees = Mathf.Rad2Deg * (av * av / (2 * dav)) * dt;
+            print($"AV: {av:0.0}; DFS: {degrees:0.0}; DT: {dt}; DAV: {dav}");
+            return degrees;
         }
 
         public override void Tick()
         {
+            Debug.DrawRay(movedTransform.position + Vector3.forward, tickDv, Color.cyan);
+            Debug.DrawRay(
+                movedTransform.position + tickDv + Vector3.forward,
+                -Vector3.Cross(tickDv, Vector3.up).normalized * tickMomentum, Color.cyan
+            );
             ApplyImpact(tickDv, tickMomentum);
             tickDv = Vector3.zero;
             tickMomentum = 0;

@@ -82,6 +82,11 @@ namespace SpaceShip.PhysicalMovement
             return result;
         }
 
+        public override void Brake(float throttleCutoff = 1f)
+        {
+            ApplyDeltaV(-m_Rigidbody.velocity);
+        }
+
         public override void ApplyDeltaV(Vector3 v, float throttleCutoff=1f)
         {
             v = movedTransform.InverseTransformDirection(v).normalized;

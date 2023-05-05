@@ -3,7 +3,6 @@ using GameControl.StateMachine;
 using SpaceShip.PhysicalMovement;
 using SpaceShip.ShipServices;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PhysicalMovement : ShipMovementService
 {
@@ -11,16 +10,16 @@ public class PhysicalMovement : ShipMovementService
     public override float CurrentThrottle { get; protected set; }
 
     [SerializeField] private BaseEngineSplitter engineSplitter;
+    [SerializeField] private float cruiseSpeed = 30f;
 
     private Rigidbody m_Rigidbody;
 
     private Vector3 way;
     private Vector3 directWay;
-    private Vector3 sideWay;
+    private Vector3 location;
 
     private Vector3 fullStopPoint;
-    private Vector3 directVelocityPart;
-    private Vector3 sideVelocityPart;
+    private Vector3 adjustVelocityPart;
 
     private bool forceBrake;
     private float m_ShipDrag;
@@ -32,23 +31,23 @@ public class PhysicalMovement : ShipMovementService
 
     void CalculateAttributes()
     {
-        Vector3 position = m_MovedTransform.position;
+        location = m_MovedTransform.position + m_Rigidbody.centerOfMass;
         Vector3 velocity = m_Rigidbody.velocity;
 
-        way = MoveAim - position;
-        directVelocityPart = way.normalized * Utils.Projection(velocity, way);
-        sideVelocityPart = velocity - directVelocityPart;
+        way = MoveAim - location;
+
+        float directVelocityProjection = Utils.Projection(velocity, way);
+        Vector3 directVelocityPart = way.normalized * directVelocityProjection;
+        Vector3 sideVelocityPart = velocity - directVelocityPart;
+
+        adjustVelocityPart = way.normalized * cruiseSpeed - 3 * sideVelocityPart;
 
         fullStopPoint = engineSplitter.PredictFinalPointNoDrag();
-        Vector3 finalPointWay = fullStopPoint - position;
-
-        directWay = way.normalized * Utils.Projection(finalPointWay, way);
-        sideWay = way - directWay;
     }
 
     private void FlyToMoveAim()
     {
-        engineSplitter.ApplyDeltaV(MoveAim - m_MovedTransform.position);
+        engineSplitter.ApplyDeltaV(adjustVelocityPart);
     }
 
     private void Brake()
@@ -59,7 +58,7 @@ public class PhysicalMovement : ShipMovementService
         }
         else
         {
-            engineSplitter.ApplyDeltaV(-m_Rigidbody.velocity);
+            engineSplitter.Brake();
         }
     }
 
@@ -91,26 +90,19 @@ public class PhysicalMovement : ShipMovementService
 
     StateMachine CreateStateMachine()
     {
-        IState adjustOrthogonal = LambdaState.New("Adjust orthogonal")
-            .WithTickActions(() => engineSplitter.ApplyDeltaV(-sideVelocityPart), RotateAtTarget);
         IState flyToDestination = LambdaState.New("Fly to destination")
             .WithEnterActions(DisableDrag, ResetPinLookVector)
-            .WithTickActions(FlyToMoveAim, RotateAtTarget)
-            .WithExitActions(PinLookVector);
+            .WithTickActions(FlyToMoveAim, RotateAtTarget);
         IState brake = LambdaState.New("Brake")
-            .WithTickActions(Brake, RotateAtTarget);
-        IState angularBrake = LambdaState.New("Angular Brake")
-            .WithTickActions(() => engineSplitter.AngularBrake(0.01f));
+            .WithTickActions(Brake);
         IState idle = LambdaState.New("Idle")
             .WithEnterActions(() => MoveAim = Vector3.zero, EnableDrag);
-
-        Func<bool> highSideDistance = () => sideWay.magnitude > 1f && sideVelocityPart.magnitude > 0.3f;
-
+        
         // High velocity + Stop point is near the target or is jumped over the target ( |> ----- t --- f )
         Func<bool> needsBrakeCertainly = () =>
-            forceBrake || m_Rigidbody.velocity.magnitude > 0.1f &&
+            forceBrake || m_Rigidbody.velocity.magnitude > 0.3f &&
             (Vector3.Distance(MoveAim, fullStopPoint) < 1.5f ||
-             Vector3.Distance(m_MovedTransform.position, fullStopPoint) > way.magnitude);
+             Vector3.Distance(location, fullStopPoint) > way.magnitude);
 
         // No need means !needForBrakesCertainly with extra conition: stop point is far from target
         Func<bool> noNeedForBrakes =
@@ -120,12 +112,9 @@ public class PhysicalMovement : ShipMovementService
         StateMachine sm = new StateMachine(AnyStatePriority.ANY_STATES_FIRST);
         // sm.AddAnyTransition(idle, () => MoveAim == Vector3.zero || At(MoveAim) && m_Rigidbody.velocity.magnitude < 0.1f);
         sm.AddTransition(idle, flyToDestination, () => MoveAim != Vector3.zero);
-        sm.AddTransition(flyToDestination, adjustOrthogonal, highSideDistance);
-        sm.AddTransition(adjustOrthogonal, flyToDestination, () => !highSideDistance());
         sm.AddTransition(flyToDestination, brake, needsBrakeCertainly);
-        sm.AddTransition(brake, angularBrake,
+        sm.AddTransition(brake, idle,
             () => MoveAim == Vector3.zero || At(MoveAim) && m_Rigidbody.velocity.magnitude < 0.1f);
-        sm.AddTransition(angularBrake, idle, () => m_Rigidbody.angularVelocity.magnitude < 0.01f);
         sm.AddTransition(brake, flyToDestination, noNeedForBrakes);
 
         return sm;
@@ -133,7 +122,7 @@ public class PhysicalMovement : ShipMovementService
 
     bool At(Vector3 point)
     {
-        var x = Vector3.Distance(point, m_MovedTransform.position) < 2 && m_Rigidbody.velocity.magnitude < 0.5f;
+        var x = Vector3.Distance(point, location) < 5f && m_Rigidbody.velocity.magnitude < 0.5f;
         return x;
     }
 
@@ -166,6 +155,9 @@ public class PhysicalMovement : ShipMovementService
 
     public override void Tick()
     {
+        // Debug.DrawRay(location, MoveAim - location, Color.yellow);
+        Debug.DrawRay(location, m_Rigidbody.velocity);
+        Debug.DrawRay(location, adjustVelocityPart);
         CalculateAttributes();
         stateMachine.Tick();
         engineSplitter.Tick();
@@ -175,26 +167,4 @@ public class PhysicalMovement : ShipMovementService
     {
         return MoveAim != Vector3.zero;
     }
-    
-    // Debug
-    [SerializeField] private Transform testTarget;
-    [SerializeField] private MovementConfig testConfig;
-    private void Start()
-    {
-        Init(gameObject.transform, testConfig);
-    }
-    
-    private void Update()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Move(testTarget.position, 1);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        Tick();
-    }
-    // End Debug
 }
