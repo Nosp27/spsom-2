@@ -1,4 +1,3 @@
-using System;
 using UI.Inventory;
 using UnityEngine;
 
@@ -27,12 +26,6 @@ namespace GameControl.StateMachine.GameControlStates
         void SwitchInventoryMode(bool targetMode)
         {
             hudCanvas.SetActive(!targetMode);
-
-            camC = FindObjectOfType<CameraController>();
-            camC.HoldTopView(targetMode);
-            var zoomController = camC.GetComponent<CameraZoomControl>();
-            if (zoomController)
-                zoomController.enabled = !targetMode;
             if (targetMode)
             {
                 gui.Run();

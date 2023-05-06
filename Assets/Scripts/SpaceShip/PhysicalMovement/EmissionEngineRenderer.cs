@@ -5,19 +5,22 @@ public class EmissionEngineRenderer : MonoBehaviour
 {
     private ParticleSystem ps;
 
-    [SerializeField] private AnimationCurve lifetimeMultiplier = AnimationCurve.Linear(0, 0.1f, 100, 1f);
-    [SerializeField] private AnimationCurve emission = AnimationCurve.Linear(0, 1, 100, 60);
+    [SerializeField] private AnimationCurve lifetimeMultiplier = AnimationCurve.Linear(0, 0.1f, 100, 4f);
+    [SerializeField] private AnimationCurve emission = AnimationCurve.Linear(0, 1, 100, 160);
+    [SerializeField] private AnimationCurve startSizeMultiplier = AnimationCurve.Linear(0, 1, 100, 0.4f);
 
     ParticleSystem.MainModule m_MainModule;
     ParticleSystem.EmissionModule m_EmissionModule;
 
     private float maxResetTimeout = 0.1f;
     private float resetTimeout;
+    private float m_SizeConstant;
     void Start()
     {
         ps = GetComponentInChildren<ParticleSystem>();
         m_MainModule = ps.main;
         m_EmissionModule = ps.emission;
+        m_SizeConstant = ps.main.startSizeMultiplier;
     }
 
     private void FixedUpdate()
@@ -47,5 +50,6 @@ public class EmissionEngineRenderer : MonoBehaviour
         
         m_MainModule.startLifetimeMultiplier = lifetimeMultiplier.Evaluate(percent);
         m_EmissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(emission.Evaluate(percent));
+        m_MainModule.startSizeMultiplier = startSizeMultiplier.Evaluate(percent) * m_SizeConstant;
     }
 }

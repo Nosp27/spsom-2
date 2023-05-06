@@ -12,8 +12,6 @@ public class CameraController : MonoBehaviour
     private Transform attachedListener;
 
     [SerializeField] private bool followRotation;
-    
-    private bool holdTopView;
 
     void Start()
     {
@@ -22,34 +20,10 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if(!holdTopView)
-        {
-            transform.position = Vector3.Lerp(
-                transform.position, PlayerShip.transform.position + CameraOffset, 2f * Time.unscaledDeltaTime
-            );
-            if (followRotation)
-                transform.LookAt(PlayerShip.transform);
-        }
-        
-
-        if (Keyboard.current.aKey.wasPressedThisFrame)
-        {
-            HoldTopView(!holdTopView);
-        }
-    }
-
-    public void HoldTopView(bool on)
-    {
-        holdTopView = on;
-        if (on)
-        {
-            Vector3 top = PlayerShip.transform.position + Vector3.up * 120 + PlayerShip.transform.right * -100;
-            transform.DOMove(top, 0.5f).SetUpdate(true);
-            transform.DOLookAt(transform.position + Vector3.down * 50, 0.5f, AxisConstraint.None, PlayerShip.transform.forward).SetUpdate(true);
-        }
-        else
-        {
-            transform.DOKill();
-        }
+        transform.position = Vector3.Lerp(
+            transform.position, PlayerShip.transform.position + CameraOffset, 2f * Time.unscaledDeltaTime
+        );
+        if (followRotation)
+            transform.LookAt(PlayerShip.transform);
     }
 }

@@ -40,8 +40,9 @@ public class PhysicalMovement : ShipMovementService
         Vector3 directVelocityPart = way.normalized * directVelocityProjection;
         Vector3 sideVelocityPart = velocity - directVelocityPart;
 
-        adjustVelocityPart = way.normalized * cruiseSpeed - 3 * sideVelocityPart;
+        float part = (cruiseSpeed - directVelocityProjection) / cruiseSpeed;
 
+        adjustVelocityPart = way.normalized * cruiseSpeed * part - 5 * sideVelocityPart;
         fullStopPoint = engineSplitter.PredictFinalPointNoDrag();
     }
 
@@ -97,8 +98,7 @@ public class PhysicalMovement : ShipMovementService
             .WithTickActions(Brake);
         IState idle = LambdaState.New("Idle")
             .WithEnterActions(() => MoveAim = Vector3.zero, EnableDrag);
-        
-        // High velocity + Stop point is near the target or is jumped over the target ( |> ----- t --- f )
+        // High velocity + Stop point is near the target or is jumped over the target ( |> ----- t --- x )
         Func<bool> needsBrakeCertainly = () =>
             forceBrake || m_Rigidbody.velocity.magnitude > 0.3f &&
             (Vector3.Distance(MoveAim, fullStopPoint) < 1.5f ||
