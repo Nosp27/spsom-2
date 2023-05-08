@@ -64,7 +64,7 @@ namespace SpaceShip.PhysicalMovement
 
         float EngineMomentum(PhysicalEngine engine)
         {
-            Vector3 com = movedTransform.TransformPoint(m_Rigidbody.centerOfMass);
+            Vector3 com = movedTransform.position;
             Vector3 distanceVector = engine.transform.position - com;
             Vector3 ortho = Vector3.Cross(distanceVector, Vector3.up).normalized;
             float projection = Utils.Projection(engine.transform.forward, ortho);

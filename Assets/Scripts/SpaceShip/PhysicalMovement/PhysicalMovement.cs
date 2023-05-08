@@ -2,7 +2,9 @@ using System;
 using GameControl.StateMachine;
 using SpaceShip.PhysicalMovement;
 using SpaceShip.ShipServices;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PhysicalMovement : ShipMovementService
 {
@@ -31,10 +33,10 @@ public class PhysicalMovement : ShipMovementService
 
     void CalculateAttributes()
     {
-        location = m_MovedTransform.position + m_Rigidbody.centerOfMass;
+        location = m_MovedTransform.position;
         Vector3 velocity = m_Rigidbody.velocity;
 
-        way = MoveAim - location;
+        way = MoveAim - m_MovedTransform.position;
 
         float directVelocityProjection = Utils.Projection(velocity, way);
         Vector3 directVelocityPart = way.normalized * directVelocityProjection;
@@ -114,7 +116,7 @@ public class PhysicalMovement : ShipMovementService
         sm.AddTransition(idle, flyToDestination, () => MoveAim != Vector3.zero);
         sm.AddTransition(flyToDestination, brake, needsBrakeCertainly);
         sm.AddTransition(brake, idle,
-            () => MoveAim == Vector3.zero || At(MoveAim) && m_Rigidbody.velocity.magnitude < 0.1f);
+            () => MoveAim == Vector3.zero || At(MoveAim));
         sm.AddTransition(brake, flyToDestination, noNeedForBrakes);
 
         return sm;
@@ -132,6 +134,7 @@ public class PhysicalMovement : ShipMovementService
     {
         m_MovedTransform = t;
         m_Rigidbody = m_MovedTransform.GetComponent<Rigidbody>();
+        m_Rigidbody.centerOfMass = Vector3.zero;
         m_ShipDrag = m_Rigidbody.drag;
         engineSplitter.Init(t, config);
         stateMachine = CreateStateMachine();
@@ -141,6 +144,7 @@ public class PhysicalMovement : ShipMovementService
     {
         // TODO: throttle cutoff
         forceBrake = false;
+        v.y = location.y;
         MoveAim = v;
     }
 
@@ -155,9 +159,7 @@ public class PhysicalMovement : ShipMovementService
 
     public override void Tick()
     {
-        // Debug.DrawRay(location, MoveAim - location, Color.yellow);
-        Debug.DrawRay(location, m_Rigidbody.velocity);
-        Debug.DrawRay(location, adjustVelocityPart);
+        Debug.DrawRay(location - Vector3.forward, way, Color.green);
         CalculateAttributes();
         stateMachine.Tick();
         engineSplitter.Tick();
