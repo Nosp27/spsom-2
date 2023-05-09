@@ -34999,6 +34999,7 @@ MonoBehaviour:
   transform: 0
   engineSplitter: {fileID: 1759024481}
   cruiseSpeed: 10
+  rotateAtMoveAim: 1
 --- !u!1001 &1773750912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35066,6 +35067,10 @@ PrefabInstance:
     - target: {fileID: 747651983, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
       propertyPath: cruiseSpeed
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 747651983, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
+      propertyPath: rotateAtMoveAim
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 747651984, guid: dacf05514e9dc4f299f334a7a976be97, type: 3}
       propertyPath: force

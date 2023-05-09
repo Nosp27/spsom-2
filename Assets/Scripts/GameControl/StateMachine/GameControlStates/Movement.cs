@@ -67,16 +67,40 @@ namespace GameControl.StateMachine.GameControlStates
 
         void ProcessMove(Ship playerShip, Vector3 cursor)
         {
-            bool moveCommand = Mouse.current.leftButton.isPressed;
+            float directMultiplier = 0;
+            float sideMultiplier = 0;
+            if (Keyboard.current.wKey.isPressed)
+            {
+                directMultiplier = 1;
+            } else if (Keyboard.current.sKey.isPressed)
+            {
+                directMultiplier = -1;
+            }
+            
+            if (Keyboard.current.aKey.isPressed)
+            {
+                sideMultiplier = -1;
+            } else if (Keyboard.current.dKey.isPressed)
+            {
+                sideMultiplier = 1;
+            }
+
+            Vector3 way = cursor - playerShip.transform.position;
+            Vector3 orthoWay = -Vector3.Cross(way, Vector3.up);
+            Vector3 delta = (way * directMultiplier + orthoWay * sideMultiplier).normalized * way.magnitude;
+            Vector3 movementTarget = playerShip.transform.position + delta;
+
+            bool moveCommand = directMultiplier != 0 || sideMultiplier != 0;
             if (moveCommand)
             {
-                m_MoveAim.transform.position = cursor;
-                playerShip.Move(cursor);
+                m_MoveAim.transform.position = movementTarget;
+                playerShip.Move(movementTarget);
             }
             else
             {
-                playerShip.TurnOnPlace(cursor);
+                playerShip.CancelMovement();
             }
+            playerShip.TurnOnPlace(cursor);
 
             m_MoveAim.SetActive(playerShip.IsMoving());
         }
@@ -97,7 +121,7 @@ namespace GameControl.StateMachine.GameControlStates
         void ProcessAim(Ship playerShip, Vector3 cursor)
         {
             playerShip.Aim(cursor);
-            if (keyboard.spaceKey.isPressed)
+            if (mouse.leftButton.isPressed)
             {
                 playerShip.Fire(cursor);
             }

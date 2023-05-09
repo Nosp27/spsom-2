@@ -2,9 +2,7 @@ using System;
 using GameControl.StateMachine;
 using SpaceShip.PhysicalMovement;
 using SpaceShip.ShipServices;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PhysicalMovement : ShipMovementService
 {
@@ -13,6 +11,7 @@ public class PhysicalMovement : ShipMovementService
 
     [SerializeField] private BaseEngineSplitter engineSplitter;
     [SerializeField] private float cruiseSpeed = 30f;
+    [SerializeField] private bool rotateAtMoveAim = true;
 
     private Rigidbody m_Rigidbody;
 
@@ -87,6 +86,8 @@ public class PhysicalMovement : ShipMovementService
 
     void RotateAtTarget()
     {
+        if (!rotateAtMoveAim)
+            return;
         Vector3 targetDirection = m_PinnedLookDirection == Vector3.zero ? way : m_PinnedLookDirection;
         engineSplitter.ApplyRotationTorque(targetDirection);
     }
@@ -150,6 +151,7 @@ public class PhysicalMovement : ShipMovementService
 
     public override void TurnOnPlace(Vector3 v)
     {
+        engineSplitter.ApplyRotationTorque(v - location);
     }
 
     public override void CancelMovement()
