@@ -35,12 +35,16 @@ namespace AI
             while (true)
             {
                 yield return new WaitForSeconds(.2f);
+                
+                // Loose enemy from sight if it is far away
                 if (Enemy && (Enemy.transform.position - transform.position).magnitude > loseRange)
                     Enemy = null;
 
+                // Do not seek enemy if it is already found
                 if (Enemy && Enemy.Alive)
                     continue;
 
+                // Seek all colliders within discovery range and find nearest belonging to a ship
                 Collider[] colliders = Physics.OverlapSphere(transform.position, discoveryRange);
                 Ship nearestShip = null;
                 float nearestShipDistance = seekNearest ? discoveryRange : 0;
