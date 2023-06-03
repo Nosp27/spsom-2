@@ -2,5 +2,5 @@
 
 public interface IEnemyDetector
 {
-    public Ship Enemy { get; }
+    public DamageModel Enemy { get; }
 }

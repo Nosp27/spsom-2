@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AggresionEnemyDetector : MonoBehaviour, IEnemyDetector
 {
-    public Ship Enemy { get; private set; }
+    public DamageModel Enemy { get; private set; }
     [SerializeField] private float memory = 10f;
 
     private Coroutine resetCoro = null;
@@ -16,7 +16,7 @@ public class AggresionEnemyDetector : MonoBehaviour, IEnemyDetector
 
     void OnDamage(BulletHitDTO hit)
     {
-        Enemy = hit.hitInitiator?.GetComponentInParent<Ship>();
+        Enemy = hit.hitInitiator?.GetComponentInParent<DamageModel>();
         if (!Enemy)
             return;
         

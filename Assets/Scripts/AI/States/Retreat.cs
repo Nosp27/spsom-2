@@ -5,7 +5,7 @@ namespace AI.States
     public class Retreat : BaseShipAIState
     {
         private Vector3 m_DodgeVector;
-        private Ship enemy => EnemyDetector?.Enemy;
+        private Transform enemy => EnemyDetector?.Enemy.transform;
 
         public override void Tick()
         {
@@ -27,7 +27,7 @@ namespace AI.States
                 return m_DodgeVector;
             float dodgeDirectionSign = Random.value < 0.5f ? 1 : -1;
 
-            Vector3 attackVector = transform.position - enemy.transform.position;
+            Vector3 attackVector = transform.position - enemy.position;
             Vector3 normal = Vector3.Cross(attackVector, Vector3.up) * dodgeDirectionSign;
             m_DodgeVector = transform.position + normal + attackVector;
             return m_DodgeVector;

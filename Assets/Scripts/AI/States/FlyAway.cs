@@ -6,7 +6,7 @@ namespace AI.States
     {
         public override void Tick()
         {
-            Ship enemy = EnemyDetector.Enemy;
+            var enemy = EnemyDetector.Enemy;
             if (enemy == null)
                 return;
             Vector3 lookAway = (transform.position - enemy.transform.position).normalized;

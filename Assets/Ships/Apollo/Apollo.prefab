@@ -527,6 +527,7 @@ MonoBehaviour:
   transform: 0
   engineSplitter: {fileID: 747651984}
   cruiseSpeed: 70
+  rotateAtMoveAim: 0
 --- !u!114 &747651984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularVelocityLimit: 2
-  force: 150
+  force: 50
   maxTorque: 50
   pidA: 4
   pidD: 1
@@ -6154,6 +6155,7 @@ GameObject:
   - component: {fileID: 2027507067}
   - component: {fileID: 665385813}
   - component: {fileID: 281503627}
+  - component: {fileID: 1973165407649739906}
   m_Layer: 0
   m_Name: Apollo
   m_TagString: PlayerShip
@@ -6196,7 +6198,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3917093697189968063}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 1
   m_Drag: 0.4
   m_AngularDrag: 0.1
   m_UseGravity: 0
@@ -6288,10 +6290,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31be434c087b24ef9920b9ab8e50a419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  referenceFaction: 0
   detectionMethod: 2
   discoveryRange: 140
   loseRange: 140
   seekNearest: 0
+--- !u!114 &1973165407649739906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917093697189968063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0ed2a512fd34e8abfd201382bddcaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 0
 --- !u!1 &3967094946073644330
 GameObject:
   m_ObjectHideFlags: 0
@@ -20795,14 +20811,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
---- !u!4 &1341983085427380361 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4000010212820824, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
-  m_PrefabInstance: {fileID: 1338021527604303825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1166138231734768695 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+  m_PrefabInstance: {fileID: 1338021527604303825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1341983085427380361 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010212820824, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
   m_PrefabInstance: {fileID: 1338021527604303825}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2798062908244069425
@@ -21607,7 +21623,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8373935221859286169, guid: 27411c4cb98bb414c8404bb89aa92a3d, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8373935221859286169, guid: 27411c4cb98bb414c8404bb89aa92a3d, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -21895,7 +21911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961562416253695548, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8961562416253695549, guid: 9ab7d265dacae45afa84266c983d1fc3, type: 3}
       propertyPath: m_RootOrder

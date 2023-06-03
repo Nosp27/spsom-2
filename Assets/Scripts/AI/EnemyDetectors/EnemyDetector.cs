@@ -1,31 +1,33 @@
 using System;
 using System.Collections;
+using Factions;
 using UnityEngine;
 
 namespace AI
 {
     public enum DetectionMethod
     {
-        ONLY_PLAYER,
-        EXCEPT_PLAYER,
+        ONLY_FACTION,
+        EXCEPT_FACTION,
         EVERYONE,
         NOBODY,
     }
 
     public class EnemyDetector : MonoBehaviour, IEnemyDetector
     {
+        [SerializeField] private SpsomFaction referenceFaction;
         [SerializeField] private DetectionMethod detectionMethod;
         [SerializeField] private float discoveryRange = 300;
         [SerializeField] private float loseRange = 500;
 
         [SerializeField] private bool seekNearest = true;
 
-        public Ship Enemy { get; private set; }
-        private Ship ThisShip;
+        public DamageModel Enemy { get; private set; }
+        private DamageModel m_ThisDamageModel;
 
         private IEnumerator Start()
         {
-            ThisShip = GetComponentInParent<Ship>();
+            m_ThisDamageModel = GetComponentInParent<DamageModel>();
 
             yield return SeekEnemyShip();
         }
@@ -46,14 +48,17 @@ namespace AI
 
                 // Seek all colliders within discovery range and find nearest belonging to a ship
                 Collider[] colliders = Physics.OverlapSphere(transform.position, discoveryRange);
-                Ship nearestShip = null;
+                DamageModel nearestShip = null;
                 float nearestShipDistance = seekNearest ? discoveryRange : 0;
                 float comparisonMultiplier = seekNearest ? 1 : -1;
 
                 foreach (var col in colliders)
                 {
-                    Ship ship = col.GetComponentInParent<Ship>();
-                    if (IsEnemy(ship))
+                    DamageModel ship = col.GetComponentInParent<DamageModel>();
+                    SpsomFaction? shipFaction = ship != null ? 
+                        ship.GetComponent<FactionMember>()?.Faction
+                        : (SpsomFaction?) null;
+                    if (shipFaction.HasValue && IsEnemy(ship, shipFaction.Value))
                     {
                         float distance = (ship.transform.position - transform.position).magnitude;
                         if (
@@ -71,25 +76,25 @@ namespace AI
             }
         }
 
-        public bool IsEnemy(Ship ship)
+        public bool IsEnemy(DamageModel shipDamageModel, SpsomFaction faction)
         {
-            if (ship == ThisShip)
+            if (shipDamageModel == m_ThisDamageModel)
                 return false;
 
             if (detectionMethod == DetectionMethod.NOBODY)
                 return false;
 
-            if (!ship || !ship.Alive || ship == ThisShip)
+            if (!shipDamageModel || !shipDamageModel.Alive)
                 return false;
 
             if (detectionMethod == DetectionMethod.EVERYONE)
                 return true;
 
-            if (detectionMethod == DetectionMethod.ONLY_PLAYER)
-                return ship.isPlayerShip;
+            if (detectionMethod == DetectionMethod.ONLY_FACTION)
+                return faction == referenceFaction;
 
-            if (detectionMethod == DetectionMethod.EXCEPT_PLAYER)
-                return !ship.isPlayerShip;
+            if (detectionMethod == DetectionMethod.EXCEPT_FACTION)
+                return faction != referenceFaction;
 
             return false;
         }

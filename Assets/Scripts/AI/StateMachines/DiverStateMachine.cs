@@ -25,7 +25,7 @@ namespace AI
         private IEnemyDetector m_EnemyDetector;
         private bool allowDodgeTransition;
 
-        private Ship enemy;
+        private DamageModel enemy;
         Vector3 enemyLookVector;
         float enemyDistance;
 

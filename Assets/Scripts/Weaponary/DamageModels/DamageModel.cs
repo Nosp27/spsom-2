@@ -13,20 +13,29 @@ public abstract class DamageModel : MonoBehaviour
     {
         OnDamage = new UnityEvent<BulletHitDTO>();
         OnDie = new UnityEvent();
+        alive = true;
         if (health == 0)
             health = maxHealth;
     }
+
+    private bool alive;
+    public bool Alive => alive;
 
     public int MaxHealth => maxHealth;
     public int Health => health;
 
     public virtual void Die()
     {
+        if (!alive)
+            return;
+
+        alive = false;
         OnDie.Invoke();
     }
 
     public virtual void GetDamage(BulletHitDTO hit)
     {
-        OnDamage.Invoke(hit);
+        if (!alive)
+            OnDamage.Invoke(hit);
     }
 }
