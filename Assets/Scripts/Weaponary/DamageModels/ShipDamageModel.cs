@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 public class ShipDamageModel : DamageModel
 {
     public ParticleSystem destruction;
-    private Ship ship;
 
     [SerializeField] private bool destroyOnDeath;
 
@@ -18,17 +17,10 @@ public class ShipDamageModel : DamageModel
     [Space(20f)] [SerializeField] private GameObject aliveMesh;
     [SerializeField] private GameObject debrisMesh;
 
-    private void Start()
-    {
-        ship = GetComponent<Ship>();
-    }
-
     public override void Die()
     {
         base.Die();
         health = 0;
-        if (ship.isPlayerShip)
-            GameController.Current.SendMessage("Die");
         if (destruction != null)
             destruction.Play(true);
 
@@ -71,8 +63,6 @@ public class ShipDamageModel : DamageModel
                 transform);
         }
 
-        if (ship.isPlayerShip)
-            GameController.Current.SendMessage("GetDamage", hit);
         if (health <= 0)
         {
             health = 0;

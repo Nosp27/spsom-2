@@ -12,7 +12,10 @@ public class FXVolumeTweak : MonoBehaviour
     
     void Update()
     {
-        float playerDistance = (GameController.Current.PlayerShip.transform.position - transform.position).magnitude;
+        Ship playerShip = GameController.Current.PlayerShip;
+        if (playerShip == null)
+            return;
+        float playerDistance = (playerShip.transform.position - transform.position).magnitude;
         volume.weight = Mathf.InverseLerp(effectBounds.y, effectBounds.x, playerDistance);
     }
 }

@@ -10,9 +10,20 @@ public class WeaponUIController : MonoBehaviour
 
     private int highlightedWeapon;
 
+
     private void Start()
     {
-        ship = GameController.Current.PlayerShip;
+        GameController.Current.OnShipChange.AddListener(OnPlayerShipChanged);
+    }
+
+    private void OnPlayerShipChanged(Ship old, Ship _new)
+    {
+        if (ship != null)
+        {
+            ship.OnWeaponSelect.RemoveListener(OnWeaponChanged);
+            ship.OnWeaponMutate.RemoveListener(SnapshotWeapons);    
+        }
+        ship = _new;
         highlightedWeapon = ship.SelectedWeaponIndex;
         SnapshotWeapons();
         ship.OnWeaponSelect.AddListener(OnWeaponChanged);

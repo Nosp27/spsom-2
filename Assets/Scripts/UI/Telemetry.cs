@@ -3,16 +3,22 @@ using UnityEngine.UI;
 
 public class Telemetry : MonoBehaviour
 {
-    private Ship ship => GameController.Current.PlayerShip;
+    private Ship ship;
     private Rigidbody shipRB;
     [SerializeField] private Slider velocity;
     [SerializeField] private Slider throttle;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        GameController.Current.OnShipChange.AddListener(OnShipChange);
+    }
+
+    void OnShipChange(Ship old, Ship _new)
+    {
+        ship = _new;
         shipRB = ship.GetComponent<Rigidbody>();
-        
+
         velocity.minValue = 0;
         velocity.maxValue = ship.LinearSpeed;
 

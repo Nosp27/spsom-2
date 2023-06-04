@@ -23,8 +23,22 @@ namespace GameControl.StateMachine.GameControlStates
         Gamepad gamepad => Gamepad.current;
         Keyboard keyboard => Keyboard.current;
 
+        private void Start()
+        {
+            m_GameController = GameController.Current;
+            m_GameController.OnShipChange.AddListener(OnPlayerShipChanged);
+        }
+
+        void OnPlayerShipChanged(Ship old, Ship _new)
+        {
+            m_PlayerShip = _new;
+        }
+
         public void Tick()
         {
+            if (m_PlayerShip == null)
+                return;
+            
             Vector3 cursor = m_CursorControl.Cursor();
             if (gamepad != null)
             {
@@ -42,17 +56,11 @@ namespace GameControl.StateMachine.GameControlStates
 
         public void OnEnter()
         {
-            if (!m_GameController)
-                m_GameController = GameController.Current;
-
             if (!m_CursorControl)
             {
                 m_CursorControl = GameController.Current.GetComponentInChildren<CursorControl>();
                 m_CursorControl.onCursorHoverTargetChanged.AddListener(ProcessTargetLock);
             }
-
-            if (!m_PlayerShip)
-                m_PlayerShip = m_GameController.PlayerShip;
 
             if (!m_MoveAim)
             {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class ShipMovementService : MonoBehaviour
 {
-    public new int transform;
+    [HideInInspector] public new int transform;
     public abstract void Init(Transform t, MovementConfig config);
     public abstract Vector3 MoveAim { get; protected set; }
     public abstract float CurrentThrottle { get; protected set; }

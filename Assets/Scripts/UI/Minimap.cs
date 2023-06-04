@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Minimap : MonoBehaviour
 {
-    private RadarTarget PlayerRadarTarget => GameController.Current.PlayerShip.GetComponent<RadarTarget>();
+    private RadarTarget PlayerRadarTarget;
     private ShipDetectorUI detector;
 
     private Vector2 minimapCenter;
@@ -14,9 +14,15 @@ public class Minimap : MonoBehaviour
 
     void Start()
     {
+        GameController.Current.OnShipChange.AddListener(OnPlayerShipChanged);
         targetMarkers = new Dictionary<RadarTarget, GameObject>();
-        detector = PlayerRadarTarget.GetComponentInChildren<ShipDetectorUI>();
         minimapRect = GetComponent<RectTransform>();
+    }
+
+    void OnPlayerShipChanged(Ship old, Ship _new)
+    {
+        PlayerRadarTarget = _new.GetComponent<RadarTarget>();
+        detector = PlayerRadarTarget.GetComponentInChildren<ShipDetectorUI>();
         MaybeRegisterMinimapItem(PlayerRadarTarget);
     }
 

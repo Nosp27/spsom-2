@@ -19,6 +19,7 @@ public class Ship : MonoBehaviour
     public Vector3 MoveAim => movementService.MoveAim;
     public float currentThrottle => movementService.CurrentThrottle;
     public bool Alive { get; private set; }
+    public DamageModel damageModel { get; private set; }
 
     private Camera currentCamera;
 
@@ -32,6 +33,7 @@ public class Ship : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        damageModel = GetComponent<DamageModel>();
         isPlayerShip = gameObject.CompareTag("PlayerShip");
         Alive = true;
         

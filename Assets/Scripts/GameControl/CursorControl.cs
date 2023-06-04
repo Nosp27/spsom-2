@@ -12,11 +12,11 @@ public class CursorControl : MonoBehaviour
 
     public UnityEvent<GameObject> onCursorHoverTargetChanged { get; private set; }
 
-    public void Setup(Ship playerShip)
+    public void Setup()
     {
         onCursorHoverTargetChanged = new UnityEvent<GameObject>();
         currentCamera = Camera.main;
-        yZero = playerShip.transform.position.y;
+        yZero = 0;
     }
 
     private void Update()

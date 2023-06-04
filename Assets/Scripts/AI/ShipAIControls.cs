@@ -8,11 +8,19 @@ namespace AI
         public Ship thisShip { get; private set; }
         private CollisionAvoidance m_CA;
         private Vector3 m_AvoidPoint;
+        public bool isAiEnabled { get; private set; }
 
         private void Start()
         {
+            isAiEnabled = true;
             thisShip = GetComponent<Ship>();
             m_CA = GetComponent<CollisionAvoidance>();
+            GameController.Current.OnShipChange.AddListener(OnShipChange);
+        }
+
+        void OnShipChange(Ship old, Ship _new)
+        {
+            isAiEnabled = _new == thisShip;
         }
 
         public void MoveAt(Vector3 point, float throttleCutoff=1)

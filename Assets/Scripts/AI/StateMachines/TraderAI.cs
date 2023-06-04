@@ -12,6 +12,8 @@ public class TraderAI : MonoBehaviour
 
     [SerializeField] private List<Transform> Places;
 
+
+    private bool isWorking = true;
     private int CurrentPlaceIndex;
     private Transform CurrentPlace => Places[CurrentPlaceIndex % Places.Count];
 
@@ -31,6 +33,9 @@ public class TraderAI : MonoBehaviour
 
     private void Update()
     {
+        if (!m_AI.enabled)
+            return;
+        
         if (!m_ThisShip.Alive)
         {
             if (m_ThisShip.IsMoving())
