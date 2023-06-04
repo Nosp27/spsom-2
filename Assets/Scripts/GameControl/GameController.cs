@@ -87,12 +87,12 @@ public class GameController : MonoBehaviour
         if (Alive)
             RuntimeManager.PlayOneShot(deathEvent);
         Alive = false;
-        healthBarCircleLine.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
+        healthBarCircleLine.Health = PlayerShip.damageModel.Health;
     }
 
     void SyncDamage(BulletHitDTO hit)
     {
-        healthBarCircleLine.Health = PlayerShip.GetComponent<ShipDamageModel>().Health;
+        healthBarCircleLine.Health = PlayerShip.damageModel.Health;
     }
 
     void LateUpdate()

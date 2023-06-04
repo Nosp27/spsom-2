@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Minimap : MonoBehaviour
 {
-    private RadarTarget PlayerRadarTarget;
-    private ShipDetectorUI detector;
+    private RadarTarget m_PlayerRadarTarget;
+    private GameObject m_PlayerRadarMarker;
+    private RadarModule m_RadarModule;
 
     private Vector2 minimapCenter;
     private RectTransform minimapRect;
@@ -21,65 +23,75 @@ public class Minimap : MonoBehaviour
 
     void OnPlayerShipChanged(Ship old, Ship _new)
     {
-        PlayerRadarTarget = _new.GetComponent<RadarTarget>();
-        detector = PlayerRadarTarget.GetComponentInChildren<ShipDetectorUI>();
-        MaybeRegisterMinimapItem(PlayerRadarTarget);
+        if (m_RadarModule != null)
+        {
+            m_RadarModule.OnObjectEncounter.RemoveListener(SpawnMarkerForTarget);
+            m_RadarModule.OnObjectLost.RemoveListener(RemoveMarkerForTarget);
+        }
+        m_RadarModule = _new.GetComponentInChildren<RadarModule>();
+        m_PlayerRadarTarget = _new.GetComponent<RadarTarget>();
+        SyncMarkers();
+        m_RadarModule.OnObjectEncounter.AddListener(SpawnMarkerForTarget);
+        m_RadarModule.OnObjectLost.AddListener(RemoveMarkerForTarget);
+    }
+    
+    void SyncMarkers()
+    {
+        foreach (RadarTarget targetMarker in targetMarkers.Keys.ToArray())
+        {
+            RemoveMarkerForTarget(targetMarker);
+        }
+        Destroy(m_PlayerRadarMarker);
+        
+        RadarTarget[] targets = m_RadarModule.GetAllTargets();
+        foreach (RadarTarget target in targets)
+        {
+            SpawnMarkerForTarget(target);
+        }
+        m_PlayerRadarMarker = Instantiate(m_PlayerRadarTarget.RadarPrefabMinimap, minimapRect.transform);
     }
 
     void UpdateBoundaries()
     {
-        scaleFactor = minimapRect.rect.size.x / 2 / detector.range;
+        scaleFactor = minimapRect.rect.size.x / 2 / m_RadarModule.range;
         minimapCenter = minimapRect.rect.center;
     }
 
-    void Update()
+    void SpawnMarkerForTarget(RadarTarget target)
     {
-        if (!PlayerRadarTarget)
-            return;
-
-        if (detector?.targetMarkers == null || detector.targetMarkers.Count == 0)
+        if (target.RadarPrefabMinimap == null)
             return;
         
-        UpdateBoundaries();
-        
-        foreach (var target in detector.targetMarkers.Keys)
-        {
-            MaybeRegisterMinimapItem(target);
-        }
-
-        HashSet<RadarTarget> keysToDelete = new HashSet<RadarTarget>();
-        foreach (var item in targetMarkers)
-        {
-            RadarTarget target = item.Key;
-            GameObject marker = item.Value;
-            if (!target || (target.transform.position - PlayerRadarTarget.transform.position).magnitude > detector.range)
-                keysToDelete.Add(target);
-            else
-                PlaceMinimapItem(marker, target);
-        }
-
-        foreach (var target in keysToDelete)
-        {
-            GameObject marker = targetMarkers[target];
-            targetMarkers.Remove(target);
-            Destroy(marker);
-        }
-        PlaceMinimapItem(targetMarkers[PlayerRadarTarget], PlayerRadarTarget);
-        
-    }
-
-    void MaybeRegisterMinimapItem(RadarTarget target)
-    {
-        if (targetMarkers.ContainsKey(target))
-            return;
-
         GameObject minimapItem = Instantiate(target.RadarPrefabMinimap, minimapRect.transform);
         targetMarkers[target] = minimapItem;
     }
 
+    void RemoveMarkerForTarget(RadarTarget target)
+    {
+        if (!targetMarkers.ContainsKey(target))
+            return;
+        
+        GameObject marker = targetMarkers[target];
+        targetMarkers.Remove(target);
+        Destroy(marker);
+    }
+
+    void Update()
+    {
+        if (!m_RadarModule)
+            return;
+
+        UpdateBoundaries();
+        foreach (KeyValuePair<RadarTarget,GameObject> targetMarker in targetMarkers)
+        {
+            PlaceMinimapItem(targetMarker.Value, targetMarker.Key);   
+        }
+        PlaceMinimapItem(m_PlayerRadarMarker, m_PlayerRadarTarget);
+    }
+
     void PlaceMinimapItem(GameObject minimapItem, RadarTarget target)
     {
-        Vector3 distanceFromAttachedShip = target.transform.position - PlayerRadarTarget.transform.position;
+        Vector3 distanceFromAttachedShip = target.transform.position - m_PlayerRadarTarget.transform.position;
         Vector2 distance2D = new Vector2(distanceFromAttachedShip.x, distanceFromAttachedShip.z);
         Vector2 minimapPosition = minimapCenter + distance2D * scaleFactor;
         minimapItem.transform.localPosition = minimapPosition;

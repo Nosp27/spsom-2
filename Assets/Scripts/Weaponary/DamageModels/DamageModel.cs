@@ -35,7 +35,7 @@ public abstract class DamageModel : MonoBehaviour
 
     public virtual void GetDamage(BulletHitDTO hit)
     {
-        if (!alive)
+        if (alive)
             OnDamage.Invoke(hit);
     }
 }
