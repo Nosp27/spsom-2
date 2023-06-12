@@ -16,6 +16,17 @@ public class InterceptionCalculator
             target.velocity
         );
     }
+    
+    public static Vector3 ShootingDirection(Transform staticShooter, Rigidbody target, float shotSpeed)
+    {
+        return FirstOrderIntercept(
+            staticShooter.position,
+            Vector3.zero,
+            shotSpeed, 
+            target.position,
+            target.velocity
+        );
+    }
 
     public static Vector3 FirstOrderIntercept(
         Vector3 shooterPosition,

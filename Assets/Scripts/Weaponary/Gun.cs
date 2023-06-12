@@ -20,6 +20,7 @@ public class Gun : MonoBehaviour
     [SerializeField] float DamageBuff;
 
     [SerializeField] private Transform[] barrels;
+    [SerializeField] private GameObject overrideOwner;
     private int nBarrels => barrels.Length;
 
     public float maxCooldown { get; private set; }
@@ -27,16 +28,32 @@ public class Gun : MonoBehaviour
 
     private GameObject Owner;
     private int shootingBarrelIndex;
-    private float _bulletLifetime;
+
+    private Vector3 GetVelocityCorrection(Transform barrel)
+    {
+        if (attachedRigidbody == null)
+            return Vector3.zero;
+        return attachedRigidbody.GetPointVelocity(barrel.position);
+    }
+
+    private Rigidbody attachedRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         InitBarrels();
-        Owner = GetComponentInParent<Ship>().gameObject;
+        if (overrideOwner != null)
+        {
+            Owner = overrideOwner;
+        }
+        else
+        {
+            Owner = GetComponentInParent<Ship>().gameObject;
+            attachedRigidbody = Owner.GetComponent<Rigidbody>();
+        }
+
         cooldown = 0;
         maxCooldown = 60f / FireRate;
-        _bulletLifetime = BulletMaxDistance / BulletSpeed;
     }
 
     private void Update()
@@ -61,10 +78,10 @@ public class Gun : MonoBehaviour
         Transform bulletPlace = barrels[barrelIndex];
         GameObject bullet = Instantiate(bulletPrefab, bulletPlace.position, bulletPlace.rotation);
         Bullet b = bullet.GetComponent<Bullet>();
-        b.Owner = Owner;
-        b.Damage = (int) (b.Damage * DamageBuff);
-        b.Speed = BulletSpeed;
-        Destroy(bullet.gameObject, _bulletLifetime);
+        b.Shoot(
+            Owner, DamageBuff, b.transform.forward * BulletSpeed + GetVelocityCorrection(bulletPlace),
+            BulletMaxDistance
+        );
         cooldown = maxCooldown;
         if (sfxEmitter)
             sfxEmitter.Play();

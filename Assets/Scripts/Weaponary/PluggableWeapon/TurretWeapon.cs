@@ -13,6 +13,9 @@ public class TurretWeapon : Weapon
     private Vector3 m_AimTarget;
     private bool m_Aimed;
 
+    [SerializeField] private bool debug;
+    private GameObject red;
+
     public override float maxCooldown
     {
         get => m_Gun.maxCooldown;
@@ -27,6 +30,15 @@ public class TurretWeapon : Weapon
 
     private void Start()
 {
+    if (debug)
+    {
+        red = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        var mat = red.GetComponent<MeshRenderer>().material;
+        mat.color = Color.red;
+        red.GetComponent<MeshRenderer>().material = mat;
+        red.GetComponent<Collider>().enabled = false;
+        red.name = "debugRed";
+    }
     rb = GetComponentInParent<Rigidbody>();
     m_Turret = GetComponentInChildren<Turret>();
     m_Gun = GetComponentInChildren<Gun>();
@@ -40,6 +52,13 @@ private void LateUpdate()
     {
         m_Turret.Aim(aimTargetPoint);
         m_Aimed = m_Turret.Aimed(aimTargetPoint);
+        if (debug)
+        {
+            var currentAimColor = m_Aimed ? Color.green : Color.red;
+            var distance = Vector3.Distance(m_Turret.AimingRay.transform.position, aimTargetPoint);
+            Debug.DrawLine(m_Turret.AimingRay.transform.position, aimTargetPoint, Color.green);
+            Debug.DrawRay(m_Turret.AimingRay.transform.position, m_Turret.AimingRay.transform.forward * distance, currentAimColor);
+        }
     }
 }
 
@@ -51,6 +70,10 @@ public override void Track(Transform target)
     if (target)
     {
         targetRb = target.GetComponent<Rigidbody>();
+        if (debug)
+        {
+            print($"Target rb: {targetRb}");
+        }
     }
 }
 
@@ -79,14 +102,32 @@ Vector3 GetAimTargetPoint()
     {
         targetPoint = m_TrackTarget.position;
 
-        if (leadFire && rb != null && targetRb != null)
+        if (leadFire && targetRb != null)
         {
-            targetPoint =
-                InterceptionCalculator.ShootingDirection(
-                    rb,
-                    targetRb,
-                    m_Gun.BulletSpeed
-                );
+            if (rb == null)
+            {
+                targetPoint =
+                    InterceptionCalculator.ShootingDirection(
+                        transform,
+                        targetRb,
+                        m_Gun.BulletSpeed
+                    );    
+            }
+            else
+            {
+                targetPoint =
+                    InterceptionCalculator.ShootingDirection(
+                        rb,
+                        targetRb,
+                        m_Gun.BulletSpeed
+                    );
+            }
+            
+            if (debug)
+            {
+                print("Got target point");
+                red.transform.position = targetPoint;
+            }
         }
     }
     else if (m_AimTarget != Vector3.zero)

@@ -5,8 +5,6 @@ namespace AI.StationAI
 {
     public class StationAIStateMachine : MonoBehaviour
     {
-        [SerializeField] private bool hostile;
-
         [SerializeField] private BaseState attackState;
         [SerializeField] private BaseState scanState;
         

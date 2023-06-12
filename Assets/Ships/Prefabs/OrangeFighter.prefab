@@ -20238,10 +20238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ef767425b974e389109c4d4c37f67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocityLimit: 4
-  force: 120
+  angularVelocityLimit: 2
+  force: 40
   maxTorque: 50
-  pidA: 5
+  pidA: 3
   pidD: 1.4
   pidDD: 1
   debugStopTarget: {fileID: 0}
@@ -40518,6 +40518,7 @@ MonoBehaviour:
   DamageBuff: 1
   barrels:
   - {fileID: 8283321358564262436}
+  overrideOwner: {fileID: 0}
 --- !u!1 &8270728648027626205
 GameObject:
   m_ObjectHideFlags: 0
@@ -64473,6 +64474,7 @@ GameObject:
   - component: {fileID: 8270728649305886376}
   - component: {fileID: 8270728649305886377}
   - component: {fileID: 8270728649305886378}
+  - component: {fileID: 6334074937422142383}
   m_Layer: 0
   m_Name: OrangeFighter
   m_TagString: Untagged
@@ -64662,6 +64664,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc567572ee464b2a8ef9883194eda98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6334074937422142383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270728649305886379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0ed2a512fd34e8abfd201382bddcaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 1
 --- !u!1 &8270728649390639320
 GameObject:
   m_ObjectHideFlags: 0
@@ -98627,9 +98642,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2812d4bec1ac443b1b0ab6ab839e53ef, type: 3}
---- !u!4 &3977270808985740998 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2812d4bec1ac443b1b0ab6ab839e53ef, type: 3}
+--- !u!1 &4064860393004475717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 635547659545568360, guid: 2812d4bec1ac443b1b0ab6ab839e53ef, type: 3}
   m_PrefabInstance: {fileID: 3510735984891085101}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7615747963821910180 stripped
@@ -98637,9 +98652,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -2807939755594012279, guid: 2812d4bec1ac443b1b0ab6ab839e53ef, type: 3}
   m_PrefabInstance: {fileID: 3510735984891085101}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4064860393004475717 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 635547659545568360, guid: 2812d4bec1ac443b1b0ab6ab839e53ef, type: 3}
+--- !u!4 &3977270808985740998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2812d4bec1ac443b1b0ab6ab839e53ef, type: 3}
   m_PrefabInstance: {fileID: 3510735984891085101}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &5958512169054187336

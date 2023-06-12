@@ -34,6 +34,8 @@ namespace SpaceShip.PhysicalMovement
         private Vector3 tickDv;
         private float tickMomentum;
 
+        [SerializeField] private bool debug;
+
         public override void Init(Transform t, MovementConfig config)
         {
             movedTransform = t;
@@ -152,14 +154,17 @@ namespace SpaceShip.PhysicalMovement
                 }
 
                 // Debug
-                float _m = 0;
-                for (int k = 0; k < m_Engines.Length; k++)
+                if (debug)
                 {
-                    _m += result[k] * EngineMomentum(m_Engines[k]);
-                }
+                    float _m = 0;
+                    for (int k = 0; k < m_Engines.Length; k++)
+                    {
+                        _m += result[k] * EngineMomentum(m_Engines[k]);
+                    }
 
-                print(
-                    $"{direction}\nM: {_m} VS expected {totalMomentum}\n{string.Join("\n", m_Engines.Zip(result, (x, y) => (x.name, y, EngineMomentum(x))).ToArray())}");
+                    print(
+                        $"{direction}\nM: {_m} VS expected {totalMomentum}\n{string.Join("\n", m_Engines.Zip(result, (x, y) => (x.name, y, EngineMomentum(x))).ToArray())}");
+                }
                 //
 
                 if (Mathf.Abs(totalMomentum) > 0.001f)

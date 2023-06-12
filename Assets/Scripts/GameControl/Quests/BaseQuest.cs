@@ -62,9 +62,9 @@ public abstract class BaseQuest : MonoBehaviour
         {
             Vector3 position = item.Item2.transform.position;
             Gizmos.color = Color.yellow;
-            Handles.color = Color.yellow;
+            // Handles.color = Color.yellow;
             Gizmos.DrawWireSphere(position, 10);
-            Handles.Label(position + Vector3.up * 20, item.Item1);
+            // Handles.Label(position + Vector3.up * 20, item.Item1);
         }
     }
 
