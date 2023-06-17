@@ -149,6 +149,13 @@ public class PhysicalMovement : ShipMovementService
         MoveAim = v;
     }
 
+    public override void MoveAtDirection(Vector3 target, float throttleCutoff)
+    {
+        Vector3 position = m_MovedTransform.position;
+        target = position + (target - position).normalized * 300;
+        Move(target, throttleCutoff);
+    }
+
     public override void TurnOnPlace(Vector3 v)
     {
         engineSplitter.ApplyRotationTorque(v - location);

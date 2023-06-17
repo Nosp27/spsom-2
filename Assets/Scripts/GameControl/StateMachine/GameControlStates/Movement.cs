@@ -102,7 +102,7 @@ namespace GameControl.StateMachine.GameControlStates
             if (moveCommand)
             {
                 m_MoveAim.transform.position = movementTarget;
-                playerShip.Move(movementTarget);
+                playerShip.MoveAtDirection(movementTarget);
             }
             else
             {
@@ -123,7 +123,7 @@ namespace GameControl.StateMachine.GameControlStates
                 return;
             
             Vector3 moveVector = (Vector3.forward * moveVectorRaw.y + Vector3.right * moveVectorRaw.x) * 100;
-            playerShip.Move(playerShip.transform.position + moveVector);
+            playerShip.MoveAtDirection(playerShip.transform.position + moveVector);
         }
 
         void ProcessAim(Ship playerShip, Vector3 cursor)

@@ -15,7 +15,7 @@ public class TraderAI : MonoBehaviour
 
     private bool isWorking = true;
     private int CurrentPlaceIndex;
-    private Transform CurrentPlace => Places[CurrentPlaceIndex % Places.Count];
+    private Transform CurrentPlace => Places.Count > 0 ? Places[CurrentPlaceIndex % Places.Count] : null;
 
     private void Awake()
     {
@@ -42,6 +42,9 @@ public class TraderAI : MonoBehaviour
                 m_ThisShip.CancelMovement();
             return;
         }
+        
+        if (CurrentPlace == null)
+            return;
         
         if (ShipAt(CurrentPlace))
         {

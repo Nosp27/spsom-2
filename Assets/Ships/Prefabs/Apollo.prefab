@@ -6229,7 +6229,6 @@ GameObject:
   - component: {fileID: 2027507068}
   - component: {fileID: 2027507065}
   - component: {fileID: 2027507066}
-  - component: {fileID: 2027507067}
   - component: {fileID: 665385813}
   - component: {fileID: 281503627}
   - component: {fileID: 1973165407649739906}
@@ -6325,20 +6324,6 @@ MonoBehaviour:
   OnWeaponMutate:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2027507067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917093697189968063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a274059d428d42efb97131346d6ca44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  engineRotationMultipliers: []
-  engineDriveMultipliers: []
 --- !u!114 &665385813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20886,14 +20871,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
---- !u!4 &1341983085427380361 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4000010212820824, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
-  m_PrefabInstance: {fileID: 1338021527604303825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1166138231734768695 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+  m_PrefabInstance: {fileID: 1338021527604303825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1341983085427380361 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010212820824, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
   m_PrefabInstance: {fileID: 1338021527604303825}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2798062908244069425

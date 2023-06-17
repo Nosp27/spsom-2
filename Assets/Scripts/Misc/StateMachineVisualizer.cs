@@ -17,6 +17,9 @@ public class StateMachineVisualizer : MonoBehaviour
 
     IEnumerator Start()
     {
+        if (_p == null)
+            yield break;
+        
         do
         {
             yield return 0;

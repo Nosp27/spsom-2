@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a3f6b78617e4150b1502085fcbb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostile: 1
   attackState: {fileID: 603728560}
   scanState: {fileID: 876989908}
 --- !u!1 &490366036
@@ -153,11 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa86f0c36e5748368eb4763be497efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotEventEmitter: {fileID: 0}
   weaponSpriteValue: {fileID: 0}
   missilePrefab: {fileID: 39167279352728550, guid: 1ba2277ebb536436db46693ca85612c1, type: 3}
   fireRate: 20
   detonationDistance: 10
   detonationTimeout: 30
+  missileSpeed: 20
+  missileGuidingAngle: 55
 --- !u!1 &603728558
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,9 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31be434c087b24ef9920b9ab8e50a419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  referenceFaction: 0
   detectionMethod: 0
   discoveryRange: 700
   loseRange: 800
+  seekNearest: 1
 --- !u!1 &876989906
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +453,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568270425483196238}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1

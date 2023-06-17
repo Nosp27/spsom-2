@@ -220,12 +220,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularVelocityLimit: 0.7
-  force: 50
+  force: 250
   maxTorque: 150
   pidA: 5
   pidD: 3
   pidDD: 0
   debugStopTarget: {fileID: 0}
+  debug: 0
 --- !u!1 &950015057
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beeea4a40426a4b2aa4d400a5a0d4819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
+  range: 500
 --- !u!1 &1156366574
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +888,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386810796}
     m_Modifications:
+    - target: {fileID: 358819781, guid: e88e44bd15d6541d190be26767661e80, type: 3}
+      propertyPath: FireRate
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2080056764021706707, guid: e88e44bd15d6541d190be26767661e80, type: 3}
       propertyPath: HorizontalLimits.Array.data[0]
       value: -180
@@ -1563,6 +1568,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386810796}
     m_Modifications:
+    - target: {fileID: 358819781, guid: e88e44bd15d6541d190be26767661e80, type: 3}
+      propertyPath: FireRate
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 2080056764021706707, guid: e88e44bd15d6541d190be26767661e80, type: 3}
       propertyPath: HorizontalLimits.Array.data[0]
       value: -180

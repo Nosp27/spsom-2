@@ -30,6 +30,13 @@ public class MovementService : ShipMovementService
         m_ThrottleCutoff = throttleCutoff;
         MoveAim = new Vector3(target.x, m_MovedTransform.position.y, target.z);
     }
+    
+    public override void MoveAtDirection(Vector3 target, float throttleCutoff)
+    {
+        Vector3 position = m_MovedTransform.position;
+        target = position + (target - position).normalized * 300;
+        Move(target, throttleCutoff);
+    }
 
     private void TurnAt()
     {

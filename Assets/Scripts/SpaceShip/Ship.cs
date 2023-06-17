@@ -64,8 +64,14 @@ public class Ship : MonoBehaviour
     {
         if (!Alive)
             return;
-
         movementService.Move(target, throttleCutoff);
+    }
+    
+    public void MoveAtDirection(Vector3 target, float throttleCutoff = 1)
+    {
+        if (!Alive)
+            return;
+        movementService.MoveAtDirection(target, throttleCutoff);
     }
 
     public bool IsMoving()
