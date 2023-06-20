@@ -298,7 +298,7 @@ Transform:
   - {fileID: 7999070538544287944}
   - {fileID: 3507713375379287763}
   m_Father: {fileID: 7751308865075642169}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4751683551724338594
 MonoBehaviour:
@@ -328,6 +328,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3535948786082819271, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4481132
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535948786082819271, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6961903
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535948786082819271, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4555353519861958983, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
       propertyPath: faction
       value: 1
@@ -466,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916083868258856944, guid: d0215619a8a294233830990863d2368a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3916083868258856944, guid: d0215619a8a294233830990863d2368a, type: 3}
       propertyPath: m_AnchorMax.x
