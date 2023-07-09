@@ -609,6 +609,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
+      propertyPath: force
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
+      propertyPath: maxTorque
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 3932394345395325875, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.73

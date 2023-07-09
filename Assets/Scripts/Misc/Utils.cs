@@ -3,7 +3,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using FMODUnity;
-using Newtonsoft.Json;
 using UnityEngine;
 
 public class Utils
