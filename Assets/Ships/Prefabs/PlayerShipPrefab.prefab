@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2171960912907431163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3774029322588206048}
+  - component: {fileID: 4359170156190175685}
+  m_Layer: 0
+  m_Name: Radar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3774029322588206048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171960912907431163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7184833655015251631}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4359170156190175685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171960912907431163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beeea4a40426a4b2aa4d400a5a0d4819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 500
 --- !u!1001 &3839261697400491160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,6 +116,11 @@ PrefabInstance:
 --- !u!1 &5281394495808897238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8938664925190245454, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+  m_PrefabInstance: {fileID: 3839261697400491160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7184833655015251631 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6265180018627138103, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
   m_PrefabInstance: {fileID: 3839261697400491160}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8335787202831096787

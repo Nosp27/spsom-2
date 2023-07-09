@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     private StudioEventEmitter eventEmitter;
     private bool hitDone = false;
 
+    private Collider bulletTrigger;
+
     [SerializeField] private int Damage = 3;
     [SerializeField] private bool bypassShields;
     [SerializeField] private GameObject hitEffectPrefab;
@@ -21,6 +23,7 @@ public class Bullet : MonoBehaviour
             return;
         
         rb = GetComponent<Rigidbody>();
+        bulletTrigger = GetComponentInChildren<Collider>();
         eventEmitter = GetComponentInChildren<StudioEventEmitter>();
         mask = LayerMask.GetMask(new[]
         {
@@ -83,6 +86,13 @@ public class Bullet : MonoBehaviour
 
             damageModel.SendMessage("GetDamage", hit);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        var p = bulletTrigger.transform.position;
+        p.y = 0;
+        bulletTrigger.transform.position = p;
     }
 
 

@@ -101,7 +101,12 @@ namespace SpaceShip.PhysicalMovement
             throw new ArgumentException($"Engine {engine.name} has inappropriate direction");
         }
 
-        private void InitEngineCombinations()
+        public void CheckEngineCombinations()
+        {
+            InitEngineCombinations(true);
+        }
+        
+        private void InitEngineCombinations(bool dry=false)
         {
             float[] ZeroMomentumForceForDirection(Vector3 direction)
             {
@@ -255,15 +260,26 @@ namespace SpaceShip.PhysicalMovement
                 return result;
             }
 
-            m_PushCombinations = new Dictionary<Vector3, float[]>();
-            foreach (Vector3 direction in new[] {Vector3.forward, Vector3.right, Vector3.back, Vector3.left})
+            if (dry)
             {
-                m_PushCombinations[direction] = ZeroMomentumForceForDirection(direction);
+                foreach (Vector3 direction in new[] {Vector3.forward, Vector3.right, Vector3.back, Vector3.left})
+                {
+                    ZeroMomentumForceForDirection(direction);
+                }
+                ZeroForceForMomentum(0);
+                ZeroForceForMomentum(1);
+                return;
             }
 
-            m_SpinCombinations = new float[2][];
-            m_SpinCombinations[0] = ZeroForceForMomentum(0);
-            m_SpinCombinations[1] = ZeroForceForMomentum(1);
+            m_PushCombinations = new Dictionary<Vector3, float[]>();
+                foreach (Vector3 direction in new[] {Vector3.forward, Vector3.right, Vector3.back, Vector3.left})
+                {
+                    m_PushCombinations[direction] = ZeroMomentumForceForDirection(direction);
+                }
+
+                m_SpinCombinations = new float[2][];
+                m_SpinCombinations[0] = ZeroForceForMomentum(0);
+                m_SpinCombinations[1] = ZeroForceForMomentum(1);
         }
 
         private float[] CalculateThrottles(Vector3 dv, float momentum, float maxDvThrottle = 0.5f,
