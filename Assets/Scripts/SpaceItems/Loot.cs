@@ -1,6 +1,5 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Loot : MonoBehaviour
 {
@@ -9,10 +8,17 @@ public class Loot : MonoBehaviour
     /// and use it.
     /// </summary>
     
-    [SerializeField] private GameObject lootInventoryItemPrefab;
+    [SerializeField] private GameObject[] lootInventoryItemPrefabs;
+
+    private int prefabIndex;
+    
+    public void Awake()
+    {
+        prefabIndex = Random.Range(0, lootInventoryItemPrefabs.Length);
+    }
 
     public GameObject GetLootPrefab()
     {
-        return lootInventoryItemPrefab;
+        return lootInventoryItemPrefabs[prefabIndex];
     }
 }

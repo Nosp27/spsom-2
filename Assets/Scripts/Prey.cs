@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Prey : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject lootPrefab;
+    public void Die()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (lootPrefab)
+        {
+            Instantiate(lootPrefab, transform.position, transform.rotation);
+        }
+        else
+        {
+            Debug.LogWarning($"{name} is Prey but has no loot");
+        }
     }
 }
