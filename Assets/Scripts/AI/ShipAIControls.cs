@@ -15,7 +15,8 @@ namespace AI
             isAiEnabled = true;
             thisShip = GetComponent<Ship>();
             m_CA = GetComponent<CollisionAvoidance>();
-            GameController.Current.OnShipChange.AddListener(OnShipChange);
+            if (GameController.Current)
+                GameController.Current.OnShipChange.AddListener(OnShipChange);
         }
 
         void OnShipChange(Ship old, Ship _new)
