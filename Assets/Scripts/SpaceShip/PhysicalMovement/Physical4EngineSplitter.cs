@@ -391,7 +391,7 @@ namespace SpaceShip.PhysicalMovement
                 m_Rigidbody.AddForceAtPosition(
                     throttles[i] * engine.transform.forward, engine.transform.position
                 );
-                engine.renderer.Perform((int) throttles[i]);
+                engine.renderer.Perform((int) (throttles[i] * 100 / force));
                 Debug.DrawRay(engine.transform.position, -engine.transform.forward * throttles[i], Color.red);
                 i++;
             }

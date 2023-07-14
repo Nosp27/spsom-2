@@ -952,9 +952,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5929741567288221761, guid: 0a81c1a6d227042469937196e588a434, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 8734610391998361660, guid: 0a81c1a6d227042469937196e588a434, type: 3}
+      propertyPath: force
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7220,6 +7220,10 @@ PrefabInstance:
     - target: {fileID: 47066641457566089, guid: 12c0b94dd207246ac956a81253760843, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.42718506
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498630929183381415, guid: 12c0b94dd207246ac956a81253760843, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8097578658768050928, guid: 12c0b94dd207246ac956a81253760843, type: 3}
       propertyPath: m_Camera
