@@ -5,7 +5,7 @@ namespace AI.States
     public class Retreat : BaseShipAIState
     {
         private Vector3 m_DodgeVector;
-        private Transform enemy => EnemyDetector?.Enemy.transform;
+        private Transform enemy => TargetDetector?.Target.transform;
 
         public override void Tick()
         {

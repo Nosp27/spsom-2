@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5d0f3bbf-db36-fc63-f884-159a14784588}</ProjectGuid>
+    <ProjectGuid>{09870fb5-ce91-8ca1-2d52-a66a7ad9bce9}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -98,7 +98,6 @@
      <Folder Include="Assets/Plugins/FMOD/platforms/android/lib/x86" />
      <Folder Include="Assets/Plugins/FMOD" />
      <Folder Include="Assets/Plugins/FMOD/platforms/ios" />
-     <Folder Include="Assets/Plugins/FMOD/Cache/Editor" />
      <Folder Include="Assets/Plugins/FMOD/platforms/uwp" />
      <Folder Include="Assets/Plugins/FMOD/platforms/android/lib/x86_64" />
      <Folder Include="Assets/Plugins/FMOD/platforms/win" />
@@ -109,6 +108,7 @@
      <Folder Include="Assets/Plugins/FMOD/src" />
      <Folder Include="Assets/Plugins/FMOD/platforms/mac/src" />
      <Folder Include="Assets/Plugins/FMOD/platforms/android/lib/armeabi-v7a" />
+     <Folder Include="Assets/Plugins/FMOD/Cache/Editor" />
      <Folder Include="Assets/Plugins/FMOD/platforms/linux/lib/x86_64" />
      <Folder Include="Assets/Plugins/FMOD/platforms/win/lib" />
      <Folder Include="Assets/Plugins/FMOD/platforms/android" />
@@ -378,29 +378,29 @@
      <Reference Include="UnityEditor.Graphs">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
      </Reference>
+     <Reference Include="UnityEditor.WebGL.Extensions">
+     <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
+     </Reference>
      <Reference Include="UnityEditor.OSXStandalone.Extensions">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
-     <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.Plastic.Antlr3.Runtime">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="DOTweenEditor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="log4netPlastic">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
      </Reference>
      <Reference Include="DOTween">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="unityplastic">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/PackageCache/com.unity.collab-proxy@2.0.5/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/NetStandard/ref/2.1.0/netstandard.dll</HintPath>
@@ -769,18 +769,16 @@
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{90868121-c70f-01e8-6d51-a0c20c4a0c11}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{8a796408-7a8d-e3cd-b8d3-760146027927}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

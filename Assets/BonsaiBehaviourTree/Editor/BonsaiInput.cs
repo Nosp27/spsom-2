@@ -109,7 +109,7 @@ namespace Bonsai.Designer
 
     private void HandleClickActions(CanvasTransform t, IReadOnlyList<BonsaiNode> nodes, Event e)
     {
-      if (IsClickAction(e))
+      if (IsClickAction(e) && !e.alt)
       {
         if (quickClicksCount == 0)
         {
@@ -161,7 +161,7 @@ namespace Bonsai.Designer
 
     public static bool IsPanAction(Event e)
     {
-      return e.type == EventType.MouseDrag && e.button == 2;
+      return e.type == EventType.MouseDrag && (e.alt || e.button == 2);
     }
 
     public static bool IsZoomAction(Event e)

@@ -2,6 +2,7 @@ using AI;
 using AI.States;
 using GameControl.StateMachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public interface IMiningController
 {
@@ -32,7 +33,7 @@ public class MiningDroneAIStateMachine : MonoBehaviour, IMiningController
     [SerializeField] private BaseShipAIState dockToStation;
     [SerializeField] private BaseShipAIState runAway;
 
-    [SerializeField] private EnemyDetector enemyDetector;
+    [FormerlySerializedAs("targetDetector")] [SerializeField] private EnemyDetector enemyDetector;
 
     private IMiningController m_MiningController;
 
@@ -50,11 +51,11 @@ public class MiningDroneAIStateMachine : MonoBehaviour, IMiningController
         sm.AddTransition(leaveMiningTarget, flyToMine, m_MiningController.CanChooseNextMiningTarget);
         sm.AddTransition(doMining, flyToStation, m_MiningController.DoneMining);
         sm.AddTransition(flyToStation, dockToStation, m_MiningController.ReachedStation);
-        sm.AddAnyTransition(runAway, () => enemyDetector.Enemy != null);
+        sm.AddAnyTransition(runAway, () => enemyDetector.Target != null);
         sm.AddTransition(runAway, flyToStation,
-            () => enemyDetector.Enemy == null && !m_MiningController.StoppedMiningImmidiately());
+            () => enemyDetector.Target == null && !m_MiningController.StoppedMiningImmidiately());
         sm.AddTransition(runAway, flyToMine,
-            () => enemyDetector.Enemy == null && m_MiningController.StoppedMiningImmidiately());
+            () => enemyDetector.Target == null && m_MiningController.StoppedMiningImmidiately());
         return sm;
     }
 

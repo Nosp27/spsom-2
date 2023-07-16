@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{be0d365e-b4e8-1b2e-9aeb-29eb1ff1ae7d}</ProjectGuid>
+    <ProjectGuid>{2811e2e0-c7f3-71be-c3d7-546760629d5f}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -45,6 +45,7 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets/Scripts/AI/EnemyDetectors/AggresionTargetDetector.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/MissileLauncher.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/FloatingPart.cs" />
      <Compile Include="Assets/Scripts/UI/ShipHealthBar.cs" />
@@ -55,7 +56,6 @@
      <Compile Include="Assets/Scripts/SpaceShip/AimLockTarget.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/SlotCanvas/CircularCanvasInput.cs" />
      <Compile Include="Assets/GameEventSystem/GameEvent.cs" />
-     <Compile Include="Assets/Scripts/AI/EnemyDetectors/AggresionEnemyDetector.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/SimpleDamageModel.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Gun.cs" />
      <Compile Include="Assets/Scripts/UI/HealthBarCircleLine.cs" />
@@ -102,7 +102,6 @@
      <Compile Include="Assets/Scripts/SpaceShip/ScaleWithEngine.cs" />
      <Compile Include="Assets/Scripts/Misc/KeepLookVector.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/FighterAIStateMachine.cs" />
-     <Compile Include="Assets/Scripts/AI/EnemyDetectors/IEnemyDetector.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Bullet.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/ShipDamageModel.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/EngineSound.cs" />
@@ -143,7 +142,6 @@
      <Compile Include="Assets/Scripts/UI/GizmoController.cs" />
      <Compile Include="Assets/Scripts/Misc/TriggerOccupancy.cs" />
      <Compile Include="Assets/Scripts/Weaponary/TTL.cs" />
-     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/LoadPatrolLocations.cs" />
      <Compile Include="Assets/Scripts/AI/States/LambdaState.cs" />
      <Compile Include="Assets/Scripts/AI/NeuralNetwork/NeuralNet.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/BeamWeapon.cs" />
@@ -153,7 +151,10 @@
      <Compile Include="Assets/Scripts/AI/States/StationAttack.cs" />
      <Compile Include="Assets/Scripts/AI/States/Dodge.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/DamageModel.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Attack.cs" />
      <Compile Include="Assets/Scripts/AI/CollisionAvoidance.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Conditions/EnemyCondition.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/FlyTo.cs" />
      <Compile Include="Assets/Scripts/UI/WeaponUIController.cs" />
      <Compile Include="Assets/Scripts/Misc/PositionTracker.cs" />
      <Compile Include="Assets/Scripts/Misc/FPSTracker.cs" />
@@ -167,7 +168,6 @@
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/PhysicalMovement.cs" />
      <Compile Include="Assets/Scripts/Misc/BlinkingLight.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/ProceduralStations/StationGenerator.cs" />
-     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/PatrolPoints.cs" />
      <Compile Include="Assets/Scripts/Prey.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/BorderZone.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/MiningDroneAIStateMachine.cs" />
@@ -179,64 +179,47 @@
      <Compile Include="Assets/Scripts/SpaceItems/GarageStation.cs" />
      <Compile Include="Assets/Scripts/AI/States/Retreat.cs" />
      <Compile Include="Assets/Scripts/AI/States/FormationState.cs" />
+     <Compile Include="Assets/Scripts/AI/EnemyDetectors/ITargetDetector.cs" />
      <Compile Include="Assets/Scripts/AI/TestShipSwitch.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/MixerView" />
      <Folder Include="Assets/Fonts/th3-machine" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD" />
-     <None Include="Library/PackageCache/com.unity.modules.subsystems@1.0.0/package.json" />
-     <None Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{92a9fe60-86ca-495e-86bc-e4dcf7774d6c}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Return" />
      <Folder Include="Assets/Ships/Procedural" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{0ad746db-95af-48bb-9fba-340726449bef}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.jsonserialize@1.0.0/package.json" />
-     <None Include="Library/PackageCache/com.unity.modules.screencapture@1.0.0/package.json" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Tests" />
-     <None Include="Library/PackageCache/com.unity.modules.cloth@1.0.0/package.json" />
      <Folder Include="Assets/SpaceStation/Prefabs" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{f8afd419-8165-4dca-bd9b-a44b59bf0bba}.xml" />
      <Folder Include="Assets/SpaceItems/Models/Textures" />
-     <Folder Include="Library/PackageCache/com.unity.modules.imgui@1.0.0" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Bank" />
      <Folder Include="Assets/Scripts/BonsaiAI/Tasks" />
-     <None Include="Library/PackageCache/com.unity.modules.unitywebrequesttexture@1.0.0/package.json" />
      <Folder Include="Assets/UI/Hud/PilotHUD/Sprites" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{12c6f06b-4396-4b2a-876e-a9a94bf61d60}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.ai@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{3f47f6a8-1c44-4e59-99c0-07cbb0c6c138}.xml" />
      <Folder Include="Assets/Ships/Weaponary/HitEffects" />
-     <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Build/Desktop" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SnapshotGroup" />
-     <Folder Include="Library/PackageCache/com.unity.modules.animation@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{61f05992-7ff1-47d8-9c10-298e4b5f2726}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPreset/{486abe14-0421-49e3-a203-8689d6c379dc}.xml" />
-     <None Include="Library/PackageCache/com.unity.ugui@1.0.0/package.json" />
+     <Folder Include="Assets/Scripts/BonsaiAI/Conditions" />
      <Folder Include="Assets/Ships/Weaponary/Models" />
      <Folder Include="Assets/Scripts/BonsaiAI/Trees" />
-     <Folder Include="Library/PackageCache/com.unity.modules.xr@1.0.0" />
      <Folder Include="Assets/Sound/Music/SpaceTheme" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Snapshot" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/SMAA" />
      <None Include="Assets/Fonts/saucer/fontinfo.txt" />
      <Folder Include="Assets/SpaceStation/Models" />
-     <None Include="Library/PackageCache/com.unity.modules.assetbundle@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{136c0f29-f8b9-4a27-b990-c5178fc79e05}.xml" />
      <Folder Include="Assets/Fonts/saucer" />
      <Folder Include="Assets/Scripts/Weaponary" />
      <Folder Include="Assets/Scripts/BonsaiAI" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/BlueNoise64" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{57212e84-fc23-4098-b247-8607b4bcb0c7}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{2accfe1c-0d0d-41d8-a0c7-48da54542876}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{9f29cd2e-7555-4473-b70e-a173366c9da3}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.imgui@1.0.0/package.json" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata" />
      <Folder Include="Assets/Ships/ShipModels/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{65853e57-8200-46e5-ab3c-39f7641af4a7}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{13b870c6-7869-4c16-af98-3d12dc8c255d}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.tilemap@1.0.0/package.json" />
      <Folder Include="Assets/UI/Quest/DialogueWindow" />
-     <Folder Include="Library/PackageCache/com.unity.modules.assetbundle@1.0.0" />
      <Folder Include="Assets/UI/Quest" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{49bc6bc1-3538-4eaa-9621-78e3ffe428b4}.xml" />
      <Folder Include="Assets/Ships/Modules" />
@@ -253,7 +236,6 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{3450ca47-d389-43f0-944b-dca30c1c0919}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Platform/{13b0cfa8-e8d0-47fa-99fc-200a1de2c771}.xml" />
      <Folder Include="Assets/Scripts/AI" />
-     <None Include="Library/PackageCache/com.unity.modules.terrainphysics@1.0.0/package.json" />
      <Folder Include="Assets/SpaceStation" />
      <Folder Include="Assets/Scripts/GameControl/CameraLogic" />
      <Folder Include="Assets/SpaceItems/Models" />
@@ -265,7 +247,6 @@
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DAWAsset" />
      <Folder Include="Assets/Scenes/SampleScenex" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset/{1c8b2016-fd01-48b1-9b1a-7e89d90df53c}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.screencapture@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Workspace.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EffectPresetFolder" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{9c7a2daf-7295-4c71-a81f-50e87dc9d44b}.xml" />
@@ -274,26 +255,18 @@
      <None Include="Assets/Fonts/th3-machine/readme.txt" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets" />
      <Folder Include="Assets/UI/Inventory/Materials" />
-     <Folder Include="Library/PackageCache/com.unity.modules.cloth@1.0.0" />
      <Folder Include="Assets/SpaceItems/Models/Meshes" />
      <Folder Include="Assets/Scripts/SpaceShip" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{dd2f3bc2-378d-44f6-b776-3144f7b84b31}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.unitywebrequestassetbundle@1.0.0/package.json" />
      <Folder Include="Assets/Ships/ShipModels/Meshes/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{c0a064dc-4bc3-45b4-a718-2d08a3ea28e9}.xml" />
      <Folder Include="Assets/Scripts/SpaceItems" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{7ffebcd1-2a97-4fec-854d-313de3b8eff7}.xml" />
      <Folder Include="Assets/SpaceItems" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/FilmGrain" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{598a42e6-dd39-479b-a838-f8e0397ca74d}.xml" />
      <Folder Include="Assets/Scripts/Weaponary/DamageModels" />
-     <None Include="Library/PackageCache/com.unity.render-pipelines.core@14.0.8/ValidationConfig.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EffectPresetFolder/{5c59a522-210b-4300-90b9-4f5be8940f2a}.xml" />
-     <None Include="Library/PackageCache/com.unity.render-pipelines.core@14.0.8/package.json" />
-     <Folder Include="Library/PackageCache/com.unity.modules.imageconversion@1.0.0" />
-     <Folder Include="Library/PackageCache/com.unity.modules.terrainphysics@1.0.0" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPreset" />
-     <None Include="Library/PackageCache/com.unity.modules.imageconversion@1.0.0/package.json" />
      <Folder Include="Assets/Configs/Ships" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Group" />
@@ -301,19 +274,15 @@
      <Folder Include="Assets/EffectExamples/FireExplosionEffects/Textures" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets/Music/SpaceTheme" />
      <Folder Include="Assets/EffectExamples/Scenes/Menu" />
-     <Folder Include="Library/PackageCache/com.unity.modules.unitywebrequest@1.0.0" />
      <Folder Include="Assets/Scripts/SpaceShip/ShipServices" />
      <Folder Include="Assets/Ships/Prefabs/EnemyShips" />
-     <Folder Include="Library/PackageCache/com.unity.modules.unitywebrequestassetbundle@1.0.0" />
      <Folder Include="Assets/SpaceItems/Prefabs" />
-     <None Include="Library/PackageCache/com.unity.shadergraph@14.0.8/package.json" />
      <Folder Include="Assets/EffectExamples/FireExplosionEffects/Materials" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD/Minimap" />
      <Folder Include="Assets/Shaders" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{acaace00-bfcb-400a-8bd2-550af9251f1e}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{509a89b6-916c-42f8-a581-706408153117}.xml" />
      <Folder Include="Assets/Scripts/AI/NeuralNetwork" />
-     <None Include="Library/PackageCache/com.unity.modules.unityanalytics@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{53ec96ba-d88b-444e-8ded-7b61daaeff5d}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Mixer.xml" />
      <Folder Include="Assets/Ships/ShipModels" />
@@ -321,61 +290,44 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{45eaf584-794b-476f-90b5-391a4b38b720}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ProfilerSession" />
      <Folder Include="Assets/Ships/Prefabs/PlayerShips" />
-     <Folder Include="Library/PackageCache/com.unity.modules.subsystems@1.0.0" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Prefabs" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{7e40ddc7-0712-4f60-9689-61ef838115ac}.xml" />
+     <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Build/Desktop" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{45c680e8-dc09-41dd-a31f-9742315bb264}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile" />
-     <None Include="Library/PackageCache/com.unity.modules.video@1.0.0/package.json" />
      <Folder Include="Assets/BlenderModels/Texpaint" />
-     <None Include="Library/PackageCache/com.unity.shadergraph@14.0.8/ValidationConfig.json" />
      <Folder Include="Assets/EffectExamples/WeaponEffects" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{eb1ab461-ef87-4fae-a5b1-89c468e79b81}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.shadergraph@14.0.8/Tests" />
      <Folder Include="Assets/Scripts/UI/Inventory" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{e351a213-6b3a-4ca3-8907-e0fa2b634686}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.unityanalytics@1.0.0" />
-     <Folder Include="Library/PackageCache/com.unity.modules.physics@1.0.0" />
      <Folder Include="Assets/UI/Hud/PilotHUD" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EncodingSetting" />
      <Folder Include="Assets/SpaceItems/Prefabs/Effects" />
-     <Folder Include="Library/PackageCache/com.unity.modules.vr@1.0.0" />
      <Folder Include="Assets/Utils" />
      <Folder Include="Assets/UI/Inventory" />
-     <Folder Include="Library/PackageCache/com.unity.modules.physics2d@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPresetFolder/{69b3e909-668f-4c9a-932b-6a5fc153e938}.xml" />
      <Folder Include="Assets/Scripts/AI/States" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{0ec07f1f-7b39-438e-a3d4-c1a896e734c3}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SandboxFolder/{9f0e83d5-3942-4f29-bdc4-d88963a4bad1}.xml" />
      <Folder Include="Assets/EffectExamples/Misc Effects/Textures" />
      <Folder Include="Assets/Ships/Weaponary/Bullets" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8" />
-     <None Include="Library/PackageCache/com.unity.modules.particlesystem@1.0.0/package.json" />
      <Folder Include="Assets/Scripts/UI/Inventory/SlotCanvas" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{427b3175-dfb7-48f7-a2c9-9add90e9d5c6}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{6c99bf8f-ca8f-4bc2-b7be-325e04782823}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.wind@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{12a8305e-f121-437a-97e8-5218bb46985d}.xml" />
      <Folder Include="Assets/Ships/Modules/CargoCrane" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{f68d932a-b0c3-402f-8f74-3032bf7d9c1b}.xml" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD/CursorMarker" />
      <Folder Include="Assets/Scenes/SampleScenex_Profiles" />
-     <Folder Include="Library/PackageCache/com.unity.shadergraph@14.0.8" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Bank/{38f10158-fa09-4b54-8149-d715b184b9b2}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.physics2d@1.0.0/package.json" />
      <Folder Include="Assets/StreamingAssets" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SandboxFolder" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ProfilerFolder" />
-     <None Include="Library/PackageCache/com.unity.modules.vr@1.0.0/package.json" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/BlueNoise64/L" />
      <Folder Include="Assets/CommonTextures/Effects" />
-     <Folder Include="Library/PackageCache/com.unity.modules.uielements@1.0.0" />
      <Folder Include="Assets/UI/Hud/Prefabs" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets/SFX" />
-     <Folder Include="Library/PackageCache/com.unity.modules.unitywebrequestaudio@1.0.0" />
      <Folder Include="Assets/UI/ShopMenu" />
-     <Folder Include="Library/PackageCache/com.unity.modules.particlesystem@1.0.0" />
      <Folder Include="Assets/UI/ShopMenu/Sprites" />
      <Folder Include="Assets/MaterialsCommon" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{622f856d-1b62-4982-8459-a9d4e1c28a60}.xml" />
@@ -393,49 +345,33 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{9f629574-386f-486f-aebe-50494e97fcda}.xml" />
      <Folder Include="Assets/UI" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD/ShipHealthBar" />
-     <None Include="Library/PackageCache/com.unity.modules.wind@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{1dc5806e-e7e1-4758-8cdb-0796b22bed09}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.ugui@1.0.0/Tests" />
-     <None Include="Library/PackageCache/com.unity.modules.umbra@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset/{0abcc4af-e4ed-4aaa-a35a-8d811eda76ad}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.2d.sprite@1.0.0" />
-     <Folder Include="Library/PackageCache/com.unity.modules.tilemap@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{03bb3967-0abb-4392-8841-a9fbac654766}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Build" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{260d7b41-4257-4ef1-8b93-c5679c798080}.xml" />
      <Folder Include="Assets/Scripts" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{397f913f-6cb0-4ef7-b9d8-f015e6f5e17d}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.ui@1.0.0" />
      <Folder Include="Assets/Scripts/GameControl/Quests/QuestDefinitions" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{9108d800-f78c-46bc-8b65-16e0700f9feb}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{705f7324-ed2a-4e74-9312-895ce516ff46}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SandboxScene" />
      <Folder Include="Assets/Scripts/GameControl/Quests" />
-     <Folder Include="Library/PackageCache/com.unity.modules.androidjni@1.0.0" />
      <Folder Include="Assets/Fonts" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD/Markers" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{4796dc5f-cf3e-4792-ab77-a1df53798175}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{dc637b60-1531-48a9-84c0-01975855e81b}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.audio@1.0.0/package.json" />
-     <None Include="Library/PackageCache/com.unity.modules.physics@1.0.0/package.json" />
      <Folder Include="Assets/Scenes/SampleScenex/BG" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/2D" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{7d1d9e5a-3a0f-4e30-a017-e183a8cd9104}.xml" />
      <Folder Include="Assets/CommonTextures" />
-     <None Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/ValidationExceptions.json" />
      <Folder Include="Assets/UI/Hud/HealthBar" />
      <Folder Include="Assets/UI/Hud/MainHUD" />
-     <None Include="Library/PackageCache/com.unity.modules.vehicles@1.0.0/package.json" />
      <Folder Include="Assets/GameEventSystem" />
      <Folder Include="Assets/SpaceStation/Models/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{aadf4230-def6-41a9-b14d-d0f29f0a18b3}.xml" />
      <Folder Include="Assets/EffectExamples/Misc Effects/Materials" />
-     <None Include="Library/PackageCache/com.unity.modules.unitywebrequestwww@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{9b2dd0d0-a9ee-425f-90fc-ea2acf4f8f9e}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.core@14.0.8" />
-     <None Include="Library/PackageCache/com.unity.modules.unitywebrequestaudio@1.0.0/package.json" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Textures" />
      <Folder Include="Assets/UI/Quest/Notifications" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Models/Materials" />
@@ -446,22 +382,17 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset/{d1502a69-ae10-44d4-afe0-6ebc4f0e0a08}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{35a45f84-077b-4fd9-af91-0bdbf973f12a}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/BlueNoise16" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{b5ef77f3-9106-4cba-a63e-b48fa38d4f42}.xml" />
      <Folder Include="Assets/Scripts/AI/StateMachines" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{dda10af2-b904-4ef2-9723-b9ab52779f0b}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{518f6b60-ebbb-45b7-a7d1-b6d369cca7fe}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset/{de914b1e-8471-48a3-b54a-5bbfc166953a}.xml" />
      <Folder Include="Assets/SpaceStation/Prefabs/ProceduralStationModules" />
-     <Folder Include="Library/PackageCache/com.unity.modules.vehicles@1.0.0" />
      <Folder Include="Assets/Ships/Weaponary" />
-     <None Include="Library/PackageCache/com.unity.modules.xr@1.0.0/package.json" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD/LidarUI" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{373be533-05f2-4424-8e16-dcd103aed710}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.core@14.0.8/Tests" />
      <Folder Include="Assets/EffectExamples" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets/Music" />
-     <Folder Include="Library/PackageCache/com.unity.modules.umbra@1.0.0" />
      <Folder Include="Assets/EffectExamples/FireExplosionEffects" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EffectPreset" />
      <Folder Include="Assets/Ships/Procedural/Materials" />
@@ -472,45 +403,31 @@
      <Folder Include="Assets/UI/Hud/PilotHUD/Materials" />
      <Folder Include="Assets/UI/Quest/DialogueWindow/Sprites" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{de505acb-3d72-46e2-bc94-e6028b740e94}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.unitywebrequestwww@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{6f790a08-ac2b-4371-87fa-c57d97730f25}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.director@1.0.0/package.json" />
      <Folder Include="Assets/SpaceStation/Models/Textures" />
      <Folder Include="Assets/EffectExamples/Misc Effects/Prefabs" />
-     <Folder Include="Library/PackageCache/com.unity.modules.jsonserialize@1.0.0" />
      <Folder Include="Assets/Scripts/SpaceShip/PhysicalMovement" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/BlueNoise256" />
-     <Folder Include="Library/PackageCache/com.unity.modules.director@1.0.0" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{b11c0c63-6a8a-43be-91e0-44d6dab9ae94}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.audio@1.0.0" />
      <Folder Include="Assets/Ships/ShipModels/Textures" />
-     <None Include="Library/PackageCache/com.unity.modules.terrain@1.0.0/package.json" />
+     <Folder Include="Assets/SpaceItems/Models/Meshes/Materials" />
      <Folder Include="Assets/Ships/ShipModels/Meshes" />
-     <None Include="Library/PackageCache/com.unity.2d.sprite@1.0.0/package.json" />
      <Folder Include="Assets/EffectExamples/Misc Effects" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{a6e9aeed-3e10-49b6-a8a1-cdadbb535a04}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{1197947d-c3e6-47e1-bc05-ed2458c69d7a}.xml" />
-     <None Include="Library/PackageCache/com.unity.modules.androidjni@1.0.0/package.json" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Models" />
-     <Folder Include="Library/PackageCache/com.unity.modules.video@1.0.0" />
      <Folder Include="Assets/MaterialsCommon/Effects" />
-     <Folder Include="Library/PackageCache/com.unity.modules.ai@1.0.0" />
      <Folder Include="Assets/Sound/Music" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ProfilerFolder/{9173d26c-9290-4f6e-bfd1-faec176b0536}.xml" />
      <Folder Include="Assets/Configs/Ships/Movement" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{f3c22d94-14db-47f2-b657-547a0a7cbbea}.xml" />
      <Folder Include="Assets/Scripts/Weaponary/PluggableWeapon" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Platform" />
-     <Folder Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/Textures/BlueNoise16/L" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{e4663af0-06bc-4b73-be0b-1d9c4f8016cd}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPreset/{a4e6c92d-a4ae-474c-a635-d456b0de8698}.xml" />
      <Folder Include="Assets/EffectExamples/Scenes" />
      <Folder Include="Assets/Resources" />
-     <Folder Include="Library/PackageCache/com.unity.modules.terrain@1.0.0" />
      <Folder Include="Assets/CommonTextures/JS-Placement" />
-     <Folder Include="Library/PackageCache/com.unity.2d.sprite@1.0.0/Tests" />
      <Folder Include="Assets/SpaceItems/Prototypes" />
-     <None Include="Library/PackageCache/com.unity.modules.animation@1.0.0/package.json" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{516cf2d1-072a-4f81-862e-aa34a8a800dd}.xml" />
      <Folder Include="Assets/SpaceItems/Models/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{6064c527-d820-4dad-9d97-84251c017f14}.xml" />
@@ -520,24 +437,18 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{8c15b182-79b3-434a-be5d-127500ce030b}.xml" />
      <Folder Include="Assets/UI/ShopMenu/Animations" />
      <Folder Include="Assets/Scripts/GameControl/StateMachine" />
-     <None Include="Library/PackageCache/com.unity.render-pipelines.universal@14.0.8/ValidationConfig.json" />
-     <None Include="Library/PackageCache/com.unity.modules.unitywebrequest@1.0.0/package.json" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset" />
-     <None Include="Library/PackageCache/com.unity.modules.uielements@1.0.0/package.json" />
      <Folder Include="Assets/Scenes/test" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Return/{86f14354-dbbf-4cb2-957c-a4fbe4ec4db8}.xml" />
      <Folder Include="Assets/Utils/Screenshots" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SnapshotGroup/{0a6e1da9-94b3-4e88-a6e2-bf1f1dff292c}.xml" />
-     <Folder Include="Library/PackageCache/com.unity.modules.unitywebrequesttexture@1.0.0" />
      <Folder Include="Assets/Sound/SFX" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Port" />
-     <Folder Include="Library/PackageCache/com.unity.ugui@1.0.0" />
      <Folder Include="Assets/Scripts/Factions" />
      <Folder Include="Assets/Ships/Weaponary/Prefabs" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{c5a22ee5-9e7d-41e0-9038-5f362574bcb7}.xml" />
      <Folder Include="Assets/EffectExamples/FireExplosionEffects/Prefabs" />
      <Folder Include="Assets/Fonts/karnata_f_kittel" />
-     <None Include="Library/PackageCache/com.unity.modules.ui@1.0.0/package.json" />
      <Folder Include="Assets/ComponentPresets" />
      <Folder Include="Assets/Scripts/GameControl/StateMachine/GameControlStates" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{f27fbb6c-86d3-43a0-9a2b-fccf25c953e5}.xml" />
@@ -797,7 +708,7 @@
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
      <Reference Include="DOTween">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/NetStandard/ref/2.1.0/netstandard.dll</HintPath>
@@ -1165,186 +1076,173 @@
      <Reference Include="mscorlib">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+     </Reference>
      <Reference Include="com.unity.cinemachine.editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Postprocessing.Runtime">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VectorGraphics">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VectorGraphics.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Mathematics.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+     </Reference>
+     <Reference Include="PPv2URPConverters">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/PPv2URPConverters.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VSCode.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Sysroot.Linux_x86_64">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Sysroot.Linux_x86_64.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Sysroot.Linux_x86_64.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ShaderGraph.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InternalAPIEditorBridge.003">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.003.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.003.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InputSystem">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InputSystem.ForUI">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InternalAPIEngineBridge.003">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.003.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.003.dll</HintPath>
      </Reference>
      <Reference Include="Unity.SysrootPackage.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation.Updater">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
      </Reference>
      <Reference Include="BNGNode">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/BNGNode.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/BNGNode.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Postprocessing.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Toolchain.Macos-x86_64-Linux-x86_64">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Toolchain.Macos-x86_64-Linux-x86_64.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Toolchain.Macos-x86_64-Linux-x86_64.dll</HintPath>
      </Reference>
      <Reference Include="BNGNodeEditor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/BNGNodeEditor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/BNGNodeEditor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Mathematics">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Searcher.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Cinemachine">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{88bb6ee6-85d3-2a14-c322-01ed60b85ac4}</Project>
+      <Project>{43f2e9af-2c12-ec9a-5934-65af7177c27b}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityEditor.csproj">
-      <Project>{064e1e79-bd20-3a16-5081-4bfa46927822}</Project>
+      <Project>{540294c4-dcd5-8941-a0e5-46a485012a40}</Project>
       <Name>FMODUnityEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
-      <Project>{2314b12a-58e5-12b1-c475-6ba220aa8080}</Project>
-      <Name>Unity.RenderPipelines.Core.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="FMODUnityResonance.csproj">
-      <Project>{de5ff63e-7ab6-84fe-a92b-7dea0a1747c5}</Project>
+      <Project>{af80ac93-1866-c065-d0ef-bbf7beef3eac}</Project>
       <Name>FMODUnityResonance</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
-      <Project>{999af6a3-ae6f-014d-7e39-72750c79ef1a}</Project>
-      <Name>Unity.2D.Sprite.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
-      <Project>{5026cab8-2615-70e0-2594-0055da9311f2}</Project>
-      <Name>Unity.RenderPipelines.Core.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
-      <Project>{d3a552f9-3b4a-c528-6908-0eb13c6f2144}</Project>
-      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="FMODUnity.csproj">
-      <Project>{5d0f3bbf-db36-fc63-f884-159a14784588}</Project>
+      <Project>{09870fb5-ce91-8ca1-2d52-a66a7ad9bce9}</Project>
       <Name>FMODUnity</Name>
     </ProjectReference>
-    <ProjectReference Include="PPv2URPConverters.csproj">
-      <Project>{d104a0c2-5b62-2bae-7159-77b2bec5ce43}</Project>
-      <Name>PPv2URPConverters</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj">
-      <Project>{5265b042-e105-4f9c-f43d-1037e12bd67a}</Project>
-      <Name>Unity.RenderPipelines.Universal.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
-      <Project>{028c97bf-4d24-ea82-43a9-c8a331b1e8b3}</Project>
-      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
-      <Project>{ba4dedcf-831b-a49a-33b2-a972b032f798}</Project>
-      <Name>Unity.RenderPipelines.Universal.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
-      <Project>{8c255f1c-806a-cc9d-b386-22de1f5d7438}</Project>
-      <Name>Unity.ShaderGraph.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{90868121-c70f-01e8-6d51-a0c20c4a0c11}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{8a796408-7a8d-e3cd-b8d3-760146027927}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="BonsaiEditorAssembly.csproj">
-      <Project>{f1305c86-0b14-f7aa-e141-82c0287d1ffc}</Project>
+      <Project>{4a850da9-6060-953e-5e71-84f063f4af64}</Project>
       <Name>BonsaiEditorAssembly</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
-      <Project>{c06c9260-4b0d-19c3-845a-4d81f62b9556}</Project>
-      <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="BonsaiStandardAssembly.csproj">
-      <Project>{b1a10314-954c-1307-d79b-baa70b0eee31}</Project>
+      <Project>{fbd5234c-8768-cdc1-a14d-5946562f0a7d}</Project>
       <Name>BonsaiStandardAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityResonanceEditor.csproj">
-      <Project>{5f362e61-f501-0c11-bfe1-5c16f32905b4}</Project>
+      <Project>{21d4e498-931a-9435-a89f-53931fc091fb}</Project>
       <Name>FMODUnityResonanceEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
-      <Project>{fa75a35a-8eeb-a223-ac15-542817ec505b}</Project>
-      <Name>Unity.RenderPipelines.Universal.Shaders</Name>
-    </ProjectReference>
     <ProjectReference Include="BonsaiAssembly.csproj">
-      <Project>{b41be05f-50ab-9eb3-e191-25c1a7bbaf4d}</Project>
+      <Project>{7cc6515a-7837-c837-08c7-7f20f04d1b65}</Project>
       <Name>BonsaiAssembly</Name>
     </ProjectReference>
   </ItemGroup>

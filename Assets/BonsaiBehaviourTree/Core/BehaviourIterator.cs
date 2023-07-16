@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bonsai.Core
 {
@@ -144,6 +145,7 @@ namespace Bonsai.Core
     /// <param name="abortBranchIndex">The child branch that caused the abort.</param>
     public void AbortRunningChildBranch(BehaviourNode parent, int abortBranchIndex)
     {
+      Debug.Log($"Abort called: {parent.name} {parent.title} | {abortBranchIndex}");
       // If the iterator is inactive, ignore.
       if (IsRunning && parent)
       {

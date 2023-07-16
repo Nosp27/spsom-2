@@ -7,7 +7,7 @@ namespace AI.States
         [SerializeField] private float throttleCutoff=1;
         public override void Tick()
         {
-            var enemy = EnemyDetector.Enemy;
+            var enemy = TargetDetector.Target;
             if (!enemy)
                 return;
             

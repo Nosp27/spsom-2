@@ -6,19 +6,19 @@ namespace AI.StationAI
 {
     public class StationAttack : BaseState
     {
-        private IEnemyDetector m_EnemyDetector;
+        private ITargetDetector _mTargetDetector;
         private Weapon[] m_Weapons = Array.Empty<Weapon>();
         private void Start()
         {
             Transform root = transform.parent.parent; // first parent is AI controller, second - the root
             
             m_Weapons = root.GetComponentsInChildren<Weapon>();
-            m_EnemyDetector = GetComponentInParent<IEnemyDetector>();
+            _mTargetDetector = GetComponentInParent<ITargetDetector>();
         }
 
         public override void Tick()
         {
-            Transform enemy = m_EnemyDetector?.Enemy?.transform;
+            Transform enemy = _mTargetDetector?.Target?.transform;
             if (enemy)
             {
                 foreach(Weapon w in m_Weapons)
@@ -28,7 +28,7 @@ namespace AI.StationAI
 
         public override void OnEnter()
         {
-            Transform enemy = m_EnemyDetector?.Enemy?.transform;
+            Transform enemy = _mTargetDetector?.Target?.transform;
             if (enemy)
             {
                 foreach(Weapon w in m_Weapons)

@@ -1,5 +1,6 @@
-﻿
-using System.Text;
+﻿using System.Text;
+using Codice.Client.BaseCommands;
+using UnityEngine;
 
 namespace Bonsai.Core
 {
@@ -92,6 +93,8 @@ namespace Bonsai.Core
     public override Status Run()
     {
       // Return what the child returns if it ran, else fail.
+      // return Iterator.LastChildExitStatus ?? (Condition() ? Status.Success : Status.Failure);
+      Debug.Log("Cond run");
       return Iterator.LastChildExitStatus.GetValueOrDefault(Status.Failure);
     }
 
@@ -152,7 +155,7 @@ namespace Bonsai.Core
 
     public override void Description(StringBuilder builder)
     {
-      builder.AppendFormat("Aborts {0}", abortType.ToString());
+      builder.AppendFormat("({1}) Aborts {0}", abortType.ToString(), IsActive ? '+' : '-');
     }
   }
 }

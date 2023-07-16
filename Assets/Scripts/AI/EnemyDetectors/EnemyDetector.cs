@@ -13,7 +13,7 @@ namespace AI
         NOBODY,
     }
 
-    public class EnemyDetector : MonoBehaviour, IEnemyDetector
+    public class EnemyDetector : MonoBehaviour, ITargetDetector
     {
         [SerializeField] private SpsomFaction referenceFaction;
         [SerializeField] private DetectionMethod detectionMethod;
@@ -22,7 +22,7 @@ namespace AI
 
         [SerializeField] private bool seekNearest = true;
 
-        public DamageModel Enemy { get; private set; }
+        public DamageModel Target { get; private set; }
         private DamageModel m_ThisDamageModel;
 
         private IEnumerator Start()
@@ -39,11 +39,11 @@ namespace AI
                 yield return new WaitForSeconds(.2f);
                 
                 // Loose enemy from sight if it is far away
-                if (Enemy && (Enemy.transform.position - transform.position).magnitude > loseRange)
-                    Enemy = null;
+                if (Target && (Target.transform.position - transform.position).magnitude > loseRange)
+                    Target = null;
 
                 // Do not seek enemy if it is already found
-                if (Enemy && Enemy.Alive)
+                if (Target && Target.Alive)
                     continue;
 
                 // Seek all colliders within discovery range and find nearest belonging to a ship
@@ -71,7 +71,7 @@ namespace AI
                         }
                     }
 
-                    Enemy = nearestShip;
+                    Target = nearestShip;
                 }
             }
         }

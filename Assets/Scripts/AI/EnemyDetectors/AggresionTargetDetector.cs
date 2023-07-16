@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class AggresionEnemyDetector : MonoBehaviour, IEnemyDetector
+public class AggresionTargetDetector : MonoBehaviour, ITargetDetector
 {
-    public DamageModel Enemy { get; private set; }
+    public DamageModel Target { get; private set; }
     [SerializeField] private float memory = 10f;
 
     private Coroutine resetCoro = null;
@@ -16,8 +16,8 @@ public class AggresionEnemyDetector : MonoBehaviour, IEnemyDetector
 
     void OnDamage(BulletHitDTO hit)
     {
-        Enemy = hit.hitInitiator?.GetComponentInParent<DamageModel>();
-        if (!Enemy)
+        Target = hit.hitInitiator?.GetComponentInParent<DamageModel>();
+        if (!Target)
             return;
         
         if (resetCoro != null)
@@ -28,6 +28,6 @@ public class AggresionEnemyDetector : MonoBehaviour, IEnemyDetector
     IEnumerator ResetEnemy()
     {
         yield return new WaitForSeconds(memory);
-        Enemy = null;
+        Target = null;
     }
 }

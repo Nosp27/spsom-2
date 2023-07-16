@@ -12,7 +12,7 @@ public class CameraZoomControl : MonoBehaviour
     [SerializeField] private float autoZoomFreezeTimeout = 3;
 
     private Ship m_PlayerShip;
-    private EnemyDetector PlayerEnemyDetector;
+    private EnemyDetector _playerEnemyDetector;
     private CameraController cam;
     
     private float autoZoomFreeze;
@@ -21,7 +21,7 @@ public class CameraZoomControl : MonoBehaviour
     {
         cam = GetComponent<CameraController>();
         m_PlayerShip = GameController.Current.PlayerShip;
-        PlayerEnemyDetector = m_PlayerShip.GetComponent<EnemyDetector>();
+        _playerEnemyDetector = m_PlayerShip.GetComponent<EnemyDetector>();
     }
 
     void Update()
@@ -64,8 +64,8 @@ public class CameraZoomControl : MonoBehaviour
 
     float AutoZoomForEnemies()
     {
-        if (PlayerEnemyDetector.Enemy != null)
-            return zoomCurve.Evaluate((PlayerEnemyDetector.Enemy.transform.position - m_PlayerShip.transform.position)
+        if (_playerEnemyDetector.Target != null)
+            return zoomCurve.Evaluate((_playerEnemyDetector.Target.transform.position - m_PlayerShip.transform.position)
                 .magnitude);
         return 0;
     }

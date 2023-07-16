@@ -7,7 +7,7 @@ namespace AI.States
         public override void Tick()
         {
             Ship thisShip = ShipAIControls.thisShip;
-            Transform aimTarget = EnemyDetector.Enemy.transform;
+            Transform aimTarget = TargetDetector.Target.transform;
             thisShip.TurnOnPlace(aimTarget.position);
             if (thisShip.Aimed())
                 thisShip.Fire(aimTarget.position);
@@ -17,7 +17,7 @@ namespace AI.States
         {
             base.OnEnter();
             Ship thisShip = ShipAIControls.thisShip;
-            Transform aimTarget = EnemyDetector.Enemy.transform;
+            Transform aimTarget = TargetDetector.Target.transform;
             thisShip.Track(aimTarget);
             thisShip.CancelMovement();
         }

@@ -1,6 +1,7 @@
 ﻿
 using System.Text;
 using Bonsai.Core;
+using UnityEngine;
 
 namespace Bonsai.Standard
 {
@@ -39,7 +40,7 @@ namespace Bonsai.Standard
 
     public override bool Condition()
     {
-      return timer.IsDone;
+      return !timer.IsDone;
     }
 
     private void OnTimeout()

@@ -22,7 +22,7 @@ namespace AI
         private StateMachine m_MovementStateMachine;
         private StateMachine m_AttackStateMachine;
         
-        private IEnemyDetector m_EnemyDetector;
+        private ITargetDetector _mTargetDetector;
         private bool allowDodgeTransition;
 
         private DamageModel enemy;
@@ -31,7 +31,7 @@ namespace AI
 
         private void Start()
         {
-            m_EnemyDetector = GetComponentInParent<IEnemyDetector>();
+            _mTargetDetector = GetComponentInParent<ITargetDetector>();
 
             m_MovementStateMachine = BuildMovementStateMachine();
             m_AttackStateMachine = BuildAttackStateMachine();
@@ -46,7 +46,7 @@ namespace AI
 
         void SetTriggers()
         {
-            enemy = m_EnemyDetector.Enemy;
+            enemy = _mTargetDetector.Target;
             if (enemy)
             {
                 enemyLookVector = enemy.transform.position - transform.position;

@@ -26,7 +26,7 @@ namespace AI
         
         
         private ShipDamageModel m_DamageModel;
-        private IEnemyDetector m_EnemyDetector;
+        private ITargetDetector _mTargetDetector;
         private bool allowDodgeTransition;
 
         private DamageModel enemy;
@@ -35,7 +35,7 @@ namespace AI
 
         private void Start()
         {
-            m_EnemyDetector = GetComponentInParent<IEnemyDetector>();
+            _mTargetDetector = GetComponentInParent<ITargetDetector>();
             m_DamageModel = GetComponentInParent<ShipDamageModel>();
 
             m_MovementStateMachine = BuildMovementStateMachine();
@@ -52,7 +52,7 @@ namespace AI
 
         void SetTriggers()
         {
-            enemy = m_EnemyDetector.Enemy;
+            enemy = _mTargetDetector.Target;
             if (enemy)
             {
                 enemyLookVector = enemy.transform.position - transform.position;

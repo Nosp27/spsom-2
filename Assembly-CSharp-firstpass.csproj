@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{88bb6ee6-85d3-2a14-c322-01ed60b85ac4}</ProjectGuid>
+    <ProjectGuid>{43f2e9af-2c12-ec9a-5934-65af7177c27b}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -308,7 +308,7 @@
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
      <Reference Include="DOTween">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/NetStandard/ref/2.1.0/netstandard.dll</HintPath>
@@ -676,182 +676,169 @@
      <Reference Include="mscorlib">
      <HintPath>/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+     </Reference>
      <Reference Include="com.unity.cinemachine.editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Postprocessing.Runtime">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VectorGraphics">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VectorGraphics.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Mathematics.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+     </Reference>
+     <Reference Include="PPv2URPConverters">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/PPv2URPConverters.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.ConversionSystem.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VSCode.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Sysroot.Linux_x86_64">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Sysroot.Linux_x86_64.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Sysroot.Linux_x86_64.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ShaderGraph.Editor">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InternalAPIEditorBridge.003">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.003.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.003.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InputSystem">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InputSystem.ForUI">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.InternalAPIEngineBridge.003">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.003.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.003.dll</HintPath>
      </Reference>
      <Reference Include="Unity.SysrootPackage.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation.Updater">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
      </Reference>
      <Reference Include="BNGNode">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/BNGNode.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/BNGNode.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Postprocessing.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Toolchain.Macos-x86_64-Linux-x86_64">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Toolchain.Macos-x86_64-Linux-x86_64.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Toolchain.Macos-x86_64-Linux-x86_64.dll</HintPath>
      </Reference>
      <Reference Include="BNGNodeEditor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/BNGNodeEditor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/BNGNodeEditor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Mathematics">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Searcher.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.AI.Navigation.Editor">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Cinemachine">
-     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/SPS-om-2/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+     <HintPath>/Users/p.ashikhmin/Documents/UnityProjects/spsom-2/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="FMODUnityEditor.csproj">
-      <Project>{064e1e79-bd20-3a16-5081-4bfa46927822}</Project>
+      <Project>{540294c4-dcd5-8941-a0e5-46a485012a40}</Project>
       <Name>FMODUnityEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj">
-      <Project>{2314b12a-58e5-12b1-c475-6ba220aa8080}</Project>
-      <Name>Unity.RenderPipelines.Core.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="FMODUnityResonance.csproj">
-      <Project>{de5ff63e-7ab6-84fe-a92b-7dea0a1747c5}</Project>
+      <Project>{af80ac93-1866-c065-d0ef-bbf7beef3eac}</Project>
       <Name>FMODUnityResonance</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
-      <Project>{999af6a3-ae6f-014d-7e39-72750c79ef1a}</Project>
-      <Name>Unity.2D.Sprite.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
-      <Project>{5026cab8-2615-70e0-2594-0055da9311f2}</Project>
-      <Name>Unity.RenderPipelines.Core.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj">
-      <Project>{d3a552f9-3b4a-c528-6908-0eb13c6f2144}</Project>
-      <Name>Unity.RenderPipelines.Core.ShaderLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="FMODUnity.csproj">
-      <Project>{5d0f3bbf-db36-fc63-f884-159a14784588}</Project>
+      <Project>{09870fb5-ce91-8ca1-2d52-a66a7ad9bce9}</Project>
       <Name>FMODUnity</Name>
     </ProjectReference>
-    <ProjectReference Include="PPv2URPConverters.csproj">
-      <Project>{d104a0c2-5b62-2bae-7159-77b2bec5ce43}</Project>
-      <Name>PPv2URPConverters</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj">
-      <Project>{5265b042-e105-4f9c-f43d-1037e12bd67a}</Project>
-      <Name>Unity.RenderPipelines.Universal.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
-      <Project>{028c97bf-4d24-ea82-43a9-c8a331b1e8b3}</Project>
-      <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj">
-      <Project>{ba4dedcf-831b-a49a-33b2-a972b032f798}</Project>
-      <Name>Unity.RenderPipelines.Universal.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
-      <Project>{8c255f1c-806a-cc9d-b386-22de1f5d7438}</Project>
-      <Name>Unity.ShaderGraph.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{90868121-c70f-01e8-6d51-a0c20c4a0c11}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{8a796408-7a8d-e3cd-b8d3-760146027927}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="BonsaiEditorAssembly.csproj">
-      <Project>{f1305c86-0b14-f7aa-e141-82c0287d1ffc}</Project>
+      <Project>{4a850da9-6060-953e-5e71-84f063f4af64}</Project>
       <Name>BonsaiEditorAssembly</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj">
-      <Project>{c06c9260-4b0d-19c3-845a-4d81f62b9556}</Project>
-      <Name>Unity.RenderPipeline.Universal.ShaderLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="BonsaiStandardAssembly.csproj">
-      <Project>{b1a10314-954c-1307-d79b-baa70b0eee31}</Project>
+      <Project>{fbd5234c-8768-cdc1-a14d-5946562f0a7d}</Project>
       <Name>BonsaiStandardAssembly</Name>
     </ProjectReference>
     <ProjectReference Include="FMODUnityResonanceEditor.csproj">
-      <Project>{5f362e61-f501-0c11-bfe1-5c16f32905b4}</Project>
+      <Project>{21d4e498-931a-9435-a89f-53931fc091fb}</Project>
       <Name>FMODUnityResonanceEditor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj">
-      <Project>{fa75a35a-8eeb-a223-ac15-542817ec505b}</Project>
-      <Name>Unity.RenderPipelines.Universal.Shaders</Name>
-    </ProjectReference>
     <ProjectReference Include="BonsaiAssembly.csproj">
-      <Project>{b41be05f-50ab-9eb3-e191-25c1a7bbaf4d}</Project>
+      <Project>{7cc6515a-7837-c837-08c7-7f20f04d1b65}</Project>
       <Name>BonsaiAssembly</Name>
     </ProjectReference>
   </ItemGroup>

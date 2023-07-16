@@ -5,7 +5,7 @@ namespace AI.States
 {
     public abstract class BaseShipAIState : BaseState, IState
     {
-        protected IEnemyDetector EnemyDetector;
+        protected ITargetDetector TargetDetector;
         public ShipAIControls ShipAIControls { get; protected set; }
 
         public override void OnEnter()
@@ -13,8 +13,8 @@ namespace AI.States
             if (!ShipAIControls)
                 ShipAIControls = GetComponentInParent<ShipAIControls>();
 
-            if (EnemyDetector == null)
-                EnemyDetector = GetComponentInParent<IEnemyDetector>();
+            if (TargetDetector == null)
+                TargetDetector = GetComponentInParent<ITargetDetector>();
         }
         
         public virtual bool Done() => true;
