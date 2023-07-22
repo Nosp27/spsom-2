@@ -61,6 +61,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3005768857718688467}
     m_Modifications:
+    - target: {fileID: 362006942177528109, guid: d1d33f8dc79ce4e92a7daebed77b6c0f, type: 3}
+      propertyPath: HorizontalLimits.Array.data[0]
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 362006942177528109, guid: d1d33f8dc79ce4e92a7daebed77b6c0f, type: 3}
+      propertyPath: HorizontalLimits.Array.data[1]
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3165324715969480662, guid: d1d33f8dc79ce4e92a7daebed77b6c0f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -165,11 +173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -66
+      value: 53.7
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalPosition.y
@@ -177,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38
+      value: 69.8
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalRotation.w

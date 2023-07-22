@@ -1,35 +1,26 @@
-using AI;
 using Bonsai;
 using UnityEngine;
 
-[BonsaiNode("Tasks/", "Arrow")]
-public class Attack : Bonsai.Core.Task
+namespace BonsaiAI.Tasks
 {
-    [SerializeField] private float AttachRange = 60;
-    private EnemyDetector _mEnemyDetector;
-    private DamageModel enemy => _mEnemyDetector.Target;
-    private Ship thisShip => ai.thisShip;
-    private ShipAIControls ai;
-
-    public override void OnStart()
+    [BonsaiNode("Tasks/", "Arrow")]
+    public class Attack : AiShipTask
     {
-        _mEnemyDetector = Actor.GetComponent<EnemyDetector>();
-        ai = Actor.GetComponent<ShipAIControls>();
-    }
+        [SerializeField] private BB_KEY Key = BB_KEY.ATTACK_TARGET;
 
-    public override Status Run()
-    {
-        if (enemy == null || !ai || Vector3.Distance(enemy.transform.position, Actor.transform.position) > AttachRange)
+        public override Status Run()
         {
-            return Status.Failure;
-        }
+            Transform target = BlackboardGet<Transform>(Key);
+            if (target == null || m_ShipAiControls == null)
+            {
+                return Status.Failure;
+            }
+        
+            m_ShipAiControls.thisShip.TurnOnPlace(target.transform.position);
+            m_ShipAiControls.thisShip.Aim(target.transform.position);
+            m_ShipAiControls.thisShip.Fire(target.transform.position);
 
-        thisShip.Track(enemy.transform);
-        thisShip.TurnOnPlace(enemy.transform.position);
-        if (thisShip.Aimed())
-        {
-            thisShip.Fire(enemy.transform.position);
+            return Status.Running;
         }
-        return Status.Running;
     }
 }

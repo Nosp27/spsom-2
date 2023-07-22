@@ -45,7 +45,6 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets/Scripts/AI/EnemyDetectors/AggresionTargetDetector.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/MissileLauncher.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/FloatingPart.cs" />
      <Compile Include="Assets/Scripts/UI/ShipHealthBar.cs" />
@@ -55,6 +54,7 @@
      <Compile Include="Assets/Scripts/UI/WeaponUISlot.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/AimLockTarget.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/SlotCanvas/CircularCanvasInput.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Movement/FlyTo.cs" />
      <Compile Include="Assets/GameEventSystem/GameEvent.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/SimpleDamageModel.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Gun.cs" />
@@ -64,6 +64,7 @@
      <Compile Include="Assets/Scripts/UI/Telemetry.cs" />
      <Compile Include="Assets/Scripts/ShipModules/CargoCrane.cs" />
      <Compile Include="Assets/Scripts/UI/ScreenRadarMarks.cs" />
+     <Compile Include="Assets/Scripts/AI/Detectors/ITargetDetector.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/InventoryGui.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/Station.cs" />
      <Compile Include="Assets/Scripts/GameControl/GameController.cs" />
@@ -109,17 +110,19 @@
      <Compile Include="Assets/Scripts/Weaponary/Guided.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/BaseQuest.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/TurretWeapon.cs" />
-     <Compile Include="Assets/Scripts/AI/EnemyDetectors/EnemyDetector.cs" />
      <Compile Include="Assets/Scripts/GameControl/CameraLogic/CameraZoomControl.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/ProceduralStations/StationModule.cs" />
      <Compile Include="Assets/Scripts/AI/States/FlyByPoints.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Stop.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/BaseEngineSplitter.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Explosive.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/TrailEngineRenderer.cs" />
+     <Compile Include="Assets/Scripts/AI/Detectors/EnemyDetector.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/StationAIStateMachine.cs" />
      <Compile Include="Assets/Scenes/test/TestBody.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/Predicates.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/TraderAI.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/AiShipTask.cs" />
      <Compile Include="Assets/Scripts/AI/States/BaseShipAIState.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Inventory.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/InventoryItem.cs" />
@@ -150,11 +153,10 @@
      <Compile Include="Assets/Scripts/UI/DrawRelativeAxes.cs" />
      <Compile Include="Assets/Scripts/AI/States/StationAttack.cs" />
      <Compile Include="Assets/Scripts/AI/States/Dodge.cs" />
-     <Compile Include="Assets/Scripts/Weaponary/DamageModels/DamageModel.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Attack.cs" />
+     <Compile Include="Assets/Scripts/Weaponary/DamageModels/DamageModel.cs" />
      <Compile Include="Assets/Scripts/AI/CollisionAvoidance.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Conditions/EnemyCondition.cs" />
-     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/FlyTo.cs" />
      <Compile Include="Assets/Scripts/UI/WeaponUIController.cs" />
      <Compile Include="Assets/Scripts/Misc/PositionTracker.cs" />
      <Compile Include="Assets/Scripts/Misc/FPSTracker.cs" />
@@ -163,7 +165,9 @@
      <Compile Include="Assets/Scripts/Misc/Utils.cs" />
      <Compile Include="Assets/Scripts/GameControl/CameraLogic/CameraController.cs" />
      <Compile Include="Assets/Scripts/AI/Formation.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Mining/MiningZoneDetector.cs" />
      <Compile Include="Assets/Scenes/test/PointFollow.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Conditions/CalculateApproach.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/Ship.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/PhysicalMovement.cs" />
      <Compile Include="Assets/Scripts/Misc/BlinkingLight.cs" />
@@ -179,8 +183,8 @@
      <Compile Include="Assets/Scripts/SpaceItems/GarageStation.cs" />
      <Compile Include="Assets/Scripts/AI/States/Retreat.cs" />
      <Compile Include="Assets/Scripts/AI/States/FormationState.cs" />
-     <Compile Include="Assets/Scripts/AI/EnemyDetectors/ITargetDetector.cs" />
      <Compile Include="Assets/Scripts/AI/TestShipSwitch.cs" />
+     <Compile Include="Assets/Scripts/AI/Detectors/AggresionTargetDetector.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/MixerView" />
      <Folder Include="Assets/Fonts/th3-machine" />
@@ -242,7 +246,7 @@
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/VCA" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{e3bad57a-323a-45f0-88fe-98f74ec3608e}.xml" />
      <Folder Include="Assets/Scripts/ShipModules" />
-     <Folder Include="Assets/Scripts/AI/EnemyDetectors" />
+     <Folder Include="Assets/Scripts/AI/Detectors" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{d540eaa5-9ba7-4f58-a317-4c2a7a91f7b1}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DAWAsset" />
      <Folder Include="Assets/Scenes/SampleScenex" />
@@ -275,6 +279,7 @@
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets/Music/SpaceTheme" />
      <Folder Include="Assets/EffectExamples/Scenes/Menu" />
      <Folder Include="Assets/Scripts/SpaceShip/ShipServices" />
+     <Folder Include="Assets/Scripts/BonsaiAI/Tasks/Movement" />
      <Folder Include="Assets/Ships/Prefabs/EnemyShips" />
      <Folder Include="Assets/SpaceItems/Prefabs" />
      <Folder Include="Assets/EffectExamples/FireExplosionEffects/Materials" />
@@ -300,6 +305,7 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{eb1ab461-ef87-4fae-a5b1-89c468e79b81}.xml" />
      <Folder Include="Assets/Scripts/UI/Inventory" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{e351a213-6b3a-4ca3-8907-e0fa2b634686}.xml" />
+     <Folder Include="Assets/Scripts/BonsaiAI/Tasks/Mining" />
      <Folder Include="Assets/UI/Hud/PilotHUD" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EncodingSetting" />
      <Folder Include="Assets/SpaceItems/Prefabs/Effects" />
