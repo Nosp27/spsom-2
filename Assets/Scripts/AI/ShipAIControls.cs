@@ -24,7 +24,7 @@ namespace AI
             isAiEnabled = _new == thisShip;
         }
 
-        public void MoveAt(Vector3 point, float throttleCutoff=1)
+        public void MoveAt(Vector3 point)
         {
             if (point != Vector3.zero)
             {
@@ -32,23 +32,23 @@ namespace AI
                 Debug.DrawLine(transform.position, m_AvoidPoint, Color.yellow);
             }
         
-            if (!thisShip.IsMoving() && m_AvoidPoint != Vector3.zero) {
+            if (!thisShip.MovementService.IsMoving() && m_AvoidPoint != Vector3.zero) {
                 m_AvoidPoint = Vector3.zero;
             }
 
             if (m_AvoidPoint == Vector3.zero)
             {
-                thisShip.Move(point, throttleCutoff);
+                thisShip.MovementService.Move(point);
             }
             else
             {
-                thisShip.Move(m_AvoidPoint, throttleCutoff);
+                thisShip.MovementService.Move(m_AvoidPoint);
             }
         }
 
         public bool IsMoving()
         {
-            return thisShip.IsMoving();
+            return thisShip.MovementService.IsMoving();
         }
     }
 }

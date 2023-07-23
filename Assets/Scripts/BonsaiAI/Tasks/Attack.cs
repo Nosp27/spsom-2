@@ -16,7 +16,7 @@ namespace BonsaiAI.Tasks
                 return Status.Failure;
             }
         
-            m_ShipAiControls.thisShip.TurnOnPlace(target.transform.position);
+            m_ShipAiControls.thisShip.MovementService.TurnAt(target.transform.position);
             m_ShipAiControls.thisShip.Aim(target.transform.position);
             m_ShipAiControls.thisShip.Fire(target.transform.position);
 

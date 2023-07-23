@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +17,7 @@ namespace GameControl.StateMachine.GameControlStates
         private GameObject m_MoveAim;
         private CursorControl m_CursorControl;
         private GameController m_GameController;
-        
+
         Mouse mouse => Mouse.current;
         Gamepad gamepad => Gamepad.current;
         Keyboard keyboard => Keyboard.current;
@@ -38,7 +37,7 @@ namespace GameControl.StateMachine.GameControlStates
         {
             if (m_PlayerShip == null)
                 return;
-            
+
             Vector3 cursor = m_CursorControl.Cursor();
             if (gamepad != null)
             {
@@ -50,6 +49,7 @@ namespace GameControl.StateMachine.GameControlStates
                 ProcessMove(m_PlayerShip, cursor);
                 ProcessAim(m_PlayerShip, cursor);
             }
+
             ProcessWeaponSelection();
             ValidateTargetLock();
         }
@@ -80,15 +80,17 @@ namespace GameControl.StateMachine.GameControlStates
             if (Keyboard.current.wKey.isPressed)
             {
                 directMultiplier = 1;
-            } else if (Keyboard.current.sKey.isPressed)
+            }
+            else if (Keyboard.current.sKey.isPressed)
             {
                 directMultiplier = -1;
             }
-            
+
             if (Keyboard.current.aKey.isPressed)
             {
                 sideMultiplier = -1;
-            } else if (Keyboard.current.dKey.isPressed)
+            }
+            else if (Keyboard.current.dKey.isPressed)
             {
                 sideMultiplier = 1;
             }
@@ -102,15 +104,18 @@ namespace GameControl.StateMachine.GameControlStates
             if (moveCommand)
             {
                 m_MoveAim.transform.position = movementTarget;
-                playerShip.MoveAtDirection(movementTarget);
+                playerShip.MovementService.ChangeHeadingMode(HEADING_MODE.FREE_HEADING);
+                playerShip.MovementService.LimitThrottle(1);
+                playerShip.MovementService.MoveAtDirection(movementTarget);
             }
             else
             {
-                playerShip.CancelMovement();
+                playerShip.MovementService.CancelMovement();
             }
-            playerShip.TurnOnPlace(cursor);
 
-            m_MoveAim.SetActive(playerShip.IsMoving());
+            playerShip.MovementService.TurnAt(cursor);
+
+            m_MoveAim.SetActive(playerShip.MovementService.IsMoving());
         }
 
         void ProcessMoveGamepad(Ship playerShip, Vector3 cursor)
@@ -121,9 +126,9 @@ namespace GameControl.StateMachine.GameControlStates
 
             if (moveVectorRaw == Vector2.zero)
                 return;
-            
+
             Vector3 moveVector = (Vector3.forward * moveVectorRaw.y + Vector3.right * moveVectorRaw.x) * 100;
-            playerShip.MoveAtDirection(playerShip.transform.position + moveVector);
+            playerShip.MovementService.MoveAtDirection(playerShip.transform.position + moveVector);
         }
 
         void ProcessAim(Ship playerShip, Vector3 cursor)
@@ -134,18 +139,17 @@ namespace GameControl.StateMachine.GameControlStates
                 playerShip.Fire(cursor);
             }
         }
-        
+
         void ProcessAimGamepad(Ship playerShip, Vector3 cursor)
         {
             Vector2 rightStick = gamepad.rightStick.ReadValue();
-            
+
             if (rightStick != Vector2.zero)
             {
-
                 Vector3 aimVector = (Vector3.forward * rightStick.y + Vector3.right * rightStick.x) * 100;
                 playerShip.Aim(playerShip.transform.position + aimVector);
             }
-            
+
             if (gamepad.rightTrigger.isPressed)
             {
                 playerShip.Fire(cursor);

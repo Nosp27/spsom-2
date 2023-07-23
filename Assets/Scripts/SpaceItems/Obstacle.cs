@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
             Vector3 pushVector = (ship.transform.position - transform.position).normalized * PushAwayMultiplier;
             shipRB.AddForce(pushVector, ForceMode.VelocityChange);
             
-            ship.CancelMovement();
+            ship.MovementService.CancelMovement();
             // ship.BroadcastMessage("Die", SendMessageOptions.DontRequireReceiver);
         }
     }

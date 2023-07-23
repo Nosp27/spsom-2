@@ -6,8 +6,8 @@ public class Stop : AiShipTask
 {
     public override Status Run()
     {
-        if (m_ShipAiControls.thisShip.IsMoving())
-            m_ShipAiControls.thisShip.CancelMovement();
+        if (m_ShipAiControls.thisShip.MovementService.IsMoving())
+            m_ShipAiControls.thisShip.MovementService.CancelMovement();
         return Status.Success;
     }
 }

@@ -48,18 +48,18 @@ public class FlyTo : Bonsai.Core.Task
         switch (type)
         {
             case FLY_TO_TYPE.ENEMY:
-                enemyTargetSelection();
+                EnemyTargetSelection();
                 return;
             case FLY_TO_TYPE.BLACKBOARD_TRANSFORM:
             case FLY_TO_TYPE.BLACKBOARD_VECTOR3:
-                keyTargetSelection();
+                KeyTargetSelection();
                 return;
             default:
                 throw new Exception($"No case for {type}");
         }
     }
 
-    private void enemyTargetSelection()
+    private void EnemyTargetSelection()
     {
         targetPoint = Vector3.zero;
         var enemy = _mEnemyDetector.Target;
@@ -68,7 +68,7 @@ public class FlyTo : Bonsai.Core.Task
         targetPoint = _mEnemyDetector.Target.transform.position;
     }
 
-    private void keyTargetSelection()
+    private void KeyTargetSelection()
     {
         targetPoint = Vector3.zero;
 
@@ -106,13 +106,15 @@ public class FlyTo : Bonsai.Core.Task
             return Status.Success;
         }
 
+        ai.thisShip.MovementService.LimitThrottle(throttleCutoff);
+        
         if (away)
         {
-            ai.MoveAt(Actor.transform.position + (Actor.transform.position - targetPoint), throttleCutoff);
+            ai.MoveAt(Actor.transform.position + (Actor.transform.position - targetPoint));
         }
         else
         {
-            ai.MoveAt(targetPoint, throttleCutoff);
+            ai.MoveAt(targetPoint);
         }
 
         return Status.Running;

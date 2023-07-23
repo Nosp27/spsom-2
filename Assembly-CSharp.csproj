@@ -71,7 +71,6 @@
      <Compile Include="Assets/Scripts/GameControl/CursorControl.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/EmissionEngineRenderer.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/AnnotationTarget.cs" />
-     <Compile Include="Assets/Scripts/AI/States/Attack.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/ProceduralStations/EngagePoint.cs" />
      <Compile Include="Assets/Scripts/Misc/Screenshot.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/PhysicalEngine.cs" />
@@ -83,11 +82,9 @@
      <Compile Include="Assets/Scripts/AI/States/FormationMember.cs" />
      <Compile Include="Assets/Scripts/Factions/Factions.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/DiverStateMachine.cs" />
-     <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/PhysicalEngineSplitter.cs" />
      <Compile Include="Assets/Scripts/Misc/StateMachineVisualizer.cs" />
      <Compile Include="Assets/Scripts/UI/AimLockMark.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/QuestLocation.cs" />
-     <Compile Include="Assets/Scripts/SpaceShip/ShipServices/MovementService.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/QuestDefinitions/FlyToShipQuest.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/StateMachine.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Movement.cs" />
@@ -121,7 +118,6 @@
      <Compile Include="Assets/Scripts/AI/StateMachines/StationAIStateMachine.cs" />
      <Compile Include="Assets/Scenes/test/TestBody.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/Predicates.cs" />
-     <Compile Include="Assets/Scripts/AI/StateMachines/TraderAI.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/AiShipTask.cs" />
      <Compile Include="Assets/Scripts/AI/States/BaseShipAIState.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Inventory.cs" />
@@ -131,7 +127,6 @@
      <Compile Include="Assets/Scripts/SpaceShip/EngineBalancer.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/Destruction.cs" />
      <Compile Include="Assets/Scripts/Weaponary/BulletHitDTO.cs" />
-     <Compile Include="Assets/Scripts/AI/States/FlyRandomly.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/ColliderTrigger.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/IState.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/ShipServices/MovementConfig.cs" />
@@ -161,12 +156,10 @@
      <Compile Include="Assets/Scripts/Misc/PositionTracker.cs" />
      <Compile Include="Assets/Scripts/Misc/FPSTracker.cs" />
      <Compile Include="Assets/Scripts/ShipModules/RadarModule.cs" />
-     <Compile Include="Assets/Scripts/AI/States/Chase.cs" />
      <Compile Include="Assets/Scripts/Misc/Utils.cs" />
      <Compile Include="Assets/Scripts/GameControl/CameraLogic/CameraController.cs" />
      <Compile Include="Assets/Scripts/AI/Formation.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Mining/MiningZoneDetector.cs" />
-     <Compile Include="Assets/Scenes/test/PointFollow.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Conditions/CalculateApproach.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/Ship.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/PhysicalMovement.cs" />

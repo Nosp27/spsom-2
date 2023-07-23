@@ -25,7 +25,7 @@ namespace AI.States
         public override void OnEnter()
         {
             base.OnEnter();
-            ShipAIControls.thisShip.CancelMovement();
+            ShipAIControls.thisShip.MovementService.CancelMovement();
             m_DodgeTimer = 0;
         }
 

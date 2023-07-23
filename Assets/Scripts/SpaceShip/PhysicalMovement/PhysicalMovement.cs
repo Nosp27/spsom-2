@@ -11,8 +11,11 @@ public class PhysicalMovement : ShipMovementService
 
     [SerializeField] private BaseEngineSplitter engineSplitter;
     [SerializeField] private float cruiseSpeed = 30f;
-    [SerializeField] private bool rotateAtMoveAim = true;
 
+    private HEADING_MODE headingMode;
+    private float slowModeThreshold = 10;
+
+    private float m_ThrottleCutoff;
     private Rigidbody m_Rigidbody;
 
     private Vector3 way;
@@ -47,16 +50,16 @@ public class PhysicalMovement : ShipMovementService
         fullStopPoint = engineSplitter.PredictFinalPointNoDrag();
     }
 
-    private void FlyToMoveAim()
+    private void ActionFlyToMoveAim()
     {
-        engineSplitter.ApplyDeltaV(adjustVelocityPart);
+        engineSplitter.ApplyDeltaV(adjustVelocityPart, m_ThrottleCutoff);
     }
 
-    private void Brake()
+    private void ActionBrake()
     {
         if (fullStopPoint == Vector3.zero)
         {
-            EnableDrag();
+            ActionEnableDrag();
         }
         else
         {
@@ -64,29 +67,24 @@ public class PhysicalMovement : ShipMovementService
         }
     }
 
-    void EnableDrag()
+    void ActionEnableDrag()
     {
         m_Rigidbody.drag = m_ShipDrag;
     }
 
-    void DisableDrag()
+    void ActionDisableDrag()
     {
         m_Rigidbody.drag = 0;
     }
 
-    void PinLookVector()
-    {
-        m_PinnedLookDirection = way;
-    }
-
-    void ResetPinLookVector()
+    void ActionResetPinLookVector()
     {
         m_PinnedLookDirection = Vector3.zero;
     }
 
-    void RotateAtTarget()
+    void ActionRotateAtTarget()
     {
-        if (!rotateAtMoveAim)
+        if (headingMode != HEADING_MODE.LOCKED_HEADING)
             return;
         Vector3 targetDirection = m_PinnedLookDirection == Vector3.zero ? way : m_PinnedLookDirection;
         engineSplitter.ApplyRotationTorque(targetDirection);
@@ -95,12 +93,12 @@ public class PhysicalMovement : ShipMovementService
     StateMachine CreateStateMachine()
     {
         IState flyToDestination = LambdaState.New("Fly to destination")
-            .WithEnterActions(DisableDrag, ResetPinLookVector)
-            .WithTickActions(FlyToMoveAim, RotateAtTarget);
+            .WithEnterActions(ActionDisableDrag, ActionResetPinLookVector)
+            .WithTickActions(ActionFlyToMoveAim, ActionRotateAtTarget);
         IState brake = LambdaState.New("Brake")
-            .WithTickActions(Brake);
+            .WithTickActions(ActionBrake);
         IState idle = LambdaState.New("Idle")
-            .WithEnterActions(() => MoveAim = Vector3.zero, EnableDrag);
+            .WithEnterActions(() => MoveAim = Vector3.zero, ActionEnableDrag);
         // High velocity + Stop point is near the target or is jumped over the target ( |> ----- t --- x )
         Func<bool> needsBrakeCertainly = () =>
             forceBrake || m_Rigidbody.velocity.magnitude > 0.3f &&
@@ -141,22 +139,31 @@ public class PhysicalMovement : ShipMovementService
         stateMachine = CreateStateMachine();
     }
 
-    public override void Move(Vector3 v, float throttleCutoff)
+    public override void Move(Vector3 v)
     {
-        // TODO: throttle cutoff
         forceBrake = false;
         v.y = location.y;
         MoveAim = v;
     }
 
-    public override void MoveAtDirection(Vector3 target, float throttleCutoff)
+    public override void MoveAtDirection(Vector3 target)
     {
         Vector3 position = m_MovedTransform.position;
         target = position + (target - position).normalized * 300;
-        Move(target, throttleCutoff);
+        Move(target);
     }
 
-    public override void TurnOnPlace(Vector3 v)
+    public override void LimitThrottle(float limit)
+    {
+        m_ThrottleCutoff = limit;
+    }
+
+    public override void ChangeHeadingMode(HEADING_MODE headingMode)
+    {
+        this.headingMode = headingMode;
+    }
+
+    public override void TurnAt(Vector3 v)
     {
         engineSplitter.ApplyRotationTorque(v - location);
     }
@@ -166,12 +173,17 @@ public class PhysicalMovement : ShipMovementService
         forceBrake = true;
     }
 
-    public override void Tick()
+    private void Tick()
     {
         Debug.DrawRay(location - Vector3.forward, way, Color.green);
         CalculateAttributes();
         stateMachine.Tick();
         engineSplitter.Tick();
+    }
+
+    private void FixedUpdate()
+    {
+        Tick();
     }
 
     public override bool IsMoving()

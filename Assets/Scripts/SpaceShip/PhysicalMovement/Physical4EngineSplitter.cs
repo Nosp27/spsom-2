@@ -17,8 +17,7 @@ namespace SpaceShip.PhysicalMovement
         [SerializeField] private float maxTorque = 10f;
         [SerializeField] private float pidA = 1;
         [SerializeField] private float pidD = 1;
-        [SerializeField] private float pidDD = 0;
-        
+
         [SerializeField] private Transform debugStopTarget;
 
         private Rigidbody m_Rigidbody;
@@ -353,23 +352,10 @@ namespace SpaceShip.PhysicalMovement
 
         public override void Brake(float throttleCutoff = 1f)
         {
-            tickDv = -m_Rigidbody.velocity.normalized * force * Mathf.Clamp01(throttleCutoff);
-        }
-
-        public override void AngularBrake(float limit)
-        {
-            tickMomentum = AngularBrakeTorque(limit);
-        }
-
-        private float AngularBrakeTorque(float limit = 1)
-        {
-            Vector3 angularVelocity = m_Rigidbody.angularVelocity;
-            if (angularVelocity.magnitude > 0.1f)
-            {
-                return -Mathf.Sign(angularVelocity.y) * 1 * Mathf.Clamp01(limit);
-            }
-
-            return 0;
+            Vector3 v = m_Rigidbody.velocity;
+            if (v.magnitude > 2)
+                v = v.normalized;
+            tickDv = -v * force * Mathf.Clamp01(throttleCutoff);
         }
 
         public override void ApplyRotationTorque(Vector3 _v)
@@ -377,8 +363,9 @@ namespace SpaceShip.PhysicalMovement
             Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
             float angle = Vector3.SignedAngle(Vector3.forward, v, Vector3.up);
             float angularVelocity = m_Rigidbody.angularVelocity.y;
-            
-            float torque = (angle * pidA / 180f - angularVelocity * pidD / angularVelocityLimit) * maxTorque;
+
+            float torque = (angle * pidA / 180f - angularVelocity * pidD / angularVelocityLimit);
+            torque = Mathf.Clamp(torque, -maxTorque, maxTorque);
             tickMomentum = torque;
         }
 
@@ -412,18 +399,6 @@ namespace SpaceShip.PhysicalMovement
             if (debugStopTarget)
                 debugStopTarget.position = result;
             return result;
-        }
-
-        public override float PredictDegreesForStop(float brakingTorque)
-        {
-            float av = m_Rigidbody.angularVelocity.magnitude;
-            if (av < 0.01f)
-                return 0;
-            float dt = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
-            float dav = brakingTorque / m_Rigidbody.mass * dt;
-            var degrees = Mathf.Rad2Deg * (av * av / (2 * dav)) * dt;
-            print($"AV: {av:0.0}; DFS: {degrees:0.0}; DT: {dt}; DAV: {dav}");
-            return degrees;
         }
 
         public override void Tick()

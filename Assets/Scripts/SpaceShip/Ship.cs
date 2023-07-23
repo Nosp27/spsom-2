@@ -17,6 +17,7 @@ public class Ship : MonoBehaviour
     public bool isPlayerShip;
 
     public Vector3 MoveAim => movementService.MoveAim;
+    public ShipMovementService MovementService => movementService;
     public float currentThrottle => movementService.CurrentThrottle;
     public bool Alive { get; private set; }
     public DamageModel damageModel { get; private set; }
@@ -51,40 +52,6 @@ public class Ship : MonoBehaviour
             SelectedWeaponIndex = i;
             OnWeaponSelect.Invoke();
         }
-    }
-
-    public void TurnOnPlace(Vector3 target)
-    {
-        if (!Alive)
-            return;
-        movementService.TurnOnPlace(target);
-    }
-
-    public void Move(Vector3 target, float throttleCutoff = 1)
-    {
-        if (!Alive)
-            return;
-        movementService.Move(target, throttleCutoff);
-    }
-    
-    public void MoveAtDirection(Vector3 target, float throttleCutoff = 1)
-    {
-        if (!Alive)
-            return;
-        movementService.MoveAtDirection(target, throttleCutoff);
-    }
-
-    public bool IsMoving()
-    {
-        if (!Alive)
-            return false;
-
-        return movementService.IsMoving();
-    }
-
-    public void CancelMovement()
-    {
-        movementService.CancelMovement();
     }
 
     public void Fire(Vector3 cursor)
@@ -129,14 +96,7 @@ public class Ship : MonoBehaviour
     void Die()
     {
         Alive = false;
-    }
-
-    private void FixedUpdate()
-    {
-        if (Alive)
-        {
-            movementService.Tick();
-        }
+        movementService.enabled = false;
     }
 
     private void DoForUsedWeapon_s(Action<Weapon> func)

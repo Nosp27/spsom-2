@@ -10,11 +10,7 @@ namespace SpaceShip.PhysicalMovement
         public abstract void ApplyDeltaV(Vector3 dv, float throttleCuttoff = 1f);
         public abstract void Init(Transform t, MovementConfig config);
 
-        public abstract void AngularBrake(float limit);
-
         public abstract Vector3 PredictFinalPointNoDrag();
-
-        public abstract float PredictDegreesForStop(float brakingTorque);
 
         public abstract void Tick();
     }
