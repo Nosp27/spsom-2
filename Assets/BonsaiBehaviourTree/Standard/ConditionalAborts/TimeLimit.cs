@@ -16,11 +16,6 @@ namespace Bonsai.Standard
     [UnityEngine.SerializeField]
     public Utility.Timer timer = new Utility.Timer();
 
-    void OnEnable()
-    {
-      abortType = AbortType.Self;
-    }
-
     public override void OnStart()
     {
       timer.OnTimeout += OnTimeout;
@@ -35,17 +30,20 @@ namespace Bonsai.Standard
 
     public override void OnExit()
     {
-      Tree.RemoveTimer(timer);
+      if (abortType == AbortType.Self)
+        Tree.RemoveTimer(timer);
+      base.OnExit();
     }
 
     public override bool Condition()
     {
-      return !timer.IsDone;
+      return abortType == AbortType.Self ? !timer.IsDone : timer.IsDone;
     }
 
     private void OnTimeout()
     {
       // Timer complete, notify abort.
+      Tree.RemoveTimer(timer);
       Evaluate();
     }
 
