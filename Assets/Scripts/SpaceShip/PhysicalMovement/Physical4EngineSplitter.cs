@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using SpaceShip.ShipServices;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace SpaceShip.PhysicalMovement
 {
@@ -104,8 +103,8 @@ namespace SpaceShip.PhysicalMovement
         {
             InitEngineCombinations(true);
         }
-        
-        private void InitEngineCombinations(bool dry=false)
+
+        private void InitEngineCombinations(bool dry = false)
         {
             float[] ZeroMomentumForceForDirection(Vector3 direction)
             {
@@ -196,7 +195,7 @@ namespace SpaceShip.PhysicalMovement
                 for (int i = 0; i < m_Engines.Length; i++)
                 {
                     float momentum = EngineMomentum(m_Engines[i]);
-                    if (expectedSign != (int) Mathf.Sign(momentum))
+                    if (expectedSign != (int)Mathf.Sign(momentum))
                         continue;
 
                     if (spinIdx == -1 || momentum > maxMomentum)
@@ -220,7 +219,7 @@ namespace SpaceShip.PhysicalMovement
                 for (int i = 0; i < m_Engines.Length; i++)
                 {
                     float momentum = EngineMomentum(m_Engines[i]);
-                    if (expectedSign != (int) Mathf.Sign(momentum))
+                    if (expectedSign != (int)Mathf.Sign(momentum))
                         continue;
 
                     if (EngineProjection(m_Engines[i]) != -totalForce)
@@ -229,7 +228,6 @@ namespace SpaceShip.PhysicalMovement
                     }
 
                     Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red);
-                    // Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.green);
 
                     if (adjustIdx == -1 || momentum > maxAdjustMomentum)
                     {
@@ -261,24 +259,25 @@ namespace SpaceShip.PhysicalMovement
 
             if (dry)
             {
-                foreach (Vector3 direction in new[] {Vector3.forward, Vector3.right, Vector3.back, Vector3.left})
+                foreach (Vector3 direction in new[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left })
                 {
                     ZeroMomentumForceForDirection(direction);
                 }
+
                 ZeroForceForMomentum(0);
                 ZeroForceForMomentum(1);
                 return;
             }
 
             m_PushCombinations = new Dictionary<Vector3, float[]>();
-                foreach (Vector3 direction in new[] {Vector3.forward, Vector3.right, Vector3.back, Vector3.left})
-                {
-                    m_PushCombinations[direction] = ZeroMomentumForceForDirection(direction);
-                }
+            foreach (Vector3 direction in new[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left })
+            {
+                m_PushCombinations[direction] = ZeroMomentumForceForDirection(direction);
+            }
 
-                m_SpinCombinations = new float[2][];
-                m_SpinCombinations[0] = ZeroForceForMomentum(0);
-                m_SpinCombinations[1] = ZeroForceForMomentum(1);
+            m_SpinCombinations = new float[2][];
+            m_SpinCombinations[0] = ZeroForceForMomentum(0);
+            m_SpinCombinations[1] = ZeroForceForMomentum(1);
         }
 
         private float[] CalculateThrottles(Vector3 dv, float momentum, float maxDvThrottle = 0.5f,
@@ -311,16 +310,16 @@ namespace SpaceShip.PhysicalMovement
             if (momentum != 0)
             {
                 float[] momentumImpact =
-                    m_SpinCombinations[(int) Mathf.Sign(momentum) == 1 ? 1 : 0];
+                    m_SpinCombinations[(int)Mathf.Sign(momentum) == 1 ? 1 : 0];
 
                 float[] deltas = new float[m_Engines.Length];
 
                 for (int i = 0; i < m_Engines.Length; i++)
                 {
-                    deltas[i] = momentumImpact[i] * Mathf.Min(Mathf.Abs(momentum), maxTorque);
+                    deltas[i] = momentumImpact[i] * Mathf.Min(
+                        Mathf.Abs(momentum), maxTorque, maxTorqueThrottle * force
+                    );
                 }
-
-                NormalizeThrottles(deltas, Mathf.Min(Mathf.Abs(momentum), maxTorqueThrottle * force));
 
                 for (int i = 0; i < m_Engines.Length; i++)
                 {
@@ -361,10 +360,10 @@ namespace SpaceShip.PhysicalMovement
         public override void ApplyRotationTorque(Vector3 _v)
         {
             Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
-            float angle = Vector3.SignedAngle(Vector3.forward, v, Vector3.up);
+            float angle = Vector3.SignedAngle(Vector3.forward, Vector3.ProjectOnPlane(v, Vector3.up), Vector3.up);
             float angularVelocity = m_Rigidbody.angularVelocity.y;
+            float torque = (angle * pidA / 180f - angularVelocity * pidD);
 
-            float torque = (angle * pidA / 180f - angularVelocity * pidD / angularVelocityLimit);
             torque = Mathf.Clamp(torque, -maxTorque, maxTorque);
             tickMomentum = torque;
         }
@@ -378,7 +377,7 @@ namespace SpaceShip.PhysicalMovement
                 m_Rigidbody.AddForceAtPosition(
                     throttles[i] * engine.transform.forward, engine.transform.position
                 );
-                engine.renderer.Perform((int) (throttles[i] * 100 / force));
+                engine.renderer.Perform((int)(throttles[i] * 100 / force));
                 Debug.DrawRay(engine.transform.position, -engine.transform.forward * throttles[i], Color.red);
                 i++;
             }
@@ -395,7 +394,7 @@ namespace SpaceShip.PhysicalMovement
             float dt = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
             float dv = f.magnitude / m_Rigidbody.mass * dt;
             float sumn = v * v / (2f * dv);
-            Vector3 result =  movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
+            Vector3 result = movedTransform.position + m_Rigidbody.velocity.normalized * sumn * dt;
             if (debugStopTarget)
                 debugStopTarget.position = result;
             return result;
