@@ -1,3 +1,4 @@
+using BonsaiAI;
 using BonsaiAI.Tasks;
 using UnityEngine;
 
@@ -5,14 +6,14 @@ using UnityEngine;
 public class DiscoverByTag : AiShipTask
 {
     [SerializeField] private string tag;
-    [SerializeField] private BB_KEY targetKey = BB_KEY.MOVE_TARGET;
+    [SerializeField] private BBKey outputKey;
 
     public override Status Run()
     {
         Transform target = GameObject.FindWithTag(tag)?.transform;
         if (target == null)
             return Status.Failure;
-        BlackboardSet(targetKey, target);
+        Blackboard.Set(outputKey, target);
         return Status.Success;
     }
 }

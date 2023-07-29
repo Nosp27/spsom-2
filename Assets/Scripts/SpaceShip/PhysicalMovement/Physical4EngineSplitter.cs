@@ -68,8 +68,13 @@ namespace SpaceShip.PhysicalMovement
             Vector3 distanceVector = engine.transform.position - com;
             Vector3 ortho = Vector3.Cross(distanceVector, Vector3.up).normalized;
             float projection = Utils.Projection(engine.transform.forward, ortho);
-            Debug.DrawRay(engine.transform.position, ortho * projection * distanceVector.magnitude, Color.blue);
-            Debug.DrawRay(com, distanceVector, Color.blue);
+
+            if (debug)
+            {
+                Debug.DrawRay(engine.transform.position, ortho * (projection * distanceVector.magnitude), Color.blue);
+                Debug.DrawRay(com, distanceVector, Color.blue);
+            }
+
             return projection * distanceVector.magnitude;
         }
 
@@ -227,7 +232,10 @@ namespace SpaceShip.PhysicalMovement
                         continue;
                     }
 
-                    Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red);
+                    if (debug)
+                    {
+                        Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red);
+                    }
 
                     if (adjustIdx == -1 || momentum > maxAdjustMomentum)
                     {
@@ -378,7 +386,11 @@ namespace SpaceShip.PhysicalMovement
                     throttles[i] * engine.transform.forward, engine.transform.position
                 );
                 engine.renderer.Perform((int)(throttles[i] * 100 / force));
-                Debug.DrawRay(engine.transform.position, -engine.transform.forward * throttles[i], Color.red);
+                if (debug)
+                {
+                    Debug.DrawRay(engine.transform.position, -engine.transform.forward * throttles[i], Color.red);
+                }
+
                 i++;
             }
         }
@@ -402,11 +414,15 @@ namespace SpaceShip.PhysicalMovement
 
         public override void Tick()
         {
-            Debug.DrawRay(movedTransform.position + Vector3.forward, tickDv, Color.cyan);
-            Debug.DrawRay(
-                movedTransform.position + tickDv + Vector3.forward,
-                -Vector3.Cross(tickDv, Vector3.up).normalized * tickMomentum, Color.cyan
-            );
+            if (debug)
+            {
+                Debug.DrawRay(movedTransform.position + Vector3.forward, tickDv, Color.cyan);
+                Debug.DrawRay(
+                    movedTransform.position + tickDv + Vector3.forward,
+                    -Vector3.Cross(tickDv, Vector3.up).normalized * tickMomentum, Color.cyan
+                );
+            }
+
             ApplyImpact(tickDv, tickMomentum);
             tickDv = Vector3.zero;
             tickMomentum = 0;

@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace BonsaiAI.Tasks.Movement
 {
-    [BonsaiNode("Tasks", "Arrow")]
+    [BonsaiNode("Tasks/", "Arrow")]
     public class TurnAt : AiShipTask
     {
-        [SerializeField] private BB_KEY targetTransformKey = BB_KEY.MOVE_TARGET;
+        [SerializeField] private BBKey targetTransformKey;
         [SerializeField] private float angleTolerance = 5;
 
         [ShowAtRuntime] private float angle;
 
         public override Status Run()
         {
-            Transform targetTransform = BlackboardGet<Transform>(targetTransformKey);
+            Transform targetTransform = Blackboard.Get<Transform>(targetTransformKey);
 
             Transform actorTransform = Actor.transform;
             angle = Vector3.Angle(

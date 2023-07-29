@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class CollisionAvoidance : MonoBehaviour
     [SerializeField] private float parktronicRadius = 10;
     [SerializeField] private float parktronicAvoidMagnitude = 10;
 
+    [SerializeField] private float minObstacleDistanceForAvoid = 70;
+
     private RaycastHit[] hits;
     private Collider[] parktronicCols;
 
@@ -28,8 +31,12 @@ public class CollisionAvoidance : MonoBehaviour
 
     private Rigidbody rb;
 
+    [SerializeField] private bool debug;
+
     [SerializeField] private GameObject nearest;
 
+    // Cache direction for current final position to avoid re-desiding which side to go (CW or CCW, based on min angle)
+    private Tuple<Vector3, bool> cachedDirectionForPosition;
 
     private void Awake()
     {
@@ -68,6 +75,11 @@ public class CollisionAvoidance : MonoBehaviour
         Vector3 emitterDirection = distance.normalized;
         Vector3 emitterPosition = transform.position + distance.normalized * EmitRadius * 2;
         float range = extendRange ? distance.magnitude * 2 : distance.magnitude;
+        if (debug)
+        {
+            Debug.DrawRay(emitterPosition, emitterDirection.normalized * range, Color.white);
+        }
+
         int nHits = Physics.SphereCastNonAlloc(
             emitterPosition, EmitRadius, emitterDirection, hits, range, mask
         );
@@ -110,21 +122,43 @@ public class CollisionAvoidance : MonoBehaviour
         float avoidDirMultiplier = avoidDir == AvoidDirection.CW ? 1 : -1;
         Vector3 avoidPoint = avoidLine * avoidDirMultiplier * (shipBounds.extents.x + boundingSphereRadius + 5) +
                              hitBounds.center;
+
+        if (debug)
+        {
+            Debug.DrawLine(avoidPoint, nearestHit.point, Color.yellow);
+        }
+
         return avoidPoint;
     }
 
     private Vector3 AvoidPointChained(Vector3 point, int limit, AvoidDirection avoidDir)
     {
-        Debug.DrawLine(transform.position, point, Color.white);
+        if (debug)
+        {
+            Debug.DrawLine(transform.position, point, Color.white);
+        }
+
         Vector3 finalAvoidPoint = Vector3.zero;
         Vector3 avoidPoint = point;
-        int i = 0;
-        for (i = 0; i < limit; i++)
+        for (int i = 0; i < limit; i++)
         {
+            var old = avoidPoint;
             avoidPoint = AvoidPoint(avoidPoint, avoidDir, i != 0);
+
             if (avoidPoint == Vector3.zero)
                 break;
+
+            if (debug)
+            {
+                Debug.DrawLine(old, avoidPoint, Color.red);
+            }
+
             finalAvoidPoint = avoidPoint;
+        }
+
+        if (debug)
+        {
+            Debug.DrawLine(transform.position, finalAvoidPoint, Color.red);
         }
 
         return finalAvoidPoint;
@@ -137,24 +171,28 @@ public class CollisionAvoidance : MonoBehaviour
         {
             return parktronicPoint;
         }
+
         Vector3 avoidPoint = Vector3.zero;
         Vector3 distance = point - transform.position;
 
         Vector3 AP_CW = AvoidPointChained(point, limitOneSide, AvoidDirection.CW);
         Vector3 AP_CCW = AvoidPointChained(point, limitOneSide, AvoidDirection.CCW);
 
-        if (AP_CW == Vector3.zero)
-            avoidPoint = AP_CCW;
-
-        if (AP_CCW == Vector3.zero)
-            avoidPoint = AP_CW;
-
-        float angleCW = Vector3.Angle(distance, AP_CW - transform.position);
-        float angleCCW = Vector3.Angle(distance, AP_CCW - transform.position);
-
-        if (AP_CW != Vector3.zero && AP_CCW != Vector3.zero)
+        if (AP_CW == Vector3.zero || AP_CCW == Vector3.zero)
         {
-            if (angleCW < angleCCW)
+            avoidPoint = Vector3.zero;
+        }
+        else
+        {
+            if (cachedDirectionForPosition == null || cachedDirectionForPosition.Item1 != point)
+            {
+                float angleCW = Vector3.Angle(distance, AP_CW - transform.position);
+                float angleCCW = Vector3.Angle(distance, AP_CCW - transform.position);
+
+                cachedDirectionForPosition = new Tuple<Vector3, bool>(point, angleCW < angleCCW);
+            }
+            
+            if (cachedDirectionForPosition.Item2)
                 avoidPoint = AP_CW;
             else
                 avoidPoint = AP_CCW;
@@ -186,6 +224,11 @@ public class CollisionAvoidance : MonoBehaviour
 
     bool CheckHit(RaycastHit hit)
     {
+        if (Vector3.Distance(transform.position, hit.point) > minObstacleDistanceForAvoid)
+        {
+            return false;
+        }
+
         return CheckCollider(hit.collider);
     }
 

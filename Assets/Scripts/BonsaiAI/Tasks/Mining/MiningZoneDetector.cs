@@ -8,7 +8,7 @@ namespace BonsaiAI.Tasks.Mining
     [BonsaiNode("Tasks/", "Question")]
     public class MiningZoneDetector : AiShipTask
     {
-        [SerializeField] private BB_KEY outputKey = BB_KEY.MINING_TARGET;
+        [SerializeField] private BBKey output;
         [SerializeField] private LayerMask zoneLayerMask;
         [SerializeField] private LayerMask shipsLayerMask;
         [SerializeField] private float detectionRange = 500;
@@ -46,7 +46,7 @@ namespace BonsaiAI.Tasks.Mining
                 visited.Clear();
                 return Status.Failure;
             }
-            BlackboardSet(outputKey, zone);
+            Blackboard.Set(output, zone);
             return Status.Success;
         }
     }

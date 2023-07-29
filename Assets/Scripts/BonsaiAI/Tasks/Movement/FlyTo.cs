@@ -2,13 +2,12 @@ using System;
 using System.Text;
 using AI;
 using Bonsai;
-using BonsaiAI.Tasks;
+using BonsaiAI;
 using UnityEngine;
 
 
 public enum FLY_TO_TYPE
 {
-    ENEMY,
     BLACKBOARD_TRANSFORM,
     BLACKBOARD_VECTOR3,
 }
@@ -17,21 +16,21 @@ public enum FLY_TO_TYPE
 public class FlyTo : Bonsai.Core.Task
 {
     [SerializeField] private FLY_TO_TYPE type;
+    
+    [SerializeField] private BBKey target;
+
     [SerializeField] private HEADING_MODE headingMode = HEADING_MODE.LOCKED_HEADING;
-    [SerializeField] private bool away;
-    [SerializeField] private BB_KEY bbKeyName = BB_KEY.MOVE_TARGET;
-    [SerializeField] private bool waitForStop = true;
     [Range(0.1f, 1f)] private float throttleCutoff = 1f;
     
+    [SerializeField] private bool away;
+    [SerializeField] private bool waitForStop = true;
     [SerializeField] private float atThreshold = 10;
-    private EnemyDetector _mEnemyDetector;
+    
     private ShipAIControls ai;
-
     private Vector3 targetPoint;
 
     public override void OnStart()
     {
-        _mEnemyDetector = Actor.GetComponent<EnemyDetector>();
         ai = Actor.GetComponent<ShipAIControls>();
     }
 
@@ -53,36 +52,11 @@ public class FlyTo : Bonsai.Core.Task
 
     private void TargetSelection()
     {
-        switch (type)
-        {
-            case FLY_TO_TYPE.ENEMY:
-                EnemyTargetSelection();
-                return;
-            case FLY_TO_TYPE.BLACKBOARD_TRANSFORM:
-            case FLY_TO_TYPE.BLACKBOARD_VECTOR3:
-                KeyTargetSelection();
-                return;
-            default:
-                throw new Exception($"No case for {type}");
-        }
-    }
-
-    private void EnemyTargetSelection()
-    {
-        targetPoint = Vector3.zero;
-        var enemy = _mEnemyDetector.Target;
-        if (!enemy)
-            return;
-        targetPoint = _mEnemyDetector.Target.transform.position;
-    }
-
-    private void KeyTargetSelection()
-    {
         targetPoint = Vector3.zero;
 
         if (type == FLY_TO_TYPE.BLACKBOARD_TRANSFORM)
         {
-            Transform bbTransform = Blackboard.Get<Transform>(bbKeyName.ToString());
+            Transform bbTransform = Blackboard.Get<Transform>(target);
             if (bbTransform != null)
             {
                 targetPoint = bbTransform.position;
@@ -92,7 +66,7 @@ public class FlyTo : Bonsai.Core.Task
         
         if (type == FLY_TO_TYPE.BLACKBOARD_VECTOR3)
         {
-            targetPoint = Blackboard.Get<Vector3>(bbKeyName.ToString());
+            targetPoint = Blackboard.Get<Vector3>(target);
             return;
         }
 
@@ -105,7 +79,7 @@ public class FlyTo : Bonsai.Core.Task
 
         if (targetPoint == default)
         {
-            Debug.Log($"Target {bbKeyName} is default");
+            Debug.Log($"Target {target} is default");
             return Status.Failure;
         }
 

@@ -29,7 +29,6 @@ namespace AI
             if (point != Vector3.zero)
             {
                 m_AvoidPoint = m_CA.AvoidPointCompound(point);
-                Debug.DrawLine(transform.position, m_AvoidPoint, Color.yellow);
             }
         
             if (!thisShip.MovementService.IsMoving() && m_AvoidPoint != Vector3.zero) {

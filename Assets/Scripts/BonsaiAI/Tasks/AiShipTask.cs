@@ -9,6 +9,7 @@ namespace BonsaiAI.Tasks
         ATTACK_TARGET,
         MINING_TARGET,
         APPROACH_TARGET,
+        ENEMY_DAMAGE_MODEL,
     }
 
     public abstract class AiShipTask : Task
@@ -20,16 +21,6 @@ namespace BonsaiAI.Tasks
             m_ShipAiControls = Actor.GetComponent<ShipAIControls>();
             m_EnemyDetector = Actor.GetComponent<EnemyDetector>();
             base.OnStart();
-        }
-
-        protected T BlackboardGet<T>(BB_KEY key)
-        {
-            return Blackboard.Get<T>(key.ToString());
-        }
-        
-        protected void BlackboardSet(BB_KEY key, object value)
-        {
-            Blackboard.Set(key.ToString(), value);
         }
     }
 }

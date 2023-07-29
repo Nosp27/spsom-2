@@ -6,11 +6,11 @@ namespace BonsaiAI.Tasks
     [BonsaiNode("Tasks/", "Arrow")]
     public class Attack : AiShipTask
     {
-        [SerializeField] private BB_KEY Key = BB_KEY.ATTACK_TARGET;
+        [SerializeField] private BBKey key;
 
         public override Status Run()
         {
-            Transform target = BlackboardGet<Transform>(Key);
+            Transform target = Blackboard.Get<Transform>(key);
             if (target == null || m_ShipAiControls == null)
             {
                 return Status.Failure;
