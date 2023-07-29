@@ -70,6 +70,7 @@
      <Compile Include="Assets/Scripts/GameControl/GameController.cs" />
      <Compile Include="Assets/Scripts/GameControl/CursorControl.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/EmissionEngineRenderer.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Movement/Streif.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/AnnotationTarget.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/ProceduralStations/EngagePoint.cs" />
      <Compile Include="Assets/Scripts/Misc/Screenshot.cs" />
@@ -135,6 +136,7 @@
      <Compile Include="Assets/Scripts/SpaceItems/ProceduralStations/StationBridge.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/ParticleEngineRenderer.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/Weapon.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Movement/TurnAt.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/GameControlStateMachine.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/EngineRenderer.cs" />
      <Compile Include="Assets/Scripts/UI/GizmoController.cs" />
@@ -173,6 +175,7 @@
      <Compile Include="Assets/Scripts/Weaponary/Shield.cs" />
      <Compile Include="Assets/Scripts/AI/States/Noop.cs" />
      <Compile Include="Assets/Scripts/Misc/SelfDestruct.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/DiscoverByTag.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/GarageStation.cs" />
      <Compile Include="Assets/Scripts/AI/States/Retreat.cs" />
      <Compile Include="Assets/Scripts/AI/States/FormationState.cs" />

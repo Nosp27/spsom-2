@@ -17,11 +17,13 @@ public enum FLY_TO_TYPE
 public class FlyTo : Bonsai.Core.Task
 {
     [SerializeField] private FLY_TO_TYPE type;
+    [SerializeField] private HEADING_MODE headingMode = HEADING_MODE.LOCKED_HEADING;
     [SerializeField] private bool away;
     [SerializeField] private BB_KEY bbKeyName = BB_KEY.MOVE_TARGET;
+    [SerializeField] private bool waitForStop = true;
     [Range(0.1f, 1f)] private float throttleCutoff = 1f;
     
-    private float atThreshold = 10;
+    [SerializeField] private float atThreshold = 10;
     private EnemyDetector _mEnemyDetector;
     private ShipAIControls ai;
 
@@ -33,6 +35,12 @@ public class FlyTo : Bonsai.Core.Task
         ai = Actor.GetComponent<ShipAIControls>();
     }
 
+    public override void OnExit()
+    {
+        ai.thisShip.MovementService.ChangeHeadingMode(HEADING_MODE.LOCKED_HEADING);
+        base.OnExit();
+    }
+
     public override void Description(StringBuilder builder)
     {
         builder.Append($"{(away ? "from " : "")}{type.ToString()}");
@@ -40,7 +48,7 @@ public class FlyTo : Bonsai.Core.Task
 
     public bool At(Vector3 point)
     {
-        return Vector3.Distance(ai.transform.position, point) < atThreshold && !ai.IsMoving();
+        return Vector3.Distance(ai.transform.position, point) < atThreshold && !(ai.IsMoving() && waitForStop);
     }
 
     private void TargetSelection()
@@ -106,6 +114,7 @@ public class FlyTo : Bonsai.Core.Task
             return Status.Success;
         }
 
+        ai.thisShip.MovementService.ChangeHeadingMode(headingMode);
         ai.thisShip.MovementService.LimitThrottle(throttleCutoff);
         
         if (away)
@@ -114,6 +123,7 @@ public class FlyTo : Bonsai.Core.Task
         }
         else
         {
+            Debug.DrawLine(Actor.transform.position, targetPoint, Color.yellow);
             ai.MoveAt(targetPoint);
         }
 

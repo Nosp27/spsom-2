@@ -15,11 +15,15 @@ namespace BonsaiAI.Tasks.Mining
         [SerializeField] private float occupationRange = 150;
 
         private Collider[] buffer = new Collider[10];
-    
+
+        private HashSet<Transform> visited = new HashSet<Transform>();
+
         private Transform TheLeastOccupied()
         {
             IEnumerable<Transform> allZones = DetectZones();
-            return allZones.OrderBy(x => ZoneScore(x)).FirstOrDefault();
+            var zone = allZones.OrderBy(x => ZoneScore(x)).FirstOrDefault(x => !visited.Contains(x));
+            visited.Add(zone);
+            return zone;
         }
 
         private float ZoneScore(Transform zone)
@@ -38,7 +42,10 @@ namespace BonsaiAI.Tasks.Mining
         {
             Transform zone = TheLeastOccupied();
             if (zone == null)
+            {
+                visited.Clear();
                 return Status.Failure;
+            }
             BlackboardSet(outputKey, zone);
             return Status.Success;
         }

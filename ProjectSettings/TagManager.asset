@@ -10,6 +10,7 @@ TagManager:
   - Cursor
   - ModulePlaceholder
   - Waypoint
+  - MiningStation
   layers:
   - Default
   - TransparentFX
