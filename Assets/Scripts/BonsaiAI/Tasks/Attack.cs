@@ -7,6 +7,7 @@ namespace BonsaiAI.Tasks
     public class Attack : AiShipTask
     {
         [SerializeField] private BBKey key;
+        [SerializeField] private bool waitUntilAimed;
 
         public override Status Run()
         {
@@ -18,7 +19,8 @@ namespace BonsaiAI.Tasks
         
             m_ShipAiControls.thisShip.MovementService.TurnAt(target.transform.position);
             m_ShipAiControls.thisShip.Aim(target.transform.position);
-            m_ShipAiControls.thisShip.Fire(target.transform.position);
+            if (!waitUntilAimed || m_ShipAiControls.thisShip.Aimed())
+                m_ShipAiControls.thisShip.Fire(target.transform.position);
 
             return Status.Running;
         }

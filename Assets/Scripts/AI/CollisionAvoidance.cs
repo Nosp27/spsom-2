@@ -73,7 +73,7 @@ public class CollisionAvoidance : MonoBehaviour
     {
         Vector3 distance = targetPosition - transform.position;
         Vector3 emitterDirection = distance.normalized;
-        Vector3 emitterPosition = transform.position + distance.normalized * EmitRadius * 2;
+        Vector3 emitterPosition = transform.position + distance.normalized * (EmitRadius * 2);
         float range = extendRange ? distance.magnitude * 2 : distance.magnitude;
         if (debug)
         {

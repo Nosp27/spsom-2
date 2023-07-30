@@ -1,6 +1,5 @@
 using Bonsai;
 using Bonsai.Core;
-using BonsaiAI.Tasks;
 using UnityEngine;
 
 namespace BonsaiAI.Conditions
@@ -9,8 +8,8 @@ namespace BonsaiAI.Conditions
     public class Distance : ConditionalTask
     {
         [SerializeField] private float threshold = 100;
-        [SerializeField] protected BB_KEY key = BB_KEY.MOVE_TARGET;
-        private Transform target => Blackboard.Get<Transform>(key.ToString());
+        [SerializeField] protected BBKey key;
+        private Transform target => Blackboard.Get<Transform>(key);
 
         private bool successWhenCloser = true;
 

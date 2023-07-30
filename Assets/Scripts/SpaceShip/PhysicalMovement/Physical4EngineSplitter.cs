@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bonsai;
 using SpaceShip.ShipServices;
 using UnityEngine;
 
@@ -234,7 +235,9 @@ namespace SpaceShip.PhysicalMovement
 
                     if (debug)
                     {
-                        Debug.DrawRay(m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red);
+                        Debug.DrawRay(
+                            m_Engines[i].transform.position, -10 * m_Engines[i].transform.forward, Color.red
+                        );
                     }
 
                     if (adjustIdx == -1 || momentum > maxAdjustMomentum)
@@ -324,9 +327,7 @@ namespace SpaceShip.PhysicalMovement
 
                 for (int i = 0; i < m_Engines.Length; i++)
                 {
-                    deltas[i] = momentumImpact[i] * Mathf.Min(
-                        Mathf.Abs(momentum), maxTorque, maxTorqueThrottle * force
-                    );
+                    deltas[i] = momentumImpact[i] * Mathf.Min(Mathf.Abs(momentum), maxTorque);
                 }
 
                 for (int i = 0; i < m_Engines.Length; i++)
@@ -368,7 +369,9 @@ namespace SpaceShip.PhysicalMovement
         public override void ApplyRotationTorque(Vector3 _v)
         {
             Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
-            float angle = Vector3.SignedAngle(Vector3.forward, Vector3.ProjectOnPlane(v, Vector3.up), Vector3.up);
+            float angle = Vector3.SignedAngle(
+                Vector3.forward, Vector3.ProjectOnPlane(v, Vector3.up), Vector3.up
+            );
             float angularVelocity = m_Rigidbody.angularVelocity.y;
             float torque = (angle * pidA / 180f - angularVelocity * pidD);
 

@@ -1,16 +1,17 @@
 using Bonsai.Core;
 using BonsaiAI.Tasks;
+using UnityEngine;
 
 namespace BonsaiAI.Conditions.DamageModelConditional
 {
     public abstract class BaseDamageModelConditional : ConditionalTask
     {
-        private BB_KEY key;
+        [SerializeField] private BBKey key;
         protected DamageModel damageModel;
 
         public override void OnStart()
         {
-            damageModel = Blackboard.Get<DamageModel>(key.ToString());   
+            damageModel = Blackboard.Get<DamageModel>(key);   
             base.OnStart();
         }
     }

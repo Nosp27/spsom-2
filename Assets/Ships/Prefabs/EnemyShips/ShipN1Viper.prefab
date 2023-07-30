@@ -135,6 +135,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2814540489843593652, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
+      propertyPath: pidA
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814540489843593652, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
+      propertyPath: pidD
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814540489843593652, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
+      propertyPath: maxTorque
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3851367068113874673, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8
@@ -167,13 +179,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 7310427521194879815, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
+      propertyPath: TreeBlueprint
+      value: 
+      objectReference: {fileID: 11400000, guid: bdb3eb93f534c465298ba141688f5aed, type: 2}
     - target: {fileID: 7484248852591904378, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalPosition.x

@@ -16,16 +16,23 @@ public enum FLY_TO_TYPE
 public class FlyTo : Bonsai.Core.Task
 {
     [SerializeField] private FLY_TO_TYPE type;
-    
+
     [SerializeField] private BBKey target;
 
     [SerializeField] private HEADING_MODE headingMode = HEADING_MODE.LOCKED_HEADING;
     [Range(0.1f, 1f)] private float throttleCutoff = 1f;
-    
+
     [SerializeField] private bool away;
     [SerializeField] private bool waitForStop = true;
     [SerializeField] private float atThreshold = 10;
-    
+
+    [Tooltip(
+        "Sometimes you want to stop near a target, but not at its position completely. " +
+        "For example, if you fly exactly into target, you will collide with it"
+    )]
+    [SerializeField]
+    private float flyByDistance = 0;
+
     private ShipAIControls ai;
     private Vector3 targetPoint;
 
@@ -60,17 +67,19 @@ public class FlyTo : Bonsai.Core.Task
             if (bbTransform != null)
             {
                 targetPoint = bbTransform.position;
-                return;
             }
         }
-        
+
         if (type == FLY_TO_TYPE.BLACKBOARD_VECTOR3)
         {
             targetPoint = Blackboard.Get<Vector3>(target);
-            return;
         }
 
-        throw new Exception($"Unknown type for key selection {type}");
+        if (flyByDistance > 0)
+            targetPoint += (Actor.transform.position - targetPoint).normalized * flyByDistance;
+
+        if (targetPoint == Vector3.zero)
+            throw new Exception($"Unknown type for key selection {type}");
     }
 
     public override Status Run()
@@ -90,7 +99,7 @@ public class FlyTo : Bonsai.Core.Task
 
         ai.thisShip.MovementService.ChangeHeadingMode(headingMode);
         ai.thisShip.MovementService.LimitThrottle(throttleCutoff);
-        
+
         if (away)
         {
             ai.MoveAt(Actor.transform.position + (Actor.transform.position - targetPoint));

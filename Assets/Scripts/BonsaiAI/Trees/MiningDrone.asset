@@ -19,6 +19,7 @@ MonoBehaviour:
   children:
   - {fileID: 7582926883111094345}
   - {fileID: 4004117157167635592}
+  - {fileID: -6394521750926301639}
   - {fileID: 3613916958817450053}
 --- !u!114 &-8816696991976092853
 MonoBehaviour:
@@ -71,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba53565cdd5d2482fb99526ac3cc3a22, type: 3}
   m_Name: FlyTo
   m_EditorClassIdentifier: 
-  preOrderIndex: 17
+  preOrderIndex: 18
   title: 
   comment: 
   bonsaiNodePosition: {x: 302.5, y: 178.5}
@@ -81,6 +82,24 @@ MonoBehaviour:
   away: 0
   waitForStop: 0
   atThreshold: 50
+--- !u!114 &-6394521750926301639
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fac8970e95740c4844e6deb80eae1c, type: 3}
+  m_Name: Streif
+  m_EditorClassIdentifier: 
+  preOrderIndex: 13
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: 419.5, y: 514.5}
+  localOffset: {x: -1, y: 0, z: 0}
+  throttleCutoff: 0.02
 --- !u!114 &-6295384948499929986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,10 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2360766c9f1a1459e9cd2302c27496df, type: 3}
   m_Name: TurnAt
   m_EditorClassIdentifier: 
-  preOrderIndex: 14
+  preOrderIndex: 15
   title: 
   comment: 
-  bonsaiNodePosition: {x: 436.5, y: 634.5}
+  bonsaiNodePosition: {x: 544.5, y: 634.5}
   targetTransformKey: {fileID: 11400000, guid: d881d14957f344d6ebe1ebe60e9bc41a, type: 2}
   angleTolerance: 5
 --- !u!114 &-4875501343607731566
@@ -130,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6290070e5b743314084c4bf4d7201fe5, type: 3}
   m_Name: Wait
   m_EditorClassIdentifier: 
-  preOrderIndex: 19
+  preOrderIndex: 20
   title: 
   comment: 
   bonsaiNodePosition: {x: 680.5, y: 178.5}
@@ -229,6 +248,7 @@ MonoBehaviour:
   - {fileID: -8960453109931809622}
   - {fileID: 7582926883111094345}
   - {fileID: 4004117157167635592}
+  - {fileID: -6394521750926301639}
   - {fileID: 3613916958817450053}
   - {fileID: -6295384948499929986}
   - {fileID: 2356330946276192319}
@@ -238,7 +258,7 @@ MonoBehaviour:
   - {fileID: -4817683185732604878}
   blackboard: {fileID: 4590653259566242025}
   actor: {fileID: 0}
-  panPosition: {x: -194, y: -249}
+  panPosition: {x: -190, y: -489}
   zoomPosition: {x: 1.2465619, y: 1.2465619}
   unusedNodes: []
 --- !u!114 &1468057462027901714
@@ -272,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e42124d794d24baddf03f67db4d0b, type: 3}
   m_Name: Sequence
   m_EditorClassIdentifier: 
-  preOrderIndex: 15
+  preOrderIndex: 16
   title: 
   comment: 
   bonsaiNodePosition: {x: 115.5, y: 34.5}
@@ -293,10 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903c1238508f3fd4d8fe428e1f0430e5, type: 3}
   m_Name: Failure
   m_EditorClassIdentifier: 
-  preOrderIndex: 13
+  preOrderIndex: 14
   title: 
   comment: 
-  bonsaiNodePosition: {x: 439, y: 514.5}
+  bonsaiNodePosition: {x: 547, y: 514.5}
   child: {fileID: -6295384948499929986}
 --- !u!114 &4004117157167635592
 MonoBehaviour:
@@ -399,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b193f060df8439391c9ae23f66f6dd, type: 3}
   m_Name: DiscoverByTag
   m_EditorClassIdentifier: 
-  preOrderIndex: 16
+  preOrderIndex: 17
   title: 
   comment: 
   bonsaiNodePosition: {x: 80, y: 178.5}
@@ -436,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1016f44f51d141d7aa1ffd9c170298d, type: 3}
   m_Name: Stop
   m_EditorClassIdentifier: 
-  preOrderIndex: 18
+  preOrderIndex: 19
   title: 
   comment: 
   bonsaiNodePosition: {x: 543, y: 178.5}

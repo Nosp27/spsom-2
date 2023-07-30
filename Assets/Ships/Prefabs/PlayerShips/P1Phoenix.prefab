@@ -781,11 +781,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: pidA
-      value: 50
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: pidD
-      value: 16
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: debug
@@ -793,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: force
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3398185638930624546, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: maxTorque
@@ -845,7 +845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7184833655015251631, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7184833655015251631, guid: a50846fe723c44bc9bafee744ee3b73b, type: 3}
       propertyPath: m_LocalPosition.x

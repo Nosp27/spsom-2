@@ -10,8 +10,8 @@ namespace BonsaiAI.Conditions
     public class EnemyDetectorTask : Bonsai.Core.ConditionalTask
     {
         private EnemyDetector detector;
-        [SerializeField] private BB_KEY enemyTransformOutputKey = BB_KEY.ATTACK_TARGET;
-        [SerializeField] private BB_KEY enemyDamageModelOutputKey = BB_KEY.ENEMY_DAMAGE_MODEL;
+        [SerializeField] private BBKey enemyTransformOutputKey;
+        [SerializeField] private BBKey enemyDamageModelOutputKey;
 
         public override void OnStart()
         {
@@ -32,8 +32,8 @@ namespace BonsaiAI.Conditions
                 return false;
             }
 
-            Blackboard.Set(enemyTransformOutputKey.ToString(), target.transform);
-            Blackboard.Set(enemyDamageModelOutputKey.ToString(), target);
+            Blackboard.Set(enemyTransformOutputKey, target.transform);
+            Blackboard.Set(enemyDamageModelOutputKey, target);
             return true;
         }
     }

@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7620591167363610766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5e4c7bb706ee14eae9c07a7644a37a, type: 3}
+  m_Name: Repeater
+  m_EditorClassIdentifier: 
+  preOrderIndex: 8
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: 82.5, y: 190.5}
+  child: {fileID: -1157019448723867875}
+  loopCount: 2
+  infiniteLoop: 1
+--- !u!114 &-7562427243661603433
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98e42124d794d24baddf03f67db4d0b, type: 3}
+  m_Name: Sequence
+  m_EditorClassIdentifier: 
+  preOrderIndex: 2
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: -148.5, y: 310.5}
+  children:
+  - {fileID: 7376930111687498469}
+  - {fileID: -572368429523018213}
+  - {fileID: -6229539225993968807}
+--- !u!114 &-6229539225993968807
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c8b5a76b97b5d41abfdb7543ef55ba, type: 3}
+  m_Name: RandomSelector
+  m_EditorClassIdentifier: 
+  preOrderIndex: 5
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: 53.5, y: 442.5}
+  children:
+  - {fileID: 8438669760255889121}
+  - {fileID: -4604253097844522139}
+--- !u!114 &-4604253097844522139
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fac8970e95740c4844e6deb80eae1c, type: 3}
+  m_Name: Streif
+  m_EditorClassIdentifier: 
+  preOrderIndex: 7
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: 203.5, y: 574.5}
+  localOffset: {x: -1, y: 0, z: 0}
+  throttleCutoff: 0.03
+--- !u!114 &-1157019448723867875
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10c597d452a84929af7a8ca316af746, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: 
+  preOrderIndex: 9
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: 91, y: 298.5}
+  key: {fileID: 11400000, guid: d73c821eb2576454abf2384bc52ef3aa, type: 2}
+  waitUntilAimed: 1
+--- !u!114 &-1032857904664863512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a07908f6a5fd44e906d041ac135bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: []
+--- !u!114 &-572368429523018213
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba53565cdd5d2482fb99526ac3cc3a22, type: 3}
+  m_Name: FlyTo
+  m_EditorClassIdentifier: 
+  preOrderIndex: 4
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: -177.5, y: 454.5}
+  type: 0
+  target: {fileID: 11400000, guid: d73c821eb2576454abf2384bc52ef3aa, type: 2}
+  headingMode: 1
+  away: 0
+  waitForStop: 1
+  atThreshold: 10
+  flyByDistance: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e327cacc628d65b4faa51b0a82bf63c2, type: 3}
+  m_Name: Fighter
+  m_EditorClassIdentifier: 
+  allNodes:
+  - {fileID: 8935757706549000656}
+  - {fileID: 7588820068456474437}
+  - {fileID: -7562427243661603433}
+  - {fileID: 7376930111687498469}
+  - {fileID: -572368429523018213}
+  - {fileID: -6229539225993968807}
+  - {fileID: 8438669760255889121}
+  - {fileID: -4604253097844522139}
+  - {fileID: -7620591167363610766}
+  - {fileID: -1157019448723867875}
+  blackboard: {fileID: -1032857904664863512}
+  actor: {fileID: 0}
+  panPosition: {x: 24, y: -436}
+  zoomPosition: {x: 1, y: 1}
+  unusedNodes: []
+--- !u!114 &7376930111687498469
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a316e3c0f9b114343a336b61aeee9ccc, type: 3}
+  m_Name: EnemyDetectorTask
+  m_EditorClassIdentifier: 
+  preOrderIndex: 3
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: -443, y: 454.5}
+  enemyTransformOutputKey: {fileID: 11400000, guid: d73c821eb2576454abf2384bc52ef3aa, type: 2}
+  enemyDamageModelOutputKey: {fileID: 11400000, guid: adeaa6278ef484472b76d2c860a41bef, type: 2}
+--- !u!114 &7588820068456474437
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5e4c7bb706ee14eae9c07a7644a37a, type: 3}
+  m_Name: Repeater
+  m_EditorClassIdentifier: 
+  preOrderIndex: 1
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: -145.5, y: 190.5}
+  child: {fileID: -7562427243661603433}
+  loopCount: 1
+  infiniteLoop: 1
+--- !u!114 &8438669760255889121
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fac8970e95740c4844e6deb80eae1c, type: 3}
+  m_Name: Streif
+  m_EditorClassIdentifier: 
+  preOrderIndex: 6
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: 71.5, y: 574.5}
+  localOffset: {x: 1, y: 0, z: 0}
+  throttleCutoff: 0.3
+--- !u!114 &8935757706549000656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffd532fcd28735448b5f84b50925241, type: 3}
+  m_Name: Parallel
+  m_EditorClassIdentifier: 
+  preOrderIndex: 0
+  title: 
+  comment: 
+  bonsaiNodePosition: {x: -31.5, y: 58.5}
+  children:
+  - {fileID: 7588820068456474437}
+  - {fileID: -7620591167363610766}
