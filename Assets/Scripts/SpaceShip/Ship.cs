@@ -29,6 +29,9 @@ public class Ship : MonoBehaviour
     public int SelectedWeaponIndex { get; private set; }
     public UnityEvent OnWeaponSelect = new UnityEvent();
     public UnityEvent OnWeaponMutate = new UnityEvent();
+    
+    public UnityEvent OnWeaponFire = new UnityEvent();
+
 
 
     // Start is called before the first frame update
@@ -59,6 +62,7 @@ public class Ship : MonoBehaviour
         if (!Alive || Weapons.Count == 0)
             return;
 
+        OnWeaponFire.Invoke();
         DoForUsedWeapon_s(w => w.Fire());
     }
 

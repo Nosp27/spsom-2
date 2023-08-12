@@ -357,7 +357,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8697747541973261789, guid: 75ea05b28c54a47289ebd22e9d77e7ee, type: 3}
   BulletSpeed: 150
   BulletMaxDistance: 120
-  FireRate: 300
+  FireRate: 100
   DamageBuff: 1
   barrels:
   - {fileID: 1311526833999969267}

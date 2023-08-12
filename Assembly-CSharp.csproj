@@ -122,6 +122,7 @@
      <Compile Include="Assets/Scenes/test/TestBody.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/Predicates.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/AiShipTask.cs" />
+     <Compile Include="Assets/Scripts/GameControl/CameraShake.cs" />
      <Compile Include="Assets/Scripts/AI/States/BaseShipAIState.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Inventory.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/InventoryItem.cs" />
