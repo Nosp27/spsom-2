@@ -194,6 +194,7 @@
      <Folder Include="Assets/Ships/Procedural" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{0ad746db-95af-48bb-9fba-340726449bef}.xml" />
      <Folder Include="Assets/Scripts/BonsaiAI/BlackboardKeys" />
+     <Folder Include="Assets/Skyboxes" />
      <Folder Include="Assets/Scripts/BonsaiAI/Conditions/DamageModelConditional" />
      <Folder Include="Assets/SpaceStation/Prefabs" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{f8afd419-8165-4dca-bd9b-a44b59bf0bba}.xml" />
@@ -205,6 +206,7 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{3f47f6a8-1c44-4e59-99c0-07cbb0c6c138}.xml" />
      <Folder Include="Assets/Ships/Weaponary/HitEffects" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SnapshotGroup" />
+     <Folder Include="Assets/Skyboxes/skybox" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{61f05992-7ff1-47d8-9c10-298e4b5f2726}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPreset/{486abe14-0421-49e3-a203-8689d6c379dc}.xml" />
      <Folder Include="Assets/Scripts/BonsaiAI/Conditions" />
