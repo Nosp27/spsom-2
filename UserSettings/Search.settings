@@ -8,6 +8,12 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.E8DA15E5" = ""
+	"OpenInspectorPreview.E8DA15E5" = "1"
+	"currentGroup.E8DA15E5" = "all"
+	"last_search.3BE40471" = "ref:Assets/MaterialsCommon/LightParticle.mat"
+	"OpenInspectorPreview.3BE40471" = "0"
+	"currentGroup.3BE40471" = "all"
 }
 providers = {
 	adb = {
@@ -59,6 +65,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"ref:Assets/MaterialsCommon/LightParticle.mat"
 ]
 searchItemFavorites = [
 ]
