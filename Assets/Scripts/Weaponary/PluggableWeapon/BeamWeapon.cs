@@ -57,7 +57,8 @@ public class BeamWeapon : Weapon
 
     public override void Aim(Vector3 target)
     {
-        aimTarget = target;
+        Vector3 _target = new Vector3(target.x, 0, target.z);
+        aimTarget = _target;
     }
 
     public override bool Aimed()

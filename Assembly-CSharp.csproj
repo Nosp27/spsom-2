@@ -62,6 +62,7 @@
      <Compile Include="Assets/Scripts/UI/HealthBarCircleLine.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/ItemView.cs" />
      <Compile Include="Assets/GameEventSystem/GameEventListener.cs" />
+     <Compile Include="Assets/Scripts/Misc/ProceduralBackground.cs" />
      <Compile Include="Assets/Scripts/UI/Telemetry.cs" />
      <Compile Include="Assets/Scripts/ShipModules/CargoCrane.cs" />
      <Compile Include="Assets/Scripts/UI/ScreenRadarMarks.cs" />
@@ -149,6 +150,7 @@
      <Compile Include="Assets/Scripts/AI/States/LambdaState.cs" />
      <Compile Include="Assets/Scripts/AI/NeuralNetwork/NeuralNet.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/BeamWeapon.cs" />
+     <Compile Include="Assets/Scripts/Misc/RandomObjectEnable.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/Obstacle.cs" />
      <Compile Include="Assets/Scripts/UI/Minimap.cs" />
      <Compile Include="Assets/Scripts/UI/DrawRelativeAxes.cs" />
@@ -423,6 +425,7 @@
      <Folder Include="Assets/Ships/ShipModels/Meshes" />
      <Folder Include="Assets/EffectExamples/Misc Effects" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{a6e9aeed-3e10-49b6-a8a1-cdadbb535a04}.xml" />
+     <Folder Include="Assets/SpaceItems/Prefabs/BigAsteroids" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{1197947d-c3e6-47e1-bc05-ed2458c69d7a}.xml" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Models" />
      <Folder Include="Assets/MaterialsCommon/Effects" />
@@ -444,6 +447,7 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{f71df8e3-d4e2-4ba5-860b-5b95c02b5df1}.xml" />
      <Folder Include="Assets/UI/Hud" />
      <Folder Include="Assets/Ships/Prefabs" />
+     <Folder Include="Assets/MaterialsCommon/IsolatedBackground" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{8c15b182-79b3-434a-be5d-127500ce030b}.xml" />
      <Folder Include="Assets/UI/ShopMenu/Animations" />
      <Folder Include="Assets/Scripts/GameControl/StateMachine" />
