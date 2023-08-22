@@ -65,7 +65,7 @@ public class BeamWeapon : Weapon
     {
         Vector3 lookVector = transform.forward;
         Vector3 targetVector = aimTarget - transform.position;
-        float angle = Vector3.Angle(lookVector, targetVector);
+        float angle = Utils.PlainAngle(lookVector, targetVector);
         return angle < 5f;
     }
 
@@ -132,15 +132,21 @@ public class BeamWeapon : Weapon
         }
         else
         {
-            beamRenderer.SetPosition(1, transform.position + range * transform.forward);
+            Vector3 plainForward = transform.forward;
+            plainForward.y = 0;
+            plainForward.Normalize();
+            beamRenderer.SetPosition(1, transform.position + range * plainForward);
         }
     }
 
     private bool PerformRaycast(out RaycastHit hit)
     {
+        Vector3 plainForward = transform.forward;
+        plainForward.y = 0;
+        plainForward.Normalize();
         return Physics.Raycast(
             transform.position,
-            transform.forward,
+            plainForward,
             out hit,
             range,
             LayerMask.GetMask("Default"),

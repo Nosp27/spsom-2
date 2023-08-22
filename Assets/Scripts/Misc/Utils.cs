@@ -7,6 +7,22 @@ using UnityEngine;
 
 public class Utils
 {
+    public static Vector3 Position(object t)
+    {
+        if (t is Vector3)
+            return (Vector3)t;
+        if (t is Transform)
+            return ((Transform)t).position;
+        return default;
+    }
+
+    public static float PlainAngle(Vector3 a, Vector3 b, bool signed=false)
+    {
+        if (signed)
+            return Vector3.SignedAngle(new Vector3(a.x, 0, a.z), new Vector3(b.x, 0, b.z), Vector3.up);
+        return Vector3.Angle(new Vector3(a.x, 0, a.z), new Vector3(b.x, 0, b.z));
+    }
+    
     public static float Projection(Vector3 v1, Vector3 v2)
     {
         return Vector3.Dot(v1, v2) / v2.magnitude;

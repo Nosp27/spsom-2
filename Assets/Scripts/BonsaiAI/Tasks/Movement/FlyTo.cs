@@ -6,17 +6,9 @@ using BonsaiAI;
 using UnityEngine;
 
 
-public enum FLY_TO_TYPE
-{
-    BLACKBOARD_TRANSFORM,
-    BLACKBOARD_VECTOR3,
-}
-
 [BonsaiNode("Tasks/", "Arrow")]
 public class FlyTo : Bonsai.Core.Task
 {
-    [SerializeField] private FLY_TO_TYPE type;
-
     [SerializeField] private BBKey target;
 
     [SerializeField] private HEADING_MODE headingMode = HEADING_MODE.LOCKED_HEADING;
@@ -49,7 +41,7 @@ public class FlyTo : Bonsai.Core.Task
 
     public override void Description(StringBuilder builder)
     {
-        builder.Append($"{(away ? "from " : "")}{type.ToString()}");
+        builder.Append($"{(away ? "from " : "")}{target}");
     }
 
     public bool At(Vector3 point)
@@ -59,27 +51,10 @@ public class FlyTo : Bonsai.Core.Task
 
     private void TargetSelection()
     {
-        targetPoint = Vector3.zero;
-
-        if (type == FLY_TO_TYPE.BLACKBOARD_TRANSFORM)
-        {
-            Transform bbTransform = Blackboard.Get<Transform>(target);
-            if (bbTransform != null)
-            {
-                targetPoint = bbTransform.position;
-            }
-        }
-
-        if (type == FLY_TO_TYPE.BLACKBOARD_VECTOR3)
-        {
-            targetPoint = Blackboard.Get<Vector3>(target);
-        }
+        targetPoint = Utils.Position(Blackboard.Get(target));
 
         if (flyByDistance > 0)
             targetPoint += (Actor.transform.position - targetPoint).normalized * flyByDistance;
-
-        if (targetPoint == Vector3.zero)
-            throw new Exception($"Unknown type for key selection {type}");
     }
 
     public override Status Run()

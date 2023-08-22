@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277161163780832590}
   - component: {fileID: 401694218731923857}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RandomPlanet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 7916760811688846914}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &401694218731923857
 MonoBehaviour:
@@ -59,6 +59,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5277161163780832590}
     m_Modifications:
+    - target: {fileID: -9071616212491262976, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -116,6 +120,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8483790328037823468, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8483790328037823468, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -139,10 +147,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e31f0306e366045f998d85b693a5b338, type: 2}
+    - target: {fileID: -4315579579824463416, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -2593592008925147390, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e40caeaddf1ef4804b397a13c23167ad, type: 2}
+    - target: {fileID: -2035096961233862131, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -2035096961233862131, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -167,21 +183,41 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 896b3897d646f4bf28fad4c35d66d6f1, type: 2}
+    - target: {fileID: 889162241156193759, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_Name
       value: LowPolyPlanets
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1031287382303866379, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2014411041236481937, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014411041236481937, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165558000555535725, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4237377047119446298, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765416564165806928, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4765416564165806928, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_IsActive
@@ -190,6 +226,14 @@ PrefabInstance:
     - target: {fileID: 5267200604714501907, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5438983540394387279, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5486161733300276087, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5486161733300276087, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
       propertyPath: m_IsActive
@@ -207,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e40caeaddf1ef4804b397a13c23167ad, type: 2}
+    - target: {fileID: 8185802657911089849, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3099773969727789285, guid: fa510c60af3de40c38d0a44da576ff1f, type: 3}
