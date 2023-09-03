@@ -4,24 +4,24 @@ using UnityEngine;
 namespace GameEventSystem
 {
     [CreateAssetMenu]
-    public class GameEvent : ScriptableObject
+    public class GameEvent<T> : ScriptableObject
     {
-        private readonly List<GameEventListener> eventListeners =
-            new List<GameEventListener>();
+        private readonly List<GameEventListener<T>> eventListeners =
+            new List<GameEventListener<T>>();
 
-        public void Raise()
+        public void Raise(T parameter)
         {
             for (int i = eventListeners.Count - 1; i >= 0; i--)
-                eventListeners[i].OnEventRaised();
+                eventListeners[i].OnEventRaised(parameter);
         }
 
-        public void RegisterListener(GameEventListener listener)
+        public void RegisterListener(GameEventListener<T> listener)
         {
             if (!eventListeners.Contains(listener))
                 eventListeners.Add(listener);
         }
 
-        public void UnregisterListener(GameEventListener listener)
+        public void UnregisterListener(GameEventListener<T> listener)
         {
             if (eventListeners.Contains(listener))
                 eventListeners.Remove(listener);

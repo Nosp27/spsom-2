@@ -56,12 +56,10 @@
      <Compile Include="Assets/Scripts/SpaceShip/AimLockTarget.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/SlotCanvas/CircularCanvasInput.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Movement/FlyTo.cs" />
-     <Compile Include="Assets/GameEventSystem/GameEvent.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/SimpleDamageModel.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Gun.cs" />
      <Compile Include="Assets/Scripts/UI/HealthBarCircleLine.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/ItemView.cs" />
-     <Compile Include="Assets/GameEventSystem/GameEventListener.cs" />
      <Compile Include="Assets/Scripts/Misc/ProceduralBackground.cs" />
      <Compile Include="Assets/Scripts/UI/Telemetry.cs" />
      <Compile Include="Assets/Scripts/ShipModules/CargoCrane.cs" />
@@ -80,6 +78,7 @@
      <Compile Include="Assets/Scripts/AI/NeuralNetwork/Neuron.cs" />
      <Compile Include="Assets/Scripts/GameControl/InventoryController.cs" />
      <Compile Include="Assets/Scripts/UI/NotificationManager.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Tasks/CapturePosition.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/EditorHelperEngines.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/Physical4EngineSplitter.cs" />
      <Compile Include="Assets/Scripts/AI/States/FormationMember.cs" />
@@ -104,6 +103,7 @@
      <Compile Include="Assets/Scripts/SpaceShip/ScaleWithEngine.cs" />
      <Compile Include="Assets/Scripts/Misc/KeepLookVector.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/FighterAIStateMachine.cs" />
+     <Compile Include="Assets/Scripts/GameControl/CameraLogic/CameraShake.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Bullet.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/ShipDamageModel.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/EngineSound.cs" />
@@ -123,9 +123,9 @@
      <Compile Include="Assets/Scenes/test/TestBody.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/Predicates.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/AiShipTask.cs" />
-     <Compile Include="Assets/Scripts/GameControl/CameraShake.cs" />
      <Compile Include="Assets/Scripts/AI/States/BaseShipAIState.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Inventory.cs" />
+     <Compile Include="Assets/Scripts/BonsaiAI/Conditions/DistanceBetween2.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/InventoryItem.cs" />
      <Compile Include="Assets/Scripts/Misc/FXVolumeTweak.cs" />
      <Compile Include="Assets/Scripts/UI/UINotification.cs" />
@@ -163,8 +163,10 @@
      <Compile Include="Assets/Scripts/Misc/PositionTracker.cs" />
      <Compile Include="Assets/Scripts/Misc/FPSTracker.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Conditions/CalculateRaycastApproach.cs" />
+     <Compile Include="Assets/Scripts/GameEventSystem/GameEvent.cs" />
      <Compile Include="Assets/Scripts/ShipModules/RadarModule.cs" />
      <Compile Include="Assets/Scripts/Misc/Utils.cs" />
+     <Compile Include="Assets/Scripts/GameEventSystem/EventLibrary.cs" />
      <Compile Include="Assets/Scripts/GameControl/CameraLogic/CameraController.cs" />
      <Compile Include="Assets/Scripts/AI/Formation.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Mining/MiningZoneDetector.cs" />
@@ -175,6 +177,7 @@
      <Compile Include="Assets/Scripts/Prey.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/BorderZone.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Conditions/EnemyDetectorTask.cs" />
+     <Compile Include="Assets/Scripts/GameEventSystem/GameEventListener.cs" />
      <Compile Include="Assets/Scripts/GameControl/StateMachine/BaseState.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/ShipServices/ShipMovementService.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Shield.cs" />
@@ -196,7 +199,6 @@
      <Folder Include="Assets/Ships/Procedural" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{0ad746db-95af-48bb-9fba-340726449bef}.xml" />
      <Folder Include="Assets/Scripts/BonsaiAI/BlackboardKeys" />
-     <Folder Include="Assets/Skyboxes" />
      <Folder Include="Assets/Scripts/BonsaiAI/Conditions/DamageModelConditional" />
      <Folder Include="Assets/SpaceStation/Prefabs" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{f8afd419-8165-4dca-bd9b-a44b59bf0bba}.xml" />
@@ -208,7 +210,6 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{3f47f6a8-1c44-4e59-99c0-07cbb0c6c138}.xml" />
      <Folder Include="Assets/Ships/Weaponary/HitEffects" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SnapshotGroup" />
-     <Folder Include="Assets/Skyboxes/skybox" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{61f05992-7ff1-47d8-9c10-298e4b5f2726}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPreset/{486abe14-0421-49e3-a203-8689d6c379dc}.xml" />
      <Folder Include="Assets/Scripts/BonsaiAI/Conditions" />
@@ -233,7 +234,6 @@
      <Folder Include="Assets/UI/Quest" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{49bc6bc1-3538-4eaa-9621-78e3ffe428b4}.xml" />
      <Folder Include="Assets/Ships/Modules" />
-     <Folder Include="Assets/Ships/Sattelite" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{9ba0a901-4c35-483d-9323-b85918dfeaae}.xml" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Materials" />
      <Folder Include="Assets/Scripts/Misc" />
@@ -242,7 +242,6 @@
      <Folder Include="Assets/Sound" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{8244dadf-29c0-4922-9cfd-379abaf4c82b}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD" />
-     <Folder Include="Assets/Ships/Weaponary/Models/Textures" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{3450ca47-d389-43f0-944b-dca30c1c0919}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Platform/{13b0cfa8-e8d0-47fa-99fc-200a1de2c771}.xml" />
      <Folder Include="Assets/Scripts/AI" />
@@ -268,7 +267,6 @@
      <Folder Include="Assets/SpaceItems/Models/Meshes" />
      <Folder Include="Assets/Scripts/SpaceShip" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{dd2f3bc2-378d-44f6-b776-3144f7b84b31}.xml" />
-     <Folder Include="Assets/Ships/ShipModels/Meshes/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{c0a064dc-4bc3-45b4-a718-2d08a3ea28e9}.xml" />
      <Folder Include="Assets/Scripts/SpaceItems" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{7ffebcd1-2a97-4fec-854d-313de3b8eff7}.xml" />
@@ -314,8 +312,6 @@
      <Folder Include="Assets/Scripts/BonsaiAI/Tasks/Mining" />
      <Folder Include="Assets/UI/Hud/PilotHUD" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EncodingSetting" />
-     <Folder Include="Assets/SpaceItems/Prefabs/Effects" />
-     <Folder Include="Assets/Utils" />
      <Folder Include="Assets/UI/Inventory" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/ParameterPresetFolder/{69b3e909-668f-4c9a-932b-6a5fc153e938}.xml" />
      <Folder Include="Assets/Scripts/AI/States" />
@@ -339,8 +335,6 @@
      <Folder Include="Assets/CommonTextures/Effects" />
      <Folder Include="Assets/UI/Hud/Prefabs" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets/SFX" />
-     <Folder Include="Assets/UI/ShopMenu" />
-     <Folder Include="Assets/UI/ShopMenu/Sprites" />
      <Folder Include="Assets/MaterialsCommon" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{622f856d-1b62-4982-8459-a9d4e1c28a60}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{aaade37c-37a5-4d6e-a5c8-897174371848}.xml" />
@@ -378,7 +372,7 @@
      <Folder Include="Assets/CommonTextures" />
      <Folder Include="Assets/UI/Hud/HealthBar" />
      <Folder Include="Assets/UI/Hud/MainHUD" />
-     <Folder Include="Assets/GameEventSystem" />
+     <Folder Include="Assets/Scripts/GameEventSystem" />
      <Folder Include="Assets/SpaceStation/Models/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{aadf4230-def6-41a9-b14d-d0f29f0a18b3}.xml" />
      <Folder Include="Assets/EffectExamples/Misc Effects/Materials" />
@@ -388,7 +382,6 @@
      <Folder Include="Assets/UI/Quest/Notifications" />
      <Folder Include="Assets/EffectExamples/WeaponEffects/Models/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EncodingSetting/{1e3359ee-2fc7-4531-a8e5-c6345ab1204f}.xml" />
-     <Folder Include="Assets/Ships/Engines/TrailEngine" />
      <Folder Include="Assets/SpaceStation/Models/Meshes" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Tags.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset/{d1502a69-ae10-44d4-afe0-6ebc4f0e0a08}.xml" />
@@ -399,7 +392,6 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{dda10af2-b904-4ef2-9723-b9ab52779f0b}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{518f6b60-ebbb-45b7-a7d1-b6d369cca7fe}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset/{de914b1e-8471-48a3-b54a-5bbfc166953a}.xml" />
-     <Folder Include="Assets/SpaceStation/Prefabs/ProceduralStationModules" />
      <Folder Include="Assets/Ships/Weaponary" />
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD/LidarUI" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{373be533-05f2-4424-8e16-dcd103aed710}.xml" />
@@ -416,12 +408,10 @@
      <Folder Include="Assets/UI/Quest/DialogueWindow/Sprites" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{de505acb-3d72-46e2-bc94-e6028b740e94}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{6f790a08-ac2b-4371-87fa-c57d97730f25}.xml" />
-     <Folder Include="Assets/SpaceStation/Models/Textures" />
      <Folder Include="Assets/EffectExamples/Misc Effects/Prefabs" />
      <Folder Include="Assets/Scripts/SpaceShip/PhysicalMovement" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{b11c0c63-6a8a-43be-91e0-44d6dab9ae94}.xml" />
      <Folder Include="Assets/Ships/ShipModels/Textures" />
-     <Folder Include="Assets/SpaceItems/Models/Meshes/Materials" />
      <Folder Include="Assets/Ships/ShipModels/Meshes" />
      <Folder Include="Assets/EffectExamples/Misc Effects" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{a6e9aeed-3e10-49b6-a8a1-cdadbb535a04}.xml" />
@@ -449,12 +439,10 @@
      <Folder Include="Assets/Ships/Prefabs" />
      <Folder Include="Assets/MaterialsCommon/IsolatedBackground" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{8c15b182-79b3-434a-be5d-127500ce030b}.xml" />
-     <Folder Include="Assets/UI/ShopMenu/Animations" />
      <Folder Include="Assets/Scripts/GameControl/StateMachine" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset" />
      <Folder Include="Assets/Scenes/test" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Return/{86f14354-dbbf-4cb2-957c-a4fbe4ec4db8}.xml" />
-     <Folder Include="Assets/Utils/Screenshots" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SnapshotGroup/{0a6e1da9-94b3-4e88-a6e2-bf1f1dff292c}.xml" />
      <Folder Include="Assets/Sound/SFX" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Port" />

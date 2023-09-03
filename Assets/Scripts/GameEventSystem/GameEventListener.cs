@@ -3,13 +3,13 @@ using UnityEngine.Events;
 
 namespace GameEventSystem
 {
-    public class GameEventListener : MonoBehaviour
+    public class GameEventListener<T> : MonoBehaviour
     {
         [Tooltip("Event to register with.")]
-        public GameEvent Event;
+        public GameEvent<T> Event;
 
         [Tooltip("Response to invoke when Event is raised.")]
-        public UnityEvent Response;
+        public UnityEvent<T> Response;
 
         private void OnEnable()
         {
@@ -21,9 +21,9 @@ namespace GameEventSystem
             Event.UnregisterListener(this);
         }
 
-        public void OnEventRaised()
+        public void OnEventRaised(T param)
         {
-            Response.Invoke();
+            Response.Invoke(param);
         }
     }
 }
