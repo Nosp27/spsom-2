@@ -94,7 +94,6 @@ namespace Bonsai.Core
     {
       // Return what the child returns if it ran, else fail.
       // return Iterator.LastChildExitStatus ?? (Condition() ? Status.Success : Status.Failure);
-      Debug.Log("Cond run");
       return Iterator.LastChildExitStatus.GetValueOrDefault(Status.Failure);
     }
 

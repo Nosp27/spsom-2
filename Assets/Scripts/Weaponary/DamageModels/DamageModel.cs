@@ -1,6 +1,6 @@
+using System;
 using GameEventSystem;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class DamageModel : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public abstract class DamageModel : MonoBehaviour
     public virtual void Die()
     {
         if (!alive)
-            return;
+            throw new Exception("Invoke Die() on already dead damage model");
 
         alive = false;
         EventLibrary.objectDestroyed.Invoke(this);

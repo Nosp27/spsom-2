@@ -13,14 +13,13 @@ public class Ship : MonoBehaviour
     public float LinearSpeed => movementConfig.LinearSpeed;
     
     [Header("Weapons")]
-    public bool HasGunnery;
     public List<Weapon> Weapons;
     public bool isPlayerShip;
 
     public Vector3 MoveAim => movementService.MoveAim;
     public ShipMovementService MovementService => movementService;
     public float currentThrottle => movementService.CurrentThrottle;
-    public bool Alive { get; private set; }
+    public bool Alive => damageModel.Alive;
     public DamageModel damageModel { get; private set; }
 
     private Camera currentCamera;
@@ -40,14 +39,22 @@ public class Ship : MonoBehaviour
     {
         damageModel = GetComponent<DamageModel>();
         isPlayerShip = gameObject.CompareTag("PlayerShip");
-        Alive = true;
-        
+
         movementService.Init(transform, movementConfig);
         
         yield return new WaitForEndOfFrame();
         ScanWeaponary();
-        HasGunnery = Weapons.Count > 0;
         EventLibrary.shipSpawned.Invoke(this);
+        EventLibrary.shipKills.AddListener(OnAnyShipDie);
+    }
+
+    private void OnAnyShipDie(Ship kills, DamageModel dies)
+    {
+        if (dies != damageModel)
+            return;
+        
+        movementService.enabled = false;
+        enabled = false;
     }
 
     public void SelectWeapon(int i)
@@ -97,12 +104,6 @@ public class Ship : MonoBehaviour
         Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
         OnWeaponMutate.Invoke();
         SelectWeapon(SelectedWeaponIndex);
-    }
-
-    void Die()
-    {
-        Alive = false;
-        movementService.enabled = false;
     }
 
     private void DoForUsedWeapon_s(Action<Weapon> func)

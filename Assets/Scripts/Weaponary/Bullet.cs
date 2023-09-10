@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private bool bypassShields;
     [SerializeField] private GameObject hitEffectPrefab;
 
+    [SerializeField] private bool debug;
+
     private void Start()
     {
         if (rb != null)
@@ -77,7 +79,7 @@ public class Bullet : MonoBehaviour
 
         EventLibrary.shipDealsDamage.Invoke(m_Owner.GetComponent<Ship>(), hit);
         
-        DamageModel damageModel = GetComponentInParent<DamageModel>();
+        DamageModel damageModel = other.GetComponentInParent<DamageModel>();
         if (damageModel)
         {
             EventLibrary.objectReceivesDamage.Invoke(damageModel, hit);

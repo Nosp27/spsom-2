@@ -15,6 +15,8 @@ public class ShipDamageModel : DamageModel
     [Space(20f)] [SerializeField] private GameObject aliveMesh;
     [SerializeField] private GameObject debrisMesh;
 
+    [SerializeField] private bool debug;
+
     public override void Die()
     {
         health = 0;
@@ -40,17 +42,24 @@ public class ShipDamageModel : DamageModel
 
     public override void GetDamage(BulletHitDTO hit)
     {
+        if (!Alive)
+            return;
+
         if (hit.Damage < 0)
         {
             Debug.LogWarning($"Damage <0: {hit.Damage}");
             return;
         }
 
+        if (debug)
+            print($"{name} recieves damage");
+
         bool deadly = false;
         health -= hit.Damage;
         if (health <= 0)
         {
             deadly = true;
+            health = 0;
         }
 
         GameObject[] hitsParticles = HitParticleSystems;
@@ -72,6 +81,7 @@ public class ShipDamageModel : DamageModel
                 hit.hitInitiator.GetComponent<Ship>(),
                 GetComponent<DamageModel>()
             );
+            Die();
         }
 
         base.GetDamage(hit);

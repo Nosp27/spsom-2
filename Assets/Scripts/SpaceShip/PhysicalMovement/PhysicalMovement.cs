@@ -67,6 +67,11 @@ public class PhysicalMovement : ShipMovementService
         }
     }
 
+    private void OnDisable()
+    {
+        ActionEnableDrag();
+    }
+
     void ActionEnableDrag()
     {
         m_Rigidbody.drag = m_ShipDrag;

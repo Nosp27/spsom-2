@@ -1,3 +1,4 @@
+using DG.Tweening;
 using GameEventSystem;
 using TMPro;
 using UnityEngine;
@@ -23,11 +24,11 @@ public class HealthBar : MonoBehaviour
 
     private void ReactOnHealthChange(DamageModel damageModel, BulletHitDTO bulletHitDto)
     {
-        bool trackingPlayerShip =
+        bool isTrackingPlayerShip =
             attachedDamageModel == null && trackPlayerShip &&
             damageModel == GameController.Current.PlayerShip.damageModel;
-        bool trackingAttachedShip = damageModel != null && damageModel == attachedDamageModel;
-        if (!trackingPlayerShip && !trackingAttachedShip)
+        bool isTrackingAttachedShip = damageModel != null && damageModel == attachedDamageModel;
+        if (!isTrackingPlayerShip && !isTrackingAttachedShip)
             return;
         SetPieAngle(361 * damageModel.Health / damageModel.MaxHealth);
         if (HP != null)
@@ -37,7 +38,7 @@ public class HealthBar : MonoBehaviour
     private void SetPieAngle(int pieAngle)
     {
         pieAngle = Mathf.Clamp(pieAngle, 0, 361);
-        circle.fillAmount = pieAngle / 361f;
+        circle.DOFillAmount(pieAngle / 361f, .1f);
         circle.color = colorShade.Evaluate(pieAngle / 361f);
     }
 }

@@ -95,6 +95,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7310427521194879815}
   m_SourcePrefab: {fileID: 100100000, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+--- !u!114 &2843803048432300354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1880109488618658892, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+  m_PrefabInstance: {fileID: 4422616543398866190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4714369631060189504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4431c90c01d34da7b1682152a626bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2843803048432300359 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1880109488618658889, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
@@ -289,6 +300,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2843803048432300359}
     - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: trackPlayerShip
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
       propertyPath: colorShade.ctime1
       value: 29105
       objectReference: {fileID: 0}
@@ -316,6 +331,10 @@ PrefabInstance:
       propertyPath: colorShade.key1.r
       value: 0.25178
       objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: attachedDamageModel
+      value: 
+      objectReference: {fileID: 2843803048432300354}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
