@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameEventSystem;
 using UnityEngine;
 
 public class ScreenRadarMarks : MonoBehaviour
@@ -14,20 +15,22 @@ public class ScreenRadarMarks : MonoBehaviour
     {
         targetMarkers = new Dictionary<RadarTarget, GameObject>();
         rangeCircle.transform.localScale = 2 * offset * Vector3.one;
-        GameController.Current.OnShipChange.AddListener(OnPlayerShipChanged);
+        EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChanged);
+        EventLibrary.onObjectEncounter.RemoveListener(SpawnMarker);
+        EventLibrary.onObjectLost.RemoveListener(RemoveTargetMarker);
     }
 
     void OnPlayerShipChanged(Ship old, Ship newShip)
     {
         if (m_RadarModule != null)
         {
-            m_RadarModule.OnObjectEncounter.RemoveListener(SpawnMarker);
-            m_RadarModule.OnObjectLost.RemoveListener(RemoveTargetMarker);
+            EventLibrary.onObjectEncounter.RemoveListener(SpawnMarker);
+            EventLibrary.onObjectLost.RemoveListener(RemoveTargetMarker);
         }
         m_RadarModule = newShip.GetComponentInChildren<RadarModule>();
         SyncMarkers();
-        m_RadarModule.OnObjectEncounter.AddListener(SpawnMarker);
-        m_RadarModule.OnObjectLost.AddListener(RemoveTargetMarker);
+        EventLibrary.onObjectEncounter.AddListener(SpawnMarker);
+        EventLibrary.onObjectLost.AddListener(RemoveTargetMarker);
     }
 
     void SyncMarkers()

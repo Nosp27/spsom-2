@@ -1,7 +1,5 @@
-using System.Collections;
-using DG.Tweening;
+using GameEventSystem;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class ShipDamageModel : DamageModel
@@ -48,7 +46,12 @@ public class ShipDamageModel : DamageModel
             return;
         }
 
+        bool deadly = false;
         health -= hit.Damage;
+        if (health <= 0)
+        {
+            deadly = true;
+        }
 
         GameObject[] hitsParticles = HitParticleSystems;
         if (hit.hitType == HitType.EXPLOSION)
@@ -61,13 +64,16 @@ public class ShipDamageModel : DamageModel
                 transform);
         }
 
-        if (health <= 0)
+        if (deadly)
         {
-            health = 0;
             if (destruction != null)
                 destruction.Play(true);
-            BroadcastMessage("Die");
+            EventLibrary.shipKills.Invoke(
+                hit.hitInitiator.GetComponent<Ship>(),
+                GetComponent<DamageModel>()
+            );
         }
+
         base.GetDamage(hit);
     }
 }

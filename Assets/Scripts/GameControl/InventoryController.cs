@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameEventSystem;
 using UI.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,14 +20,8 @@ public class InventoryController : MonoBehaviour
     public int maxSize = 8;
     public List<InventoryItem> InventoryItems;
 
-    public UnityEvent<InventoryItem> onPutItem { get; private set; }
-    public UnityEvent<InventoryItem> onRemoveItem { get; private set; }
-
     private void Awake()
     {
-        onPutItem = new UnityEvent<InventoryItem>();
-        onRemoveItem = new UnityEvent<InventoryItem>();
-
         if (InventoryItems == null)
             InventoryItems = new List<InventoryItem>(maxSize);
     }
@@ -35,12 +30,12 @@ public class InventoryController : MonoBehaviour
     {
         print("item added");
         InventoryItems.Add(item);
-        onPutItem.Invoke(item);
+        EventLibrary.onInventoryPutItem.Invoke(item);
     }
 
     public void RemoveItem(InventoryItem item)
     {
         InventoryItems.Remove(item);
-        onRemoveItem.Invoke(item);
+        EventLibrary.onInventoryrRemoveItem.Invoke(item);
     }
 }

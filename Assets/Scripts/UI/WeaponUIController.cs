@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using GameEventSystem;
 using UnityEngine;
 
 public class WeaponUIController : MonoBehaviour
 {
-    private Ship ship;
+    private Ship trackedShip;
     [SerializeField] private GameObject slotPrefab;
     private List<WeaponUISlot> weapons;
 
@@ -13,21 +14,14 @@ public class WeaponUIController : MonoBehaviour
 
     private void Start()
     {
-        GameController.Current.OnShipChange.AddListener(OnPlayerShipChanged);
+        EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChanged);
+        EventLibrary.selectPlayerShipWeapon.AddListener(OnWeaponChanged);
+        EventLibrary.mutatePlayerShipWeapons.AddListener(SnapshotWeapons);
     }
 
     private void OnPlayerShipChanged(Ship old, Ship _new)
     {
-        if (ship != null)
-        {
-            ship.OnWeaponSelect.RemoveListener(OnWeaponChanged);
-            ship.OnWeaponMutate.RemoveListener(SnapshotWeapons);    
-        }
-        ship = _new;
-        highlightedWeapon = ship.SelectedWeaponIndex;
-        SnapshotWeapons();
-        ship.OnWeaponSelect.AddListener(OnWeaponChanged);
-        ship.OnWeaponMutate.AddListener(SnapshotWeapons);
+        trackedShip = _new;
     }
 
     private void SnapshotWeapons()
@@ -45,7 +39,7 @@ public class WeaponUIController : MonoBehaviour
             weapons = new List<WeaponUISlot>();
         }
         
-        foreach (Weapon w in ship.Weapons)
+        foreach (Weapon w in trackedShip.Weapons)
         {
             WeaponUISlot slot = Instantiate(slotPrefab, transform).GetComponent<WeaponUISlot>();
             slot.AttachWeapon(w);
@@ -53,12 +47,9 @@ public class WeaponUIController : MonoBehaviour
         }
     }
 
-    private void OnWeaponChanged()
+    private void OnWeaponChanged(Weapon selected)
     {
-        if (weapons.Count == 0)
-            return;
-        
-        int newIndex = ship.SelectedWeaponIndex;
+        int newIndex = trackedShip.SelectedWeaponIndex;
         weapons[highlightedWeapon].SwitchHighlight(false);
         highlightedWeapon = newIndex;
         weapons[highlightedWeapon].SwitchHighlight(true);

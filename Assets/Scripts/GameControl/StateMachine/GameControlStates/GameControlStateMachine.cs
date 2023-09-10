@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace GameControl.StateMachine.GameControlStates
 {
@@ -24,12 +22,7 @@ namespace GameControl.StateMachine.GameControlStates
         void InitStateMachine()
         {
             sm = new StateMachine();
-
-            Func<bool> InventoryTransitionPredicate = () =>
-                Keyboard.current.eKey.wasPressedThisFrame || (Gamepad.current != null && Gamepad.current.triangleButton.wasPressedThisFrame);
-
-            sm.AddTransition(movementState, inventoryState, InventoryTransitionPredicate);
-            sm.AddTransition(inventoryState, movementState, InventoryTransitionPredicate);
+            sm.AddTransition(movementState, movementState, () => false);
         }
     }
 }

@@ -95,6 +95,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7310427521194879815}
   m_SourcePrefab: {fileID: 100100000, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+--- !u!114 &2843803048432300359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1880109488618658889, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
+  m_PrefabInstance: {fileID: 4422616543398866190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4714369631060189504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83befa229a91d49358646d6e284a2e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4714369631060189504 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8938664925190245454, guid: 6771e39ec8a1d41ffa4b5418e00fe636, type: 3}
@@ -139,6 +150,8 @@ MonoBehaviour:
   EmitRadius: 0
   parktronicRadius: 15
   parktronicAvoidMagnitude: 10
+  minObstacleDistanceForAvoid: 70
+  debug: 0
   nearest: {fileID: 0}
 --- !u!114 &8803392241055300615
 MonoBehaviour:
@@ -270,6 +283,38 @@ PrefabInstance:
     - target: {fileID: 5664969176625834077, guid: d0215619a8a294233830990863d2368a, type: 3}
       propertyPath: m_Name
       value: HealthBar (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: attachedShip
+      value: 
+      objectReference: {fileID: 2843803048432300359}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.ctime1
+      value: 29105
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.key0.b
+      value: 0.30655926
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.key0.g
+      value: 0.30655926
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.key0.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.key1.b
+      value: 0.28610927
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.key1.g
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880264002982723873, guid: d0215619a8a294233830990863d2368a, type: 3}
+      propertyPath: colorShade.key1.r
+      value: 0.25178
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

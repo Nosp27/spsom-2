@@ -33,7 +33,7 @@ public class FlyToShipQuest : BaseQuest
             () => SetMarker(null)
         );
 
-        var lootPickupPredicate = Predicates.LootPickup(playerShip, questItems["LOOT"]);
+        var lootPickupPredicate = Predicates.LootPickup(questItems["LOOT"]);
         var shipDestroyedPredicate = Predicates.ShipDestroyed(questItems["ENEMY_SHIP"].GetComponent<Ship>());
         
         sm.AddTransition(

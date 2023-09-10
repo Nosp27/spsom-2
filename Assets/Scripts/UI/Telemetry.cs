@@ -1,3 +1,4 @@
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class Telemetry : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameController.Current.OnShipChange.AddListener(OnShipChange);
+        EventLibrary.switchPlayerShip.AddListener(OnShipChange);
     }
 
     void OnShipChange(Ship old, Ship _new)

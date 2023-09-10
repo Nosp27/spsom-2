@@ -1,4 +1,5 @@
 using System;
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,14 +22,19 @@ public class Predicates : MonoBehaviour
         public Tracker(UnityEvent<T> _event, Func<T, bool> if_ = null) : base(null)
         {
             if (_event != null)
-                _event.AddListener(x => triggered |= if_==null || if_(x));
+                _event.AddListener(x => triggered |= if_ == null || if_(x));
         }
     }
 
-    public static Func<bool> LootPickup(Ship ship, GameObject targetLoot)
+    public static Func<bool> LootPickup(GameObject targetLoot)
     {
-        CargoCrane crane = ship.GetComponentInChildren<CargoCrane>();
-        Tracker<GameObject> tracker = new Tracker<GameObject>(crane.onGrab, loot => { print($" LootPickup: {loot} == {targetLoot} ({loot == targetLoot}) "); return loot == targetLoot; });
+        Tracker<GameObject> tracker = new Tracker<GameObject>(
+            EventLibrary.onCraneGrab, loot =>
+            {
+                print($" LootPickup: {loot} == {targetLoot} ({loot == targetLoot}) ");
+                return loot == targetLoot;
+            }
+        );
         return () => tracker.triggered;
     }
 
@@ -41,7 +47,9 @@ public class Predicates : MonoBehaviour
     public static Func<bool> ShipDestroyed(Ship ship)
     {
         DamageModel damageModel = ship.GetComponent<DamageModel>();
-        Tracker tracker = new Tracker(damageModel.OnDie);
+        Tracker<DamageModel> tracker = new Tracker<DamageModel>(
+            EventLibrary.objectDestroyed, dm => dm == damageModel
+        );
         return () => tracker.triggered;
     }
 

@@ -1,3 +1,4 @@
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,16 +7,12 @@ public abstract class DamageModel : MonoBehaviour
     [SerializeField] protected int maxHealth;
     [SerializeField] protected int health = 0;
 
-    public UnityEvent<BulletHitDTO> OnDamage { get; private set; }
-    public UnityEvent OnDie { get; private set; }
-
     private void Awake()
     {
-        OnDamage = new UnityEvent<BulletHitDTO>();
-        OnDie = new UnityEvent();
         alive = true;
         if (health == 0)
             health = maxHealth;
+        EventLibrary.objectReceivesDamage.AddListener(DamageListener);
     }
 
     private bool alive;
@@ -30,12 +27,18 @@ public abstract class DamageModel : MonoBehaviour
             return;
 
         alive = false;
-        OnDie.Invoke();
+        EventLibrary.objectDestroyed.Invoke(this);
+    }
+
+    private void DamageListener(DamageModel dm, BulletHitDTO dto)
+    {
+        if (dm == this)
+        {
+            GetDamage(dto);
+        }
     }
 
     public virtual void GetDamage(BulletHitDTO hit)
     {
-        if (alive)
-            OnDamage.Invoke(hit);
     }
 }

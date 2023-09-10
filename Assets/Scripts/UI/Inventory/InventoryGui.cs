@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameEventSystem;
 using ShipModules;
 using UI.Inventory.SlotCanvas;
 using UnityEngine;
@@ -36,8 +37,8 @@ namespace UI.Inventory
                 iv.UnHighlight();
             }
             
-            inventoryController.onPutItem.AddListener(AddItem);
-            inventoryController.onRemoveItem.AddListener(RemoveItem);
+            EventLibrary.onInventoryPutItem.AddListener(AddItem);
+            EventLibrary.onInventoryrRemoveItem.AddListener(RemoveItem);
         }
 
         public void Run()

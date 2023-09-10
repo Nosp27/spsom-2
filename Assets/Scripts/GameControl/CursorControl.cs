@@ -1,3 +1,4 @@
+using GameEventSystem;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,12 +10,9 @@ public class CursorControl : MonoBehaviour
     private Camera currentCamera;
     public GameObject cursorHoverTarget { get; private set; }
     private Vector3 _cursor;
-
-    public UnityEvent<GameObject> onCursorHoverTargetChanged { get; private set; }
-
+    
     public void Setup()
     {
-        onCursorHoverTargetChanged = new UnityEvent<GameObject>();
         currentCamera = Camera.main;
         yZero = 0;
     }
@@ -42,7 +40,7 @@ public class CursorControl : MonoBehaviour
         if (newCursorHoverTarget != cursorHoverTarget)
         {
             cursorHoverTarget = newCursorHoverTarget;
-            onCursorHoverTargetChanged.Invoke(cursorHoverTarget);
+            EventLibrary.cursorHoverTargetChanged.Invoke(cursorHoverTarget);
         }
         _cursor = point;
     }

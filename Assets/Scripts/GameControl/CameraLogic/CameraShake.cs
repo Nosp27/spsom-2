@@ -1,5 +1,6 @@
 using Cinemachine;
 using FMODUnity;
+using GameEventSystem;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
@@ -10,7 +11,7 @@ public class CameraShake : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin perlin;
     private void Start()
     {
-        GameController.Current.OnShipChange.AddListener(OnPlayerShipChange);
+        EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChange);
         vcam = GetComponent<CinemachineVirtualCamera>();
         perlin = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }

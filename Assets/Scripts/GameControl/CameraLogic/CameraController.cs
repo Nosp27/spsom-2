@@ -1,3 +1,4 @@
+using GameEventSystem;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -18,7 +19,7 @@ public class CameraController : MonoBehaviour
     
     void Start()
     {
-        GameController.Current.OnShipChange.AddListener(OnPlayerShipChange);
+        EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChange);
     }
 
     void LateUpdate()

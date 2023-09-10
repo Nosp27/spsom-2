@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -25,7 +26,7 @@ namespace GameControl.StateMachine.GameControlStates
         private void Start()
         {
             m_GameController = GameController.Current;
-            m_GameController.OnShipChange.AddListener(OnPlayerShipChanged);
+            EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChanged);
         }
 
         void OnPlayerShipChanged(Ship old, Ship _new)
@@ -59,10 +60,10 @@ namespace GameControl.StateMachine.GameControlStates
             if (!m_CursorControl)
             {
                 m_CursorControl = GameController.Current.GetComponentInChildren<CursorControl>();
-                m_CursorControl.onCursorHoverTargetChanged.AddListener(ProcessTargetLock);
+                EventLibrary.cursorHoverTargetChanged.AddListener(ProcessTargetLock);
             }
 
-            if (!m_MoveAim)
+            if (!m_MoveAim && moveAimPrefab)
             {
                 m_MoveAim = Instantiate(moveAimPrefab);
                 m_MoveAim.SetActive(false);
@@ -103,7 +104,8 @@ namespace GameControl.StateMachine.GameControlStates
             bool moveCommand = directMultiplier != 0 || sideMultiplier != 0;
             if (moveCommand)
             {
-                m_MoveAim.transform.position = movementTarget;
+                if (m_MoveAim)
+                    m_MoveAim.transform.position = movementTarget;
                 playerShip.MovementService.ChangeHeadingMode(HEADING_MODE.FREE_HEADING);
                 playerShip.MovementService.LimitThrottle(1);
                 playerShip.MovementService.MoveAtDirection(movementTarget);
@@ -115,7 +117,8 @@ namespace GameControl.StateMachine.GameControlStates
 
             playerShip.MovementService.TurnAt(cursor);
 
-            m_MoveAim.SetActive(playerShip.MovementService.IsMoving());
+            if (m_MoveAim)
+                m_MoveAim.SetActive(playerShip.MovementService.IsMoving());
         }
 
         void ProcessMoveGamepad(Ship playerShip, Vector3 cursor)

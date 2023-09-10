@@ -1,3 +1,4 @@
+using GameEventSystem;
 using UnityEngine;
 
 namespace AI
@@ -15,8 +16,7 @@ namespace AI
             isAiEnabled = true;
             thisShip = GetComponent<Ship>();
             m_CA = GetComponent<CollisionAvoidance>();
-            if (GameController.Current)
-                GameController.Current.OnShipChange.AddListener(OnShipChange);
+            EventLibrary.switchPlayerShip.AddListener(OnShipChange);
         }
 
         void OnShipChange(Ship old, Ship _new)

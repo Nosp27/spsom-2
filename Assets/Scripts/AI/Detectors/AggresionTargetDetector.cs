@@ -1,4 +1,5 @@
 using System.Collections;
+using GameEventSystem;
 using UnityEngine;
 
 public class AggresionTargetDetector : MonoBehaviour, ITargetDetector
@@ -10,12 +11,16 @@ public class AggresionTargetDetector : MonoBehaviour, ITargetDetector
 
     void Start()
     {
-        DamageModel damageModel = GetComponentInParent<DamageModel>();
-        damageModel.OnDamage.AddListener(OnDamage);
+        EventLibrary.objectReceivesDamage.AddListener(OnDamage);
     }
 
-    void OnDamage(BulletHitDTO hit)
+    void OnDamage(DamageModel damaged, BulletHitDTO hit)
     {
+        if (damaged != GetComponent<Ship>())
+        {
+            return;
+        }
+        
         Target = hit.hitInitiator?.GetComponentInParent<DamageModel>();
         if (!Target)
             return;

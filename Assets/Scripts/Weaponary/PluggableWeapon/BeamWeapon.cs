@@ -1,3 +1,4 @@
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -111,13 +112,14 @@ public class BeamWeapon : Weapon
                     damageCounter += damageRatePerSecond * Time.deltaTime;
                     if (damageCounter >= 1 && damageModel)
                     {
-                        damageModel.SendMessage(
-                            "GetDamage",
+                        EventLibrary.objectReceivesDamage.Invoke(
+                            damageModel,
                             new BulletHitDTO(
                                 (int)damageCounter,
                                 hitPoint,
                                 (hitPoint - transform.position).normalized,
-                                HitType.LASER
+                                HitType.LASER,
+                                gameObject
                             )
                         );
                         damageCounter = 0;
@@ -126,7 +128,7 @@ public class BeamWeapon : Weapon
                 else
                 {
                     damageCounter = 0;
-                    attackedDamageModel = damageModel;   
+                    attackedDamageModel = damageModel;
                 }
             }
         }

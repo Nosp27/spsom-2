@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameEventSystem;
 using UnityEngine;
 
 public class Minimap : MonoBehaviour
@@ -16,23 +17,16 @@ public class Minimap : MonoBehaviour
 
     void Start()
     {
-        GameController.Current.OnShipChange.AddListener(OnPlayerShipChanged);
+        EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChanged);
         targetMarkers = new Dictionary<RadarTarget, GameObject>();
         minimapRect = GetComponent<RectTransform>();
     }
 
     void OnPlayerShipChanged(Ship old, Ship _new)
     {
-        if (m_RadarModule != null)
-        {
-            m_RadarModule.OnObjectEncounter.RemoveListener(SpawnMarkerForTarget);
-            m_RadarModule.OnObjectLost.RemoveListener(RemoveMarkerForTarget);
-        }
         m_RadarModule = _new.GetComponentInChildren<RadarModule>();
         m_PlayerRadarTarget = _new.GetComponent<RadarTarget>();
         SyncMarkers();
-        m_RadarModule.OnObjectEncounter.AddListener(SpawnMarkerForTarget);
-        m_RadarModule.OnObjectLost.AddListener(RemoveMarkerForTarget);
     }
     
     void SyncMarkers()

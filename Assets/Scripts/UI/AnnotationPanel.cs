@@ -1,3 +1,4 @@
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ namespace UI
         {
             panelObject.SetActive(false);
             panelEnabled = false;
-            GameController.Current.CurrentCursorControl.onCursorHoverTargetChanged.AddListener(HoverTargetChangedHandler);
+            EventLibrary.cursorHoverTargetChanged.AddListener(HoverTargetChangedHandler);
         }
 
         void HoverTargetChangedHandler(GameObject newHoverTarget)

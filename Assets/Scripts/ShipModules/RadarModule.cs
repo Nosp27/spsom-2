@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GameEventSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,14 +10,6 @@ public class RadarModule : MonoBehaviour
     
     private RadarTarget thisShipTarget;
     public HashSet<RadarTarget> targetMarkers { get; private set; }
-    public UnityEvent<RadarTarget> OnObjectEncounter { get; private set; }
-    public UnityEvent<RadarTarget> OnObjectLost { get; private set; }
-
-    private void Awake()
-    {
-        OnObjectEncounter = new UnityEvent<RadarTarget>();
-        OnObjectLost = new UnityEvent<RadarTarget>();
-    }
 
     void Start()
     {
@@ -55,7 +48,7 @@ public class RadarModule : MonoBehaviour
             if (ShouldDetectTarget(radarTarget))
             {
                 targetMarkers.Add(radarTarget);
-                OnObjectEncounter.Invoke(radarTarget);
+                EventLibrary.onObjectEncounter.Invoke(radarTarget);
             }
         }
     }
@@ -72,7 +65,7 @@ public class RadarModule : MonoBehaviour
         if (!targetMarkers.Contains(target))
             return;
 
-        OnObjectLost.Invoke(target);
+        EventLibrary.onObjectLost.Invoke(target);
         targetMarkers.Remove(target);
     }
 }

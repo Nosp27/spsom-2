@@ -1,5 +1,6 @@
 using System;
 using FMODUnity;
+using GameEventSystem;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if (rb != null)
             return;
-        
+
         rb = GetComponent<Rigidbody>();
         bulletTrigger = GetComponentInChildren<Collider>();
         eventEmitter = GetComponentInChildren<StudioEventEmitter>();
@@ -35,11 +36,11 @@ public class Bullet : MonoBehaviour
     {
         if (rb == null)
             Start();
-        
+
         if (m_Owner != null)
             throw new Exception("Bullet was already inited");
         m_Owner = owner;
-        Damage = (int) (Damage * damageBuff);
+        Damage = (int)(Damage * damageBuff);
         Speed = bulletVelocity.magnitude;
         rb.velocity = bulletVelocity;
         Destroy(gameObject, bulletMaxDistance / Speed);
@@ -68,23 +69,18 @@ public class Bullet : MonoBehaviour
         Vector3 collisionPoint =
             transform.position + transform.forward * GetComponentInChildren<Collider>().bounds.size.z;
         Vector3 hitDirection = transform.forward;
+        if (hitEffectPrefab != null)
+        {
+            Instantiate(hitEffectPrefab, collisionPoint, Quaternion.LookRotation(-hitDirection));
+        }
         BulletHitDTO hit = new BulletHitDTO(Damage, collisionPoint, hitDirection, HitType.KINETIC, m_Owner);
 
-        if (other.TryGetComponent(out Shield shield) && !bypassShields)
+        EventLibrary.shipDealsDamage.Invoke(m_Owner.GetComponent<Ship>(), hit);
+        
+        DamageModel damageModel = GetComponentInParent<DamageModel>();
+        if (damageModel)
         {
-            shield.SendMessage("GetDamage", hit);
-            return;
-        }
-
-        DamageModel damageModel = other.GetComponentInParent<DamageModel>();
-        if (damageModel && damageModel.gameObject != m_Owner)
-        {
-            if (hitEffectPrefab != null)
-            {
-                Instantiate(hitEffectPrefab, transform.position, transform.rotation);
-            }
-
-            damageModel.SendMessage("GetDamage", hit);
+            EventLibrary.objectReceivesDamage.Invoke(damageModel, hit);
         }
     }
 
