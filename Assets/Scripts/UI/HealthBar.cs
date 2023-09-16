@@ -13,7 +13,9 @@ public class HealthBar : MonoBehaviour
 
     [SerializeField] private Image circle;
 
-    private void Awake()
+    private bool isVisible = true;
+
+    private void Start()
     {
         EventLibrary.objectReceivesDamage.AddListener(ReactOnHealthChange);
         if (trackPlayerShip)
@@ -22,14 +24,26 @@ public class HealthBar : MonoBehaviour
             );
     }
 
-    private void ReactOnHealthChange(DamageModel damageModel, BulletHitDTO bulletHitDto)
+    private bool IsRelevant(DamageModel damageModel)
     {
         bool isTrackingPlayerShip =
             attachedDamageModel == null && trackPlayerShip &&
             damageModel == GameController.Current.PlayerShip.damageModel;
         bool isTrackingAttachedShip = damageModel != null && damageModel == attachedDamageModel;
         if (!isTrackingPlayerShip && !isTrackingAttachedShip)
+            return false;
+        return true;
+    }
+
+    private void ReactOnHealthChange(DamageModel damageModel, BulletHitDTO bulletHitDto)
+    {
+        if (!IsRelevant(damageModel))
             return;
+        
+        if ((damageModel.Health > 0) != isVisible)
+        {
+            SwitchVisible(damageModel.Health > 0);
+        }
         SetPieAngle(361 * damageModel.Health / damageModel.MaxHealth);
         if (HP != null)
             HP.text = damageModel.Health.ToString();
@@ -40,5 +54,16 @@ public class HealthBar : MonoBehaviour
         pieAngle = Mathf.Clamp(pieAngle, 0, 361);
         circle.DOFillAmount(pieAngle / 361f, .1f);
         circle.color = colorShade.Evaluate(pieAngle / 361f);
+    }
+
+    private void SwitchVisible(bool visible)
+    {
+        circle.enabled = visible;
+        if (HP)
+        {
+            HP.enabled = visible;
+        }
+
+        isVisible = visible;
     }
 }

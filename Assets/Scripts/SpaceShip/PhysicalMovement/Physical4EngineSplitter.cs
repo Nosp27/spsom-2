@@ -170,9 +170,6 @@ namespace SpaceShip.PhysicalMovement
                     {
                         _m += result[k] * EngineMomentum(m_Engines[k]);
                     }
-
-                    print(
-                        $"{direction}\nM: {_m} VS expected {totalMomentum}\n{string.Join("\n", m_Engines.Zip(result, (x, y) => (x.name, y, EngineMomentum(x))).ToArray())}");
                 }
                 //
 

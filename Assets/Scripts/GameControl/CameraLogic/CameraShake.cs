@@ -11,26 +11,18 @@ public class CameraShake : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin perlin;
     private void Start()
     {
-        EventLibrary.switchPlayerShip.AddListener(OnPlayerShipChange);
+        EventLibrary.shipShoots.AddListener(ShakeListener);
         vcam = GetComponent<CinemachineVirtualCamera>();
         perlin = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    void OnPlayerShipChange(Ship _old, Ship _new)
+    private void ShakeListener(Ship ship)
     {
-        if (_old != null)
-        {
-            _old.OnWeaponFire.RemoveListener(ShakeListener);
-        }
-        _new.OnWeaponFire.AddListener(ShakeListener);
+        if (ship.isPlayerShip)
+            Shake(0.7f, 0.2f);
     }
 
-    public void ShakeListener()
-    {
-        Shake(0.7f, 0.2f);
-    }
-    
-    public void Shake(float intensity, float duration)
+    private void Shake(float intensity, float duration)
     {
         isShaking = true;
         perlin.m_AmplitudeGain = intensity;

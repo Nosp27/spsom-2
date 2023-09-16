@@ -197,9 +197,7 @@ namespace GameControl.StateMachine.GameControlStates
             aimLockMark.gameObject.SetActive(true);
             aimLockMark.Unlock();
             aimLockMark.Lock(lt);
-
-            Transform ltTransform = lt == null ? null : lt.transform;
-            m_PlayerShip.Track(ltTransform);
+            EventLibrary.lockTargetChanged.Invoke(lt);
         }
 
         void DeactivateLockTarget()
@@ -208,7 +206,7 @@ namespace GameControl.StateMachine.GameControlStates
             aimLockMark.gameObject.SetActive(false);
             activeLockTarget = null;
 
-            m_PlayerShip.Track(null);
+            EventLibrary.lockTargetChanged.Invoke(null);
         }
 
         public bool Done() => true;

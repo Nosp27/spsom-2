@@ -12,6 +12,8 @@ public class ShipDamageModel : DamageModel
 
     public GameObject[] ExplosionParticleSystems;
 
+    private BulletHitDTO lastHitDTO;
+
     [Space(20f)] [SerializeField] private GameObject aliveMesh;
     [SerializeField] private GameObject debrisMesh;
 
@@ -38,6 +40,14 @@ public class ShipDamageModel : DamageModel
         aliveMesh.SetActive(false);
         debrisMesh.transform.parent = null;
         debrisMesh.SetActive(true);
+
+        if (lastHitDTO.HitDirection.HasValue)
+        {
+            foreach (Rigidbody rb in debrisMesh.GetComponentsInChildren<Rigidbody>())
+            {
+                rb.AddForce(lastHitDTO.HitDirection.Value.normalized * lastHitDTO.Damage * 300);
+            }
+        }
     }
 
     public override void GetDamage(BulletHitDTO hit)
@@ -54,6 +64,8 @@ public class ShipDamageModel : DamageModel
         if (debug)
             print($"{name} recieves damage");
 
+        lastHitDTO = hit;
+        
         bool deadly = false;
         health -= hit.Damage;
         if (health <= 0)

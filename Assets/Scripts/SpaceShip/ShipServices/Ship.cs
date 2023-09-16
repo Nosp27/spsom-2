@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using GameEventSystem;
 using SpaceShip.ShipServices;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Ship : MonoBehaviour
 {
@@ -27,11 +26,6 @@ public class Ship : MonoBehaviour
     [SerializeField] private bool useAllWeapons = true;
 
     public int SelectedWeaponIndex { get; private set; }
-    public UnityEvent OnWeaponSelect = new UnityEvent();
-    public UnityEvent OnWeaponMutate = new UnityEvent();
-    
-    public UnityEvent OnWeaponFire = new UnityEvent();
-
 
 
     // Start is called before the first frame update
@@ -46,6 +40,7 @@ public class Ship : MonoBehaviour
         ScanWeaponary();
         EventLibrary.shipSpawned.Invoke(this);
         EventLibrary.shipKills.AddListener(OnAnyShipDie);
+        EventLibrary.lockTargetChanged.AddListener(OnLockTargetChanged);
     }
 
     private void OnAnyShipDie(Ship kills, DamageModel dies)
@@ -57,12 +52,19 @@ public class Ship : MonoBehaviour
         enabled = false;
     }
 
+    private void OnLockTargetChanged(AimLockTarget aimLockTarget)
+    {
+        if (!isPlayerShip)
+            return;
+        Track(aimLockTarget == null ? null : aimLockTarget.transform);
+    }
+
     public void SelectWeapon(int i)
     {
         if (i >= 0 && i < Weapons.Count)
         {
             SelectedWeaponIndex = i;
-            OnWeaponSelect.Invoke();
+            EventLibrary.selectPlayerShipWeapon.Invoke(Weapons[SelectedWeaponIndex]);
         }
     }
 
@@ -71,7 +73,7 @@ public class Ship : MonoBehaviour
         if (!Alive || Weapons.Count == 0)
             return;
 
-        OnWeaponFire.Invoke();
+        EventLibrary.shipShoots.Invoke(this);
         DoForUsedWeapon_s(w => w.Fire());
     }
 
@@ -102,7 +104,7 @@ public class Ship : MonoBehaviour
     public void ScanWeaponary()
     {
         Weapons = new List<Weapon>(GetComponentsInChildren<Weapon>());
-        OnWeaponMutate.Invoke();
+        EventLibrary.mutatePlayerShipWeapons.Invoke();
         SelectWeapon(SelectedWeaponIndex);
     }
 

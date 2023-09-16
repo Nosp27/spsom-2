@@ -21,21 +21,7 @@ public class AimLockMark : MonoBehaviour
         {
             Unlock();
         }
-        lockedTarget = target.GetComponentInParent<Ship>().gameObject;
-        transform.position = target.transform.position;
-        lockTargetMatMap = new Dictionary<MeshRenderer, Material[]>();
-        foreach (var lock_target_mr in lockedTarget.GetComponentsInChildren<MeshRenderer>())
-        {
-            Material[] materials = lock_target_mr.materials;
-            lockTargetMatMap[lock_target_mr] = lock_target_mr.materials;
-            for (int i = 0; i < materials.Length; i++)
-            {
-                materials[i] = LockMat;
-            }
 
-            lock_target_mr.materials = materials;
-        }
-        
         m_PositionTracker.target = target == null ? null : target.transform;
     }
 
@@ -44,13 +30,6 @@ public class AimLockMark : MonoBehaviour
         if (lockedTarget == null)
             return;
 
-        foreach (var lock_target_mr in lockTargetMatMap)
-        {
-            Material[] mats = lock_target_mr.Value;
-            MeshRenderer mr = lock_target_mr.Key;
-            mr.materials = mats;
-        }
-        
         lockedTarget = null;
         m_PositionTracker.target = null;
     }
