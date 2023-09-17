@@ -13,6 +13,7 @@ namespace GameEventSystem
         public static readonly UnityEvent<DamageModel, BulletHitDTO> objectReceivesDamage = new UnityEvent<DamageModel, BulletHitDTO>();
         public static readonly UnityEvent<Ship, DamageModel> shipKills = new UnityEvent<Ship, DamageModel>();
         public static readonly UnityEvent<Ship> shipShoots = new UnityEvent<Ship>();
+        public static readonly UnityEvent<ShipDamageModel> shipReceivesHeal = new UnityEvent<ShipDamageModel>();
         
         // Player ship events
         public static readonly UnityEvent<Ship, Ship> switchPlayerShip = new UnityEvent<Ship, Ship>();

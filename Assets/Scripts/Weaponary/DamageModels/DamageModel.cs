@@ -4,9 +4,15 @@ using UnityEngine;
 
 public abstract class DamageModel : MonoBehaviour
 {
+    [Space(20f)] [SerializeField] private GameObject aliveMesh;
+    [SerializeField] private GameObject debrisMesh;
+    
     [SerializeField] protected int maxHealth;
     [SerializeField] protected int health = 0;
 
+    public GameObject AliveMesh => aliveMesh;
+    public GameObject DebrisMesh => debrisMesh;
+    
     private void Awake()
     {
         alive = true;
@@ -40,5 +46,15 @@ public abstract class DamageModel : MonoBehaviour
 
     public virtual void GetDamage(BulletHitDTO hit)
     {
+    }
+    
+    protected virtual void PlayDebris()
+    {
+        if (!(aliveMesh && debrisMesh))
+            return;
+
+        aliveMesh.SetActive(false);
+        debrisMesh.transform.parent = null;
+        debrisMesh.SetActive(true);
     }
 }

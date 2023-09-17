@@ -18,6 +18,8 @@ namespace SpaceShip.PhysicalMovement
         [SerializeField] private float pidA = 1;
         [SerializeField] private float pidD = 1;
 
+        public float Force => force;
+        
         [SerializeField] private Transform debugStopTarget;
 
         private Rigidbody m_Rigidbody;
@@ -44,6 +46,11 @@ namespace SpaceShip.PhysicalMovement
             InitEngineCombinations();
             // force = config.Power;
             // angularVelocityLimit = config.RotationSpeed;
+        }
+
+        public void ChangeForce(float newForce)
+        {
+            force = newForce;
         }
 
         private void NormalizeThrottles(float[] throttles, float coefficient = 1f)

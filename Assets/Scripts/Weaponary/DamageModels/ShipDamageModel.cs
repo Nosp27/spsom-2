@@ -1,3 +1,4 @@
+using System;
 using GameEventSystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,9 +15,6 @@ public class ShipDamageModel : DamageModel
 
     private BulletHitDTO lastHitDTO;
 
-    [Space(20f)] [SerializeField] private GameObject aliveMesh;
-    [SerializeField] private GameObject debrisMesh;
-
     [SerializeField] private bool debug;
 
     public override void Die()
@@ -32,22 +30,41 @@ public class ShipDamageModel : DamageModel
         base.Die();
     }
 
-    void PlayDebris()
+    public void ChangeMaxHealth(int newMaxHealth)
     {
-        if (!(aliveMesh && debrisMesh))
+        float healthPercent = 1.0f * health / maxHealth;
+        maxHealth = newMaxHealth;
+        int newHealth = (int)(maxHealth * healthPercent);
+        HealDamage(newHealth - health);
+    }
+
+    protected override void PlayDebris()
+    {
+        if (!(AliveMesh && DebrisMesh))
             return;
 
-        aliveMesh.SetActive(false);
-        debrisMesh.transform.parent = null;
-        debrisMesh.SetActive(true);
+        base.PlayDebris();
 
         if (lastHitDTO.HitDirection.HasValue)
         {
-            foreach (Rigidbody rb in debrisMesh.GetComponentsInChildren<Rigidbody>())
+            foreach (Rigidbody rb in DebrisMesh.GetComponentsInChildren<Rigidbody>())
             {
                 rb.AddForce(lastHitDTO.HitDirection.Value.normalized * lastHitDTO.Damage * 300);
             }
         }
+    }
+
+    public void HealDamage(int healAmount)
+    {
+        if (healAmount < 0)
+        {
+            throw new Exception("Heal with negative amount error");
+        }
+        if (healAmount == 0)
+            return;
+        
+        health = Mathf.Min(health + healAmount, maxHealth);
+        EventLibrary.shipReceivesHeal.Invoke(this);
     }
 
     public override void GetDamage(BulletHitDTO hit)

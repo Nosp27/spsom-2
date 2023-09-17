@@ -18,6 +18,7 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         EventLibrary.objectReceivesDamage.AddListener(ReactOnHealthChange);
+        EventLibrary.shipReceivesHeal.AddListener(sdm => ReactOnHealthChange(sdm, default));
         if (trackPlayerShip)
             EventLibrary.switchPlayerShip.AddListener(
                 (x, y) => ReactOnHealthChange(y.damageModel, null)
@@ -35,7 +36,7 @@ public class HealthBar : MonoBehaviour
         return true;
     }
 
-    private void ReactOnHealthChange(DamageModel damageModel, BulletHitDTO bulletHitDto)
+    private void ReactOnHealthChange(DamageModel damageModel, BulletHitDTO _)
     {
         if (!IsRelevant(damageModel))
             return;

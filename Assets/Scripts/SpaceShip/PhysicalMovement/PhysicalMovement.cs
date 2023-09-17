@@ -11,6 +11,7 @@ public class PhysicalMovement : ShipMovementService
 
     [SerializeField] private BaseEngineSplitter engineSplitter;
     [SerializeField] private float cruiseSpeed = 30f;
+    public float CruiseSpeed => cruiseSpeed;
 
     private HEADING_MODE headingMode;
     private float slowModeThreshold = 10;
@@ -48,6 +49,11 @@ public class PhysicalMovement : ShipMovementService
 
         adjustVelocityPart = way.normalized * cruiseSpeed * part - 5 * sideVelocityPart;
         fullStopPoint = engineSplitter.PredictFinalPointNoDrag();
+    }
+
+    public void ChangeCruiseSpeed(int newCruiseSpeed)
+    {
+        cruiseSpeed = newCruiseSpeed;
     }
 
     private void ActionFlyToMoveAim()

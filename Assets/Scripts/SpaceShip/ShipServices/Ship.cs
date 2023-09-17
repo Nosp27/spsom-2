@@ -50,6 +50,10 @@ public class Ship : MonoBehaviour
         
         movementService.enabled = false;
         enabled = false;
+        foreach (var w in Weapons)
+        {
+            Destroy(w.gameObject);
+        }
     }
 
     private void OnLockTargetChanged(AimLockTarget aimLockTarget)
