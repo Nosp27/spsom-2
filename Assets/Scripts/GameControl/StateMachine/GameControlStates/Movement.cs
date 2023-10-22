@@ -187,7 +187,7 @@ namespace GameControl.StateMachine.GameControlStates
 
         bool IsValidLockTarget(AimLockTarget lt)
         {
-            return lt != null && lt.AttachedShip.Alive &&
+            return lt != null && lt.AttachedShip != null && lt.AttachedShip.Alive &&
                    (lt.AttachedShip.transform.position - m_PlayerShip.transform.position).magnitude < aimLockDistance;
         }
 

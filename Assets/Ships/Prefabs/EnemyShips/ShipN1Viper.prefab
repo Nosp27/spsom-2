@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 5882704210236513992}
     - target: {fileID: 2843803048432300354, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: maxHealth
-      value: 4
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2843803048432300354, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: debrisMesh

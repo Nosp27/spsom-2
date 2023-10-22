@@ -1054,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 6756987843247156676}
     - target: {fileID: 2843803048432300354, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: maxHealth
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2843803048432300354, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: debrisMesh
@@ -1118,7 +1118,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: d6c1d7cf926ec497e9248579c07a7717, type: 2}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7751308865075642169, guid: ebde3793d51da4af0b4975ab9da3a945, type: 3}
       propertyPath: m_LocalPosition.x
