@@ -107,6 +107,7 @@
      <Compile Include="Assets/Scripts/AI/StateMachines/FighterAIStateMachine.cs" />
      <Compile Include="Assets/Scripts/GameControl/CameraLogic/CameraShake.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Bullet.cs" />
+     <Compile Include="Assets/Scripts/SpaceItems/OrbittingSattelite.cs" />
      <Compile Include="Assets/Scripts/Weaponary/DamageModels/ShipDamageModel.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/EngineSound.cs" />
      <Compile Include="Assets/Scripts/ShipModules/ModulePylon.cs" />
