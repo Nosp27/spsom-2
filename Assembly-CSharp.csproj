@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Assembly-CSharp\</OutputPath>
-    <DefineConstants>UNITY_2022_3_4;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_OSX;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2022_3_4;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_OSX;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;UNITY_POST_PROCESSING_STACK_V2;RealtimeCSG;RealtimeCSG_1;RealtimeCSG_1_5;RealtimeCSG_1_5_62;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
@@ -45,7 +45,6 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.4f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets/Scripts/GameControl/BaseMapGeneration.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/MissileLauncher.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/FloatingPart.cs" />
      <Compile Include="Assets/Scripts/UI/Banner.cs" />
@@ -67,7 +66,6 @@
      <Compile Include="Assets/Scripts/UI/Inventory/InventoryGui.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/Station.cs" />
      <Compile Include="Assets/Scripts/GameControl/GameController.cs" />
-     <Compile Include="Assets/Scripts/GameControl/CursorControl.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/PhysicalMovement/EmissionEngineRenderer.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Movement/Streif.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/AnnotationTarget.cs" />
@@ -91,8 +89,6 @@
      <Compile Include="Assets/Scripts/UI/AimLockMark.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/QuestLocation.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/QuestDefinitions/FlyToShipQuest.cs" />
-     <Compile Include="Assets/Scripts/GameControl/StateMachine/StateMachine.cs" />
-     <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Movement.cs" />
      <Compile Include="Assets/Scripts/AI/ShipAIControls.cs" />
      <Compile Include="Assets/Scripts/UI/AnnotationPanel.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/Loot.cs" />
@@ -126,12 +122,10 @@
      <Compile Include="Assets/Scripts/SpaceShip/ShipServices/Ship.cs" />
      <Compile Include="Assets/Scripts/ShipModules/BaseUpgradeModule.cs" />
      <Compile Include="Assets/Scripts/AI/StateMachines/StationAIStateMachine.cs" />
-     <Compile Include="Assets/Scenes/test/TestBody.cs" />
      <Compile Include="Assets/Scripts/ShipModules/TestUpgradeInstall.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/Predicates.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/AiShipTask.cs" />
      <Compile Include="Assets/Scripts/AI/States/BaseShipAIState.cs" />
-     <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/Inventory.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Conditions/DistanceBetween2.cs" />
      <Compile Include="Assets/Scripts/UI/Inventory/InventoryItem.cs" />
      <Compile Include="Assets/Scripts/Misc/FXVolumeTweak.cs" />
@@ -140,7 +134,6 @@
      <Compile Include="Assets/Scripts/SpaceItems/Destruction.cs" />
      <Compile Include="Assets/Scripts/Weaponary/BulletHitDTO.cs" />
      <Compile Include="Assets/Scripts/GameControl/Quests/ColliderTrigger.cs" />
-     <Compile Include="Assets/Scripts/GameControl/StateMachine/IState.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/ShipServices/MovementConfig.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/AsteroidSpawn.cs" />
      <Compile Include="Assets/Scripts/AI/States/FlyAway.cs" />
@@ -148,7 +141,6 @@
      <Compile Include="Assets/Scripts/SpaceShip/ParticleEngineRenderer.cs" />
      <Compile Include="Assets/Scripts/Weaponary/PluggableWeapon/Weapon.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Tasks/Movement/TurnAt.cs" />
-     <Compile Include="Assets/Scripts/GameControl/StateMachine/GameControlStates/GameControlStateMachine.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/BBKey.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/EngineRenderer.cs" />
      <Compile Include="Assets/Scripts/UI/HealthBar.cs" />
@@ -184,7 +176,6 @@
      <Compile Include="Assets/Scripts/Prey.cs" />
      <Compile Include="Assets/Scripts/SpaceItems/BorderZone.cs" />
      <Compile Include="Assets/Scripts/BonsaiAI/Conditions/EnemyDetectorTask.cs" />
-     <Compile Include="Assets/Scripts/GameControl/StateMachine/BaseState.cs" />
      <Compile Include="Assets/Scripts/SpaceShip/ShipServices/ShipMovementService.cs" />
      <Compile Include="Assets/Scripts/Weaponary/Shield.cs" />
      <Compile Include="Assets/Scripts/AI/States/Noop.cs" />
@@ -202,7 +193,6 @@
      <Folder Include="Assets/UI/Hud/WorldSpaceHUD" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{92a9fe60-86ca-495e-86bc-e4dcf7774d6c}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Return" />
-     <Folder Include="Assets/Ships/Procedural" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{0ad746db-95af-48bb-9fba-340726449bef}.xml" />
      <Folder Include="Assets/Scripts/BonsaiAI/BlackboardKeys" />
@@ -237,6 +227,7 @@
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{57212e84-fc23-4098-b247-8607b4bcb0c7}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{2accfe1c-0d0d-41d8-a0c7-48da54542876}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{9f29cd2e-7555-4473-b70e-a173366c9da3}.xml" />
+     <Folder Include="Assets/Effects/Lightning" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata" />
      <Folder Include="Assets/Ships/ShipModels/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{65853e57-8200-46e5-ab3c-39f7641af4a7}.xml" />
@@ -319,7 +310,6 @@
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Build/Desktop" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{45c680e8-dc09-41dd-a31f-9742315bb264}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile" />
-     <Folder Include="Assets/BlenderModels/Texpaint" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{eb1ab461-ef87-4fae-a5b1-89c468e79b81}.xml" />
      <Folder Include="Assets/Scripts/UI/Inventory" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{e351a213-6b3a-4ca3-8907-e0fa2b634686}.xml" />
@@ -354,6 +344,7 @@
      <None Include="Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" />
      <Folder Include="Assets/MaterialsCommon" />
+     <Folder Include="Assets/SpaceItems/Models/Meshes/Materials" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Event/{622f856d-1b62-4982-8459-a9d4e1c28a60}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{aaade37c-37a5-4d6e-a5c8-897174371848}.xml" />
@@ -424,7 +415,6 @@
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Assets/Music" />
      <Folder Include="Assets/Effects/FireExplosionEffects" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EffectPreset" />
-     <Folder Include="Assets/Ships/Procedural/Materials" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{04d94fdc-d2a7-47d4-ac1e-7b22f80bb161}.xml" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Locale" />
      <Folder Include="Assets/Ships" />
@@ -468,9 +458,7 @@
      <Folder Include="Assets/MaterialsCommon/IsolatedBackground" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/AudioFile/{8c15b182-79b3-434a-be5d-127500ce030b}.xml" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
-     <Folder Include="Assets/Scripts/GameControl/StateMachine" />
      <Folder Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Asset" />
-     <Folder Include="Assets/Scenes/test" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/Return/{86f14354-dbbf-4cb2-957c-a4fbe4ec4db8}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/SnapshotGroup/{0a6e1da9-94b3-4e88-a6e2-bf1f1dff292c}.xml" />
      <Folder Include="Assets/Sound/SFX" />
@@ -483,7 +471,6 @@
      <Folder Include="Assets/Fonts/karnata_f_kittel" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />
      <Folder Include="Assets/ComponentPresets" />
-     <Folder Include="Assets/Scripts/GameControl/StateMachine/GameControlStates" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/DataFile/{f27fbb6c-86d3-43a0-9a2b-fccf25c953e5}.xml" />
      <None Include="Assets/FMOD_Project/SPSOM_FMOD/Metadata/EventFolder/{2ab6a6ee-fefc-4789-bf82-ff408680c12c}.xml" />
      <Folder Include="Assets/Scripts/UI" />

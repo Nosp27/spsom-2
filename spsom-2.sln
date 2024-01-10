@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonsaiAssembly", "BonsaiAssembly.csproj", "{7cc6515a-7837-c837-08c7-7f20f04d1b65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{2811e2e0-c7f3-71be-c3d7-546760629d5f}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonsaiTestsAssembly", "BonsaiTestsAssembly.csproj", "{5c2117d6-4843-0146-1787-ce9d54b7a2b0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMODUnity", "FMODUnity.csproj", "{09870fb5-ce91-8ca1-2d52-a66a7ad9bce9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{2811e2e0-c7f3-71be-c3d7-546760629d5f}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonsaiEditorAssembly", "BonsaiEditorAssembly.csproj", "{4a850da9-6060-953e-5e71-84f063f4af64}"
 EndProject
@@ -30,12 +30,12 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7cc6515a-7837-c837-08c7-7f20f04d1b65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7cc6515a-7837-c837-08c7-7f20f04d1b65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2811e2e0-c7f3-71be-c3d7-546760629d5f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2811e2e0-c7f3-71be-c3d7-546760629d5f}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5c2117d6-4843-0146-1787-ce9d54b7a2b0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5c2117d6-4843-0146-1787-ce9d54b7a2b0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09870fb5-ce91-8ca1-2d52-a66a7ad9bce9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09870fb5-ce91-8ca1-2d52-a66a7ad9bce9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2811e2e0-c7f3-71be-c3d7-546760629d5f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2811e2e0-c7f3-71be-c3d7-546760629d5f}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4a850da9-6060-953e-5e71-84f063f4af64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4a850da9-6060-953e-5e71-84f063f4af64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{fbd5234c-8768-cdc1-a14d-5946562f0a7d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
