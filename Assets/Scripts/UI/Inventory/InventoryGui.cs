@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameControl.StateMachine;
 using GameEventSystem;
 using ShipModules;
 using UI.Inventory.SlotCanvas;
@@ -9,8 +10,6 @@ namespace UI.Inventory
     public class InventoryGui : MonoBehaviour
     {
         private CanvasGroup cg;
-
-        private InventoryController inventoryController => GameController.Current.Inventory;
         private Ship player => GameController.Current.PlayerShip;
         private ModulePylon[] shipPylons => player.GetComponentsInChildren<ModulePylon>();
         private int numPylons => shipPylons.Length;
@@ -95,7 +94,6 @@ namespace UI.Inventory
         private void UninstallItem(ItemView itemView)
         {
             GameObject module = itemModuleMapping[itemView].Uninstall();
-            module.transform.SetParent(inventoryController.transform);
             module.transform.localPosition = Vector3.zero;
             itemModuleMapping.Remove(itemView);
             itemView.UnHighlight();

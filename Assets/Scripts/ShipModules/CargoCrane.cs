@@ -21,15 +21,9 @@ public class CargoCrane : MonoBehaviour
     [SerializeField] private CargoCraneInventoryResolveStrategy inventoryResolveStrategy;
 
     private Transform m_NearestLoot;
-    private InventoryController m_AttachedInventory;
     private Collider[] m_Colliders = new Collider[50];
 
     [SerializeField] private LineRenderer cranePullLineRenderer;
-
-    private void Start()
-    {
-        m_AttachedInventory = ResolveInventory();
-    }
 
     private void Update()
     {
@@ -59,9 +53,7 @@ public class CargoCrane : MonoBehaviour
             float distance = (loot.transform.position - transform.position).magnitude;
             if (distance < grabRadius)
             {
-                Grab(loot.GetLootPrefab());
-                EventLibrary.onCraneGrab.Invoke(loot.gameObject);
-                Destroy(loot.gameObject);
+                Grab(loot);
             }
             else if (distance < fetchRadius && distance < nearestLootDistance)
             {
@@ -87,14 +79,6 @@ public class CargoCrane : MonoBehaviour
         }
     }
 
-    private InventoryController ResolveInventory()
-    {
-        if (inventoryResolveStrategy == CargoCraneInventoryResolveStrategy.ATTACHED_INVENTORY)
-            return GetComponent<InventoryController>();
-
-        return GameController.Current.Inventory;
-    }
-
     private void Pull(Transform t)
     {
         Vector3 lookVector = (transform.position - t.position).normalized;
@@ -102,17 +86,12 @@ public class CargoCrane : MonoBehaviour
         RenderLine(t);
     }
 
-    private void Grab(GameObject prefab)
+    private void Grab(Loot loot)
     {
         print("Grab");
-        if (!m_AttachedInventory)
-            return;
-        
         grabEventEmitter.Play();
-        
-        GameObject inventoryItemInstance = Instantiate(prefab, m_AttachedInventory.transform);
-        m_AttachedInventory.PutItem(inventoryItemInstance.GetComponent<InventoryItem>());
-        inventoryItemInstance.SetActive(false);
+        EventLibrary.onCraneGrab.Invoke(loot.gameObject);
+        Destroy(loot.gameObject);
     }
 
     private void RenderLine(Transform t)

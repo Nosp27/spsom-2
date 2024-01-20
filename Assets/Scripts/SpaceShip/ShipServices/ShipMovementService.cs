@@ -18,6 +18,6 @@ public abstract class ShipMovementService : MonoBehaviour
     public abstract void ChangeHeadingMode(HEADING_MODE headingMode);
     public abstract void LimitThrottle(float limit);
     public abstract void TurnAt(Vector3 v);
-    public abstract void CancelMovement();
+    public abstract void CancelMovement(bool forceBrake=true);
     public abstract bool IsMoving();
 }

@@ -56,7 +56,6 @@
      <Folder Include="Assets/Plugins" />
      <Folder Include="Assets/Plugins/Demigiant/DOTween/Modules" />
      <Folder Include="Assets/Plugins/Demigiant/DOTween" />
-     <Folder Include="Assets/Plugins/RealtimeCSG" />
      <Folder Include="Assets/Plugins/Demigiant" />
      <None Include="Assets/Plugins/Demigiant/DOTween/readme.txt" />
      <Reference Include="UnityEngine">

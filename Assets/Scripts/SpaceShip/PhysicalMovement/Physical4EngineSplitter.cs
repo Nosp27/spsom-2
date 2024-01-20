@@ -373,6 +373,7 @@ namespace SpaceShip.PhysicalMovement
         public override void ApplyRotationTorque(Vector3 _v)
         {
             Vector3 v = movedTransform.InverseTransformDirection(_v).normalized;
+            Debug.DrawRay(movedTransform.position, v * 300, Color.blue);
             float angle = Vector3.SignedAngle(
                 Vector3.forward, Vector3.ProjectOnPlane(v, Vector3.up), Vector3.up
             );

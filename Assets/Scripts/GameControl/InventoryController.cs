@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using GameEventSystem;
 using UI.Inventory;
 using UnityEngine;
-using UnityEngine.Events;
 
 
 public class InventoryController : MonoBehaviour

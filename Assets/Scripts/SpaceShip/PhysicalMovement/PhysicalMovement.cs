@@ -1,5 +1,5 @@
 using System;
-using GameControl.StateMachine;
+using Logic;
 using SpaceShip.PhysicalMovement;
 using SpaceShip.ShipServices;
 using UnityEngine;
@@ -11,6 +11,7 @@ public class PhysicalMovement : ShipMovementService
 
     [SerializeField] private BaseEngineSplitter engineSplitter;
     [SerializeField] private float cruiseSpeed = 30f;
+    [SerializeField] private bool forceBrakeOnly;
     public float CruiseSpeed => cruiseSpeed;
 
     private HEADING_MODE headingMode;
@@ -39,7 +40,14 @@ public class PhysicalMovement : ShipMovementService
         location = m_MovedTransform.position;
         Vector3 velocity = m_Rigidbody.velocity;
 
-        way = MoveAim - m_MovedTransform.position;
+        if (MoveAim == default)
+        {
+            way = default;
+        }
+        else
+        {
+            way = MoveAim - m_MovedTransform.position;   
+        }
 
         float directVelocityProjection = Utils.Projection(velocity, way);
         Vector3 directVelocityPart = way.normalized * directVelocityProjection;
@@ -110,9 +118,10 @@ public class PhysicalMovement : ShipMovementService
             .WithTickActions(ActionBrake);
         IState idle = LambdaState.New("Idle")
             .WithEnterActions(() => MoveAim = Vector3.zero, ActionEnableDrag);
+
         // High velocity + Stop point is near the target or is jumped over the target ( |> ----- t --- x )
         Func<bool> needsBrakeCertainly = () =>
-            forceBrake || m_Rigidbody.velocity.magnitude > 0.3f &&
+            forceBrake || !forceBrakeOnly && m_Rigidbody.velocity.magnitude > 0.3f &&
             (Vector3.Distance(MoveAim, fullStopPoint) < 1.5f ||
              Vector3.Distance(location, fullStopPoint) > way.magnitude);
 
@@ -120,11 +129,13 @@ public class PhysicalMovement : ShipMovementService
         Func<bool> noNeedForBrakes =
             () => Vector3.Distance(MoveAim, fullStopPoint) > 4f && !needsBrakeCertainly.Invoke();
 
+        Func<bool> moveCancelledWithoutBraking = () => forceBrakeOnly && (MoveAim == default || At(MoveAim));
 
         StateMachine sm = new StateMachine(AnyStatePriority.ANY_STATES_FIRST);
         // sm.AddAnyTransition(idle, () => MoveAim == Vector3.zero || At(MoveAim) && m_Rigidbody.velocity.magnitude < 0.1f);
         sm.AddTransition(idle, flyToDestination, () => MoveAim != Vector3.zero);
         sm.AddTransition(flyToDestination, brake, needsBrakeCertainly);
+        sm.AddTransition(flyToDestination, idle, moveCancelledWithoutBraking);
         sm.AddTransition(brake, idle,
             () => MoveAim == Vector3.zero || At(MoveAim));
         sm.AddTransition(brake, flyToDestination, noNeedForBrakes);
@@ -179,9 +190,11 @@ public class PhysicalMovement : ShipMovementService
         engineSplitter.ApplyRotationTorque(v - location);
     }
 
-    public override void CancelMovement()
+    public override void CancelMovement(bool forceBrake=true)
     {
-        forceBrake = true;
+        MoveAim = Vector3.zero;
+        if (forceBrake)
+            this.forceBrake = true;
     }
 
     private void Tick()
